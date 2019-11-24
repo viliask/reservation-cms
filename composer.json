@@ -1,0 +1,107 @@
+{
+    "license": "proprietary",
+    "type": "project",
+    "homepage": "https://sulu.io/",
+    "keywords": [
+        "symfony",
+        "sulu",
+        "sulucms",
+        "cms",
+        "web-application",
+        "platform",
+        "data-managment",
+        "project-template"
+    ],
+    "authors": [
+        {
+            "name": "Sulu Community",
+            "homepage": "https://github.com/sulu/skeleton/graphs/contributors"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/sulu/skeleton/issues",
+        "source": "https://github.com/sulu/skeleton",
+        "docs": "http://docs.sulu.io/"
+    },
+    "require": {
+        "php": "^7.2",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "dantleech/phpcr-migrations-bundle": "^1.0",
+        "doctrine/doctrine-bundle": "^1.10",
+        "doctrine/doctrine-cache-bundle": "^1.3.1",
+        "doctrine/doctrine-fixtures-bundle": "^3.0",
+        "friendsofsymfony/http-cache-bundle": "^2.6",
+        "jackalope/jackalope-doctrine-dbal": "^1.3",
+        "sulu/sulu": "^2.0.2",
+        "symfony/config": "^4.3",
+        "symfony/dotenv": "^4.3",
+        "symfony/flex": "^1.2",
+        "symfony/framework-bundle": "^4.3",
+        "symfony/monolog-bridge": "^4.3",
+        "symfony/monolog-bundle": "^3.1",
+        "symfony/swiftmailer-bundle": "^3.1.4",
+        "symfony/twig-bundle": "^4.3",
+        "zendframework/zend-stdlib": "^2.3",
+        "zendframework/zendsearch": "^2.0.0rc6"
+    },
+    "require-dev": {
+        "phpcr/phpcr-shell": "^1.0",
+        "symfony/debug": "^4.3",
+        "symfony/debug-bundle": "^4.3",
+        "symfony/phpunit-bridge": "^4.3",
+        "symfony/thanks": "^1.1",
+        "symfony/web-profiler-bundle": "^4.3",
+        "symfony/web-server-bundle": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "replace": {
+        "paragonie/random_compat": "2.*",
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php71": "*",
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php56": "*"
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "bin/websiteconsole cache:clear": "php-script",
+            "bin/adminconsole sulu:media:init": "php-script",
+            "bin/adminconsole massive:search:init": "php-script"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ],
+        "post-root-package-install": [
+            "php -r \"file_put_contents('.env.local', 'APP_ENV=dev' . PHP_EOL);\"",
+            "php -r \"file_put_contents('.env', str_replace('APP_SECRET=', 'APP_SECRET=' . bin2hex(random_bytes(16)), file_get_contents('.env')));\""
+        ],
+        "post-create-project-cmd": [
+            "Sulu\\Bundle\\CoreBundle\\Composer\\ScriptHandler::removeComposerLockFromGitIgnore",
+            "Sulu\\Bundle\\CoreBundle\\Composer\\ScriptHandler::removePackageLockJsonFromGitIgnore"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": true
+        }
+    }
+}
