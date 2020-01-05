@@ -56,9 +56,14 @@
     </aside>
 
     <footer>
-        {% block footer %}
-            <p>Copyright {{ 'now'|date('Y') }} SULU</p>
-        {% endblock %}
+        <div class="footer_bg">
+            <div class="wrap">
+            {% block footer %}
+                <p>Copyright {{ 'now'|date('Y') }} SULU</p>
+            {% include "footer.html.twig" %}
+            {% endblock %}
+            </div>
+        </div>
     </footer>
 
     {% block javascripts %}{% endblock %}
