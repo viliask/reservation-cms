@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {% block stylesheets %}
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+        <link rel= "stylesheet" href="{{ asset ('web/css/app.css') }}" />
+    {% endblock %}
+
     {% block meta %}
         {% include "SuluWebsiteBundle:Extension:seo.html.twig" with {
             "seo": extension.seo|default([]),
