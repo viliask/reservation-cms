@@ -4,4 +4,8 @@
     <h1>{{ content.title }}</h1>
 
     {{ content.article|raw }}
+
+    {% block slider %}
+        {% include "./slider.html.twig" %}
+    {% endblock %}
 {% endblock %}
