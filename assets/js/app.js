@@ -8,3 +8,4 @@
 // any CSS you require will output into a single css file (app.css in this case)
 require('../css/app.css');
 require('../css/jquery-ui.css');
+require('../css/fwslider.css');
