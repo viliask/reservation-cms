@@ -9,3 +9,4 @@
 require('../css/app.css');
 require('../css/jquery-ui.css');
 require('../css/fwslider.css');
+require('../css/JFFormStyle-1.css');
