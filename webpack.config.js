@@ -9,8 +9,6 @@ Encore
     .setPublicPath('/web/assets/js')
     .addEntry('app', './assets/js/app.js')
     .addEntry('init-js', './assets/js/init-js.js')
-    .addEntry('jquery.min', './assets/js/jquery.min.js')
-    .addEntry('jquery-ui', './assets/js/jquery-ui.js')
     .addEntry('css3-mediaqueries', './assets/js/css3-mediaqueries.js')
     .addEntry('fwslider', './assets/js/fwslider.js')
     .splitEntryChunks()

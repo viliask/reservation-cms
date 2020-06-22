@@ -54,9 +54,9 @@
 
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
-        {{ encore_entry_script_tags('jquery.min') }}
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         {{ encore_entry_script_tags('init-js') }}
-        {{ encore_entry_script_tags('jquery-ui') }}
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
         {{ encore_entry_script_tags('css3-mediaqueries') }}
         {{ encore_entry_script_tags('fwslider') }}
     {% endblock %}
