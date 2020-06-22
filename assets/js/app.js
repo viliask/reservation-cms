@@ -7,5 +7,4 @@
 
 // any CSS you require will output into a single css file (app.css in this case)
 require('../css/app.css');
-
-const $ = require('jquery');
+require('../css/jquery-ui.css');

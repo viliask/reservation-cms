@@ -7,11 +7,10 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
-    // directory where compiled assets will be stored
-    // .setOutputPath('public/build/')
-    .setOutputPath('public/web/css')
+// directory where compiled assets will be stored
+    .setOutputPath('./public/web/assets/js')
     // public path used by the web server to access the output path
-    .setPublicPath('/web/css')
+    .setPublicPath('/web/assets/js')
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
 
@@ -25,8 +24,9 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
-    //.addEntry('page1', './assets/js/page1.js')
-    //.addEntry('page2', './assets/js/page2.js')
+    .addEntry('init-js', './assets/js/init-js.js')
+    .addEntry('jquery.min', './assets/js/jquery.min.js')
+    .addEntry('jquery-ui', './assets/js/jquery-ui.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
