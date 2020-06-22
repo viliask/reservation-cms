@@ -9,7 +9,10 @@
         {% include "./slider.html.twig" %}
     {% endblock %}
 
-    {% block reservation %}
-        {% include "./homepage/reservation.html.twig" %}
-    {% endblock %}
+    <div class="wrap">
+        {% block reservation %}
+            {% include "./homepage/reservation.html.twig" %}
+        {% endblock %}
+    </div>
+
 {% endblock %}
