@@ -6,14 +6,20 @@
             </div>
             <div class="h_right">
                 <!--start menu -->
-                <ul class="menu">
-                    <li class="active"><a href="index.html">hotel</a></li> |
-                    <li><a href="rooms.html">rooms & suits</a></li> |
-                    <li><a href="reservation.html">reservation</a></li> |
-                    <li><a href="activities.html">activities</a></li> |
-                    <li><a href="contact.html">contact</a></li>
-                    <div class="clear"></div>
-                </ul>
+                <nav>
+                    <ul class="menu">
+                        <li>
+                            <a href="{{ sulu_content_root_path() }}">Homepage</a>
+                        </li>
+
+                        {% for item in sulu_navigation_root_tree('main') %}
+                            <li>
+                                <a href="{{ sulu_content_path(item.url, item.webspaceKey) }}"
+                                   title="{{ item.title }}">{{ item.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
                 <!-- start profile_details -->
                 <form class="style-1 drp_dwn">
                     <div class="row">
@@ -33,11 +39,16 @@
             <div class="top-nav">
                 <nav class="clearfix">
                     <ul>
-                        <li class="active"><a href="index.html">hotel</a></li>
-                        <li><a href="rooms.html">rooms & suits</a></li>
-                        <li><a href="reservation.html">reservation</a></li>
-                        <li><a href="activities.html">activities</a></li>
-                        <li><a href="contact.html">contact</a></li>
+                        <li>
+                            <a href="{{ sulu_content_root_path() }}">Homepage</a>
+                        </li>
+
+                        {% for item in sulu_navigation_root_tree('main') %}
+                            <li>
+                                <a href="{{ sulu_content_path(item.url, item.webspaceKey) }}"
+                                   title="{{ item.title }}">{{ item.title }}</a>
+                            </li>
+                        {% endfor %}
                     </ul>
                     <a href="#" id="pull">Menu</a>
                 </nav>
