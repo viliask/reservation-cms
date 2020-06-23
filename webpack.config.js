@@ -23,4 +23,17 @@ Encore
     })
 ;
 
+Encore.reset();
+Encore
+    .cleanupOutputBeforeBuild()
+    .disableSingleRuntimeChunk()
+    .setOutputPath('./public/web/assets/css')
+    .setPublicPath('/web/assets/css')
+    .setManifestKeyPrefix('')
+    .addStyleEntry('app', './assets/css/app.css')
+    .addStyleEntry('fwslider', './assets/css/fwslider.css')
+    .addStyleEntry('jquery-ui', './assets/css/jquery-ui.css')
+    .addStyleEntry('JFFormStyle-1', './assets/css/JFFormStyle-1.css')
+;
+
 module.exports = Encore.getWebpackConfig();
