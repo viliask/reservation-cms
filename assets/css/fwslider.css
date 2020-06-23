@@ -52,7 +52,7 @@
 #fwslider .timers {
     height:4px;
     position: absolute;
-    bottom:15px;
+    bottom: 70px;
     right:0;
     z-index: 3;
 }
