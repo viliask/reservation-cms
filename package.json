@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "babel-loader": "^8.0.0",
-        "jquery": "^3.4.1"
+        "jquery": "^3.4.1",
+        "webpack-jquery-ui": "^2.0.1"
     }
 }
