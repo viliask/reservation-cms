@@ -23,6 +23,9 @@ Encore
     })
 ;
 
+const jsConfig = Encore.getWebpackConfig();
+jsConfig.name = 'js';
+
 Encore.reset();
 Encore
     .cleanupOutputBeforeBuild()
@@ -36,4 +39,7 @@ Encore
     .addStyleEntry('JFFormStyle-1', './assets/css/JFFormStyle-1.css')
 ;
 
-module.exports = Encore.getWebpackConfig();
+const cssConfig = Encore.getWebpackConfig();
+cssConfig.name = 'css';
+
+module.exports = [jsConfig, cssConfig];
