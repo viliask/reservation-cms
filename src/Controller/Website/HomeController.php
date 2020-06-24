@@ -61,6 +61,8 @@ class HomeController extends WebsiteController
             );
         }
 
+//      TODO: Make generateUri usable
+//        $form = $this->createForm(ReservationType::class, null, ['action' => $this->generateUrl('reservation')]);
         $form = $this->createForm(ReservationType::class, null, ['action' => self::RESERVATION_PATH]);
 
         $attributes = ['form' => $form->createView()];
