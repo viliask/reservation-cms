@@ -10,6 +10,8 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class HomeController extends WebsiteController
 {
+    const RESERVATION_PATH = '/reservation';
+
     /**
      * @param \Sulu\Component\Content\Compat\StructureInterface $structure
      * @param bool $preview
@@ -59,7 +61,7 @@ class HomeController extends WebsiteController
             );
         }
 
-        $form = $this->createForm(ReservationType::class, null, ['action' => $this->generateUrl('reservation')]);
+        $form = $this->createForm(ReservationType::class, null, ['action' => self::RESERVATION_PATH]);
 
         $attributes = ['form' => $form->createView()];
 
