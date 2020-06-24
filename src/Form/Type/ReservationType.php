@@ -28,7 +28,7 @@ class ReservationType extends AbstractType
                     'label'  => '',
                     'widget' => 'single_text',
                     'html5'  => false,
-                    'attr'   => ['class' => 'date js-datepicker'],
+                    'attr'   => ['class' => 'date js-datepicker', 'placeholder' => 'DD-MM-YYYY'],
                 ]
             )
             ->add('checkOutDate', Type\DateType::class,
@@ -36,7 +36,7 @@ class ReservationType extends AbstractType
                     'label'  => '',
                     'widget' => 'single_text',
                     'html5'  => false,
-                    'attr'   => ['class' => 'date js-datepicker'],
+                    'attr'   => ['class' => 'date js-datepicker', 'placeholder' => 'DD-MM-YYYY'],
                 ]
             )
             ->add('adults', ChoiceType::class,
