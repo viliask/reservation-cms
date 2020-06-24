@@ -10,7 +10,14 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class HomeController extends WebsiteController
 {
-    public function indexAction(StructureInterface $structure, $preview = false, $partial = false)
+    /**
+     * @param \Sulu\Component\Content\Compat\StructureInterface $structure
+     * @param bool $preview
+     * @param bool $partial
+     *
+     * @return Response
+     */
+    public function indexAction(StructureInterface $structure, bool $preview = false, bool $partial = false)
     {
         $response = $this->renderStructure(
             $structure,
@@ -21,6 +28,14 @@ class HomeController extends WebsiteController
         return $response;
     }
 
+    /**
+     * @param StructureInterface $structure The structure, which has been loaded for rendering
+     * @param array $attributes Additional attributes, which will be passed to twig
+     * @param bool $preview Defines if the site is rendered in preview mode
+     * @param bool $partial Defines if only the content block of the template should be rendered
+     *
+     * @return Response
+     */
     protected function renderStructure(
         StructureInterface $structure,
         $attributes = [],
