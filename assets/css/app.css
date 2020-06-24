@@ -336,7 +336,7 @@ body {
     margin-left: 20px;
 }
 
-.reservation h5 {
+.reservation label {
     font-size: 1em;
     color: #5F5F5F;
     text-transform: capitalize;
@@ -385,14 +385,14 @@ select option {
 }
 
 .date {
-    background: url(../images/cal-icon.png) no-repeat 100% 50% #FFF;
+    /*background: url(../images/cal-icon.png) no-repeat 100% 50% #FFF;*/
 }
 
 .date_btn {
     margin-top: 33px;
 }
 
-.date_btn form input[type="submit"] {
+.date_btn button[type="submit"] {
     text-transform: capitalize;
     width: 100% !important;
     background: #32A2E3;
