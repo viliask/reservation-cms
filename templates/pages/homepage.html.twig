@@ -9,6 +9,43 @@
         {% include "./slider.html.twig" %}
     {% endblock %}
 
+    {{ form_start(form, {'attr': {'class': 'submit-form'} }) }}
+    <legend>Book A Room</legend>
+    {{ form_errors(form) }}
+
+    <div class="entry">
+        {{ form_label(form.roomType) }}
+        {{ form_errors(form.roomType) }}
+        {{ form_widget(form.roomType) }}
+    </div>
+
+    <div class="entry">
+        {{ form_label(form.checkInDate) }}
+        {{ form_errors(form.checkInDate) }}
+        {{ form_widget(form.checkInDate) }}
+    </div>
+
+    <div class="entry">
+        {{ form_label(form.checkOutDate) }}
+        {{ form_errors(form.checkOutDate) }}
+        {{ form_widget(form.checkOutDate) }}
+    </div>
+
+    <div class="entry">
+        {{ form_label(form.adults) }}
+        {{ form_errors(form.adults) }}
+        {{ form_widget(form.adults) }}
+    </div>
+
+    <div class="entry">
+        {{ form_label(form.children) }}
+        {{ form_errors(form.children) }}
+        {{ form_widget(form.children) }}
+    </div>
+
+    {{ form_widget(form.submit, {attr: {class: 'btn btn--green submit-button'} }) }}
+    {{ form_end(form) }}
+
     <div class="wrap">
         {% block reservation %}
             {% include "./homepage/reservation.html.twig" %}
