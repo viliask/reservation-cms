@@ -11,7 +11,7 @@
 
     <div class="wrap">
         {% block reservation %}
-            {% include "./homepage/reservation.html.twig" %}
+            {% include "./homepage/reservation.html.twig" with {form: form} %}
         {% endblock %}
 
         {% block grids %}
