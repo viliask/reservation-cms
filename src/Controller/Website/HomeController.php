@@ -73,4 +73,9 @@ class HomeController extends WebsiteController
 
         return $response;
     }
+
+    public function reservation(): Response
+    {
+        return $this->render('/bookReservation/bookReservation.html.twig');
+    }
 }
