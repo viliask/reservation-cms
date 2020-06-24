@@ -2,6 +2,7 @@
 
 namespace App\Controller\Website;
 
+use App\Form\Type\ReservationType;
 use Sulu\Bundle\WebsiteBundle\Controller\WebsiteController;
 use Sulu\Component\Content\Compat\StructureInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,6 +43,10 @@ class HomeController extends WebsiteController
                 sprintf('Page does not exist in "%s" format.', $requestFormat)
             );
         }
+
+        $form = $this->createForm(ReservationType::class, null, ['action' => $this->generateUrl('reservation')]);
+
+        $attributes = ['form' => $form->createView()];
 
         // get attributes to render template
         $data = $this->getAttributes($attributes, $structure, $preview);
