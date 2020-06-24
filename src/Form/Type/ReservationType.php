@@ -63,7 +63,7 @@ class ReservationType extends AbstractType
                         ],
                 ]
             )
-            ->add('submit', Type\SubmitType::class, ['label' => 'Submit']);
+            ->add('submit', Type\SubmitType::class, ['label' => 'Check availability']);
     }
 
     public function configureOptions(OptionsResolver $resolver)
