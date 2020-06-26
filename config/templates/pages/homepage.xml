@@ -43,6 +43,28 @@
             </meta>
         </property>
 
+        <property name="images" type="media_selection">
+            <meta>
+                <title lang="en">Images</title>
+            </meta>
+
+            <params>
+                <param name="types" value="image,video"/>
+                <param name="displayOptions" type="collection">
+                    <param name="leftTop" value="true"/>
+                    <param name="top" value="true"/>
+                    <param name="rightTop" value="true"/>
+                    <param name="left" value="true"/>
+                    <param name="middle" value="false"/>
+                    <param name="right" value="true"/>
+                    <param name="leftBottom" value="true"/>
+                    <param name="bottom" value="true"/>
+                    <param name="rightBottom" value="true"/>
+                </param>
+                <param name="defaultDisplayOption" value="left"/>
+            </params>
+        </property>
+
         <property name="grid_1" type="text_editor">
             <meta>
                 <title lang="en">Grid 1</title>
