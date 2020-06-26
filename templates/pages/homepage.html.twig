@@ -15,7 +15,7 @@
         {% endblock %}
 
         {% block grids %}
-            {% include "./homepage/grids.html.twig" %}
+            {% include "./homepage/grids.html.twig" with {content: content}%}
         {% endblock %}
     </div>
 
