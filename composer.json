@@ -50,7 +50,6 @@
         "phpcr/phpcr-shell": "^1.0",
         "symfony/debug": "^4.3",
         "symfony/debug-bundle": "^4.3",
-        "symfony/maker-bundle": "^1.19",
         "symfony/phpunit-bridge": "^4.3",
         "symfony/thanks": "^1.1",
         "symfony/web-profiler-bundle": "^4.3",
