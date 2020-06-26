@@ -2,7 +2,10 @@
     <div class="grid1_of_3">
         <div class="grid1_of_3_img">
             <a href="details.html">
-                <img src="{{ asset('web/images/pic1.jpg') }}" alt="">
+                {% if content.images is not empty %}
+                    {% set source = content.images[0].formats['sulu-260x'] %}
+                    <img src="{{ asset(source) }}" alt="">
+                {% endif %}
             </a>
         </div>
         <h4><a href="#">single room<span>120$</span></a></h4>
