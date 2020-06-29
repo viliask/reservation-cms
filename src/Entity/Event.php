@@ -37,14 +37,14 @@ class Event
      *
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
-    private $startDate;
+    private $checkIn;
 
     /**
      * @var \DateTimeImmutable|null
      *
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
-    private $endDate;
+    private $checkOut;
 
     /**
      * @var string|null
@@ -90,26 +90,26 @@ class Event
         return $this;
     }
 
-    public function getStartDate(): ?\DateTimeImmutable
+    public function getCheckIn(): ?\DateTimeImmutable
     {
-        return $this->startDate;
+        return $this->checkIn;
     }
 
-    public function setStartDate(?\DateTimeImmutable $startDate): self
+    public function setCheckIn(?\DateTimeImmutable $checkIn): self
     {
-        $this->startDate = $startDate;
+        $this->checkIn = $checkIn;
 
         return $this;
     }
 
-    public function getEndDate(): ?\DateTimeImmutable
+    public function getCheckOut(): ?\DateTimeImmutable
     {
-        return $this->endDate;
+        return $this->checkOut;
     }
 
-    public function setEndDate(?\DateTimeImmutable $endDate): self
+    public function setCheckOut(?\DateTimeImmutable $checkOut): self
     {
-        $this->endDate = $endDate;
+        $this->checkOut = $checkOut;
 
         return $this;
     }
