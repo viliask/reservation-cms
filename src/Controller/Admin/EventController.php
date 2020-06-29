@@ -127,16 +127,12 @@ class EventController extends RestController implements ClassResourceInterface
             $entity->setDescription($description);
         }
 
-        if ($startDate = $data['startDate'] ?? null) {
-            $entity->setStartDate(new \DateTimeImmutable($startDate));
+        if ($checkIn = $data['checkIn'] ?? null) {
+            $entity->setCheckIn(new \DateTimeImmutable($checkIn));
         }
 
-        if ($endDate = $data['endDate'] ?? null) {
-            $entity->setEndDate(new \DateTimeImmutable($endDate));
-        }
-
-        if ($location = $data['location'] ?? null) {
-            $entity->setLocation($location);
+        if ($checkOut = $data['checkOut'] ?? null) {
+            $entity->setCheckOut(new \DateTimeImmutable($checkOut));
         }
     }
 
