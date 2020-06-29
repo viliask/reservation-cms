@@ -47,13 +47,6 @@ class Event
     private $checkOut;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $location;
-
-    /**
      * @var EventTranslation[]|Collection
      *
      * @ORM\OneToMany(targetEntity="App\Entity\EventTranslation", mappedBy="event", cascade={"ALL"}, indexBy="locale")
@@ -110,18 +103,6 @@ class Event
     public function setCheckOut(?\DateTimeImmutable $checkOut): self
     {
         $this->checkOut = $checkOut;
-
-        return $this;
-    }
-
-    public function getLocation(): ?string
-    {
-        return $this->location;
-    }
-
-    public function setLocation(?string $location): self
-    {
-        $this->location = $location;
 
         return $this;
     }
