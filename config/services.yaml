@@ -8,6 +8,12 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $listBuilderFactory: '@sulu_core.doctrine_list_builder_factory'
+
+    _instanceof:
+        Sulu\Bundle\AdminBundle\Admin\Admin:
+            tags: ['sulu.admin', {name: 'sulu.context', context: 'admin'}]
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -20,6 +26,14 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\Content\EventSelectionContentType:
+        tags: [{name: 'sulu.content.type', alias: 'event_selection'}]
+
+    App\Content\EventDataProvider:
+        tags: [{name: 'sulu.smart_content.data_provider', alias: 'events'}]
+        bind:
+            $repository: '@App\Repository\EventRepository'
 
     # add controllers as services that are specific to a certain sulu context
     # a sulu context is a different mode in the kernel allowing to have a different set of services
