@@ -1,8 +1,8 @@
 {
     "app.events": "Veranstaltungen",
     "app.teaser": "Kurzbeschreibung",
-    "app.start_date": "Start",
-    "app.end_date": "Ende",
+    "app.check_in": "Check In",
+    "app.check_out": "Check Out",
     "app.enable_event": "Veranstaltungen aktivieren",
     "app.enabled": "Aktiviert",
     "app.location": "Standort"

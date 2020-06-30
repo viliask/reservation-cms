@@ -50,13 +50,13 @@
             <entity-name>App\Entity\Event</entity-name>
         </property>
 
-        <property name="startDate" visibility="always" translation="app.start_date" type="datetime">
-            <field-name>startDate</field-name>
+        <property name="checkIn" visibility="always" searchability="yes" translation="app.check_in" type="datetime">
+            <field-name>checkIn</field-name>
             <entity-name>App\Entity\Event</entity-name>
         </property>
 
-        <property name="endDate" visibility="always" translation="app.end_date" type="datetime">
-            <field-name>endDate</field-name>
+        <property name="checkOut" visibility="always" searchability="yes" translation="app.check_out" type="datetime">
+            <field-name>checkOut</field-name>
             <entity-name>App\Entity\Event</entity-name>
         </property>
 
