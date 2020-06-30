@@ -3,6 +3,7 @@
     "app.teaser": "Kurzbeschreibung",
     "app.check_in": "Check In",
     "app.check_out": "Check Out",
+    "app.status": "Status",
     "app.enable_event": "Veranstaltungen aktivieren",
     "app.enabled": "Aktiviert",
     "app.location": "Standort"

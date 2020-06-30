@@ -3,6 +3,7 @@
     "app.teaser": "Teaser",
     "app.check_in": "Check in",
     "app.check_out": "Check out",
+    "app.status": "Status",
     "app.enable_event": "Enable event",
     "app.enabled": "Enabled",
     "app.location": "Location"

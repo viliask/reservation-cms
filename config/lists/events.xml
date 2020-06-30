@@ -60,6 +60,11 @@
             <entity-name>App\Entity\Event</entity-name>
         </property>
 
+        <property name="status" visibility="always" searchability="yes" translation="app.status">
+            <field-name>status</field-name>
+            <entity-name>App\Entity\Event</entity-name>
+        </property>
+
         <property name="created" translation="sulu_admin.created" type="datetime" visibility="yes">
             <field-name>created</field-name>
             <entity-name>App\Entity\EventTranslation</entity-name>
