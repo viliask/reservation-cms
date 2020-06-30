@@ -106,14 +106,15 @@ class Event
     private $price;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Room::class, inversedBy="reservations")
+     * @ORM\ManyToMany(targetEntity=Room::class, inversedBy="events")
      */
-    private $room;
+    private $rooms;
 
     public function __construct()
     {
         $this->enabled = false;
         $this->translations = new ArrayCollection();
+        $this->rooms = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -377,14 +378,28 @@ class Event
         return $this;
     }
 
-    public function getRoom(): ?Room
+    /**
+     * @return Collection|Room[]
+     */
+    public function getRooms():? Collection
     {
-        return $this->room;
+        return $this->rooms;
     }
 
-    public function setRoom(?Room $room): self
+    public function addRoom(?Room $room): self
     {
-        $this->room = $room;
+        if ($room && !$this->rooms->contains($room)) {
+            $this->rooms[] = $room;
+        }
+
+        return $this;
+    }
+
+    public function removeRoom(Room $room): self
+    {
+        if ($this->rooms->contains($room)) {
+            $this->rooms->removeElement($room);
+        }
 
         return $this;
     }

@@ -30,7 +30,7 @@ class Room
     private $maxGuests;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="room")
+     * @ORM\ManyToMany(targetEntity=Event::class, mappedBy="rooms")
      */
     private $reservations;
 
@@ -69,31 +69,28 @@ class Room
     }
 
     /**
-     * @return Collection|Reservation[]
+     * @return Collection|Event[]
      */
-    public function getReservations(): Collection
+    public function getEvents(): Collection
     {
         return $this->reservations;
     }
 
-    public function addReservation(Reservation $reservation): self
+    public function addReservation(Event $event): self
     {
-        if (!$this->reservations->contains($reservation)) {
-            $this->reservations[] = $reservation;
-            $reservation->setRoom($this);
+        if (!$this->reservations->contains($event)) {
+            $this->reservations[] = $event;
+            $event->addRoom($this);
         }
 
         return $this;
     }
 
-    public function removeReservation(Reservation $reservation): self
+    public function removeReservation(Event $event): self
     {
-        if ($this->reservations->contains($reservation)) {
-            $this->reservations->removeElement($reservation);
-            // set the owning side to null (unless already changed)
-            if ($reservation->getRoom() === $this) {
-                $reservation->setRoom(null);
-            }
+        if ($this->reservations->contains($event)) {
+            $this->reservations->removeElement($event);
+            $event->removeRoom($this);
         }
 
         return $this;
