@@ -7,6 +7,7 @@ namespace App\Controller\Admin;
 use App\Admin\DoctrineListRepresentationFactory;
 use App\Entity\Event;
 use App\Repository\EventRepository;
+use App\Repository\RoomRepository;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Routing\ClassResourceInterface;
 use Sulu\Component\Rest\RestController;
@@ -22,15 +23,22 @@ class EventController extends RestController implements ClassResourceInterface
     private $repository;
 
     /**
+     * @var RoomRepository
+     */
+    private $roomRepository;
+
+    /**
      * @var DoctrineListRepresentationFactory
      */
     private $doctrineListRepresentationFactory;
 
     public function __construct(
         EventRepository $repository,
+        RoomRepository $roomRepository,
         DoctrineListRepresentationFactory $doctrineListRepresentationFactory
     ) {
         $this->repository = $repository;
+        $this->roomRepository = $roomRepository;
         $this->doctrineListRepresentationFactory = $doctrineListRepresentationFactory;
     }
 
@@ -144,6 +152,12 @@ class EventController extends RestController implements ClassResourceInterface
         $entity->setStatus($data['status']);
         $entity->setPolicy((bool)$data['policy']);
         $entity->setPrice((float)$data['price']);
+
+        if ($rooms = $data['rooms'] ?? null) {
+            foreach ($rooms as $room) {
+                $entity->addRoom($this->roomRepository->find($room));
+            }
+        }
     }
 
     protected function load(int $id, Request $request): ?Event
