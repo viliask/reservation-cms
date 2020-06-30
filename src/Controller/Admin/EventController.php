@@ -134,6 +134,16 @@ class EventController extends RestController implements ClassResourceInterface
         if ($checkOut = $data['checkOut'] ?? null) {
             $entity->setCheckOut(new \DateTimeImmutable($checkOut));
         }
+
+        $entity->setFirstName($data['firstName']);
+        $entity->setLastName($data['lastName']);
+        $entity->setPhone($data['phone']);
+        $entity->setMail($data['mail']);
+        $entity->setGuests((int)$data['guests']);
+        $entity->setMessage($data['message']);
+        $entity->setStatus($data['status']);
+        $entity->setPolicy((bool)$data['policy']);
+        $entity->setPrice((float)$data['price']);
     }
 
     protected function load(int $id, Request $request): ?Event
