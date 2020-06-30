@@ -77,5 +77,11 @@
                 <title>app.message</title>
             </meta>
         </property>
+
+        <property name="rooms" type="event_selection">
+            <meta>
+                <title>app.rooms</title>
+            </meta>
+        </property>
     </properties>
 </form>
