@@ -12,33 +12,69 @@
             </meta>
         </property>
 
-        <property name="location" type="text_line" colspan="3">
+        <property name="status" type="text_line" mandatory="true" colspan="3">
             <meta>
-                <title>app.location</title>
+                <title>app.status</title>
             </meta>
         </property>
 
-        <property name="teaser" type="text_area">
+        <property name="checkIn" type="datetime" colspan="3">
             <meta>
-                <title>app.teaser</title>
+                <title>app.check_in</title>
             </meta>
         </property>
 
-        <property name="startDate" type="datetime" colspan="6">
+        <property name="checkOut" type="datetime" colspan="3">
             <meta>
-                <title>app.start_date</title>
+                <title>app.check_out</title>
             </meta>
         </property>
 
-        <property name="endDate" type="datetime" colspan="6">
+        <property name="firstName" type="text_line" mandatory="true" colspan="3">
             <meta>
-                <title>app.end_date</title>
+                <title>app.first_name</title>
             </meta>
         </property>
 
-        <property name="description" type="text_editor">
+        <property name="lastName" type="text_line" mandatory="true"  colspan="3">
             <meta>
-                <title>sulu_admin.description</title>
+                <title>app.last_name</title>
+            </meta>
+        </property>
+
+        <property name="phone" type="phone" mandatory="true" colspan="3">
+            <meta>
+                <title>app.phone</title>
+            </meta>
+        </property>
+
+        <property name="mail" type="email" mandatory="true" colspan="3">
+            <meta>
+                <title>app.mail</title>
+            </meta>
+        </property>
+
+        <property name="guests" type="number" mandatory="true" colspan="3">
+            <meta>
+                <title>app.guests</title>
+            </meta>
+        </property>
+
+        <property name="policy" type="checkbox" mandatory="true" colspan="1">
+            <meta>
+                <title>app.policy</title>
+            </meta>
+        </property>
+
+        <property name="price" type="number" colspan="2">
+            <meta>
+                <title>app.price</title>
+            </meta>
+        </property>
+
+        <property name="message" type="text_area" mandatory="true">
+            <meta>
+                <title>app.message</title>
             </meta>
         </property>
     </properties>
