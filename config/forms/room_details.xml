@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<form xmlns="http://schemas.sulu.io/template/template"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/form-1.0.xsd"
+>
+    <key>room_details</key>
+
+    <properties>
+
+        <property name="title" type="text_line" mandatory="true" colspan="3">
+            <meta>
+                <title>sulu_admin.title</title>
+            </meta>
+        </property>
+
+        <property name="name" type="text_line" mandatory="true" colspan="3">
+            <meta>
+                <title>app.name</title>
+            </meta>
+        </property>
+
+        <property name="maxGuests" type="number" mandatory="true" colspan="2">
+            <meta>
+                <title>app.max_guests</title>
+            </meta>
+        </property>
+
+        <property name="reservations" type="event_selection">
+            <meta>
+                <title>app.reservations</title>
+            </meta>
+        </property>
+        <property name="parent_event" type="single_event_selection">
+            <meta>
+                <title>app.parent_event</title>
+            </meta>
+            <params>
+                <param name="type" value="auto_complete" />
+            </params>
+        </property>
+
+    </properties>
+</form>

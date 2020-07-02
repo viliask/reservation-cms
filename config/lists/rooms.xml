@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<list xmlns="http://schemas.sulu.io/list-builder/list">
+    <key>rooms</key>
+
+    <joins name="translation">
+        <join>
+            <entity-name>App\Entity\RoomTranslation</entity-name>
+            <field-name>App\Entity\Room.translations</field-name>
+            <condition>App\Entity\RoomTranslation.locale = :locale</condition>
+        </join>
+    </joins>
+
+    <joins name="changer" ref="translation">
+        <join>
+            <entity-name>%sulu.model.user.class%_changer</entity-name>
+            <field-name>App\Entity\RoomTranslation.changer</field-name>
+        </join>
+        <join>
+            <entity-name>%sulu.model.contact.class%_changer</entity-name>
+            <field-name>%sulu.model.user.class%_changer.contact</field-name>
+        </join>
+    </joins>
+
+    <properties>
+        <property name="id" visibility="no" translation="sulu_admin.id">
+            <field-name>id</field-name>
+            <entity-name>App\Entity\Room</entity-name>
+        </property>
+
+        <property name="name" visibility="always" searchability="yes" translation="app.name">
+            <field-name>name</field-name>
+            <entity-name>App\Entity\Room</entity-name>
+
+            <joins ref="translation"/>
+        </property>
+
+        <property name="enabled" visibility="no" translation="app.enabled" type="bool">
+            <field-name>enabled</field-name>
+            <entity-name>App\Entity\Room</entity-name>
+        </property>
+
+        <property name="maxGuests" visibility="always" searchability="yes" translation="app.max_guests">
+            <field-name>maxGuests</field-name>
+            <entity-name>App\Entity\Room</entity-name>
+        </property>
+
+        <property name="changed" translation="sulu_admin.changed" type="datetime" visibility="yes">
+            <field-name>changed</field-name>
+            <entity-name>App\Entity\RoomTranslation</entity-name>
+
+            <joins ref="translation"/>
+        </property>
+
+        <concatenation-property name="changer" translation="sulu_admin.changer" visibility="yes" searchability="yes">
+            <field>
+                <field-name>firstName</field-name>
+                <entity-name>%sulu.model.contact.class%_changer</entity-name>
+
+                <joins ref="changer"/>
+            </field>
+            <field>
+                <field-name>lastName</field-name>
+                <entity-name>%sulu.model.contact.class%_changer</entity-name>
+
+                <joins ref="changer"/>
+            </field>
+        </concatenation-property>
+    </properties>
+</list>
