@@ -26,6 +26,19 @@ class EventAdmin extends Admin
 
     const EVENT_EDIT_FORM_VIEW = 'app.event_edit_form';
 
+//////// Room
+
+    const ROOM_LIST_KEY = 'rooms';
+
+    const ROOM_FORM_KEY = 'room_details';
+
+    const ROOM_LIST_VIEW = 'app.rooms_list';
+
+    const ROOM_ADD_FORM_VIEW = 'app.room_add_form';
+
+    const ROOM_EDIT_FORM_VIEW = 'app.room_edit_form';
+
+
     /**
      * @var ViewBuilderFactoryInterface
      */
@@ -54,6 +67,12 @@ class EventAdmin extends Admin
         $events = new NavigationItem('app.events');
         $events->setPosition(10);
         $events->setView(static::EVENT_LIST_VIEW);
+
+        $module->addChild($events);
+
+        $events = new NavigationItem('app.rooms');
+        $events->setPosition(20);
+        $events->setView(static::ROOM_LIST_VIEW);
 
         $module->addChild($events);
 
