@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
-use App\Entity\Room;
+use App\Entity\Event;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Query\Expr\Join;
@@ -13,12 +13,12 @@ use Sulu\Component\SmartContent\Orm\DataProviderRepositoryInterface;
 use Sulu\Component\SmartContent\Orm\DataProviderRepositoryTrait;
 
 /**
- * @method Room|null find($id, $lockMode = null, $lockVersion = null)
- * @method Room|null findOneBy(array $criteria, array $orderBy = null)
- * @method Room[]    findAll()
- * @method Room[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Event|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Event|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Event[]    findAll()
+ * @method Event[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RoomRepository extends ServiceEntityRepository implements DataProviderRepositoryInterface
+class EventRepository extends ServiceEntityRepository implements DataProviderRepositoryInterface
 {
     use DataProviderRepositoryTrait {
         findByFilters as parentFindByFilters;
@@ -26,15 +26,15 @@ class RoomRepository extends ServiceEntityRepository implements DataProviderRepo
 
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Room::class);
+        parent::__construct($registry, Event::class);
     }
 
-    public function create(string $locale): Room
+    public function create(string $locale): Event
     {
-        $room = new Room();
-        $room->setLocale($locale);
+        $event = new Event();
+        $event->setLocale($locale);
 
-        return $room;
+        return $event;
     }
 
     public function remove(int $id): void
@@ -48,22 +48,22 @@ class RoomRepository extends ServiceEntityRepository implements DataProviderRepo
         $this->getEntityManager()->flush();
     }
 
-    public function save(Room $room): void
+    public function save(Event $event): void
     {
-        $this->getEntityManager()->persist($room);
+        $this->getEntityManager()->persist($event);
         $this->getEntityManager()->flush();
     }
 
-    public function findById(int $id, string $locale): ?Room
+    public function findById(int $id, string $locale): ?Event
     {
-        $room = $this->find($id);
-        if (!$room) {
+        $event = $this->find($id);
+        if (!$event) {
             return null;
         }
 
-        $room->setLocale($locale);
+        $event->setLocale($locale);
 
-        return $room;
+        return $event;
     }
 
     public function findByFilters($filters, $page, $pageSize, $limit, $locale, $options = [])
@@ -71,7 +71,7 @@ class RoomRepository extends ServiceEntityRepository implements DataProviderRepo
         $entities = $this->parentFindByFilters($filters, $page, $pageSize, $limit, $locale, $options);
 
         return array_map(
-            function (Room $entity) use ($locale) {
+            function (Event $entity) use ($locale) {
                 return $entity->setLocale($locale);
             },
             $entities
