@@ -33,3 +33,15 @@ sulu_admin:
                         icon: fa-calendar
                         label: 'app.events'
                         overlay_title: 'app.events'
+            room_selection:
+                default_type: list_overlay
+                resource_key: rooms
+                types:
+                    list_overlay:
+                        adapter: table
+                        list_key: rooms
+                        display_properties:
+                            - name
+                        icon: su-clock
+                        label: 'app.rooms'
+                        overlay_title: 'app.rooms'
