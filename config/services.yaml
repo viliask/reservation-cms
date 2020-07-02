@@ -35,6 +35,14 @@ services:
         bind:
             $repository: '@App\Repository\EventRepository'
 
+    App\Content\RoomSelectionContentType:
+        tags: [{name: 'sulu.content.type', alias: 'room_selection'}]
+
+    App\Content\RoomDataProvider:
+        tags: [{name: 'sulu.smart_content.data_provider', alias: 'rooms'}]
+        bind:
+            $repository: '@App\Repository\RoomRepository'
+
     # add controllers as services that are specific to a certain sulu context
     # a sulu context is a different mode in the kernel allowing to have a different set of services
     # because controllers might rely on services only existing in one of both contexts
