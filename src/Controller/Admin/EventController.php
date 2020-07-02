@@ -68,7 +68,7 @@ class EventController extends RestController implements ClassResourceInterface
     {
         $entity = $this->create($request);
 
-        $this->mapDataToEntity($request->request->all(), $entity);
+        $this->mapDataToEntity($request->request->all(), $entity, $request->query->get('locale'));
 
         $this->save($entity);
 
@@ -106,7 +106,7 @@ class EventController extends RestController implements ClassResourceInterface
             throw new NotFoundHttpException();
         }
 
-        $this->mapDataToEntity($request->request->all(), $entity);
+        $this->mapDataToEntity($request->request->all(), $entity, $request->query->get('locale'));
 
         $this->save($entity);
 
@@ -123,7 +123,7 @@ class EventController extends RestController implements ClassResourceInterface
     /**
      * @param string[] $data
      */
-    protected function mapDataToEntity(array $data, Event $entity): void
+    protected function mapDataToEntity(array $data, Event $entity, $locale): void
     {
         $entity->setTitle($data['title']);
 
@@ -152,6 +152,7 @@ class EventController extends RestController implements ClassResourceInterface
         $entity->setStatus($data['status']);
         $entity->setPolicy((bool)$data['policy']);
         $entity->setPrice((float)$data['price']);
+        $entity->setLocale($locale);
 
         if ($rooms = $data['rooms'] ?? null) {
             foreach ($rooms as $room) {
