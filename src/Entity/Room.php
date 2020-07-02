@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Room
 {
+    const RESOURCE_KEY = 'rooms';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
