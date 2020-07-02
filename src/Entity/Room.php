@@ -69,9 +69,9 @@ class Room
     }
 
     /**
-     * @return Collection|Event[]
+     * @return Collection|Room[]
      */
-    public function getEvents(): Collection
+    public function getReservation(): Collection
     {
         return $this->reservations;
     }

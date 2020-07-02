@@ -106,7 +106,7 @@ class Event
     private $price;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Room::class, inversedBy="events")
+     * @ORM\ManyToMany(targetEntity=Room::class, inversedBy="reservations")
      */
     private $rooms;
 
