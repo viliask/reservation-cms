@@ -15,5 +15,7 @@
     "app.rooms": "Rooms",
     "app.enable_event": "Enable event",
     "app.enabled": "Enabled",
-    "app.location": "Location"
+    "app.location": "Location",
+    "app.max_guests": "Max guests",
+    "app.name": "Name"
 }
