@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Admin;
 
 use App\Entity\Event;
+use App\Entity\Room;
 use Sulu\Bundle\AdminBundle\Admin\Admin;
 use Sulu\Bundle\AdminBundle\Admin\Navigation\NavigationItem;
 use Sulu\Bundle\AdminBundle\Admin\Navigation\NavigationItemCollection;
@@ -137,6 +138,66 @@ class EventAdmin extends Admin
             ->setTabTitle('sulu_admin.details')
             ->addToolbarActions($formToolbarActions)
             ->setParent(static::EVENT_EDIT_FORM_VIEW);
+        $viewCollection->add($editDetailsFormView);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////// Room /////////////////////////////////////////////////////////////// Room /////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // Configure Event List View
+        $listToolbarActions = [new ToolbarAction('sulu_admin.add'), new ToolbarAction('sulu_admin.delete')];
+        $listView = $this->viewBuilderFactory->createListViewBuilder(self::ROOM_LIST_VIEW, '/rooms/:locale')
+            ->setResourceKey(Room::RESOURCE_KEY)
+            ->setListKey(self::ROOM_LIST_KEY)
+            ->setTitle('app.rooms')
+            ->addListAdapters(['table'])
+            ->addLocales($locales)
+            ->setDefaultLocale($locales[0])
+            ->setAddView(static::ROOM_ADD_FORM_VIEW)
+            ->setEditView(static::ROOM_EDIT_FORM_VIEW)
+            ->addToolbarActions($listToolbarActions);
+        $viewCollection->add($listView);
+
+        // Configure Event Add View
+        $addFormView = $this->viewBuilderFactory->createResourceTabViewBuilder(self::ROOM_ADD_FORM_VIEW, '/rooms/:locale/add')
+            ->setResourceKey(Room::RESOURCE_KEY)
+            ->setBackView(static::ROOM_LIST_VIEW)
+            ->addLocales($locales);
+        $viewCollection->add($addFormView);
+
+        $addDetailsFormView = $this->viewBuilderFactory->createFormViewBuilder(self::ROOM_ADD_FORM_VIEW . '.details', '/details')
+            ->setResourceKey(Room::RESOURCE_KEY)
+            ->setFormKey(self::ROOM_FORM_KEY)
+            ->setTabTitle('sulu_admin.details')
+            ->setEditView(static::ROOM_EDIT_FORM_VIEW)
+            ->addToolbarActions([new ToolbarAction('sulu_admin.save')])
+            ->setParent(static::ROOM_ADD_FORM_VIEW);
+        $viewCollection->add($addDetailsFormView);
+
+        // Configure Event Edit View
+        $editFormView = $this->viewBuilderFactory->createResourceTabViewBuilder(static::ROOM_EDIT_FORM_VIEW, '/rooms/:locale/:id')
+            ->setResourceKey(Room::RESOURCE_KEY)
+            ->setBackView(static::ROOM_LIST_VIEW)
+            ->setTitleProperty('title')
+            ->addLocales($locales);
+        $viewCollection->add($editFormView);
+
+        $formToolbarActions = [
+            new ToolbarAction('sulu_admin.save'),
+            new ToolbarAction('sulu_admin.delete'),
+            new TogglerToolbarAction(
+                'app.enable_room',
+                'enabled',
+                'enable',
+                'disable'
+            ),
+        ];
+        $editDetailsFormView = $this->viewBuilderFactory->createFormViewBuilder(static::ROOM_EDIT_FORM_VIEW . '.details', '/details')
+            ->setResourceKey(Room::RESOURCE_KEY)
+            ->setFormKey(self::ROOM_FORM_KEY)
+            ->setTabTitle('sulu_admin.details')
+            ->addToolbarActions($formToolbarActions)
+            ->setParent(static::ROOM_EDIT_FORM_VIEW);
         $viewCollection->add($editDetailsFormView);
     }
 }
