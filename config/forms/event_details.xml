@@ -78,7 +78,7 @@
             </meta>
         </property>
 
-        <property name="rooms" type="event_selection">
+        <property name="rooms" type="room_selection">
             <meta>
                 <title>app.rooms</title>
             </meta>
