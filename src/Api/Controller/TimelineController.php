@@ -3,6 +3,7 @@
 namespace App\Api\Controller;
 
 use App\Repository\EventRepository;
+use App\Repository\RoomRepository;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -28,6 +29,22 @@ class TimelineController extends AbstractFOSRestController
                     'content' => $event->getFirstName().' '.$event->getLastName().' | status: '.$event->getStatus(),
                 ];
             }
+        }
+
+        return $this->json($results);
+    }
+
+    /** @Rest\Get("/timeline/groups") */
+    public function TimelineGroupsAction(Request $request, RoomRepository $roomRepository): JsonResponse
+    {
+        $rooms   = $roomRepository->findAll();
+        $results = [];
+
+        foreach ($rooms as $room) {
+            $results[] = [
+                'id'      => $room->getId(),
+                'content' => $room->getName(),
+            ];
         }
 
         return $this->json($results);
