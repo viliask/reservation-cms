@@ -17,6 +17,7 @@
     "dependencies": {
         "babel-loader": "^8.0.0",
         "jquery": "^3.4.1",
+        "vis-timeline": "^7.3.7",
         "webpack-jquery-ui": "^2.0.1"
     }
 }
