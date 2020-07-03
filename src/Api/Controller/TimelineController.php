@@ -11,8 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 class TimelineController extends AbstractFOSRestController
 {
 
-    /** @Rest\Get("/timeline") */
-    public function TimelineAction(Request $request, EventRepository $eventRepository): JsonResponse
+    /** @Rest\Get("/timeline/items") */
+    public function TimelineItemsAction(Request $request, EventRepository $eventRepository): JsonResponse
     {
         $events = $eventRepository->findAll();
         $results = [];
