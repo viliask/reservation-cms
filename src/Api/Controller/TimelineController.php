@@ -2,6 +2,7 @@
 
 namespace App\Api\Controller;
 
+use App\Repository\EventRepository;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,12 +12,24 @@ class TimelineController extends AbstractFOSRestController
 {
 
     /** @Rest\Get("/timeline") */
-    public function TimelineAction(Request $request): JsonResponse
+    public function TimelineAction(Request $request, EventRepository $eventRepository): JsonResponse
     {
-        $result['page'] = [
-            'id'  => 1
-        ];
+        $events = $eventRepository->findAll();
+        $results = [];
 
-        return $this->json($result);
+        foreach ($events as $event) {
+            $rooms = $event->getRooms();
+            foreach ($rooms as $room) {
+                $results[] = [
+                    'id'      => $event->getId(),
+                    'group'   => $room->getId(),
+                    'start'   => $event->getCheckIn(),
+                    'end'     => $event->getCheckOut(),
+                    'content' => $event->getFirstName().' '.$event->getLastName().' | status: '.$event->getStatus(),
+                ];
+            }
+        }
+
+        return $this->json($results);
     }
 }
