@@ -139,6 +139,15 @@ class Event
         return $this->checkIn;
     }
 
+    public function getFormattedCheckIn()
+    {
+        if (!$checkIn = $this->getCheckIn()) {
+            return null;
+        }
+
+        return $checkIn->format('Y-m-d H:i:s');
+    }
+
     public function setCheckIn(?\DateTimeImmutable $checkIn): self
     {
         $this->checkIn = $checkIn;
@@ -149,6 +158,15 @@ class Event
     public function getCheckOut(): ?\DateTimeImmutable
     {
         return $this->checkOut;
+    }
+
+    public function getFormattedCheckOut()
+    {
+        if (!$checkOut = $this->getCheckOut()) {
+            return null;
+        }
+
+        return $checkOut->format('Y-m-d H:i:s');
     }
 
     public function setCheckOut(?\DateTimeImmutable $checkOut): self
