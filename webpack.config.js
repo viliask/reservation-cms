@@ -11,6 +11,7 @@ Encore
     .addEntry('init-js', './assets/js/init-js.js')
     .addEntry('css3-mediaqueries', './assets/js/css3-mediaqueries.js')
     .addEntry('fwslider', './assets/js/fwslider.js')
+    .addEntry('timeline', './assets/js/timeline.js')
     .splitEntryChunks()
     // .autoProvidejQuery()
     .enableSingleRuntimeChunk()
