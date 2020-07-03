@@ -22,7 +22,7 @@ class TimelineController extends AbstractFOSRestController
             $rooms = $event->getRooms();
             foreach ($rooms as $room) {
                 $results[] = [
-                    'id'      => $event->getId(),
+                    'id'      => $event->getId().$room->getId(),
                     'group'   => $room->getId(),
                     'start'   => $event->getCheckIn(),
                     'end'     => $event->getCheckOut(),
