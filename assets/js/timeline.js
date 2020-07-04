@@ -34,3 +34,17 @@ const options = {
 
 // Create a Timeline
 const timeline = new Timeline(container, items, groups, options);
+
+document.addEventListener('DOMContentLoaded',  () => {
+    loadData();
+});
+
+function loadData() {
+    Axios.get(Routing.generate('app.imeline_items', null, true)).then((response) => {
+        timeline.setItems(response.data)
+    }).then(() => {
+        Axios.get(Routing.generate('app.imeline_groups', null, true)).then((response) => {
+            timeline.setGroups(response.data)
+        });
+    });
+}
