@@ -1,13 +1,12 @@
 import { DataSet, Timeline } from 'vis-timeline/standalone';
 import 'vis-timeline/styles/vis-timeline-graph2d.css';
 import Axios from 'axios';
-const routes = require('../../public/js/fos_js_routes.json');
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
 
+const routes = require('../../public/js/fos_js_routes.json');
 Routing.setRoutingData(routes);
 
 const container = document.getElementById('visualization');
-
 const date = new Date(), y = date.getFullYear(), m = date.getMonth();
 const firstDOM = new Date(y, m, 1);
 const lastDOM = new Date(y, m + 1, 0);
