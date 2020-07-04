@@ -10,9 +10,13 @@ Routing.setRoutingData(routes);
 const container = document.getElementById('visualization');
 
 // Configuration for the Timeline
+const date = new Date(), y = date.getFullYear(), m = date.getMonth();
+const firstDOM = new Date(y, m, 1);
+const lastDOM = new Date(y, m + 1, 0);
+
 const options = {
-    start: '2014-04-01',
-    end: '2014-10-01'
+    start: firstDOM,
+    end: lastDOM
 };
 
 // Create a Timeline
