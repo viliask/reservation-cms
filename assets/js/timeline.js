@@ -20,7 +20,8 @@ const options = {
 };
 
 // Create a Timeline
-const timeline = new Timeline(container, options);
+const timeline = new Timeline(container);
+timeline.setOptions(options);
 
 document.addEventListener('DOMContentLoaded',  () => {
     loadData();
