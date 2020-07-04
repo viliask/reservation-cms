@@ -6,10 +6,8 @@ import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/pu
 
 Routing.setRoutingData(routes);
 
-// DOM element where the Timeline will be attached
 const container = document.getElementById('visualization');
 
-// Configuration for the Timeline
 const date = new Date(), y = date.getFullYear(), m = date.getMonth();
 const firstDOM = new Date(y, m, 1);
 const lastDOM = new Date(y, m + 1, 0);
@@ -19,7 +17,6 @@ const options = {
     end: lastDOM
 };
 
-// Create a Timeline
 const timeline = new Timeline(container);
 timeline.setOptions(options);
 
