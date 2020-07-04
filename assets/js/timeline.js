@@ -29,10 +29,10 @@ document.addEventListener('DOMContentLoaded',  () => {
 
 function loadData() {
     Axios.get(Routing.generate('app.imeline_items', null, true)).then((response) => {
-        timeline.setItems(response.data)
+        timeline.setItems(new DataSet(response.data));
     }).then(() => {
         Axios.get(Routing.generate('app.imeline_groups', null, true)).then((response) => {
-            timeline.setGroups(response.data)
+            timeline.setGroups(new DataSet(response.data));
         });
     });
 }
