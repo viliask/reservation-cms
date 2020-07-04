@@ -1,5 +1,6 @@
 import { DataSet, Timeline } from 'vis-timeline/standalone';
 import 'vis-timeline/styles/vis-timeline-graph2d.css';
+import Axios from 'axios';
 
 // DOM element where the Timeline will be attached
 const container = document.getElementById('visualization');
