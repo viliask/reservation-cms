@@ -71,5 +71,19 @@
                 <title lang="de">Grid 1</title>
             </meta>
         </property>
+
+        <property name="grid_2" type="text_editor">
+            <meta>
+                <title lang="en">Grid 2</title>
+                <title lang="de">Grid 2</title>
+            </meta>
+        </property>
+
+        <property name="grid_3" type="text_editor">
+            <meta>
+                <title lang="en">Grid 3</title>
+                <title lang="de">Grid 3</title>
+            </meta>
+        </property>
     </properties>
 </template>
