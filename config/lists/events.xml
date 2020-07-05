@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<list xmlns="http://schemas.sulu.io/list-builder/list">
+    <key>events</key>
+
+    <joins name="translation">
+        <join>
+            <entity-name>App\Entity\EventTranslation</entity-name>
+            <field-name>App\Entity\Event.translations</field-name>
+            <condition>App\Entity\EventTranslation.locale = :locale</condition>
+        </join>
+    </joins>
+
+    <joins name="changer" ref="translation">
+        <join>
+            <entity-name>%sulu.model.user.class%_changer</entity-name>
+            <field-name>App\Entity\EventTranslation.changer</field-name>
+        </join>
+        <join>
+            <entity-name>%sulu.model.contact.class%_changer</entity-name>
+            <field-name>%sulu.model.user.class%_changer.contact</field-name>
+        </join>
+    </joins>
+
+    <properties>
+        <property name="id" visibility="no" translation="sulu_admin.id">
+            <field-name>id</field-name>
+            <entity-name>App\Entity\Event</entity-name>
+        </property>
+
+        <property name="title" visibility="always" searchability="yes" translation="sulu_admin.title">
+            <field-name>title</field-name>
+            <entity-name>App\Entity\EventTranslation</entity-name>
+
+            <joins ref="translation"/>
+        </property>
+
+        <property name="enabled" visibility="no" translation="app.enabled" type="bool">
+            <field-name>enabled</field-name>
+            <entity-name>App\Entity\Event</entity-name>
+        </property>
+
+        <property name="checkIn" visibility="always" searchability="yes" translation="app.check_in" type="datetime">
+            <field-name>checkIn</field-name>
+            <entity-name>App\Entity\Event</entity-name>
+        </property>
+
+        <property name="checkOut" visibility="always" searchability="yes" translation="app.check_out" type="datetime">
+            <field-name>checkOut</field-name>
+            <entity-name>App\Entity\Event</entity-name>
+        </property>
+
+        <property name="status" visibility="always" searchability="yes" translation="app.status">
+            <field-name>status</field-name>
+            <entity-name>App\Entity\Event</entity-name>
+        </property>
+
+        <property name="created" translation="sulu_admin.created" type="datetime" visibility="yes">
+            <field-name>created</field-name>
+            <entity-name>App\Entity\EventTranslation</entity-name>
+
+            <joins ref="translation"/>
+        </property>
+
+        <property name="changed" translation="sulu_admin.changed" type="datetime" visibility="yes">
+            <field-name>changed</field-name>
+            <entity-name>App\Entity\EventTranslation</entity-name>
+
+            <joins ref="translation"/>
+        </property>
+
+        <concatenation-property name="changer" translation="sulu_admin.changer" visibility="yes" searchability="yes">
+            <field>
+                <field-name>firstName</field-name>
+                <entity-name>%sulu.model.contact.class%_changer</entity-name>
+
+                <joins ref="changer"/>
+            </field>
+            <field>
+                <field-name>lastName</field-name>
+                <entity-name>%sulu.model.contact.class%_changer</entity-name>
+
+                <joins ref="changer"/>
+            </field>
+        </concatenation-property>
+    </properties>
+</list>
