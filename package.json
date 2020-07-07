@@ -17,6 +17,7 @@
     "dependencies": {
         "babel-loader": "^8.0.0",
         "jquery": "^3.4.1",
+        "tiny-slider": "^2.9.2",
         "webpack-jquery-ui": "^2.0.1"
     }
 }
