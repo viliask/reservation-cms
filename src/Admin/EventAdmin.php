@@ -67,14 +67,20 @@ class EventAdmin extends Admin
         $module->setIcon('fa-calendar');
 
         // Configure a NavigationItem with a View
-        $events = new NavigationItem('app.events');
+        $events = new NavigationItem('app.timeline');
         $events->setPosition(10);
+        $events->setView(static::TIMELINE_VIEW);
+
+        $module->addChild($events);
+
+        $events = new NavigationItem('app.events');
+        $events->setPosition(20);
         $events->setView(static::EVENT_LIST_VIEW);
 
         $module->addChild($events);
 
         $events = new NavigationItem('app.rooms');
-        $events->setPosition(20);
+        $events->setPosition(30);
         $events->setView(static::ROOM_LIST_VIEW);
 
         $module->addChild($events);
