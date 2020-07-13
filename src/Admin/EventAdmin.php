@@ -27,6 +27,8 @@ class EventAdmin extends Admin
 
     const EVENT_EDIT_FORM_VIEW = 'app.event_edit_form';
 
+    const TIMELINE_VIEW = 'app.timeline';
+
 //////// Room
 
     const ROOM_LIST_KEY = 'rooms';
