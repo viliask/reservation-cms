@@ -93,6 +93,10 @@ class EventAdmin extends Admin
         $locales = $this->webspaceManager->getAllLocales();
 
         // Configure Event List View
+        $viewCollection->add(
+            $this->viewBuilderFactory->createViewBuilder(self::TIMELINE_VIEW, '/events/reservations', 'app.timeline')
+        );
+
         $listToolbarActions = [new ToolbarAction('sulu_admin.add'), new ToolbarAction('sulu_admin.delete')];
         $listView = $this->viewBuilderFactory->createListViewBuilder(self::EVENT_LIST_VIEW, '/events/:locale')
             ->setResourceKey(Event::RESOURCE_KEY)
