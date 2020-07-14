@@ -50,7 +50,14 @@ class Timeline2D extends React.Component {
     }
 
     render() {
-        return <div id="visualization">Test</div>;
+        if (this.state.items === null || this.state.groups === null) {
+            return <h1>Loading...</h1>
+        } else {
+            return <div>
+                <h1>Timeline</h1>
+                <Timeline options={options} initialItems={this.state.items} initialGroups={this.state.groups}/>
+            </div>
+        }
     }
 }
 
