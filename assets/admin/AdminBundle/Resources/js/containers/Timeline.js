@@ -19,7 +19,7 @@ const options = {
     end: lastDOM
 };
 
-class Timeline extends React.Component {
+class Timeline2D extends React.Component {
 
     constructor(props) {
         super(props);
@@ -54,4 +54,4 @@ class Timeline extends React.Component {
     }
 }
 
-export default Timeline;
+export default Timeline2D;
