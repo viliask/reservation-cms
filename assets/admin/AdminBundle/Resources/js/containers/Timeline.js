@@ -7,6 +7,7 @@ import Routing from '../../../../../../vendor/friendsofsymfony/jsrouting-bundle/
 const routes = require('../../../../../../public/js/fos_js_routes.json');
 Routing.setRoutingData(routes);
 
+// TODO Make these consts global variables
 const date = new Date(), y = date.getFullYear(), m = date.getMonth();
 const firstDOM = new Date(y, m, 1);
 const lastDOM = new Date(y, m + 1, 0);
