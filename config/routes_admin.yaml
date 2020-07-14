@@ -14,3 +14,11 @@ app_rooms:
     name_prefix: app.
     options:
         expose: true
+
+app_timeline:
+    type: rest
+    prefix: /admin/api
+    resource: App\Api\Controller\TimelineController
+    name_prefix: app.
+    options:
+        expose: true

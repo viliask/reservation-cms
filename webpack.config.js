@@ -10,6 +10,7 @@ Encore
     // .addEntry('app', './assets/js/app.js')
     .addEntry('init-js', './assets/js/init-js.js')
     .addEntry('css3-mediaqueries', './assets/js/css3-mediaqueries.js')
+    .addEntry('timeline', './assets/js/timeline.js')
     .addEntry('tiny-slider', './assets/js/tiny-slider.js')
     .splitEntryChunks()
     // .autoProvidejQuery()

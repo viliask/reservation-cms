@@ -34,4 +34,10 @@
     </table>
 
     <a href="{{ path('room_new') }}">Create new</a>
+
+    <div id="visualization"></div>
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('timeline', null, 'js') }}
+    {% endblock %}
 {% endblock %}

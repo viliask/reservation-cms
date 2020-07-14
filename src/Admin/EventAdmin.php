@@ -27,6 +27,10 @@ class EventAdmin extends Admin
 
     const EVENT_EDIT_FORM_VIEW = 'app.event_edit_form';
 
+//////// Timeline
+
+    const TIMELINE_VIEW = 'app.timeline';
+
 //////// Room
 
     const ROOM_LIST_KEY = 'rooms';
@@ -65,14 +69,20 @@ class EventAdmin extends Admin
         $module->setIcon('fa-calendar');
 
         // Configure a NavigationItem with a View
-        $events = new NavigationItem('app.events');
+        $events = new NavigationItem('app.timeline');
         $events->setPosition(10);
+        $events->setView(static::TIMELINE_VIEW);
+
+        $module->addChild($events);
+
+        $events = new NavigationItem('app.events');
+        $events->setPosition(20);
         $events->setView(static::EVENT_LIST_VIEW);
 
         $module->addChild($events);
 
         $events = new NavigationItem('app.rooms');
-        $events->setPosition(20);
+        $events->setPosition(30);
         $events->setView(static::ROOM_LIST_VIEW);
 
         $module->addChild($events);
@@ -85,6 +95,10 @@ class EventAdmin extends Admin
         $locales = $this->webspaceManager->getAllLocales();
 
         // Configure Event List View
+        $viewCollection->add(
+            $this->viewBuilderFactory->createViewBuilder(self::TIMELINE_VIEW, '/events/reservations', 'app.timeline')
+        );
+
         $listToolbarActions = [new ToolbarAction('sulu_admin.add'), new ToolbarAction('sulu_admin.delete')];
         $listView = $this->viewBuilderFactory->createListViewBuilder(self::EVENT_LIST_VIEW, '/events/:locale')
             ->setResourceKey(Event::RESOURCE_KEY)
