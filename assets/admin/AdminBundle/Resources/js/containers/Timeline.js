@@ -36,11 +36,10 @@ class Timeline2D extends React.Component {
             this.setState({
                 items: response.data,
             });
-        }).then(() => {
-            Axios.get(Routing.generate('app.imeline_groups', null, true)).then((response) => {
-                this.setState({
-                    groups: response.data,
-                });
+        });
+        Axios.get(Routing.generate('app.imeline_groups', null, true)).then((response) => {
+            this.setState({
+                groups: response.data,
             });
         });
     }
