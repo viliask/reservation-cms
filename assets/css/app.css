@@ -11,12 +11,124 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     border: 1px solid lightgray;
 }
 
+.slider-container {
+    width: 100%
+}
+
+.tns-nav {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+    float: right;
+    top: -70px;
+}
+.tns-nav > [aria-controls] {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    margin: 0 5px;
+    border-radius: 50%;
+    background: #ddd;
+    border: 0;
+}
+.tns-nav > .tns-nav-active { background: #999; }
+.tns-outer {
+    position: relative;
+}
+.tns-outer > button {
+    position: relative;
+    color: white;
+    float: right;
+    top: -100px;
+    left: -63px;
+}
+.tns-controls button {
+    position: relative;
+    color: white;
+}
+.tns-controls button:nth-child(1) {
+    float: left;
+    background: url('../images/angle-left.png') no-repeat;
+    content: 'trololo';
+    text-indent: -9000px;
+    text-transform: capitalize;
+}
+.tns-controls button:nth-child(2) {
+    float: right;
+    background: url('../images/angle-right.png') no-repeat;
+    text-indent: -9000px;
+    text-transform: capitalize;
+}
+img:not(.tns-lazy-img), .lazyload img { height: auto; }
+.autoWidth img { max-width: none; }
+.autoHeight img { width: 100%; }
+.tns-controls {
+    text-align: center;
+    position: absolute;
+    height: 10%;
+    z-index: 1;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.tns-controls [aria-controls] {
+    font-size: 15px;
+    margin: 0 5px;
+    padding: 0 1em;
+    height: 2.5em;
+    color: #000;
+    background: #66CCFF;
+    border-radius: 3px;
+    border: 0;
+}
+[data-action] {
+    display: block;
+    margin: 10px auto;
+    font-size: 17px;
+    min-width: 3em;
+    text-align: center;
+    background: transparent;
+    border: 0;
+}
+.card_description {
+    position: absolute;
+    top: 0;
+    font-size: 1.5em;
+    background: darkgray;
+    opacity: 0.8;
+    padding: 10px;
+    width: 12%;
+    margin-top: 4.7%;
+}
+
+@media only screen and (max-width: 1024px) {
+    .card_description {
+        position: absolute;
+        top: 0;
+        font-size: 1em;
+        background: darkgray;
+        opacity: 0.8;
+        padding: 10px;
+        width: 12%;
+        margin-top: 4%;
+    }
+}
+
+.content-main {
+    width: -webkit-fill-available;
+    float: left;
+    padding: 2%;
+    margin: 20px;
+    background:#FFFFFF;
+}
+
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, dl, dt, dd, ol, nav ul, nav li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
     font-size: 100%;
-    font: inherit;
     vertical-align: baseline;
 }
 
@@ -35,7 +147,6 @@ blockquote, q {
 }
 
 blockquote:before, blockquote:after, q:before, q:after {
-    content: '';
     content: none;
 }
 
@@ -259,10 +370,9 @@ body {
 }
 
 .clearfix a#pull:after {
-    background: url('../images/nav-icon.png') no-repeat;
+    /*background: url('../images/nav-icon.png') no-repeat;*/
     width: 30px;
     content: "";
-    width: 30px;
     height: 30px;
     display: inline-block;
     position: absolute;
@@ -662,7 +772,7 @@ p.para {
 
 .s_nav1 li a {
     display: block;
-    background: url('../images/s_icons.png') no-repeat 0 0;
+    /*background: url('../images/s_icons.png') no-repeat 0 0;*/
     width: 32px;
     height: 32px;
     -webkit-transition: all 0.3s ease-in-out;
@@ -864,7 +974,7 @@ span.next {
     -o-transition-duration: 1s;
     -moz-transition-duration: 1s;
     -webkit-transition: -webkit-transform 1s;
-    background: url(../images/next.png) center no-repeat;
+    /*background: url(../images/next.png) center no-repeat;*/
     height: 100%;
     width: 100%;
     position: absolute;

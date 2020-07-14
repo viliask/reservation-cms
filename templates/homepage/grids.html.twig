@@ -2,29 +2,36 @@
     <div class="grid1_of_3">
         <div class="grid1_of_3_img">
             <a href="details.html">
-                <img src="{{ asset('web/images/pic1.jpg') }}" alt="">
+                {% if content.images is not empty %}
+                    {% set source = content.images[0].formats['sulu-400x400'] %}
+                    <img src="{{ asset(source) }}" alt="">
+                {% endif %}
             </a>
         </div>
         <h4><a href="#">single room<span>120$</span></a></h4>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        {{ content.grid_1|raw }}
     </div>
     <div class="grid1_of_3">
         <div class="grid1_of_3_img">
             <a href="details.html">
-                <img src="{{ asset('web/images/pic2.jpg') }}" alt="">
-            </a>
+                {% if content.images is not empty %}
+                    {% set source = content.images[0].formats['sulu-400x400'] %}
+                    <img src="{{ asset(source) }}" alt="">
+                {% endif %}            </a>
         </div>
         <h4><a href="#">double room<span>180$</span></a></h4>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        {{ content.grid_2|raw }}
     </div>
     <div class="grid1_of_3">
         <div class="grid1_of_3_img">
             <a href="details.html">
-                <img src="{{ asset('web/images/pic3.jpg') }}" alt="">
-            </a>
+                {% if content.images is not empty %}
+                    {% set source = content.images[0].formats['sulu-400x400'] %}
+                    <img src="{{ asset(source) }}" alt="">
+                {% endif %}            </a>
         </div>
         <h4><a href="#">suite room<span>210$</span></a></h4>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        {{ content.grid_3|raw }}
     </div>
     <div class="clear"></div>
 </div>
