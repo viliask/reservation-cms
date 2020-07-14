@@ -1,7 +1,4 @@
-$(function() {
-    $('.js-datepicker').datepicker( {
-        firstDay: 1,
-        dateFormat: 'dd-mm-yy',
-        minDate: new Date(),
-    });
+import flatpickr from 'flatpickr';
+
+flatpickr('.js-datepicker', {
 });
