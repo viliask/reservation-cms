@@ -17,9 +17,10 @@
     "dependencies": {
         "axios": "^0.19.2",
         "babel-loader": "^8.0.0",
+        "flatpickr": "^4.6.3",
         "jquery": "^3.4.1",
-        "vis-timeline": "^7.3.7",
         "tiny-slider": "^2.9.2",
+        "vis-timeline": "^7.3.7",
         "webpack-jquery-ui": "^2.0.1"
     }
 }
