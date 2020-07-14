@@ -23,6 +23,7 @@ class Event
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Expose()
      */
     private $id;
 
@@ -30,6 +31,7 @@ class Event
      * @var bool
      *
      * @ORM\Column(type="boolean", nullable=false)
+     * @Serializer\Expose()
      */
     private $enabled;
 
@@ -37,6 +39,7 @@ class Event
      * @var \DateTimeImmutable|null
      *
      * @ORM\Column(type="datetime_immutable", nullable=true)
+     * @Serializer\Expose()
      */
     private $checkIn;
 
@@ -44,6 +47,7 @@ class Event
      * @var \DateTimeImmutable|null
      *
      * @ORM\Column(type="datetime_immutable", nullable=true)
+     * @Serializer\Expose()
      */
     private $checkOut;
 
@@ -58,51 +62,61 @@ class Event
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Serializer\Expose()
      */
     private $locale;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Expose()
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Expose()
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Expose()
      */
     private $phone;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Expose()
      */
     private $mail;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Serializer\Expose()
      */
     private $guests;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Serializer\Expose()
      */
     private $message;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Serializer\Expose()
      */
     private $status;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Serializer\Expose()
      */
     private $policy;
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     * @Serializer\Expose()
      */
     private $price;
 
