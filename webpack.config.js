@@ -39,6 +39,7 @@ Encore
     .addStyleEntry('tiny-slider', './assets/css/tiny-slider.css')
     .addStyleEntry('jquery-ui', './assets/css/jquery-ui.css')
     .addStyleEntry('JFFormStyle-1', './assets/css/JFFormStyle-1.css')
+    .addStyleEntry('airbnb', './assets/css/airbnb.css')
 ;
 
 const cssConfig = Encore.getWebpackConfig();
