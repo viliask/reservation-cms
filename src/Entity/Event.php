@@ -11,6 +11,7 @@ use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EventRepository")
+ * @Serializer\ExclusionPolicy("all")
  */
 class Event
 {
@@ -109,6 +110,25 @@ class Event
      * @ORM\ManyToMany(targetEntity=Room::class, inversedBy="reservations")
      */
     private $rooms;
+
+    /**
+     * @return Collection|Room[]
+     */
+    public function getRooms():? Collection
+    {
+        return $this->rooms;
+    }
+
+    /**
+     * @Serializer\VirtualProperty()
+     * @Serializer\SerializedName("rooms")
+     */
+    public function getRoomIds(): ArrayCollection
+    {
+        return $this->rooms->map(function (Room $room) {
+            return $room->getId();
+        });
+    }
 
     public function __construct()
     {
@@ -396,13 +416,7 @@ class Event
         return $this;
     }
 
-    /**
-     * @return Collection|Room[]
-     */
-    public function getRooms():? Collection
-    {
-        return $this->rooms;
-    }
+
 
     public function addRoom(?Room $room): self
     {
