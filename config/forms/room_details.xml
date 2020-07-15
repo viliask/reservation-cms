@@ -30,14 +30,6 @@
                 <title>app.reservations</title>
             </meta>
         </property>
-        <property name="parent_event" type="single_event_selection">
-            <meta>
-                <title>app.parent_event</title>
-            </meta>
-            <params>
-                <param name="type" value="auto_complete" />
-            </params>
-        </property>
 
     </properties>
 </form>
