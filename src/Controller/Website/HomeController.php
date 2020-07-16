@@ -12,14 +12,7 @@ class HomeController extends WebsiteController
 {
     const RESERVATION_PATH = 'reservation';
 
-    /**
-     * @param \Sulu\Component\Content\Compat\StructureInterface $structure
-     * @param bool $preview
-     * @param bool $partial
-     *
-     * @return Response
-     */
-    public function indexAction(StructureInterface $structure, bool $preview = false, bool $partial = false)
+    public function indexAction(StructureInterface $structure, bool $preview = false, bool $partial = false): Response
     {
         $form = $this->createForm(ReservationType::class, null, ['action' => $this->generateUrl(self::RESERVATION_PATH)]);
         $attributes = [];
