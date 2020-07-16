@@ -94,7 +94,7 @@ class EventRepository extends ServiceEntityRepository implements DataProviderRep
         $qb = $this->createQueryBuilder('e')
             ->select('e, r.name')
             ->innerJoin('e.rooms', 'r')
-            ->where(':checkIn >= e.checkIn AND :checkIn <= e.checkOut')
+            ->where(':checkIn >= e.checkIn AND :checkIn <= e.checkOut AND e.checkOut > :checkIn')
             ->orWhere(':checkIn <= e.checkIn AND :checkIn <= e.checkOut AND :checkOut > e.checkIn')
             ->setParameter('checkIn', $checkIn)
             ->setParameter('checkOut', $checkOut);
