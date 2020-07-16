@@ -92,10 +92,10 @@ class EventRepository extends ServiceEntityRepository implements DataProviderRep
     public function findAvailableRooms(string $checkIn, string $checkOut): array
     {
         $reservedRooms = $this->findReservedRooms($checkIn, $checkOut);
-        $rooms = $this->roomRepository->findAll();
+        $rooms         = $this->roomRepository->findAll();
 
         foreach ($reservedRooms as $reservedRoom) {
-            foreach ($rooms as $key=>$value) {
+            foreach ($rooms as $key => $value) {
                 if ($rooms[$key]->getId() === $reservedRoom['id']) {
                     unset($rooms[$key]);
                 }
