@@ -16,8 +16,13 @@ class HomeController extends WebsiteController
 
     public function indexAction(StructureInterface $structure, bool $preview = false, bool $partial = false): Response
     {
-        $form = $this->createForm(ReservationType::class, null, ['action' => $this->generateUrl(self::RESERVATION_PATH)]);
         $attributes = [];
+        $form       = $this->createForm(
+            ReservationType::class,
+            null,
+            ['action' => $this->generateUrl(self::RESERVATION_PATH)]
+        );
+
         $attributes['form'] = $form->createView();
 
         $response = $this->renderStructure(
@@ -26,13 +31,14 @@ class HomeController extends WebsiteController
             $preview,
             $partial
         );
+
         return $response;
     }
 
     public function reservation(Request $request, EventRepository $eventRepository): Response
     {
         $reservation = $request->request->get('reservation');
-        $rooms = $eventRepository->findAvailableRooms($reservation['checkInDate'], $reservation['checkOutDate']);
+        $rooms       = $eventRepository->findAvailableRooms($reservation['checkInDate'], $reservation['checkOutDate']);
 
         return $this->render('/bookReservation/bookReservation.html.twig', ['rooms' => $rooms]);
     }
