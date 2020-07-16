@@ -24,9 +24,12 @@ class EventRepository extends ServiceEntityRepository implements DataProviderRep
         findByFilters as parentFindByFilters;
     }
 
-    public function __construct(ManagerRegistry $registry)
+    private $roomRepository;
+
+    public function __construct(ManagerRegistry $registry, RoomRepository $roomRepository)
     {
         parent::__construct($registry, Event::class);
+        $this->roomRepository = $roomRepository;
     }
 
     public function create(string $locale): Event
