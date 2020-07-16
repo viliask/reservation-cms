@@ -85,4 +85,15 @@ class EventRepository extends ServiceEntityRepository implements DataProviderRep
 
         $queryBuilder->andWhere($alias . '.enabled = true');
     }
+
+    public function findAvailableRooms($checkIn, $checkOut)
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->select('e, r.name')
+            ->innerJoin('e.rooms', 'r')
+            ->where(':checkIn >= e.checkIn AND :checkIn <= e.checkOut')
+            ->setParameter('checkIn', $checkIn);
+
+        return $qb->getQuery()->execute();
+    }
 }
