@@ -3,8 +3,10 @@
 namespace App\Controller\Website;
 
 use App\Form\Type\ReservationType;
+use App\Repository\EventRepository;
 use Sulu\Bundle\WebsiteBundle\Controller\WebsiteController;
 use Sulu\Component\Content\Compat\StructureInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -27,8 +29,11 @@ class HomeController extends WebsiteController
         return $response;
     }
 
-    public function reservation(): Response
+    public function reservation(Request $request, EventRepository $eventRepository): Response
     {
+        $reservation = $request->request->get('reservation');
+        $rooms = $eventRepository->findAvailableRooms($reservation['checkInDate'], $reservation['checkOutDate']);
+
         return $this->render('/bookReservation/bookReservation.html.twig');
     }
 }
