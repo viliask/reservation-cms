@@ -40,6 +40,6 @@ class HomeController extends WebsiteController
         $reservation = $request->request->get('reservation');
         $rooms       = $eventRepository->findAvailableRooms($reservation['checkInDate'], $reservation['checkOutDate']);
 
-        return $this->render('/bookReservation/bookReservation.html.twig', ['rooms' => $rooms]);
+        return $this->render('/room/index.html.twig', ['rooms' => $rooms]);
     }
 }
