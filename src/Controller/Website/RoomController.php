@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Website;
 
 use App\Entity\Room;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
