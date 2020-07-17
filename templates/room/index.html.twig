@@ -3,18 +3,19 @@
 {% block title %}Room index{% endblock %}
 
 {% block body %}
-    <h1>Room index</h1>
+<h1>Book a room</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>MaxGuests</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>MaxGuests</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if rooms is defined %}
         {% for room in rooms %}
             <tr>
                 <td>{{ room.id }}</td>
@@ -22,7 +23,6 @@
                 <td>{{ room.maxGuests }}</td>
                 <td>
                     <a href="{{ path('room_show', {'id': room.id}) }}">show</a>
-                    <a href="{{ path('room_edit', {'id': room.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -30,14 +30,10 @@
                 <td colspan="4">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+    {% endif %}
+    </tbody>
+</table>
+{% endblock %}
 
-    <a href="{{ path('room_new') }}">Create new</a>
-
-    <div id="visualization"></div>
-
-    {% block javascripts %}
-        {{ encore_entry_script_tags('timeline', null, 'js') }}
-    {% endblock %}
+{% block javascripts %}
 {% endblock %}

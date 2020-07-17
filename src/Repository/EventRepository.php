@@ -24,9 +24,12 @@ class EventRepository extends ServiceEntityRepository implements DataProviderRep
         findByFilters as parentFindByFilters;
     }
 
-    public function __construct(ManagerRegistry $registry)
+    private $roomRepository;
+
+    public function __construct(ManagerRegistry $registry, RoomRepository $roomRepository)
     {
         parent::__construct($registry, Event::class);
+        $this->roomRepository = $roomRepository;
     }
 
     public function create(string $locale): Event
@@ -84,5 +87,34 @@ class EventRepository extends ServiceEntityRepository implements DataProviderRep
         $queryBuilder->setParameter('locale', $locale);
 
         $queryBuilder->andWhere($alias . '.enabled = true');
+    }
+
+    public function findAvailableRooms(string $checkIn, string $checkOut): array
+    {
+        $reservedRooms = $this->findReservedRooms($checkIn, $checkOut);
+        $rooms         = $this->roomRepository->findAll();
+
+        foreach ($reservedRooms as $reservedRoom) {
+            foreach ($rooms as $key => $value) {
+                if ($rooms[$key]->getId() === $reservedRoom['id']) {
+                    unset($rooms[$key]);
+                }
+            }
+        }
+
+        return $rooms;
+    }
+
+    public function findReservedRooms(string $checkIn, string $checkOut): array
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->select('r.id')
+            ->innerJoin('e.rooms', 'r')
+            ->where(':checkIn >= e.checkIn AND :checkIn <= e.checkOut AND e.checkOut > :checkIn')
+            ->orWhere(':checkIn <= e.checkIn AND :checkIn <= e.checkOut AND :checkOut > e.checkIn')
+            ->setParameter('checkIn', $checkIn)
+            ->setParameter('checkOut', $checkOut);
+
+        return $qb->getQuery()->execute();
     }
 }

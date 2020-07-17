@@ -10,7 +10,7 @@ app_events:
 app_rooms:
     type: rest
     prefix: /admin/api
-    resource: App\Controller\Admin\RoomController
+    resource: App\Controller\Admin\Website\RoomController
     name_prefix: app.
     options:
         expose: true
