@@ -23,7 +23,6 @@
                 <td>{{ room.maxGuests }}</td>
                 <td>
                     <a href="{{ path('room_show', {'id': room.id}) }}">show</a>
-                    <a href="{{ path('room_edit', {'id': room.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
