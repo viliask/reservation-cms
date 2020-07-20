@@ -10,3 +10,15 @@ openEl.addEventListener('click', function () {
 closeEl.addEventListener('click', function () {
     this.parentElement.parentElement.parentElement.classList.remove(visible);
 });
+
+document.addEventListener('click', e => {
+    if (e.target === document.querySelector('.modal.visible')) {
+        document.querySelector('.modal.visible').classList.remove(visible);
+    }
+});
+
+document.addEventListener('keyup', e => {
+    if (e.key === 'Escape' && document.querySelector('.modal.visible')) {
+        document.querySelector('.modal.visible').classList.remove(visible);
+    }
+});
