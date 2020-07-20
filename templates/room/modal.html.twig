@@ -1,5 +1,9 @@
 <button type="button" class="open-modal" data-open="reservation-modal">Book</button>
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('modal', null, 'css') }}
+{% endblock %}
+
 <div class="modal" id="reservation-modal">
     <div class="modal-dialog">
         <header class="modal-header">
@@ -10,3 +14,7 @@
         <footer class="modal-footer">Legal notice</footer>
     </div>
 </div>
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('modal', null, 'js') }}
+{% endblock %}
