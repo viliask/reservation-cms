@@ -9,12 +9,16 @@ use App\Entity\Room;
 use App\Repository\RoomRepository;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Routing\ClassResourceInterface;
-use Sulu\Component\Rest\RestController;
+use FOS\RestBundle\View\ViewHandlerInterface;
+use Sulu\Component\Rest\AbstractRestController;
+use Sulu\Component\Rest\ListBuilder\Doctrine\DoctrineListBuilderFactoryInterface;
+use Sulu\Component\Rest\ListBuilder\Metadata\FieldDescriptorFactoryInterface;
+use Sulu\Component\Rest\RestHelperInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class RoomController extends RestController implements ClassResourceInterface
+class RoomController extends AbstractRestController implements ClassResourceInterface
 {
     /**
      * @var RoomRepository
@@ -25,13 +29,38 @@ class RoomController extends RestController implements ClassResourceInterface
      * @var DoctrineListRepresentationFactory
      */
     private $doctrineListRepresentationFactory;
+    /**
+     * @var ViewHandlerInterface
+     */
+    private $viewHandler;
+    /**
+     * @var FieldDescriptorFactoryInterface
+     */
+    private $fieldDescriptorFactory;
+    /**
+     * @var DoctrineListBuilderFactoryInterface
+     */
+    private $listBuilderFactory;
+    /**
+     * @var RestHelperInterface
+     */
+    private $restHelper;
 
     public function __construct(
+        ViewHandlerInterface $viewHandler,
         RoomRepository $repository,
-        DoctrineListRepresentationFactory $doctrineListRepresentationFactory
+        DoctrineListRepresentationFactory $doctrineListRepresentationFactory,
+        FieldDescriptorFactoryInterface $fieldDescriptorFactory,
+        DoctrineListBuilderFactoryInterface $listBuilderFactory,
+        RestHelperInterface $restHelper
     ) {
+        parent::__construct($viewHandler);
         $this->repository = $repository;
         $this->doctrineListRepresentationFactory = $doctrineListRepresentationFactory;
+        $this->viewHandler = $viewHandler;
+        $this->fieldDescriptorFactory = $fieldDescriptorFactory;
+        $this->listBuilderFactory = $listBuilderFactory;
+        $this->restHelper = $restHelper;
     }
 
     public function cgetAction(Request $request): Response
