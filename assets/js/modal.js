@@ -1,6 +1,10 @@
 const openEl = document.querySelector('[data-open]');
 const closeEl = document.querySelector('[data-close]');
 const visible = 'visible';
+const openedModal = document.querySelector('.modal.visible');
+const makeInvisible = (modal) => {
+    modal.classList.remove(visible);
+};
 
 openEl.addEventListener('click', function () {
     const modalId = this.dataset.open;
@@ -12,13 +16,13 @@ closeEl.addEventListener('click', function () {
 });
 
 document.addEventListener('click', e => {
-    if (e.target === document.querySelector('.modal.visible')) {
-        document.querySelector('.modal.visible').classList.remove(visible);
+    if (e.target === openedModal) {
+        makeInvisible(openedModal);
     }
 });
 
 document.addEventListener('keyup', e => {
-    if (e.key === 'Escape' && document.querySelector('.modal.visible')) {
-        document.querySelector('.modal.visible').classList.remove(visible);
+    if (e.key === 'Escape' && openedModal) {
+        makeInvisible(openedModal);
     }
 });
