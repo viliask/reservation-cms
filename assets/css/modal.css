@@ -95,7 +95,7 @@ body {
     transition: all 0.35s ease-in;
 }
 
-.modal.is-visible {
+.modal.visible {
     visibility: visible;
     opacity: 1;
 }
