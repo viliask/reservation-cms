@@ -12,6 +12,7 @@ Encore
     .addEntry('css3-mediaqueries', './assets/js/css3-mediaqueries.js')
     .addEntry('timeline', './assets/js/timeline.js')
     .addEntry('tiny-slider', './assets/js/tiny-slider.js')
+    .addEntry('modal', './assets/js/modal.js')
     .splitEntryChunks()
     // .autoProvidejQuery()
     .enableSingleRuntimeChunk()
@@ -39,6 +40,7 @@ Encore
     .addStyleEntry('tiny-slider', './assets/css/tiny-slider.css')
     .addStyleEntry('JFFormStyle-1', './assets/css/JFFormStyle-1.css')
     .addStyleEntry('airbnb', './assets/css/airbnb.css')
+    .addStyleEntry('modal', './assets/css/modal.css')
 ;
 
 const cssConfig = Encore.getWebpackConfig();
