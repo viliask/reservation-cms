@@ -10,7 +10,6 @@ return [
     Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle::class => ['all' => true],
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['all' => true],
     Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle::class => ['all' => true],
-    Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
     FOS\RestBundle\FOSRestBundle::class => ['all' => true],
     JMS\SerializerBundle\JMSSerializerBundle::class => ['all' => true],
     Massive\Bundle\SearchBundle\MassiveSearchBundle::class => ['all' => true],
@@ -44,7 +43,8 @@ return [
     FOS\JsRoutingBundle\FOSJsRoutingBundle::class => ['all' => true, 'admin' => true],
     Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle::class => ['all' => true, 'website' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
-    Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
     Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle::class => ['all' => true],
     Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
+    HandcraftedInTheAlps\RestRoutingBundle\RestRoutingBundle::class => ['all' => true],
+    Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
 ];
