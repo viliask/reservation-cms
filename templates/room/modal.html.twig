@@ -10,7 +10,9 @@
             Ask for a room
             <button class="close-modal" aria-label="close modal" data-close>✕</button>
         </header>
-        <section class="modal-content">Form fields...</section>
+        <section class="modal-content">
+            {{ include('event/_form.html.twig') }}
+        </section>
         <footer class="modal-footer">Legal notice</footer>
     </div>
 </div>

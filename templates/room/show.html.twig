@@ -23,7 +23,7 @@
     </table>
 
     {% block modal %}
-        {% include 'room/modal.html.twig' %}
+        {% include 'room/modal.html.twig' with {form: form} %}
     {% endblock %}
 
 {% endblock %}
