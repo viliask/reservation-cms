@@ -4,6 +4,7 @@ namespace App\Form\Type;
 
 use App\Entity\Event;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -42,7 +43,7 @@ class EventType extends AbstractType
                     'attr' => ['placeholder' => 'test@test.com']
                 ]
             )
-            ->add('message')
+            ->add('message', TextareaType::class)
             ->add('rooms')
             ->add('policy')
         ;
