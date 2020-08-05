@@ -10,11 +10,6 @@
                     {{ form_start(form, {'attr': {'class': 'submit-form'} }) }}
                     {{ form_errors(form) }}
                     <!----------start section_room----------->
-                    <div class="section_room">
-                        {{ form_label(form.roomType) }}
-                        {{ form_errors(form.roomType) }}
-                        {{ form_widget(form.roomType) }}
-                    </div>
                 </li>
                 <li class="span1_of_1 left">
                     <div class="book_date">
@@ -34,17 +29,9 @@
                     <!----------start section_room----------->
                     <div class="section_room">
 
-                        {{ form_label(form.adults) }}
-                        {{ form_errors(form.adults) }}
-                        {{ form_widget(form.adults) }}
-                    </div>
-                </li>
-                <li class="span1_of_2 left">
-                    <!----------start section_room----------->
-                    <div class="section_room">
-                        {{ form_label(form.children) }}
-                        {{ form_errors(form.children) }}
-                        {{ form_widget(form.children) }}
+                        {{ form_label(form.guests) }}
+                        {{ form_errors(form.guests) }}
+                        {{ form_widget(form.guests) }}
                     </div>
                 </li>
                 <li class="span1_of_3">
