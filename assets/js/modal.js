@@ -4,6 +4,7 @@ const visible = 'visible';
 const makeInvisible = (modal) => {
     modal.classList.remove(visible);
 };
+const PRICE = 40;
 
 openEl.addEventListener('click', function () {
     const modalId = this.dataset.open;
@@ -34,4 +35,6 @@ document.querySelector('#event_guests').addEventListener('change', () => {
     const checkIn = new Date(document.querySelector('#event_checkIn').value);
     const checkOut = new Date(document.querySelector('#event_checkOut').value);
     const guests = document.querySelector('#event_guests').value;
+    const daysOfVisit = (checkOut.getTime() - checkIn.getTime()) / (1000 * 3600 * 24);
+    document.querySelector('#event_price').value = (daysOfVisit * PRICE * guests);
 });
