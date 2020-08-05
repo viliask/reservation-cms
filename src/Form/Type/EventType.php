@@ -37,10 +37,12 @@ class EventType extends AbstractType
             ->add('firstName')
             ->add('lastName')
             ->add('phone')
-            ->add('mail')
-            ->add('guests')
+            ->add('mail', null,
+                [
+                    'attr' => ['placeholder' => 'test@test.com']
+                ]
+            )
             ->add('message')
-            ->add('price')
             ->add('rooms')
             ->add('policy')
         ;
