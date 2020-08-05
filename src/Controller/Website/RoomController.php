@@ -29,6 +29,7 @@ class RoomController extends AbstractController
 
         $form->get('checkIn')->setData($checkIn);
         $form->get('checkOut')->setData($checkOut);
+        $form->get('rooms')->setData([$room]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
