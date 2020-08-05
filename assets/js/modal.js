@@ -6,6 +6,14 @@ const makeInvisible = (modal) => {
 };
 const PRICE = 40;
 
+const updatePrice = () => {
+    const checkIn = new Date(document.querySelector('#event_checkIn').value);
+    const checkOut = new Date(document.querySelector('#event_checkOut').value);
+    const guests = document.querySelector('#event_guests').value;
+    const daysOfVisit = (checkOut.getTime() - checkIn.getTime()) / (1000 * 3600 * 24);
+    document.querySelector('#event_price').value = (daysOfVisit * PRICE * guests);
+};
+
 openEl.addEventListener('click', function () {
     const modalId = this.dataset.open;
     document.getElementById(modalId).classList.add(visible);
@@ -32,9 +40,5 @@ document.addEventListener('keyup', e => {
 });
 
 document.querySelector('#event_guests').addEventListener('change', () => {
-    const checkIn = new Date(document.querySelector('#event_checkIn').value);
-    const checkOut = new Date(document.querySelector('#event_checkOut').value);
-    const guests = document.querySelector('#event_guests').value;
-    const daysOfVisit = (checkOut.getTime() - checkIn.getTime()) / (1000 * 3600 * 24);
-    document.querySelector('#event_price').value = (daysOfVisit * PRICE * guests);
+    updatePrice();
 });
