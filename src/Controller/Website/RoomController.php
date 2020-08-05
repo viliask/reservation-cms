@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class RoomController extends AbstractController
 {
     /**
-     * @Route("/{id}", name="room_show", methods={"GET"})
+     * @Route("/{id}", name="room_show", methods={"POST"})
      */
     public function show(Room $room, Request $request): Response
     {
