@@ -29,3 +29,9 @@ document.addEventListener('keyup', e => {
         makeInvisible(openedModal);
     }
 });
+
+document.querySelector('#event_guests').addEventListener('change', () => {
+    const checkIn = new Date(document.querySelector('#event_checkIn').value);
+    const checkOut = new Date(document.querySelector('#event_checkOut').value);
+    const guests = document.querySelector('#event_guests').value;
+});
