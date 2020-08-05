@@ -34,9 +34,11 @@ class RoomController extends AbstractController
 
         $checkIn = new DateTimeImmutable($request->query->get('checkIn'));
         $checkOut = new DateTimeImmutable($request->query->get('checkOut'));
+        $guests = $request->query->get('guests');
 
         $form->get('checkIn')->setData($checkIn);
         $form->get('checkOut')->setData($checkOut);
+        $form->get('guests')->setData($guests);
         $form->get('rooms')->setData([$room]);
         $form->handleRequest($request);
 

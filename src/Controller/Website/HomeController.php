@@ -40,6 +40,7 @@ class HomeController extends WebsiteController
         $reservation = $request->request->get('reservation');
         $checkIn     = $reservation['checkInDate'];
         $checkOut    = $reservation['checkOutDate'];
+        $guests      = $reservation['guests'];
         $rooms       = $eventRepository->findAvailableRooms($checkIn, $checkOut);
 
         return $this->render(
@@ -47,7 +48,8 @@ class HomeController extends WebsiteController
             [
                 'rooms' => $rooms,
                 'checkIn' => $checkIn,
-                'checkOut' => $checkOut
+                'checkOut' => $checkOut,
+                'guests' => $guests
             ]
         );
     }
