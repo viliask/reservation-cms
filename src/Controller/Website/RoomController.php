@@ -17,6 +17,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class RoomController extends AbstractController
 {
     /**
+     * @Route("/confirmation", name="room_confirmation", methods={"GET"})
+     */
+    public function confirmation(): Response
+    {
+        return $this->render('room/confirmation.html.twig');
+    }
+
+    /**
      * @Route("/{id}", name="room_show", methods={"POST"})
      */
     public function show(Room $room, Request $request): Response
@@ -36,6 +44,8 @@ class RoomController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($event);
             $entityManager->flush();
+
+            return $this->redirectToRoute('room_confirmation');
         }
 
         return $this->render('room/show.html.twig', [
