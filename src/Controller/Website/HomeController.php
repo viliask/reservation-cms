@@ -38,8 +38,19 @@ class HomeController extends WebsiteController
     public function reservation(Request $request, EventRepository $eventRepository): Response
     {
         $reservation = $request->request->get('reservation');
-        $rooms       = $eventRepository->findAvailableRooms($reservation['checkInDate'], $reservation['checkOutDate']);
+        $checkIn     = $reservation['checkInDate'];
+        $checkOut    = $reservation['checkOutDate'];
+        $guests      = $reservation['guests'];
+        $rooms       = $eventRepository->findAvailableRooms($checkIn, $checkOut);
 
-        return $this->render('/room/index.html.twig', ['rooms' => $rooms]);
+        return $this->render(
+            '/room/index.html.twig',
+            [
+                'rooms'    => $rooms,
+                'checkIn'  => $checkIn,
+                'checkOut' => $checkOut,
+                'guests'   => $guests,
+            ]
+        );
     }
 }

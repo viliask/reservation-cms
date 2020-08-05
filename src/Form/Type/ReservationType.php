@@ -13,16 +13,6 @@ class ReservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('roomType', ChoiceType::class,
-                [
-                    'choices' =>
-                        [
-                            'Single' => 'single',
-                            'Double' => 'double',
-                            'Suite'  => 'suite',
-                        ],
-                ]
-            )
             ->add('checkInDate', Type\DateType::class,
                 [
                     'label'  => '',
@@ -39,24 +29,12 @@ class ReservationType extends AbstractType
                     'attr'   => ['class' => 'date js-datepicker', 'placeholder' => 'DD-MM-YYYY'],
                 ]
             )
-            ->add('adults', ChoiceType::class,
+            ->add('guests', ChoiceType::class,
                 [
                     'choices' =>
                         [
                             '1' => 1,
                             '2' => 2,
-                            '3' => 3,
-                            '4' => 4,
-                            '5' => 5,
-                        ],
-                ]
-            )
-            ->add('children', ChoiceType::class,
-                [
-                    'choices' =>
-                        [
-                            '1' => 1,
-                            '2' => 3,
                             '3' => 3,
                             '4' => 4,
                             '5' => 5,
