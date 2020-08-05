@@ -17,6 +17,7 @@ const updatePrice = () => {
 openEl.addEventListener('click', function () {
     const modalId = this.dataset.open;
     document.getElementById(modalId).classList.add(visible);
+    updatePrice();
 });
 
 closeEl.addEventListener('click', function () {
