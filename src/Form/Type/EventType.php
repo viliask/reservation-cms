@@ -12,8 +12,28 @@ class EventType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('checkIn')
-            ->add('checkOut')
+            ->add('checkIn', null,
+                [
+                    'widget' => 'single_text',
+                    'attr' => [
+                        'readonly' => true,
+                    ],
+                ]
+            )
+            ->add('checkOut', null,
+                [
+                    'widget' => 'single_text',
+                    'attr' => [
+                        'readonly' => true,
+                    ],
+                ]
+            )
+            ->add('guests')
+            ->add('price', null,
+                [
+                    'attr' => ['readonly' => true]
+                ]
+            )
             ->add('firstName')
             ->add('lastName')
             ->add('phone')
