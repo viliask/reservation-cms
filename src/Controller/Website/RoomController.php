@@ -29,12 +29,11 @@ class RoomController extends AbstractController
      */
     public function show(Room $room, Request $request): Response
     {
-        $event = new Event();
-        $form = $this->createForm(EventType::class, $event);
-
-        $checkIn = new DateTimeImmutable($request->query->get('checkIn'));
+        $event    = new Event();
+        $form     = $this->createForm(EventType::class, $event);
+        $checkIn  = new DateTimeImmutable($request->query->get('checkIn'));
         $checkOut = new DateTimeImmutable($request->query->get('checkOut'));
-        $guests = $request->query->get('guests');
+        $guests   = $request->query->get('guests');
 
         $form->get('checkIn')->setData($checkIn);
         $form->get('checkOut')->setData($checkOut);
@@ -52,11 +51,14 @@ class RoomController extends AbstractController
             return $this->redirectToRoute('room_confirmation');
         }
 
-        return $this->render('room/show.html.twig', [
-            'room' => $room,
-            'checkIn' => $checkIn,
-            'checkOut' => $checkOut,
-            'form' => $form->createView(),
-        ]);
+        return $this->render(
+            'room/show.html.twig',
+            [
+                'room'     => $room,
+                'checkIn'  => $checkIn,
+                'checkOut' => $checkOut,
+                'form'     => $form->createView(),
+            ]
+        );
     }
 }

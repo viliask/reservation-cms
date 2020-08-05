@@ -1,10 +1,11 @@
 const openEl = document.querySelector('[data-open]');
 const closeEl = document.querySelector('[data-close]');
 const visible = 'visible';
+const PRICE = 40;
+
 const makeInvisible = (modal) => {
     modal.classList.remove(visible);
 };
-const PRICE = 40;
 
 const updatePrice = () => {
     const checkIn = new Date(document.querySelector('#event_checkIn').value);

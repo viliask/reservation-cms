@@ -46,10 +46,10 @@ class HomeController extends WebsiteController
         return $this->render(
             '/room/index.html.twig',
             [
-                'rooms' => $rooms,
-                'checkIn' => $checkIn,
+                'rooms'    => $rooms,
+                'checkIn'  => $checkIn,
                 'checkOut' => $checkOut,
-                'guests' => $guests
+                'guests'   => $guests,
             ]
         );
     }
