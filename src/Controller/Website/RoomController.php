@@ -5,6 +5,7 @@ namespace App\Controller\Website;
 use App\Entity\Event;
 use App\Entity\Room;
 use App\Form\Type\EventType;
+use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +23,12 @@ class RoomController extends AbstractController
     {
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
+
+        $checkIn = new DateTimeImmutable($request->query->get('checkIn'));
+        $checkOut = new DateTimeImmutable($request->query->get('checkOut'));
+
+        $form->get('checkIn')->setData($checkIn);
+        $form->get('checkOut')->setData($checkOut);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
