@@ -8,10 +8,9 @@
     {% block stylesheets %}
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
         {{ encore_entry_link_tags('app', null, 'css') }}
-        {{ encore_entry_link_tags('tiny-slider', null, 'css') }}
         {{ encore_entry_link_tags('JFFormStyle-1', null, 'css') }}
-        {{ encore_entry_link_tags('airbnb', null, 'css') }}
     {% endblock %}
+    {% block styles '' %}
 
     {% block meta %}
         {% include "SuluWebsiteBundle:Extension:seo.html.twig" with {
@@ -58,9 +57,8 @@
     </footer>
 
     {% block javascripts %}
-        {{ encore_entry_script_tags('flatpickr', null, 'js') }}
         {{ encore_entry_script_tags('css3-mediaqueries', null, 'js') }}
-        {{ encore_entry_script_tags('tiny-slider', null, 'js') }}
     {% endblock %}
+    {% block js '' %}
 </body>
 </html>
