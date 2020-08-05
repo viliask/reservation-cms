@@ -16,13 +16,12 @@ const updatePrice = () => {
 };
 
 openEl.addEventListener('click', () => {
-    const modalId = this.dataset.open;
-    document.getElementById(modalId).classList.add(visible);
+    document.getElementById('reservation-modal').classList.add(visible);
     updatePrice();
 });
 
 closeEl.addEventListener('click', () => {
-    this.parentElement.parentElement.parentElement.classList.remove(visible);
+    document.getElementById('reservation-modal').classList.remove(visible);
 });
 
 document.addEventListener('click', e => {
