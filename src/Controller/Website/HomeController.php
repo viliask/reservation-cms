@@ -42,6 +42,13 @@ class HomeController extends WebsiteController
         $checkOut    = $reservation['checkOutDate'];
         $rooms       = $eventRepository->findAvailableRooms($checkIn, $checkOut);
 
-        return $this->render('/room/index.html.twig', ['rooms' => $rooms, 'checkIn' => $checkIn, 'checkOut' => $checkOut]);
+        return $this->render(
+            '/room/index.html.twig',
+            [
+                'rooms' => $rooms,
+                'checkIn' => $checkIn,
+                'checkOut' => $checkOut
+            ]
+        );
     }
 }
