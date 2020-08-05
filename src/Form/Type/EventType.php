@@ -44,7 +44,7 @@ class EventType extends AbstractType
                 ]
             )
             ->add('message', TextareaType::class)
-            ->add('rooms')
+            ->add('rooms', null, ['label' => false, 'attr' => ['style' => 'display:none']])
             ->add('policy')
         ;
     }
