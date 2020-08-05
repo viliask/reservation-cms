@@ -25,7 +25,7 @@ class RoomController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="room_show", methods={"POST"})
+     * @Route("/{id}", name="room_show", methods={"GET"})
      */
     public function show(Room $room, Request $request): Response
     {
