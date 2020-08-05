@@ -14,13 +14,13 @@ const updatePrice = () => {
     document.querySelector('#event_price').value = (daysOfVisit * PRICE * guests);
 };
 
-openEl.addEventListener('click', function () {
+openEl.addEventListener('click', () => {
     const modalId = this.dataset.open;
     document.getElementById(modalId).classList.add(visible);
     updatePrice();
 });
 
-closeEl.addEventListener('click', function () {
+closeEl.addEventListener('click', () => {
     this.parentElement.parentElement.parentElement.classList.remove(visible);
 });
 
