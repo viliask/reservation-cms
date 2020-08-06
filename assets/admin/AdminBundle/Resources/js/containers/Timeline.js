@@ -15,11 +15,12 @@ const lastDOM = new Date(y, m + 1, 0);
 
 const options = {
     template: function (item) {
-        return item.customer + ', ' +
-            item.className + ', ' +
-            'guests: ' + item.guests + ', ' +
-            item.start.toLocaleDateString() + ' ' + item.start.toLocaleTimeString() + ' - ' +
-            item.end.toLocaleDateString() + ' ' + item.end.toLocaleTimeString();
+        return `<a href="${item.link}" target="_blank">${item.customer}, 
+            ${item.className}, 
+            guests: ${item.guests}, 
+            ${item.start.toLocaleDateString()} ${item.start.toLocaleTimeString()} - 
+            ${item.end.toLocaleDateString()} ${item.end.toLocaleTimeString()}
+            </a>`;
     },
     start: firstDOM,
     end: lastDOM,
