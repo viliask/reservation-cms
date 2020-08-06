@@ -8,12 +8,13 @@ use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class TimelineController extends AbstractFOSRestController
 {
 
     /** @Rest\Get("/timeline/items") */
-    public function TimelineItemsAction(Request $request, EventRepository $eventRepository): JsonResponse
+    public function TimelineItemsAction(RequestStack $requestStack, EventRepository $eventRepository): JsonResponse
     {
         $events = $eventRepository->findAll();
         $results = [];
@@ -29,6 +30,7 @@ class TimelineController extends AbstractFOSRestController
                     'guests'  => $event->getGuests(),
                     'start'   => $event->getFormattedCheckIn(),
                     'end'     => $event->getFormattedCheckOut(),
+                    'link'      => $requestStack->getMasterRequest()->getSchemeAndHttpHost().'/admin/#/events/en/'.$event->getId().'/details'
                 ];
             }
         }
