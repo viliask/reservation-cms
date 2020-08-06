@@ -17,7 +17,14 @@ const options = {
         return item.content;
     },
     start: firstDOM,
-    end: lastDOM
+    end: lastDOM,
+    showTooltips: true,
+    tooltip: {
+        template: function(item) {
+            const color = 'green';
+            return `<span style="color:${color}">${item.content}</span>`;
+        }
+    }
 };
 
 class Timeline2D extends React.Component {
