@@ -25,7 +25,7 @@ class TimelineController extends AbstractFOSRestController
                     'id'      => $event->getId().$room->getId(),
                     'group'   => $room->getId(),
                     'customer' => $event->getFirstName().' '.$event->getLastName(),
-                    'status'  => $event->getStatus(),
+                    'className' => $event->getStatus(),
                     'guests'  => $event->getGuests(),
                     'start'   => $event->getFormattedCheckIn(),
                     'end'     => $event->getFormattedCheckOut(),

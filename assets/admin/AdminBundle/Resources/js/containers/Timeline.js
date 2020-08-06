@@ -15,7 +15,7 @@ const lastDOM = new Date(y, m + 1, 0);
 const options = {
     template: function (item) {
         return item.customer + ', ' +
-            item.status + ', ' +
+            item.className + ', ' +
             'guests: ' + item.guests + ', ' +
             item.start.toLocaleDateString() + ' ' + item.start.toLocaleTimeString() + ' - ' +
             item.end.toLocaleDateString() + ' ' + item.end.toLocaleTimeString();
@@ -26,7 +26,7 @@ const options = {
     tooltip: {
         template: function (item) {
             return `<span>Customer: ${item.customer}</span><br>
-                    <span>Status: ${item.status}</span><br>
+                    <span>Status: ${item.className}</span><br>
                     <span>Guests amount: ${item.guests}</span><br>
                     <span>Check in: ${item.start.toLocaleDateString() + ' ' + item.start.toLocaleTimeString()}</span><br>
                     <span>Check out: ${item.end.toLocaleDateString() + ' ' + item.end.toLocaleTimeString()}</span><br>
