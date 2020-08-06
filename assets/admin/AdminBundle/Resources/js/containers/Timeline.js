@@ -12,7 +12,6 @@ const date = new Date(), y = date.getFullYear(), m = date.getMonth();
 const firstDOM = new Date(y, m, 1);
 const lastDOM = new Date(y, m + 1, 0);
 
-
 const options = {
     template: function (item) {
         return item.customer + ', ' +
@@ -25,7 +24,7 @@ const options = {
     end: lastDOM,
     showTooltips: true,
     tooltip: {
-        template: function(item) {
+        template: function (item) {
             return `<span>Customer: ${item.customer}</span><br>
                     <span>Status: ${item.status}</span><br>
                     <span>Guests amount: ${item.guests}</span><br>
