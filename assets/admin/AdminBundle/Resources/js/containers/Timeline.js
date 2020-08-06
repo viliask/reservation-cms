@@ -13,6 +13,9 @@ const firstDOM = new Date(y, m, 1);
 const lastDOM = new Date(y, m + 1, 0);
 
 const options = {
+    template: function (item) {
+        return item.content;
+    },
     start: firstDOM,
     end: lastDOM
 };
