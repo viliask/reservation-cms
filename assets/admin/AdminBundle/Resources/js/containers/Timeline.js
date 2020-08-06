@@ -12,13 +12,14 @@ const date = new Date(), y = date.getFullYear(), m = date.getMonth();
 const firstDOM = new Date(y, m, 1);
 const lastDOM = new Date(y, m + 1, 0);
 
+
 const options = {
     template: function (item) {
         return item.customer + ', ' +
             item.status + ', ' +
             'guests amount: ' + item.guests + ', ' +
-            item.start.toLocaleDateString() + ' - ' +
-            item.end.toLocaleDateString();
+            item.start.toLocaleDateString() + ' ' + item.start.toLocaleTimeString() + ' - ' +
+            item.end.toLocaleDateString() + ' ' + item.end.toLocaleTimeString();
     },
     start: firstDOM,
     end: lastDOM,
