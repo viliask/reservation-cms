@@ -1,5 +1,6 @@
 import React from 'react';
 import 'vis-timeline/styles/vis-timeline-graph2d.css';
+import '../../../../../css/timeline.css';
 import Timeline from 'react-vis-timeline'
 import Axios from 'axios';
 import Routing from '../../../../../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
