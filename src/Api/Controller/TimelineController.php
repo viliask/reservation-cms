@@ -16,21 +16,22 @@ class TimelineController extends AbstractFOSRestController
     /** @Rest\Get("/timeline/items") */
     public function TimelineItemsAction(RequestStack $requestStack, EventRepository $eventRepository): JsonResponse
     {
-        $events = $eventRepository->findAll();
+        $events  = $eventRepository->findAll();
         $results = [];
 
         foreach ($events as $event) {
             $rooms = $event->getRooms();
             foreach ($rooms as $room) {
                 $results[] = [
-                    'id'      => $event->getId().$room->getId(),
-                    'group'   => $room->getId(),
-                    'customer' => $event->getFirstName().' '.$event->getLastName(),
+                    'id'        => $event->getId().$room->getId(),
+                    'group'     => $room->getId(),
+                    'customer'  => $event->getFirstName().' '.$event->getLastName(),
                     'className' => $event->getStatus(),
-                    'guests'  => $event->getGuests(),
-                    'start'   => $event->getFormattedCheckIn(),
-                    'end'     => $event->getFormattedCheckOut(),
-                    'link'      => $requestStack->getMasterRequest()->getSchemeAndHttpHost().'/admin/#/events/en/'.$event->getId().'/details'
+                    'guests'    => $event->getGuests(),
+                    'start'     => $event->getFormattedCheckIn(),
+                    'end'       => $event->getFormattedCheckOut(),
+                    'link'      => $requestStack->getMasterRequest()->getSchemeAndHttpHost()
+                        .'/admin/#/events/en/'.$event->getId().'/details',
                 ];
             }
         }
