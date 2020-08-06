@@ -1,0 +1,22 @@
+.vis-item.booked {
+    color: black;
+    background: linear-gradient(#1ff789, #43d220);
+    border-color: darkgreen;
+}
+
+.vis-item.draft {
+    color: black;
+    background: linear-gradient(#f9f212, #f3d04f);
+    border-color: darkgoldenrod;
+}
+
+.vis-item.cancelled {
+    color: white;
+    background: linear-gradient(#f51214, #c32c6b);
+    border-color: darkred;
+    text-decoration: line-through;
+}
+
+a {
+    text-decoration: none;
+}
