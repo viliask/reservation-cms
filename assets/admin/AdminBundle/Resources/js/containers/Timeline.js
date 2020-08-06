@@ -14,7 +14,11 @@ const lastDOM = new Date(y, m + 1, 0);
 
 const options = {
     template: function (item) {
-        return item.content;
+        return item.customer + ', ' +
+            item.status + ', ' +
+            'guests amount: ' + item.guests + ', ' +
+            item.start.toLocaleDateString() + ' - ' +
+            item.end.toLocaleDateString();
     },
     start: firstDOM,
     end: lastDOM,
