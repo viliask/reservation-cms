@@ -26,8 +26,12 @@ const options = {
     showTooltips: true,
     tooltip: {
         template: function(item) {
-            const color = 'green';
-            return `<span style="color:${color}">${item.content}</span>`;
+            return `<span>Customer: ${item.customer}</span><br>
+                    <span>Status: ${item.status}</span><br>
+                    <span>Guests amount: ${item.guests}</span><br>
+                    <span>Check in: ${item.start.toLocaleDateString() + ' ' + item.start.toLocaleTimeString()}</span><br>
+                    <span>Check out: ${item.end.toLocaleDateString() + ' ' + item.end.toLocaleTimeString()}</span><br>
+                    `;
         }
     }
 };
