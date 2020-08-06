@@ -43,7 +43,7 @@ class RoomController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $event->setLocale('pl');
-            $event->setStatus('Check availability');
+            $event->setStatus('draft');
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($event);
             $entityManager->flush();
