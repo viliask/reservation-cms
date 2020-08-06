@@ -17,7 +17,7 @@ const options = {
     template: function (item) {
         return item.customer + ', ' +
             item.status + ', ' +
-            'guests amount: ' + item.guests + ', ' +
+            'guests: ' + item.guests + ', ' +
             item.start.toLocaleDateString() + ' ' + item.start.toLocaleTimeString() + ' - ' +
             item.end.toLocaleDateString() + ' ' + item.end.toLocaleTimeString();
     },
