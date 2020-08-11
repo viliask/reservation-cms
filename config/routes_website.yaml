@@ -1,5 +1,5 @@
 # Define your website routes here
 
-reservation:
-    path: /reservation
-    controller: App\Controller\Website\HomeController::reservation
+#static:
+#    path: /static-route
+#    controller: App\Controller\DefaultController::index

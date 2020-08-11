@@ -1,34 +1,7 @@
 {% extends "base.html.twig" %}
 
-{% block styles %}
-    {{ encore_entry_link_tags('tiny-slider', null, 'css') }}
-    {{ encore_entry_link_tags('airbnb', null, 'css') }}
-{% endblock %}
-
 {% block content %}
-{#    <h1>{{ content.title }}</h1>#}
+    <h1>{{ content.title }}</h1>
 
-    {% block slider %}
-        {% include "./slider.html.twig" %}
-    {% endblock %}
-
-    <div class="wrap">
-        {% block reservation %}
-            {% include "./homepage/reservation.html.twig" with {form: form} %}
-        {% endblock %}
-
-        <div class="content-main">
-            {{ content.article|raw }}
-        </div>
-
-        {% block grids %}
-            {% include "./homepage/grids.html.twig" with {content: content} %}
-        {% endblock %}
-    </div>
-
-{% endblock %}
-
-{% block js %}
-    {{ encore_entry_script_tags('flatpickr', null, 'js') }}
-    {{ encore_entry_script_tags('tiny-slider', null, 'js') }}
+    {{ content.article|raw }}
 {% endblock %}
