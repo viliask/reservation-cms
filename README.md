@@ -44,6 +44,6 @@ Reservation CMS is a project to create a booking like reservations system for a 
 
 Trello table: https://trello.com/b/cak0dvgB/reservation-cms
 
-## 📫&nbsp; Have a question? Want to chat? Run into a problem?
+## 📫&nbsp; Have a question?
 
 Feel free to fork this project if you're interested. To contact, send me an email at: kamil.wilas@outlook.com
