@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Room{% endblock %}
+
+{% block body %}
+    <h1>Room</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ room.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ room.name }}</td>
+            </tr>
+            <tr>
+                <th>MaxGuests</th>
+                <td>{{ room.maxGuests }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {% block modal %}
+        {% include 'room/modal.html.twig' with {form: form, checkIn: checkIn, checkOut: checkOut} %}
+    {% endblock %}
+
+{% endblock %}

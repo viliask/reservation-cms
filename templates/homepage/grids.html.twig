@@ -1,0 +1,37 @@
+<div class="grids_of_3">
+    <div class="grid1_of_3">
+        <div class="grid1_of_3_img">
+            <a href="details.html">
+                {% if content.images is not empty %}
+                    {% set source = content.images[0].formats['sulu-400x400'] %}
+                    <img src="{{ asset(source) }}" alt="">
+                {% endif %}
+            </a>
+        </div>
+        <h4><a href="#">single room<span>120$</span></a></h4>
+        {{ content.grid_1|raw }}
+    </div>
+    <div class="grid1_of_3">
+        <div class="grid1_of_3_img">
+            <a href="details.html">
+                {% if content.images is not empty %}
+                    {% set source = content.images[0].formats['sulu-400x400'] %}
+                    <img src="{{ asset(source) }}" alt="">
+                {% endif %}            </a>
+        </div>
+        <h4><a href="#">double room<span>180$</span></a></h4>
+        {{ content.grid_2|raw }}
+    </div>
+    <div class="grid1_of_3">
+        <div class="grid1_of_3_img">
+            <a href="details.html">
+                {% if content.images is not empty %}
+                    {% set source = content.images[0].formats['sulu-400x400'] %}
+                    <img src="{{ asset(source) }}" alt="">
+                {% endif %}            </a>
+        </div>
+        <h4><a href="#">suite room<span>210$</span></a></h4>
+        {{ content.grid_3|raw }}
+    </div>
+    <div class="clear"></div>
+</div>

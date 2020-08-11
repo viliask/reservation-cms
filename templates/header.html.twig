@@ -1,0 +1,56 @@
+<div class="header_bg">
+    <div class="wrap">
+        <div class="header">
+            <div class="logo">
+                <a href="{{ sulu_content_root_path() }}"><img src="{{ asset('web/images/logo.png') }}" alt=""></a>
+            </div>
+            <div class="h_right">
+                <nav>
+                    <ul class="menu">
+                        <li>
+                            <a href="{{ sulu_content_root_path() }}">Homepage</a>
+                        </li>
+
+                        {% for item in sulu_navigation_root_tree('main') %}
+                            <li>
+                                <a href="{{ sulu_content_path(item.url, item.webspaceKey) }}"
+                                   title="{{ item.title }}">{{ item.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+                <form class="style-1 drp_dwn">
+                    <div class="row">
+                        <div class="grid_3 columns">
+                            <select class="custom-select" id="select-1">
+                                <option selected="selected">EN</option>
+                                <option>USA</option>
+                                <option>AUS</option>
+                                <option>UK</option>
+                                <option>IND</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="clear"></div>
+            <div class="top-nav">
+                <nav class="clearfix">
+                    <ul>
+                        <li>
+                            <a href="{{ sulu_content_root_path() }}">Homepage</a>
+                        </li>
+
+                        {% for item in sulu_navigation_root_tree('main') %}
+                            <li>
+                                <a href="{{ sulu_content_path(item.url, item.webspaceKey) }}"
+                                   title="{{ item.title }}">{{ item.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <a href="#" id="pull">Menu</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
