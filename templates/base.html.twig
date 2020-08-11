@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {% block stylesheets %}
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+        {{ encore_entry_link_tags('app', null, 'css') }}
+        {{ encore_entry_link_tags('JFFormStyle-1', null, 'css') }}
+    {% endblock %}
+    {% block styles '' %}
+
     {% block meta %}
         {% include "@SuluWebsite/Extension/seo.html.twig" with {
             "seo": extension.seo|default([]),
@@ -20,29 +27,18 @@
 <body>
     <header>
         {% block header %}
-            <nav>
-                <ul>
-                    <li>
-                        <a href="{{ sulu_content_root_path() }}">Homepage</a>
-                    </li>
-
-                    {% for item in sulu_navigation_root_tree('main') %}
-                        <li>
-                            <a href="{{ sulu_content_path(item.url, item.webspaceKey) }}"
-                               title="{{ item.title }}">{{ item.title }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </nav>
+            {% include "header.html.twig" %}
         {% endblock %}
     </header>
 
-    <form action="{{ path('sulu_search.website_search') }}" method="GET">
-        <input name="q" type="text" placeholder="Search"/>
-        <input type="submit" value="Go"/>
-    </form>
+{#    <form action="{{ path('sulu_search.website_search') }}" method="GET">#}
+{#        <input name="q" type="text" placeholder="Search"/>#}
+{#        <input type="submit" value="Go"/>#}
+{#    </form>#}
 
-    <section id="content">
+    {% block body ''%}
+
+    <section class="main_bg" id="content">
         {% block content %}{% endblock %}
     </section>
 
@@ -51,11 +47,18 @@
     </aside>
 
     <footer>
-        {% block footer %}
-            <p>Copyright {{ 'now'|date('Y') }} SULU</p>
-        {% endblock %}
+        <div class="footer_bg">
+            <div class="wrap">
+            {% block footer %}
+                {% include "footer.html.twig" %}
+            {% endblock %}
+            </div>
+        </div>
     </footer>
 
-    {% block javascripts %}{% endblock %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('css3-mediaqueries', null, 'js') }}
+    {% endblock %}
+    {% block js '' %}
 </body>
 </html>
