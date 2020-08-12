@@ -8,8 +8,12 @@
     <key>reservation</key>
 
     <localizations>
-        <!-- See: http://docs.sulu.io/en/latest/book/localization.html how to add new localizations -->
-        <localization language="en" default="true"/>
+        <localization language="en">
+            <localization language="en" default="true"/>
+        </localization>
+        <localization language="pl">
+            <localization language="pl" default="false"/>
+        </localization>
     </localizations>
 
     <default-templates>
@@ -28,7 +32,7 @@
             <context key="main">
                 <meta>
                     <title lang="en">Main Navigation</title>
-                    <title lang="de">Hauptnavigation</title>
+                    <title lang="pl">Hauptnavigation</title>
                 </meta>
             </context>
         </contexts>

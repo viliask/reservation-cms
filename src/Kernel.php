@@ -27,6 +27,7 @@ class Kernel extends SuluKernel implements HttpCacheProvider
 
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
     {
+        $container->setParameter('container.autowiring.strict_mode', true);
         $container->setParameter('container.dumper.inline_class_loader', true);
 
         parent::configureContainer($container, $loader);
