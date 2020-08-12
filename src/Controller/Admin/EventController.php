@@ -4,23 +4,20 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
+use App\Common\DoctrineListRepresentationFactory;
 use App\Entity\Event;
 use App\Repository\EventRepository;
 use App\Repository\RoomRepository;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Routing\ClassResourceInterface;
-use FOS\RestBundle\View\View;
 use FOS\RestBundle\View\ViewHandlerInterface;
 use Sulu\Component\Rest\AbstractRestController;
-use Sulu\Component\Rest\ListBuilder\Doctrine\DoctrineListBuilderFactoryInterface;
-use Sulu\Component\Rest\ListBuilder\Metadata\FieldDescriptorFactoryInterface;
-use Sulu\Component\Rest\ListBuilder\PaginatedRepresentation;
-use Sulu\Component\Rest\RestHelperInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class EventController extends AbstractRestController  implements ClassResourceInterface
+class EventController extends AbstractRestController implements ClassResourceInterface
 {
     /**
      * @var EventRepository
@@ -33,64 +30,34 @@ class EventController extends AbstractRestController  implements ClassResourceIn
     private $roomRepository;
 
     /**
-     * @var ViewHandlerInterface
+     * @var DoctrineListRepresentationFactory
      */
-    private $viewHandler;
-
-    /**
-     * @var FieldDescriptorFactoryInterface
-     */
-    private $fieldDescriptorFactory;
-
-    /**
-     * @var DoctrineListBuilderFactoryInterface
-     */
-    private $listBuilderFactory;
-
-    /**
-     * @var RestHelperInterface
-     */
-    private $restHelper;
+    private $doctrineListRepresentationFactory;
 
     public function __construct(
         ViewHandlerInterface $viewHandler,
         EventRepository $repository,
         RoomRepository $roomRepository,
-        FieldDescriptorFactoryInterface $fieldDescriptorFactory,
-        DoctrineListBuilderFactoryInterface $listBuilderFactory,
-        RestHelperInterface $restHelper
+        DoctrineListRepresentationFactory $doctrineListRepresentationFactory,
+        ?TokenStorageInterface $tokenStorage = null
     ) {
-        parent::__construct($viewHandler);
         $this->repository = $repository;
         $this->roomRepository = $roomRepository;
-        $this->fieldDescriptorFactory = $fieldDescriptorFactory;
-        $this->listBuilderFactory = $listBuilderFactory;
-        $this->restHelper = $restHelper;
+        $this->doctrineListRepresentationFactory = $doctrineListRepresentationFactory;
+
+        parent::__construct($viewHandler, $tokenStorage);
     }
 
     public function cgetAction(Request $request): Response
     {
-        $fieldDescriptors = $this->fieldDescriptorFactory->getFieldDescriptors(Event::RESOURCE_KEY);
-        $listBuilder = $this->listBuilderFactory->create(Event::class);
-        $this->restHelper->initializeListBuilder($listBuilder, $fieldDescriptors);
-        $listRepresentation = new PaginatedRepresentation(
-            $listBuilder->execute(),
+        $locale = $request->query->get('locale');
+        $listRepresentation = $this->doctrineListRepresentationFactory->createDoctrineListRepresentation(
             Event::RESOURCE_KEY,
-            $listBuilder->getCurrentPage(),
-            $listBuilder->getLimit(),
-            $listBuilder->count()
+            [],
+            ['locale' => $locale]
         );
-        return $this->viewHandler->handle(View::create($listRepresentation));
 
-
-//        $locale = $request->query->get('locale');
-//        $listRepresentation = $this->doctrineListRepresentationFactory->createDoctrineListRepresentation(
-//            Event::RESOURCE_KEY,
-//            [],
-//            ['locale' => $locale]
-//        );
-//
-//        return $this->handleView($this->view($listRepresentation));
+        return $this->handleView($this->view($listRepresentation));
     }
 
     public function getAction(int $id, Request $request): Response
