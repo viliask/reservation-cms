@@ -7,13 +7,11 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore
     .setOutputPath('public/build/website/js')
     .setPublicPath('/build/website/js')
-    // .addEntry('app', './assets/js/app.js')
     .addEntry('flatpickr', './assets/js/flatpickr.js')
     .addEntry('css3-mediaqueries', './assets/js/css3-mediaqueries.js')
     .addEntry('tiny-slider', './assets/js/tiny-slider.js')
     .addEntry('modal', './assets/js/modal.js')
     .splitEntryChunks()
-    // .autoProvidejQuery()
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()
     .enableBuildNotifications()
