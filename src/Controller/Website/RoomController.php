@@ -52,7 +52,7 @@ class RoomController extends AbstractController
         }
 
         return $this->render(
-            'room/show.html.twig',
+            'room/showAvailable.html.twig',
             [
                 'room'     => $room,
                 'checkIn'  => $checkIn,
