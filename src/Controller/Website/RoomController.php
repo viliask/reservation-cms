@@ -29,11 +29,11 @@ class RoomController extends AbstractController
      */
     public function showWithDates(Room $room, Request $request, string $checkIn, string $checkOut): Response
     {
-        $event    = new Event();
-        $form     = $this->createForm(EventType::class, $event);
+        $event        = new Event();
+        $form         = $this->createForm(EventType::class, $event);
         $checkInDate  = new DateTimeImmutable($checkIn);
         $checkOutDate = new DateTimeImmutable($checkOut);
-        $guests   = $request->query->get('guests');
+        $guests       = $request->query->get('guests');
 
         $form->get('checkIn')->setData($checkInDate);
         $form->get('checkOut')->setData($checkOutDate);
@@ -55,8 +55,8 @@ class RoomController extends AbstractController
             'room/showAvailable.html.twig',
             [
                 'room'     => $room,
-                'checkIn'  => $checkIn,
-                'checkOut' => $checkOut,
+                'checkIn'  => $checkInDate,
+                'checkOut' => $checkOutDate,
                 'form'     => $form->createView(),
             ]
         );
