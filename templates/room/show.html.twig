@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block styles %}
+    {{ encore_entry_link_tags('airbnb', null, 'css') }}
+{% endblock %}
+
 {% block title %}Room{% endblock %}
 
 {% block body %}
@@ -24,6 +28,10 @@
 
     {% block reservation %}
         {% include "./homepage/reservation.html.twig" with {form: form} %}
+    {% endblock %}
+
+    {% block js %}
+        {{ encore_entry_script_tags('flatpickr', null, 'js') }}
     {% endblock %}
 
 {% endblock %}
