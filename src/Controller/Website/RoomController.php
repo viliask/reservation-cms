@@ -56,8 +56,6 @@ class RoomController extends AbstractController
             'room/showAvailable.html.twig',
             [
                 'room'     => $room,
-                'checkIn'  => $checkInDate,
-                'checkOut' => $checkOutDate,
                 'form'     => $form->createView(),
             ]
         );
