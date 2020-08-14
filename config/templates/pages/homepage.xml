@@ -11,14 +11,14 @@
 
     <meta>
         <title lang="en">Homepage</title>
-        <title lang="de">Startseite</title>
+        <title lang="pl">Startseite</title>
     </meta>
 
     <properties>
         <property name="title" type="text_line" mandatory="true">
             <meta>
                 <title lang="en">Title</title>
-                <title lang="de">Titel</title>
+                <title lang="pl">Titel</title>
             </meta>
             <params>
                 <param name="headline" value="true"/>
@@ -30,7 +30,7 @@
         <property name="url" type="resource_locator" mandatory="true">
             <meta>
                 <title lang="en">Resourcelocator</title>
-                <title lang="de">Adresse</title>
+                <title lang="pl">Adresse</title>
             </meta>
 
             <tag name="sulu.rlp"/>
@@ -39,21 +39,21 @@
         <property name="reservationHeader" type="text_line">
             <meta>
                 <title lang="en">Reservation header</title>
-                <title lang="de">Reservation header</title>
+                <title lang="pl">Reservation header</title>
             </meta>
         </property>
 
         <property name="reservationText" type="text_line">
             <meta>
                 <title lang="en">Reservation text</title>
-                <title lang="de">Reservation text</title>
+                <title lang="pl">Reservation text</title>
             </meta>
         </property>
 
         <property name="article" type="text_editor">
             <meta>
                 <title lang="en">Article</title>
-                <title lang="de">Artikel</title>
+                <title lang="pl">Artikel</title>
             </meta>
         </property>
 
@@ -82,21 +82,21 @@
         <property name="grid_1" type="text_editor">
             <meta>
                 <title lang="en">Grid 1</title>
-                <title lang="de">Grid 1</title>
+                <title lang="pl">Grid 1</title>
             </meta>
         </property>
 
         <property name="grid_2" type="text_editor">
             <meta>
                 <title lang="en">Grid 2</title>
-                <title lang="de">Grid 2</title>
+                <title lang="pl">Grid 2</title>
             </meta>
         </property>
 
         <property name="grid_3" type="text_editor">
             <meta>
                 <title lang="en">Grid 3</title>
-                <title lang="de">Grid 3</title>
+                <title lang="pl">Grid 3</title>
             </meta>
         </property>
     </properties>

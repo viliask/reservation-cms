@@ -13,7 +13,7 @@
     {% block styles '' %}
 
     {% block meta %}
-        {% include "SuluWebsiteBundle:Extension:seo.html.twig" with {
+        {% include "@SuluWebsite/Extension/seo.html.twig" with {
             "seo": extension.seo|default([]),
             "content": content|default([]),
             "urls": urls|default([]),

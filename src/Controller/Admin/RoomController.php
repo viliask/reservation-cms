@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
-use App\Admin\DoctrineListRepresentationFactory;
+use App\Common\DoctrineListRepresentationFactory;
 use App\Entity\Room;
 use App\Repository\RoomRepository;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Routing\ClassResourceInterface;
-use Sulu\Component\Rest\RestController;
+use FOS\RestBundle\View\ViewHandlerInterface;
+use Sulu\Component\Rest\AbstractRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class RoomController extends RestController implements ClassResourceInterface
+class RoomController extends AbstractRestController implements ClassResourceInterface
 {
     /**
      * @var RoomRepository
@@ -27,11 +29,15 @@ class RoomController extends RestController implements ClassResourceInterface
     private $doctrineListRepresentationFactory;
 
     public function __construct(
+        ViewHandlerInterface $viewHandler,
         RoomRepository $repository,
-        DoctrineListRepresentationFactory $doctrineListRepresentationFactory
+        DoctrineListRepresentationFactory $doctrineListRepresentationFactory,
+        ?TokenStorageInterface $tokenStorage = null
     ) {
         $this->repository = $repository;
         $this->doctrineListRepresentationFactory = $doctrineListRepresentationFactory;
+
+        parent::__construct($viewHandler, $tokenStorage);
     }
 
     public function cgetAction(Request $request): Response

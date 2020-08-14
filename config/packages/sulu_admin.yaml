@@ -45,3 +45,11 @@ sulu_admin:
                         icon: su-clock
                         label: 'app.rooms'
                         overlay_title: 'app.rooms'
+
+sulu_core:
+    locales:
+        en: English
+        pl: Polish
+    translations:
+        - en
+        - pl

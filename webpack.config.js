@@ -5,16 +5,13 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
-    .setOutputPath('./public/web/assets/js')
-    .setPublicPath('/web/assets/js')
-    // .addEntry('app', './assets/js/app.js')
+    .setOutputPath('public/build/website/js')
+    .setPublicPath('/build/website/js')
     .addEntry('flatpickr', './assets/js/flatpickr.js')
     .addEntry('css3-mediaqueries', './assets/js/css3-mediaqueries.js')
-    .addEntry('timeline', './assets/js/timeline.js')
     .addEntry('tiny-slider', './assets/js/tiny-slider.js')
     .addEntry('modal', './assets/js/modal.js')
     .splitEntryChunks()
-    // .autoProvidejQuery()
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()
     .enableBuildNotifications()
@@ -33,8 +30,8 @@ Encore.reset();
 Encore
     .cleanupOutputBeforeBuild()
     .disableSingleRuntimeChunk()
-    .setOutputPath('./public/web/assets/css')
-    .setPublicPath('/web/assets/css')
+    .setOutputPath('./public/build/website/css')
+    .setPublicPath('/build/website/css')
     .setManifestKeyPrefix('')
     .addStyleEntry('app', './assets/css/app.css')
     .addStyleEntry('tiny-slider', './assets/css/tiny-slider.css')

@@ -48,14 +48,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 }
 .tns-controls button:nth-child(1) {
     float: left;
-    background: url('../images/angle-left.png') no-repeat;
+    background: url('../../public/web/images/angle-left.png') no-repeat;
     content: 'trololo';
     text-indent: -9000px;
     text-transform: capitalize;
 }
 .tns-controls button:nth-child(2) {
     float: right;
-    background: url('../images/angle-right.png') no-repeat;
+    background: url('../../public/web/images/angle-right.png') no-repeat;
     text-indent: -9000px;
     text-transform: capitalize;
 }
@@ -370,7 +370,7 @@ body {
 }
 
 .clearfix a#pull:after {
-    /*background: url('../images/nav-icon.png') no-repeat;*/
+    /*background: url('../../public/web/images/nav-icon.png') no-repeat;*/
     width: 30px;
     content: "";
     height: 30px;
@@ -501,7 +501,7 @@ select option {
 }
 
 .date {
-    /*background: url(../images/cal-icon.png) no-repeat 100% 50% #FFF;*/
+    /*background: url(../../public/web/images/cal-icon.png) no-repeat 100% 50% #FFF;*/
 }
 
 .date_btn {
@@ -631,7 +631,7 @@ select option {
 
 .soc_icons ul li a {
     display: block;
-    background: url('../images/soc_icons.png') no-repeat 0 0;
+    background: url('../../public/web/images/soc_icons.png') no-repeat 0 0;
     width: 46px;
     height: 46px;
     -webkit-transition: all 0.3s ease-in-out;
@@ -772,7 +772,7 @@ p.para {
 
 .s_nav1 li a {
     display: block;
-    /*background: url('../images/s_icons.png') no-repeat 0 0;*/
+    /*background: url('../../public/web/images/s_icons.png') no-repeat 0 0;*/
     width: 32px;
     height: 32px;
     -webkit-transition: all 0.3s ease-in-out;
@@ -974,7 +974,7 @@ span.next {
     -o-transition-duration: 1s;
     -moz-transition-duration: 1s;
     -webkit-transition: -webkit-transform 1s;
-    /*background: url(../images/next.png) center no-repeat;*/
+    /*background: url(../../public/web/images/next.png) center no-repeat;*/
     height: 100%;
     width: 100%;
     position: absolute;
