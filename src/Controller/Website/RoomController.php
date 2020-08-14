@@ -5,6 +5,7 @@ namespace App\Controller\Website;
 use App\Entity\Event;
 use App\Entity\Room;
 use App\Form\Type\EventType;
+use App\Form\Type\ReservationType;
 use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,6 +59,26 @@ class RoomController extends AbstractController
                 'checkIn'  => $checkInDate,
                 'checkOut' => $checkOutDate,
                 'form'     => $form->createView(),
+            ]
+        );
+    }
+
+    /**
+     * @Route("/{id}", name="room_show", methods={"GET", "POST"})
+     */
+    public function show(Room $room, Request $request): Response
+    {
+        $form  = $this->createForm(ReservationType::class);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+        }
+
+        return $this->render(
+            'room/show.html.twig',
+            [
+                'room' => $room,
+                'form' => $form->createView(),
             ]
         );
     }
