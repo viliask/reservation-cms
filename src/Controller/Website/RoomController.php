@@ -25,18 +25,18 @@ class RoomController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="room_show", methods={"GET", "POST"})
+     * @Route("/{id}/{checkIn}/{checkOut}", name="room_show_dates", methods={"GET", "POST"})
      */
-    public function show(Room $room, Request $request): Response
+    public function showWithDates(Room $room, Request $request, string $checkIn, string $checkOut): Response
     {
         $event    = new Event();
         $form     = $this->createForm(EventType::class, $event);
-        $checkIn  = new DateTimeImmutable($request->query->get('checkIn'));
-        $checkOut = new DateTimeImmutable($request->query->get('checkOut'));
+        $checkInDate  = new DateTimeImmutable($checkIn);
+        $checkOutDate = new DateTimeImmutable($checkOut);
         $guests   = $request->query->get('guests');
 
-        $form->get('checkIn')->setData($checkIn);
-        $form->get('checkOut')->setData($checkOut);
+        $form->get('checkIn')->setData($checkInDate);
+        $form->get('checkOut')->setData($checkOutDate);
         $form->get('guests')->setData($guests);
         $form->get('rooms')->setData([$room]);
         $form->handleRequest($request);
