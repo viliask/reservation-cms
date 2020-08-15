@@ -6,6 +6,7 @@ use App\Entity\Event;
 use App\Entity\Room;
 use App\Form\Type\EventType;
 use App\Form\Type\ReservationType;
+use App\Repository\EventRepository;
 use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -85,7 +86,8 @@ class RoomController extends AbstractController
     /**
      * @Route("/availability/{id}/{checkIn}/{checkOut}", name="xhr_room_availability", options={"expose"=true}, methods="GET")
      */
-    public function checkRoomAvailability(Room $room, string $checkIn, string $checkOut, Request $request): JsonResponse
+    public function checkRoomAvailability(Room $room, string $checkIn, string $checkOut, Request $request, EventRepository $eventRepository): JsonResponse
     {
+        $availableRoom = $eventRepository->findAvailableRooms($checkIn, $checkOut, $room->getId());
     }
 }
