@@ -89,5 +89,9 @@ class RoomController extends AbstractController
     public function checkRoomAvailability(Room $room, string $checkIn, string $checkOut, Request $request, EventRepository $eventRepository): JsonResponse
     {
         $availableRoom = $eventRepository->findAvailableRooms($checkIn, $checkOut, $room->getId());
+
+        /** @var Room $roomObject */
+        $roomObject = $availableRoom ? $availableRoom[0] : null;
+        $status = $roomObject->getName() === $room->getName() ? true : false;
     }
 }
