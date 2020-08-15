@@ -105,7 +105,7 @@ class EventRepository extends ServiceEntityRepository implements DataProviderRep
         return $rooms;
     }
 
-    public function findReservedRooms(string $checkIn, string $checkOut): array
+    public function findReservedRooms(string $checkIn, string $checkOut, int $id = null): array
     {
         $qb = $this->createQueryBuilder('e')
             ->select('r.id')
@@ -114,6 +114,11 @@ class EventRepository extends ServiceEntityRepository implements DataProviderRep
             ->orWhere(':checkIn <= e.checkIn AND :checkIn <= e.checkOut AND :checkOut > e.checkIn')
             ->setParameter('checkIn', $checkIn)
             ->setParameter('checkOut', $checkOut);
+
+        if ($id) {
+            $qb->andwhere('r.id = :id')
+                ->setParameter('id', $id);
+        }
 
         return $qb->getQuery()->execute();
     }
