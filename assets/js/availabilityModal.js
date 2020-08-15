@@ -6,6 +6,9 @@ Routing.setRoutingData(routes);
 
 const form = document.querySelector('.submit-form');
 
+function handleForm(event) { event.preventDefault(); }
+form.addEventListener('submit', handleForm);
+
 form.addEventListener('submit',  () => {
     loadData();
 });
