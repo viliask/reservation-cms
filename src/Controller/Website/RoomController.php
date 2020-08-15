@@ -93,5 +93,7 @@ class RoomController extends AbstractController
         /** @var Room $roomObject */
         $roomObject = $availableRoom ? $availableRoom[0] : null;
         $status = $roomObject->getName() === $room->getName() ? true : false;
+
+        return $this->json(['room' => $roomObject->getId(), 'checkIn' => $checkIn, 'checkOut' => $checkOut, 'status' => $status]);
     }
 }
