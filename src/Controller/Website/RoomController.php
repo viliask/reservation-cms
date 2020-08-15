@@ -90,9 +90,17 @@ class RoomController extends AbstractController
     {
         $availableRoom = $eventRepository->findAvailableRooms($checkIn, $checkOut, $room->getId());
 
-        /** @var Room $roomObject */
-        $roomObject = $availableRoom ? $availableRoom[0] : null;
-        $status = $roomObject->getName() === $room->getName() ? true : false;
+        if ($availableRoom) {
+            /** @var Room $roomObject */
+            $roomObject = $availableRoom[0];
+            if ($roomObject->getName() === $room->getName()) {
+                $status = true;
+            } else {
+                $status = false;
+            }
+        } else {
+            $status = false;
+        }
 
         return $this->json(['room' => $roomObject->getId(), 'checkIn' => $checkIn, 'checkOut' => $checkOut, 'status' => $status]);
     }
