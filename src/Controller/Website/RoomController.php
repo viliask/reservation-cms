@@ -57,8 +57,8 @@ class RoomController extends AbstractController
         return $this->render(
             'room/showAvailable.html.twig',
             [
-                'room'     => $room,
-                'form'     => $form->createView(),
+                'room' => $room,
+                'form' => $form->createView(),
             ]
         );
     }
@@ -68,7 +68,7 @@ class RoomController extends AbstractController
      */
     public function show(Room $room, Request $request): Response
     {
-        $form  = $this->createForm(ReservationType::class);
+        $form = $this->createForm(ReservationType::class);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -86,8 +86,12 @@ class RoomController extends AbstractController
     /**
      * @Route("/availability/{id}/{checkIn}/{checkOut}", name="xhr_room_availability", options={"expose"=true}, methods="GET")
      */
-    public function checkRoomAvailability(Room $room, string $checkIn, string $checkOut, EventRepository $eventRepository): JsonResponse
-    {
+    public function checkRoomAvailability(
+        Room $room,
+        string $checkIn,
+        string $checkOut,
+        EventRepository $eventRepository
+    ): JsonResponse {
         $availableRoom = $eventRepository->findAvailableRooms($checkIn, $checkOut, $room->getId());
 
         if ($availableRoom) {
@@ -102,6 +106,8 @@ class RoomController extends AbstractController
             $status = false;
         }
 
-        return $this->json(['room' => $room->getId(), 'checkIn' => $checkIn, 'checkOut' => $checkOut, 'status' => $status]);
+        return $this->json(
+            ['room' => $room->getId(), 'checkIn' => $checkIn, 'checkOut' => $checkOut, 'status' => $status]
+        );
     }
 }
