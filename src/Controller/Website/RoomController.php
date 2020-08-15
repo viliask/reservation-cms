@@ -86,7 +86,7 @@ class RoomController extends AbstractController
     /**
      * @Route("/availability/{id}/{checkIn}/{checkOut}", name="xhr_room_availability", options={"expose"=true}, methods="GET")
      */
-    public function checkRoomAvailability(Room $room, string $checkIn, string $checkOut, Request $request, EventRepository $eventRepository): JsonResponse
+    public function checkRoomAvailability(Room $room, string $checkIn, string $checkOut, EventRepository $eventRepository): JsonResponse
     {
         $availableRoom = $eventRepository->findAvailableRooms($checkIn, $checkOut, $room->getId());
 
