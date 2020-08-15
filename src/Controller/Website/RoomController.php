@@ -8,6 +8,7 @@ use App\Form\Type\EventType;
 use App\Form\Type\ReservationType;
 use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -79,5 +80,12 @@ class RoomController extends AbstractController
                 'form' => $form->createView(),
             ]
         );
+    }
+
+    /**
+     * @Route("/availability/{id}/{checkIn}/{checkOut}", name="xhr_room_availability", options={"expose"=true}, methods="GET")
+     */
+    public function checkRoomAvailability(Room $room, string $checkIn, string $checkOut, Request $request): JsonResponse
+    {
     }
 }
