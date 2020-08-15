@@ -89,10 +89,10 @@ class EventRepository extends ServiceEntityRepository implements DataProviderRep
         $queryBuilder->andWhere($alias . '.enabled = true');
     }
 
-    public function findAvailableRooms(string $checkIn, string $checkOut): array
+    public function findAvailableRooms(string $checkIn, string $checkOut, int $id = null): array
     {
-        $reservedRooms = $this->findReservedRooms($checkIn, $checkOut);
-        $rooms         = $this->roomRepository->findAll();
+        $reservedRooms = $this->findReservedRooms($checkIn, $checkOut, $id);
+        $rooms         = $id ? [$this->roomRepository->findById($id, 'en')] : $this->roomRepository->findAll();
 
         foreach ($reservedRooms as $reservedRoom) {
             foreach ($rooms as $key => $value) {
