@@ -68,10 +68,21 @@ class RoomController extends AbstractController
      */
     public function show(Room $room, Request $request): Response
     {
-        $form = $this->createForm(ReservationType::class);
+        $availabilityForm = $this->createForm(ReservationType::class);
+        $event            = new Event();
+        $eventForm        = $this->createForm(EventType::class, $event);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $eventForm->get('rooms')->setData([$room]);
+        $eventForm->handleRequest($request);
 
+        if ($eventForm->isSubmitted() && $eventForm->isValid()) {
+            $event->setLocale('pl');
+            $event->setStatus('draft');
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($event);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('room_confirmation');
         }
 
         return $this->render(
