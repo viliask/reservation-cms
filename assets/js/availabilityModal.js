@@ -18,6 +18,7 @@ form.addEventListener('submit', handleForm);
 form.addEventListener('submit',  () => {
     loadData();
     document.querySelector('#availability-modal').classList.add(visible);
+    updateForm();
 });
 
 closeEl.addEventListener('click', () => {
@@ -29,3 +30,11 @@ function loadData() {
         data = response.data;
     })
 }
+
+const updateForm = () => {
+    const guests = document.querySelector('#reservation_guests').value;
+
+    document.querySelector('#event_checkIn').value = new Date(data.checkIn);
+    document.querySelector('#event_checkOut').value = new Date(data.checkOut);
+    document.querySelector('#event_guests').value = guests;
+};
