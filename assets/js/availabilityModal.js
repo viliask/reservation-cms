@@ -15,10 +15,12 @@ const visible = 'visible';
 function handleForm(event) { event.preventDefault(); }
 form.addEventListener('submit', handleForm);
 
-form.addEventListener('submit',  () => {
-    loadData();
-    document.querySelector('#availability-modal').classList.add(visible);
-    updateForm();
+form.addEventListener('submit',  async () => {
+    await loadData().then((data) => {
+        responseData = data;
+        document.querySelector('#availability-modal').classList.add(visible);
+        updateForm();
+    });
 });
 
 closeEl.addEventListener('click', () => {
