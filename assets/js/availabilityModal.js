@@ -18,8 +18,10 @@ form.addEventListener('submit', handleForm);
 form.addEventListener('submit',  async () => {
     await loadData().then((data) => {
         responseData = data;
-        document.querySelector('#availability-modal').classList.add(visible);
-        updateForm();
+        if (responseData.status === true) {
+            document.querySelector('#availability-modal').classList.add(visible);
+            updateForm();
+        }
     });
 });
 
