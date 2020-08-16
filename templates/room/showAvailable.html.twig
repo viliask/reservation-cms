@@ -22,6 +22,8 @@
         </tbody>
     </table>
 
+    <button type="button" class="open-modal" data-open="reservation-modal">Book</button>
+
     {% block modal %}
         {% include 'room/modal.html.twig' with {form: form} %}
     {% endblock %}
