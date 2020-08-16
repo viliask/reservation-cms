@@ -16,6 +16,10 @@ const updatePrice = () => {
 };
 
 openEl.addEventListener('click', () => {
+    if (document.getElementById('availability-modal')) {
+        document.getElementById('availability-modal').classList.remove(visible);
+    }
+
     document.getElementById('reservation-modal').classList.add(visible);
     updatePrice();
 });
