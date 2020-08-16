@@ -34,7 +34,7 @@ function loadData() {
 const updateForm = () => {
     const guests = document.querySelector('#reservation_guests').value;
 
-    document.querySelector('#event_checkIn').value = new Date(data.checkIn);
-    document.querySelector('#event_checkOut').value = new Date(data.checkOut);
+    document.querySelector('#event_checkIn').value = new Date(data.checkIn).toISOString().slice(0,16);
+    document.querySelector('#event_checkOut').value = new Date(data.checkOut).toISOString().slice(0,16);
     document.querySelector('#event_guests').value = guests;
 };
