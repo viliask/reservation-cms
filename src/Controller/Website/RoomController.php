@@ -118,7 +118,7 @@ class RoomController extends AbstractController
         }
 
         return $this->json(
-            ['room' => $room->getId(), 'checkIn' => $checkIn, 'checkOut' => $checkOut, 'status' => $status]
+            ['checkIn' => $checkIn, 'checkOut' => $checkOut, 'status' => $status]
         );
     }
 }

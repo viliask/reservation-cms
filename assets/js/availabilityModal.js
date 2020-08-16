@@ -14,8 +14,8 @@ const visible = 'visible';
 const loadData = async () => {
     const response = await Axios.get(Routing.generate('xhr_room_availability',
         {
-            id: roomId.dataset.roomId,
-            checkIn: checkIn.value,
+            id:       roomId.dataset.roomId,
+            checkIn:  checkIn.value,
             checkOut: checkOut.value
         }, true));
     return response.data;
@@ -23,14 +23,14 @@ const loadData = async () => {
 
 const updateForm = () => {
     const guests = document.querySelector('#reservation_guests').value;
-    document.querySelector('#event_checkIn').value = new Date(responseData.checkIn).toISOString().slice(0,16);
-    document.querySelector('#event_checkOut').value = new Date(responseData.checkOut).toISOString().slice(0,16);
+    document.querySelector('#event_checkIn').value = new Date(responseData.checkIn).toISOString().slice(0, 16);
+    document.querySelector('#event_checkOut').value = new Date(responseData.checkOut).toISOString().slice(0, 16);
     document.querySelector('#event_guests').value = guests;
 };
 
 Routing.setRoutingData(routes);
 
-form.addEventListener('submit',  async (event) => {
+form.addEventListener('submit', async (event) => {
     event.preventDefault();
     await loadData().then((data) => {
         responseData = data;
