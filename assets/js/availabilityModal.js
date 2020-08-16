@@ -25,11 +25,10 @@ closeEl.addEventListener('click', () => {
     document.querySelector('#availability-modal').classList.remove(visible);
 });
 
-function loadData() {
-    Axios.get(Routing.generate('xhr_room_availability', {id: roomId.dataset.roomId, checkIn: checkIn.value, checkOut: checkOut.value}, true)).then((response) => {
-        responseData = response.data;
-    })
-}
+const loadData = async () => {
+    const response = await Axios.get(Routing.generate('xhr_room_availability', {id: roomId.dataset.roomId, checkIn: checkIn.value, checkOut: checkOut.value}, true));
+    return response.data;
+};
 
 const updateForm = () => {
     const guests = document.querySelector('#reservation_guests').value;
