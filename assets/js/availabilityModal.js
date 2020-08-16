@@ -2,8 +2,6 @@ import Axios from 'axios';
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
 
 const routes = require('../../public/js/fos_js_routes_website');
-Routing.setRoutingData(routes);
-
 const form = document.querySelector('.submit-form');
 const roomId = document.querySelector('h1');
 const checkIn = document.querySelector('#reservation_checkInDate');
@@ -12,6 +10,25 @@ let responseData = null;
 const closeEl = document.querySelector('[data-close-availability]');
 const closeModalNotAvailable = document.querySelector('[data-close-not-available]');
 const visible = 'visible';
+
+const loadData = async () => {
+    const response = await Axios.get(Routing.generate('xhr_room_availability',
+        {
+            id: roomId.dataset.roomId,
+            checkIn: checkIn.value,
+            checkOut: checkOut.value
+        }, true));
+    return response.data;
+};
+
+const updateForm = () => {
+    const guests = document.querySelector('#reservation_guests').value;
+    document.querySelector('#event_checkIn').value = new Date(responseData.checkIn).toISOString().slice(0,16);
+    document.querySelector('#event_checkOut').value = new Date(responseData.checkOut).toISOString().slice(0,16);
+    document.querySelector('#event_guests').value = guests;
+};
+
+Routing.setRoutingData(routes);
 
 form.addEventListener('submit',  async (event) => {
     event.preventDefault();
@@ -33,16 +50,3 @@ closeEl.addEventListener('click', () => {
 closeModalNotAvailable.addEventListener('click', () => {
     document.querySelector('#room-not-available-modal').classList.remove(visible);
 });
-
-const loadData = async () => {
-    const response = await Axios.get(Routing.generate('xhr_room_availability', {id: roomId.dataset.roomId, checkIn: checkIn.value, checkOut: checkOut.value}, true));
-    return response.data;
-};
-
-const updateForm = () => {
-    const guests = document.querySelector('#reservation_guests').value;
-
-    document.querySelector('#event_checkIn').value = new Date(responseData.checkIn).toISOString().slice(0,16);
-    document.querySelector('#event_checkOut').value = new Date(responseData.checkOut).toISOString().slice(0,16);
-    document.querySelector('#event_guests').value = guests;
-};
