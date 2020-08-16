@@ -11,6 +11,7 @@ Encore
     .addEntry('css3-mediaqueries', './assets/js/css3-mediaqueries.js')
     .addEntry('tiny-slider', './assets/js/tiny-slider.js')
     .addEntry('modal', './assets/js/modal.js')
+    .addEntry('availabilityModal', './assets/js/availabilityModal.js')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()

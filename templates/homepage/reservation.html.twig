@@ -1,8 +1,10 @@
 <div class="online_reservation">
     <div class="b_room">
         <div class="booking_room">
-            <h4>{{ content.reservationHeader|raw }}</h4>
-            <p>{{ content.reservationText|raw }}
+            {% if content is defined %}
+                <h4>{{ content.reservationHeader|raw }}</h4>
+                <p>{{ content.reservationText|raw }}
+            {% endif %}
         </div>
         <div class="reservation">
             <ul>

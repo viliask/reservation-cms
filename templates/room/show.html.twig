@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
+{% block styles %}
+    {{ encore_entry_link_tags('modal', null, 'css') }}
+    {{ encore_entry_link_tags('airbnb', null, 'css') }}
+{% endblock %}
+
 {% block title %}Room{% endblock %}
 
 {% block body %}
-    <h1>Room</h1>
+    <h1 data-room-id = {{ room.id }}>Room</h1>
 
     <table class="table">
         <tbody>
@@ -22,8 +27,18 @@
         </tbody>
     </table>
 
+    {% block reservation %}
+        {% include "./homepage/reservation.html.twig" with {form: availabilityForm} %}
+    {% endblock %}
+
     {% block modal %}
-        {% include 'room/modal.html.twig' with {form: form, checkIn: checkIn, checkOut: checkOut} %}
+        {% include 'room/roomNotAvailable.html.twig' with {roomName: room.name} %}
+        {% include 'room/availabilityModal.html.twig' with {form: availabilityForm, roomName: room.name} %}
+        {% include 'room/modal.html.twig' with {form: form} %}
+    {% endblock %}
+
+    {% block js %}
+        {{ encore_entry_script_tags('flatpickr', null, 'js') }}
     {% endblock %}
 
 {% endblock %}

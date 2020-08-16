@@ -1,0 +1,13 @@
+<div class="modal" id="availability-modal">
+    <div class="modal-dialog">
+        <header class="modal-header">
+            The {{ roomName }} is available. Now you can book a room clicking on a button below:
+            <button class="close-modal" aria-label="close modal" data-close-availability>✕</button>
+        </header>
+        <button type="button" class="open-modal" data-open="reservation-modal">Book a room</button>
+    </div>
+</div>
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('availabilityModal', null, 'js') }}
+{% endblock %}
