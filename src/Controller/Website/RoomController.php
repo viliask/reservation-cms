@@ -45,13 +45,7 @@ class RoomController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $event->setLocale('pl');
-            $event->setStatus('draft');
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($event);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('room_confirmation');
+            return $this->processForm($event);
         }
 
         return $this->render(
@@ -76,13 +70,7 @@ class RoomController extends AbstractController
         $eventForm->handleRequest($request);
 
         if ($eventForm->isSubmitted() && $eventForm->isValid()) {
-            $event->setLocale('pl');
-            $event->setStatus('draft');
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($event);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('room_confirmation');
+            return $this->processForm($event);
         }
 
         return $this->render(
@@ -93,6 +81,17 @@ class RoomController extends AbstractController
                 'availabilityForm' => $availabilityForm->createView(),
             ]
         );
+    }
+
+    protected function processForm(Event $event)
+    {
+        $event->setLocale('pl');
+        $event->setStatus('draft');
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($event);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('room_confirmation');
     }
 
     /**
