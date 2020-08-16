@@ -8,12 +8,19 @@ const form = document.querySelector('.submit-form');
 const roomId = document.querySelector('h1');
 const checkIn = document.querySelector('#reservation_checkInDate');
 const checkOut = document.querySelector('#reservation_checkOutDate');
+const closeEl = document.querySelector('[data-close-availability]');
+const visible = 'visible';
 
 function handleForm(event) { event.preventDefault(); }
 form.addEventListener('submit', handleForm);
 
 form.addEventListener('submit',  () => {
     loadData();
+    document.querySelector('#availability-modal').classList.add(visible);
+});
+
+closeEl.addEventListener('click', () => {
+    document.querySelector('#availability-modal').classList.remove(visible);
 });
 
 function loadData() {
