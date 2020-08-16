@@ -10,6 +10,7 @@ const checkIn = document.querySelector('#reservation_checkInDate');
 const checkOut = document.querySelector('#reservation_checkOutDate');
 let responseData = null;
 const closeEl = document.querySelector('[data-close-availability]');
+const closeModalNotAvailable = document.querySelector('[data-close-not-available]');
 const visible = 'visible';
 
 form.addEventListener('submit',  async (event) => {
@@ -27,6 +28,10 @@ form.addEventListener('submit',  async (event) => {
 
 closeEl.addEventListener('click', () => {
     document.querySelector('#availability-modal').classList.remove(visible);
+});
+
+closeModalNotAvailable.addEventListener('click', () => {
+    document.querySelector('#room-not-available-modal').classList.remove(visible);
 });
 
 const loadData = async () => {
