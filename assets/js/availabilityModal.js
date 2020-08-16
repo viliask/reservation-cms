@@ -8,6 +8,7 @@ const form = document.querySelector('.submit-form');
 const roomId = document.querySelector('h1');
 const checkIn = document.querySelector('#reservation_checkInDate');
 const checkOut = document.querySelector('#reservation_checkOutDate');
+let data = null;
 const closeEl = document.querySelector('[data-close-availability]');
 const visible = 'visible';
 
@@ -25,6 +26,6 @@ closeEl.addEventListener('click', () => {
 
 function loadData() {
     Axios.get(Routing.generate('xhr_room_availability', {id: roomId.dataset.roomId, checkIn: checkIn.value, checkOut: checkOut.value}, true)).then((response) => {
-        const data = response.data;
+        data = response.data;
     })
 }
