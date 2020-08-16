@@ -12,10 +12,8 @@ let responseData = null;
 const closeEl = document.querySelector('[data-close-availability]');
 const visible = 'visible';
 
-function handleForm(event) { event.preventDefault(); }
-form.addEventListener('submit', handleForm);
-
-form.addEventListener('submit',  async () => {
+form.addEventListener('submit',  async (event) => {
+    event.preventDefault();
     await loadData().then((data) => {
         responseData = data;
         if (responseData.status === true) {
