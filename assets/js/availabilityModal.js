@@ -21,7 +21,7 @@ form.addEventListener('submit',  async (event) => {
             document.querySelector('#availability-modal').classList.add(visible);
             updateForm();
         } else {
-            alert('Room is not available in specified term. Please check on another date or choose from all rooms on the home page.')
+            document.querySelector('#room-not-available-modal').classList.add(visible);
         }
     });
 });
