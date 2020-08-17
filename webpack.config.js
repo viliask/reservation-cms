@@ -42,6 +42,7 @@ Encore
     .addStyleEntry('JFFormStyle-1', './assets/css/JFFormStyle-1.css')
     .addStyleEntry('airbnb', './assets/css/airbnb.css')
     .addStyleEntry('modal', './assets/css/modal.css')
+    .addStyleEntry('style', './assets/css/style.css')
     .addStyleEntry('icomoon', './assets/css/icomoon.css')
     .addStyleEntry('bootstrap', './assets/css/bootstrap.css')
     .addStyleEntry('superfish', './assets/css/superfish.css')
