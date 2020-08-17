@@ -12,6 +12,9 @@ Encore
     .addEntry('tiny-slider', './assets/js/tiny-slider.js')
     .addEntry('modal', './assets/js/modal.js')
     .addEntry('availabilityModal', './assets/js/availabilityModal.js')
+    .addEntry('classie', './assets/js/classie.js')
+    .addEntry('selectFx', './assets/js/selectFx.js')
+    .addEntry('main', './assets/js/main.js')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()
@@ -39,6 +42,9 @@ Encore
     .addStyleEntry('JFFormStyle-1', './assets/css/JFFormStyle-1.css')
     .addStyleEntry('airbnb', './assets/css/airbnb.css')
     .addStyleEntry('modal', './assets/css/modal.css')
+    .addStyleEntry('icomoon', './assets/css/icomoon.css')
+    .addStyleEntry('bootstrap', './assets/css/bootstrap.css')
+    .addStyleEntry('superfish', './assets/css/superfish.css')
 ;
 
 const cssConfig = Encore.getWebpackConfig();

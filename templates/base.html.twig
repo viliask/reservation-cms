@@ -9,6 +9,9 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
         {{ encore_entry_link_tags('app', null, 'css') }}
         {{ encore_entry_link_tags('JFFormStyle-1', null, 'css') }}
+        {{ encore_entry_link_tags('icomoon', null, 'css') }}
+        {{ encore_entry_link_tags('bootstrap', null, 'css') }}
+        {{ encore_entry_link_tags('superfish', null, 'css') }}
     {% endblock %}
     {% block styles '' %}
 
@@ -58,6 +61,9 @@
 
     {% block javascripts %}
         {{ encore_entry_script_tags('css3-mediaqueries', null, 'js') }}
+        {{ encore_entry_script_tags('classie', null, 'js') }}
+        {{ encore_entry_script_tags('selectFx', null, 'js') }}
+        {{ encore_entry_script_tags('main', null, 'js') }}
     {% endblock %}
     {% block js '' %}
 </body>
