@@ -1,4 +1,4 @@
-document.querySelector('.js-res-nav-toggle').addEventListener('click',  () => {
+document.querySelector('.js-res-nav-toggle').addEventListener('click', () => {
     if (document.querySelector('body').classList.contains('res-offcanvas')) {
         document.querySelector('body').classList.remove('res-offcanvas');
     } else {
@@ -7,7 +7,7 @@ document.querySelector('.js-res-nav-toggle').addEventListener('click',  () => {
 });
 
 document.addEventListener('click', (e) => {
-    var container = document.querySelector('.js-res-nav-toggle');
+    const container = document.querySelector('.js-res-nav-toggle');
     if (container.contains(e.target) === false) {
         if (document.querySelector('body').classList.contains('res-offcanvas')) {
             document.querySelector('body').classList.remove('res-offcanvas');
