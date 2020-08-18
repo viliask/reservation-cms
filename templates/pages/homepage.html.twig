@@ -1,7 +1,6 @@
 {% extends "base.html.twig" %}
 
 {% block styles %}
-    {{ encore_entry_link_tags('tiny-slider', null, 'css') }}
     {{ encore_entry_link_tags('airbnb', null, 'css') }}
 {% endblock %}
 
@@ -270,5 +269,4 @@
 
 {% block js %}
     {{ encore_entry_script_tags('flatpickr', null, 'js') }}
-    {{ encore_entry_script_tags('tiny-slider', null, 'js') }}
 {% endblock %}
