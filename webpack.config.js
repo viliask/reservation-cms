@@ -39,6 +39,7 @@ Encore
     .addStyleEntry('icomoon', './assets/css/icomoon.css')
     .addStyleEntry('bootstrap', './assets/css/bootstrap.css')
     .addStyleEntry('superfish', './assets/css/superfish.css')
+    .addStyleEntry('app', './assets/css/app.css')
 ;
 
 const cssConfig = Encore.getWebpackConfig();
