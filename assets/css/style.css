@@ -1,3 +1,12 @@
+.choice-input {
+  background-color: #f1eeeb;
+  color: #4a96de;
+  padding: 5px 10px;
+  font-size: 13px;
+  border: transparent;
+  font-weight: bold;
+}
+
 @media (min-width: 768px) {
   .res-form {
     float: right;
