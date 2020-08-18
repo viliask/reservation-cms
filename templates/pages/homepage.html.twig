@@ -8,10 +8,6 @@
 {% block content %}
 {#    <h1>{{ content.title }}</h1>#}
 
-    {% block slider %}
-        {% include "./slider.html.twig" %}
-    {% endblock %}
-
     <div class="wrap">
         {% block reservation %}
             {% include "./homepage/reservation.html.twig" with {form: form} %}
