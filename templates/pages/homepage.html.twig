@@ -8,19 +8,20 @@
 {% block content %}
 {#    <h1>{{ content.title }}</h1>#}
 
-    <div class="wrap">
-        {% block reservation %}
-            {% include "./homepage/reservation.html.twig" with {form: form} %}
-        {% endblock %}
-
-        <div class="content-main">
-            {{ content.article|raw }}
+    <div class="res-hero">
+        <div class="res-overlay"></div>
+        <div class="res-cover" data-stellar-background-ratio="0.5" style="background-image: url(web/images/cover-bg-111.jpg);">
+            <div class="desc">
+                {% block reservation %}
+                    {% include "./homepage/reservation.html.twig" with {form: form} %}
+                {% endblock %}
+            </div>
         </div>
-
-        {% block grids %}
-            {% include "./homepage/grids.html.twig" with {content: content} %}
-        {% endblock %}
     </div>
+
+    {% block grids %}
+        {% include "./homepage/grids.html.twig" with {content: content} %}
+    {% endblock %}
 
 {% endblock %}
 
