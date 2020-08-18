@@ -1,49 +1,62 @@
-<div class="online_reservation">
-    <div class="b_room">
-        <div class="booking_room">
-            {% if content is defined %}
-                <h4>{{ content.reservationHeader|raw }}</h4>
-                <p>{{ content.reservationText|raw }}
-            {% endif %}
-        </div>
-        <div class="reservation">
-            <ul>
-                <li class="span1_of_1">
-                    {{ form_start(form, {'attr': {'class': 'submit-form'} }) }}
-                    {{ form_errors(form) }}
-                    <!----------start section_room----------->
-                </li>
-                <li class="span1_of_1 left">
-                    <div class="book_date">
-                        {{ form_label(form.checkInDate) }}
-                        {{ form_errors(form.checkInDate) }}
-                        {{ form_widget(form.checkInDate) }}
-                    </div>
-                </li>
-                <li class="span1_of_1 left">
-                    <div class="book_date">
-                        {{ form_label(form.checkOutDate) }}
-                        {{ form_errors(form.checkOutDate) }}
-                        {{ form_widget(form.checkOutDate) }}
-                    </div>
-                </li>
-                <li class="span1_of_2 left">
-                    <!----------start section_room----------->
-                    <div class="section_room">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5 col-md-5 res-form">
+            <div class="tabulation">
 
-                        {{ form_label(form.guests) }}
-                        {{ form_errors(form.guests) }}
-                        {{ form_widget(form.guests) }}
+                <div class="tab-content">
+
+                    <div role="tabpanel" class="tab-pane active" id="hotels">
+                        <div class="row">
+                            <div class="col-xxs-12 col-xs-12 mt">
+                                <div class="input-field">
+                                    {% if content is defined %}
+                                        <h4>{{ content.reservationHeader|raw }}</h4>
+                                        <p>{{ content.reservationText|raw }}
+                                    {% endif %}
+                                </div>
+                                <h4>Sprawdź dostępność pokoi</h4>
+
+                            </div>
+                            {{ form_start(form, {'attr': {'class': 'submit-form'} }) }}
+                            {{ form_errors(form) }}
+                            <div class="col-xxs-12 col-xs-6 mt">
+                                <div class="input-field">
+                                    {{ form_label(form.checkInDate) }}
+                                    {{ form_errors(form.checkInDate) }}
+                                    {{ form_widget(form.checkInDate) }}
+                                </div>
+                            </div>
+                            <div class="col-xxs-12 col-xs-6 mt alternate">
+                                <div class="input-field">
+                                    {{ form_label(form.checkOutDate) }}
+                                    {{ form_errors(form.checkOutDate) }}
+                                    {{ form_widget(form.checkOutDate) }}
+                                </div>
+                            </div>
+                            <div class="col-xxs-12 col-xs-6 mt alternate">
+                                <div class="input-field">
+                                    {{ form_label(form.guests) }}
+                                    {{ form_errors(form.guests) }}
+                                    {{ form_widget(form.guests) }}
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                {{ form_widget(form.submit) }}
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
                     </div>
-                </li>
-                <li class="span1_of_3">
-                    <div class="date_btn">
-                        {{ form_widget(form.submit) }}
-                    </div>
-                </li>
-                {{ form_end(form) }}
-                <div class="clear"></div>
-            </ul>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="desc2">
+            <div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1 text-header">
+                <h1>Odwiedź Krynicę-Zdrój</h1>
+                <span>wynajmij pokój już od</span>
+                <span class="price">40zł/os</span>
+            </div>
         </div>
     </div>
 </div>
