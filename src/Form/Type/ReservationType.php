@@ -46,7 +46,7 @@ class ReservationType extends AbstractType
                 ]
             )
             ->add('submit', Type\SubmitType::class,
-                ['label' => 'Check availability', 'attr' => ['class' => 'btn btn-primary btn-block']]);
+                ['attr' => ['class' => 'btn btn-primary btn-block']]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
