@@ -33,7 +33,6 @@ Encore
     .setOutputPath('./public/build/website/css')
     .setPublicPath('/build/website/css')
     .setManifestKeyPrefix('')
-    .addStyleEntry('tiny-slider', './assets/css/tiny-slider.css')
     .addStyleEntry('airbnb', './assets/css/airbnb.css')
     .addStyleEntry('modal', './assets/css/modal.css')
     .addStyleEntry('style', './assets/css/style.css')
