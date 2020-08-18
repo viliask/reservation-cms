@@ -8,10 +8,9 @@ Encore
     .setOutputPath('public/build/website/js')
     .setPublicPath('/build/website/js')
     .addEntry('flatpickr', './assets/js/flatpickr.js')
-    .addEntry('css3-mediaqueries', './assets/js/css3-mediaqueries.js')
-    .addEntry('tiny-slider', './assets/js/tiny-slider.js')
     .addEntry('modal', './assets/js/modal.js')
     .addEntry('availabilityModal', './assets/js/availabilityModal.js')
+    .addEntry('main', './assets/js/main.js')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()
@@ -34,11 +33,13 @@ Encore
     .setOutputPath('./public/build/website/css')
     .setPublicPath('/build/website/css')
     .setManifestKeyPrefix('')
-    .addStyleEntry('app', './assets/css/app.css')
-    .addStyleEntry('tiny-slider', './assets/css/tiny-slider.css')
-    .addStyleEntry('JFFormStyle-1', './assets/css/JFFormStyle-1.css')
     .addStyleEntry('airbnb', './assets/css/airbnb.css')
     .addStyleEntry('modal', './assets/css/modal.css')
+    .addStyleEntry('style', './assets/css/style.css')
+    .addStyleEntry('icomoon', './assets/css/icomoon.css')
+    .addStyleEntry('bootstrap', './assets/css/bootstrap.css')
+    .addStyleEntry('superfish', './assets/css/superfish.css')
+    .addStyleEntry('app', './assets/css/app.css')
 ;
 
 const cssConfig = Encore.getWebpackConfig();

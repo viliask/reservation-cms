@@ -3,7 +3,7 @@ import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/pu
 
 const routes = require('../../public/js/fos_js_routes_website');
 const form = document.querySelector('.submit-form');
-const roomId = document.querySelector('h1');
+const roomId = document.querySelector('.id-js');
 const checkIn = document.querySelector('#reservation_checkInDate');
 const checkOut = document.querySelector('#reservation_checkOutDate');
 let responseData = null;

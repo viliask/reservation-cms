@@ -7,8 +7,11 @@
 
     {% block stylesheets %}
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+        {{ encore_entry_link_tags('icomoon', null, 'css') }}
+        {{ encore_entry_link_tags('bootstrap', null, 'css') }}
+        {{ encore_entry_link_tags('superfish', null, 'css') }}
+        {{ encore_entry_link_tags('style', null, 'css') }}
         {{ encore_entry_link_tags('app', null, 'css') }}
-        {{ encore_entry_link_tags('JFFormStyle-1', null, 'css') }}
     {% endblock %}
     {% block styles '' %}
 
@@ -25,40 +28,43 @@
     {% block style %}{% endblock %}
 </head>
 <body>
-    <header>
-        {% block header %}
-            {% include "header.html.twig" %}
-        {% endblock %}
-    </header>
 
-{#    <form action="{{ path('sulu_search.website_search') }}" method="GET">#}
-{#        <input name="q" type="text" placeholder="Search"/>#}
-{#        <input type="submit" value="Go"/>#}
-{#    </form>#}
+<div id="res-wrapper">
+    <div id="res-page">
 
-    {% block body ''%}
+        <header>
+            {% block header %}
+                {% include "header.html.twig" %}
+            {% endblock %}
+        </header>
 
-    <section class="main_bg" id="content">
-        {% block content %}{% endblock %}
-    </section>
+        {#    <form action="{{ path('sulu_search.website_search') }}" method="GET">#}
+        {#        <input name="q" type="text" placeholder="Search"/>#}
+        {#        <input type="submit" value="Go"/>#}
+        {#    </form>#}
 
-    <aside>
-        {% block aside %}{% endblock %}
-    </aside>
+        {% block body '' %}
 
-    <footer>
-        <div class="footer_bg">
-            <div class="wrap">
+        <section class="main_bg" id="content">
+            {% block content %}{% endblock %}
+        </section>
+
+        <aside>
+            {% block aside %}{% endblock %}
+        </aside>
+
+        <footer>
             {% block footer %}
                 {% include "footer.html.twig" %}
             {% endblock %}
-            </div>
-        </div>
-    </footer>
+        </footer>
 
-    {% block javascripts %}
-        {{ encore_entry_script_tags('css3-mediaqueries', null, 'js') }}
-    {% endblock %}
-    {% block js '' %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('main', null, 'js') }}
+        {% endblock %}
+        {% block js '' %}
+
+    </div>
+</div>
 </body>
 </html>
