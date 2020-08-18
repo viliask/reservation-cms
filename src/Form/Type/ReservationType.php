@@ -18,7 +18,7 @@ class ReservationType extends AbstractType
                     'label'  => '',
                     'widget' => 'single_text',
                     'html5'  => false,
-                    'attr'   => ['class' => 'date js-datepicker', 'placeholder' => 'DD-MM-YYYY'],
+                    'attr'   => ['class' => 'date js-datepicker form-control', 'placeholder' => 'DD-MM-YYYY'],
                 ]
             )
             ->add('checkOutDate', Type\DateType::class,
@@ -26,7 +26,7 @@ class ReservationType extends AbstractType
                     'label'  => '',
                     'widget' => 'single_text',
                     'html5'  => false,
-                    'attr'   => ['class' => 'date js-datepicker', 'placeholder' => 'DD-MM-YYYY'],
+                    'attr'   => ['class' => 'date js-datepicker form-control', 'placeholder' => 'DD-MM-YYYY'],
                 ]
             )
             ->add('guests', ChoiceType::class,
@@ -39,9 +39,14 @@ class ReservationType extends AbstractType
                             '4' => 4,
                             '5' => 5,
                         ],
+                    'choice_attr' => function() {
+                        return ['class' => 'choice-input'];
+                    },
+                    'attr' => ['class' => 'choice-input']
                 ]
             )
-            ->add('submit', Type\SubmitType::class, ['label' => 'Check availability']);
+            ->add('submit', Type\SubmitType::class,
+                ['label' => 'Check availability', 'attr' => ['class' => 'btn btn-primary btn-block']]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
