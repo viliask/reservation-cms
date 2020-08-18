@@ -30,8 +30,8 @@
 </head>
 <body>
 
-    <div id="res-wrapper">
-        <div id="res-page">
+<div id="res-wrapper">
+    <div id="res-page">
 
         <header>
             {% block header %}
@@ -39,12 +39,12 @@
             {% endblock %}
         </header>
 
-    {#    <form action="{{ path('sulu_search.website_search') }}" method="GET">#}
-    {#        <input name="q" type="text" placeholder="Search"/>#}
-    {#        <input type="submit" value="Go"/>#}
-    {#    </form>#}
+        {#    <form action="{{ path('sulu_search.website_search') }}" method="GET">#}
+        {#        <input name="q" type="text" placeholder="Search"/>#}
+        {#        <input type="submit" value="Go"/>#}
+        {#    </form>#}
 
-        {% block body ''%}
+        {% block body '' %}
 
         <section class="main_bg" id="content">
             {% block content %}{% endblock %}
@@ -55,13 +55,9 @@
         </aside>
 
         <footer>
-            <div class="footer_bg">
-                <div class="wrap">
-                {% block footer %}
-                    {% include "footer.html.twig" %}
-                {% endblock %}
-                </div>
-            </div>
+            {% block footer %}
+                {% include "footer.html.twig" %}
+            {% endblock %}
         </footer>
 
         {% block javascripts %}
@@ -72,7 +68,7 @@
         {% endblock %}
         {% block js '' %}
 
-        </div>
     </div>
+</div>
 </body>
 </html>
