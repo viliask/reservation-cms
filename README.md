@@ -14,19 +14,15 @@ Reservation CMS is a project to create a booking like reservations system for a 
 ## &nbsp; Current look
 
 <p align="center">Homepage</br>
-    <a href="https://ibb.co/KrwCj85"><img src="https://i.ibb.co/pLyCvk1/image.png" alt="image" border="0" /></a>
+    <a href="https://i.imgur.com/SNKHDoL.png"><img src="https://i.imgur.com/SNKHDoL.png" alt="image" border="0" /></a>
 </p>
 
 <p align="center">Reservation path</br>
-    <a href="https://ibb.co/Cthq7sr"><img src="https://i.ibb.co/N3ZXjn4/image.png" alt="image" border="0" /></a>
+    <a href="https://i.imgur.com/qDBrfsm.png"><img src="https://i.imgur.com/qDBrfsm.png" alt="image" border="0" /></a>
 </p>
 
 <p align="center">
-    <a href="https://imgbb.com/"><img src="https://i.ibb.co/7y7nmNZ/image.png" alt="image" border="0" /></a>
-</p>
-
-<p align="center">
-    <a href="https://ibb.co/RgwjF27"><img src="https://i.ibb.co/4Fr1qWJ/image.png" alt="image" border="0" /></a>
+    <a href="https://i.imgur.com/vSVGCwH.png"><img src="https://i.imgur.com/vSVGCwH.png" alt="image" border="0" /></a>
 </p>
 
 <p align="center">
@@ -38,11 +34,11 @@ Reservation CMS is a project to create a booking like reservations system for a 
 </p>
 
 ## &nbsp; Features planned?
-- Redo styling to make it custom
+- <s>Redo styling to make it custom</s>
 - Use booking API and others to unify reservations view in one timeline
-- Upgrade project to work with Symfony 5.x and latest Sulu
+- <s>Upgrade project to work with Symfony 5.x and latest Sulu</s>
 
-Trello table: https://trello.com/b/cak0dvgB/reservation-cms
+For more features visit Trello table: https://trello.com/b/cak0dvgB/reservation-cms
 
 ## 📫&nbsp; Have a question?
 
