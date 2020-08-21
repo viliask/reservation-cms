@@ -24,3 +24,117 @@
     fill: black;
     stroke-width: 2;
 }
+
+.width-1 {
+    width: 8.33333%
+}
+
+.width-2 {
+    width: 16.66667%
+}
+
+.width-3 {
+    width: 25%
+}
+
+.width-4 {
+    width: 33.33333%
+}
+
+.width-5 {
+    width: 41.66667%
+}
+
+.width-6 {
+    width: 50%
+}
+
+.width-7 {
+    width: 58.33333%
+}
+
+.width-8 {
+    width: 66.66667%
+}
+
+.width-9 {
+    width: 75%
+}
+
+.width-10 {
+    width: 83.33333%
+}
+
+.width-11 {
+    width: 91.66667%
+}
+
+.width-12 {
+    width: 100%
+}
+
+input, textarea, button {
+    outline: none;
+    border: none;
+}
+
+.form-block__content {
+    display: flex;
+    max-width: 960px;
+    background: #fff;
+    border-radius: 2px;
+    padding: 66px 115px 59px 115px;
+    position: relative;
+}
+
+.grid__item {
+    float: left;
+    padding: 10px 20px 10px;
+    position: relative;
+    background-color: transparent;
+    margin-bottom: 25px;
+}
+
+.grid__item input, textarea {
+    padding: 10px 20px;
+    display: block;
+    width: 100%;
+    background: #f2f2f2;
+    border-radius: 2px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: black;
+    line-height: 1.2;
+    transition: all 0.4s;
+}
+
+.grid__item > button {
+    color: white;
+    padding: 10px 20px;
+    display: block;
+    background: #368bdb;
+    border-radius: 2px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.2;
+    transition: all 0.4s;
+    width: 100px;
+    margin: -20px -50px;
+    position: relative;
+    left: 50%;
+}
+
+.form__label {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: rgba(0,0,0,.5);
+    line-height: 1.5;
+}
+
+.form-block__content {
+    background: #f2f2f2;
+}
+
+form {
+    background: white;
+}

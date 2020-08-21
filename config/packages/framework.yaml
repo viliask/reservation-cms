@@ -15,3 +15,7 @@ framework:
     #fragments: true
     php_errors:
         log: true
+
+    # Enables form bundle
+    esi: true
+    fragments: true
