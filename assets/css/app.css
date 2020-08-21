@@ -95,6 +95,35 @@ input, textarea, button {
     margin-bottom: 25px;
 }
 
+.grid__item input, textarea {
+    padding: 10px 20px;
+    display: block;
+    width: 100%;
+    background: #f2f2f2;
+    border-radius: 2px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: black;
+    line-height: 1.2;
+    transition: all 0.4s;
+}
+
+.grid__item > button {
+    color: white;
+    padding: 10px 20px;
+    display: block;
+    background: #368bdb;
+    border-radius: 2px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.2;
+    transition: all 0.4s;
+    width: 100px;
+    margin: -20px -50px;
+    position: relative;
+    left: 50%;
+}
+
 .form__label {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
