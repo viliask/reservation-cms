@@ -12,7 +12,7 @@
 
     <meta>
         <title lang="en">Default</title>
-        <title lang="de">Standard</title>
+        <title lang="pl">Domyślny</title>
     </meta>
 
     <tag name="sulu_article.type" type="article"/>
@@ -21,7 +21,7 @@
         <property name="title" type="text_line" mandatory="true">
             <meta>
                 <title lang="en">Title</title>
-                <title lang="de">Titel</title>
+                <title lang="pl">Tytuł</title>
             </meta>
 
             <params>
@@ -32,7 +32,7 @@
         <property name="routePath" type="route">
             <meta>
                 <title lang="en">Resourcelocator</title>
-                <title lang="de">Adresse</title>
+                <title lang="pl">Adres</title>
             </meta>
 
             <tag name="sulu_article.article_route"/>
@@ -41,7 +41,7 @@
         <property name="article" type="text_editor">
             <meta>
                 <title lang="en">Article</title>
-                <title lang="de">Artikel</title>
+                <title lang="pl">Artykuł</title>
             </meta>
         </property>
     </properties>
