@@ -27,34 +27,7 @@
                     <p>{{ content.article|default()|raw }}</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center heading-section">
-                    <h2>Zobacz podobne artykuły</h2>
-                </div>
-                {% set articles = sulu_article_load_recent(3) %}
-                {% if articles is defined %}
-                    {% for article in articles %}
-                        <div class="col-lg-4 col-md-4 col-sm-6">
-                            <div class="res-blog">
-                                <a href="{{ sulu_content_path(article.routePath) }}">
-                                    <img class="img-responsive" src="web/images/place-1.jpg" alt="">
-                                </a>
-                                <div class="blog-text">
-                                    <div class="prod-title">
-                                        <h3><a href="{{ sulu_content_path(article.routePath) }}">{{ article.title }}</a>
-                                        </h3>
-                                        <p>{{ article.content.content.getArrayCopy['preview']|default()|raw }}</p>
-                                        <p><a href="{{ sulu_content_path(article.routePath) }}">Zobacz więcej</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-                <div class="col-md-12 text-center">
-                    <p><a class="btn btn-primary btn-outline btn-lg" href="#">Zobacz wszystkie<i class="icon-arrow-right22"></i></a></p>
-                </div>
-            </div>
+            {% include "articles/recentArticles.html.twig" %}
         </div>
     </div>
 {% endblock %}
