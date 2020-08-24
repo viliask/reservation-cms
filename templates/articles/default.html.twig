@@ -10,11 +10,24 @@
                 </div>
             </div>
             <div class="row">
-                <ul>
-                    {% for page in pages %}
-                        <li><a href="{{ sulu_content_path(page.routePath) }}">{{ page.title|default('Page '~page.pageNumber) }}</a></li>
-                    {% endfor %}
-                </ul>
+                {% set articles = sulu_article_load_recent(3) %}
+                {% if articles is defined %}
+                        {% for article in articles %}
+                            <div class="col-md-4 col-sm-6 res-tours">
+                                <div>
+                                    <img src="web/images/place-1.jpg" alt="" class="img-responsive">
+                                    <div class="desc">
+                                        <a href="{{ sulu_content_path(article.routePath) }}">
+                                            <span>{{ article.title }}</span>
+                                        </a>
+                                        <a class="btn btn-primary btn-outline" href="{{ sulu_content_path(article.routePath) }}">
+                                            Przejdź <i class="icon-arrow-right22"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                {% else %}
                 <div class="col-md-4 col-sm-6 res-tours">
                     <div href="#">
                         <img src="web/images/place-1.jpg" alt="" class="img-responsive">
@@ -23,7 +36,7 @@
                             <h3>New York</h3>
                             <span></span>
                             <span class="price">$1,000</span>
-                            <a class="btn btn-primary btn-outline" href="#">Book Now <i class="icon-arrow-right22"></i></a>
+                            <a class="btn btn-primary btn-outline" href="#">Przejdź <i class="icon-arrow-right22"></i></a>
                         </div>
                     </div>
                 </div>
@@ -34,7 +47,7 @@
                             <h3>Philippines</h3>
                             <span></span>
                             <span class="price">$1,000</span>
-                            <a class="btn btn-primary btn-outline" href="#">Book Now <i class="icon-arrow-right22"></i></a>
+                            <a class="btn btn-primary btn-outline" href="#">Przejdź <i class="icon-arrow-right22"></i></a>
                         </div>
                     </div>
                 </div>
@@ -45,46 +58,15 @@
                             <h3>Hongkong</h3>
                             <span></span>
                             <span class="price">$1,000</span>
-                            <a class="btn btn-primary btn-outline" href="#">Book Now <i class="icon-arrow-right22"></i></a>
+                            <a class="btn btn-primary btn-outline" href="#">Przejdź <i class="icon-arrow-right22"></i></a>
                         </div>
                     </div>
                 </div>
+                {% endif %}
                 <div class="col-md-12 text-center">
                     <p><a class="btn btn-primary btn-outline btn-lg" href="#">Zobacz wszystkie<i class="icon-arrow-right22"></i></a></p>
                 </div>
             </div>
-
-{#            {% set articles = sulu_article_load_similar(5, ['blog']) %}#}
-            {% set articles = sulu_article_load_recent(3) %}
-            <ul>
-                {% for article in articles %}
-                    <li><a href="{{ sulu_content_path(article.routePath) }}">{{ article.title }}</a></li>
-                {% endfor %}
-            </ul>
-
-            <nav aria-label="pagination">
-                {% if page > 1 %}
-                    <a href="?page={{ page - 1 }}">Previous</a>
-                {% endif %}
-
-                {% for i in 1..pages %}
-                    <a href="?page={{ i }}">{{ i }}</a>
-                {% endfor %}
-
-                {% if page < pages %}
-                    <a href="?page={{ page + 1 }}">Previous</a>
-                {% endif %}
-            </nav>
-
-
-            <ul>
-                <li><a href="{{ sulu_category_url_clear() }}">None</a></li>
-                {% for category in sulu_categories('en') %}
-                    <li id="{{ category.key }}">
-                        <a href="{{ sulu_category_url(category) }}">{{ category.name }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
         </div>
     </div>
 {% endblock %}
