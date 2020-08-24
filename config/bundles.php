@@ -47,4 +47,6 @@ return [
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
     Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle::class => ['all' => true],
     Sulu\Bundle\FormBundle\SuluFormBundle::class => ['all' => true],
+    ONGR\ElasticsearchBundle\ONGRElasticsearchBundle::class => ['all' => true],
+    Sulu\Bundle\ArticleBundle\SuluArticleBundle::class => ['all' => true],
 ];

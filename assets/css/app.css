@@ -1,3 +1,9 @@
+.res-tours > div .desc span {
+    margin-bottom: 30px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
 .choice-input {
     background-color: #f1eeeb;
     color: #4a96de;
@@ -5,18 +11,6 @@
     font-size: 13px;
     border: transparent;
     font-weight: bold;
-}
-
-@media (min-width: 768px) {
-    .res-form {
-        float: right;
-    }
-}
-
-@media (min-width: 768px) {
-    .text-header {
-        left: 0;
-    }
 }
 
 .custom-class {
@@ -79,12 +73,9 @@ input, textarea, button {
 }
 
 .form-block__content {
-    display: flex;
-    max-width: 960px;
-    background: #fff;
-    border-radius: 2px;
-    padding: 66px 115px 59px 115px;
+    padding: 60px 115px;
     position: relative;
+    background: #f2f2f2;
 }
 
 .grid__item {
@@ -105,7 +96,6 @@ input, textarea, button {
     font-size: 16px;
     color: black;
     line-height: 1.2;
-    transition: all 0.4s;
 }
 
 .grid__item > button {
@@ -117,11 +107,8 @@ input, textarea, button {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: 1.2;
-    transition: all 0.4s;
-    width: 100px;
-    margin: -20px -50px;
     position: relative;
-    left: 50%;
+    width: inherit;
 }
 
 .form__label {
@@ -131,10 +118,116 @@ input, textarea, button {
     line-height: 1.5;
 }
 
-.form-block__content {
-    background: #f2f2f2;
-}
-
 form {
     background: white;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form.form {
+    max-width: 960px;
+    display: grid;
+}
+
+.grid {
+    box-sizing: border-box;
+}
+
+.text-article {
+    background: white;
+    padding: 30px;
+    margin-bottom: 50px;
+}
+
+.text-header-article {
+    padding: 15px;
+    background: linear-gradient(to right,rgba(28,119,255,.5) 0%,#333333a6 100%);
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+}
+
+@media screen and (max-width: 768px) {
+    .res-cover .desc .desc2 {
+        top: 40%;
+        position: absolute;
+        padding-right: 20px;
+    }
+
+    .res-cover .desc .desc2-homepage {
+        top: -110%;
+        position: absolute;
+    }
+
+    .desc2-homepage h1 {
+        font-size: 32px;
+    }
+
+    .res-cover .desc {
+        padding-left: 15px;
+        padding-right: 15px;
+        top: 65%;
+    }
+
+    .res-cover .desc .price {
+        font-size: 40px;
+        font-weight: 600;
+    }
+
+    .res-cover .desc p {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 16px;
+        letter-spacing: 1px;
+        color: rgba(255,255,255,.7);
+    }
+
+    .text-header, .text-header-article {
+        max-width: 500px;
+        padding-top: 20px;
+    }
+
+    .tabulation {
+        width: 100%;
+        float: left;
+    }
+}
+
+@media (max-width: 768px) {
+    .res-form {
+        float: right;
+    }
+
+    .grid {
+        display: inline-grid;
+    }
+
+    .width-6 {
+        width: 100%;
+    }
+
+    .form-block__content {
+        padding: 60px 10px;
+    }
+
+    .text-header {
+        left: 0;
+    }
+
+    .text-header, .text-header-article {
+        max-width: 500px;
+    }
+
+    h1 {
+        margin: 0 0 10px 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .res-form {
+        float: right;
+    }
+
+    .text-header {
+        left: 0;
+    }
 }
