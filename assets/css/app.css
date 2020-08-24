@@ -68,10 +68,7 @@ input, textarea, button {
 
 .form-block__content {
     display: flex;
-    max-width: 960px;
-    background: #fff;
-    border-radius: 2px;
-    padding: 66px 115px 59px 115px;
+    padding: 60px 115px;
     position: relative;
 }
 
@@ -106,10 +103,8 @@ input, textarea, button {
     font-size: 16px;
     line-height: 1.2;
     transition: all 0.4s;
-    width: 100px;
-    margin: -20px -50px;
     position: relative;
-    left: 50%;
+    width: inherit;
 }
 
 .form__label {
@@ -121,15 +116,37 @@ input, textarea, button {
 
 .form-block__content {
     background: #f2f2f2;
+    display: block;
 }
 
 form {
     background: white;
+    box-sizing: border-box;
+    max-width: 960px;
+    display: grid;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid {
+    box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
     .res-form {
         float: right;
+    }
+
+    .grid {
+        display: inline-grid;
+    }
+
+    .width-6 {
+        width: 100%;
+    }
+
+    .form-block__content {
+        padding: 60px 10px;
     }
 }
 
