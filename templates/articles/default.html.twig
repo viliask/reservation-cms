@@ -10,23 +10,29 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center heading-section">
+                    <h2>Zobacz podobne artykuły</h2>
+                </div>
                 {% set articles = sulu_article_load_recent(3) %}
                 {% if articles is defined %}
-                        {% for article in articles %}
-                            <div class="col-md-4 col-sm-6 res-tours">
-                                <div>
-                                    <img src="web/images/place-1.jpg" alt="" class="img-responsive">
-                                    <div class="desc">
-                                        <a href="{{ sulu_content_path(article.routePath) }}">
-                                            <span>{{ article.title }}</span>
-                                        </a>
-                                        <a class="btn btn-primary btn-outline" href="{{ sulu_content_path(article.routePath) }}">
-                                            Przejdź <i class="icon-arrow-right22"></i>
-                                        </a>
+                    {% for article in articles %}
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <div class="res-blog">
+                                <a href="{{ sulu_content_path(article.routePath) }}">
+                                    <img class="img-responsive" src="web/images/place-1.jpg" alt="">
+                                </a>
+                                <div class="blog-text">
+                                    <div class="prod-title">
+                                        <h3><a href="{{ sulu_content_path(article.routePath) }}">{{ article.title }}</a>
+                                        </h3>
+                                        <p>Far far away, behind the word mountains, far from the countries Vokalia and
+                                            Consonantia, there live the blind texts.</p>
+                                        <p><a href="{{ sulu_content_path(article.routePath) }}">Zobacz więcej</a></p>
                                     </div>
                                 </div>
                             </div>
-                        {% endfor %}
+                        </div>
+                    {% endfor %}
                 {% else %}
                 <div class="col-md-4 col-sm-6 res-tours">
                     <div href="#">
