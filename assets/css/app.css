@@ -67,9 +67,9 @@ input, textarea, button {
 }
 
 .form-block__content {
-    display: flex;
     padding: 60px 115px;
     position: relative;
+    background: #f2f2f2;
 }
 
 .grid__item {
@@ -90,7 +90,6 @@ input, textarea, button {
     font-size: 16px;
     color: black;
     line-height: 1.2;
-    transition: all 0.4s;
 }
 
 .grid__item > button {
@@ -102,7 +101,6 @@ input, textarea, button {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: 1.2;
-    transition: all 0.4s;
     position: relative;
     width: inherit;
 }
@@ -112,11 +110,6 @@ input, textarea, button {
     font-size: 14px;
     color: rgba(0,0,0,.5);
     line-height: 1.5;
-}
-
-.form-block__content {
-    background: #f2f2f2;
-    display: block;
 }
 
 form {
@@ -148,9 +141,7 @@ form {
     .form-block__content {
         padding: 60px 10px;
     }
-}
 
-@media (max-width: 768px) {
     .text-header {
         left: 0;
     }
