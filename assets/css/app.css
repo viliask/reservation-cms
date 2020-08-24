@@ -134,6 +134,12 @@ form.form {
     box-sizing: border-box;
 }
 
+.text-article {
+    background: white;
+    padding: 30px;
+    margin-bottom: 50px;
+}
+
 @media (max-width: 768px) {
     .res-form {
         float: right;
