@@ -7,18 +7,6 @@
     font-weight: bold;
 }
 
-@media (min-width: 768px) {
-    .res-form {
-        float: right;
-    }
-}
-
-@media (min-width: 768px) {
-    .text-header {
-        left: 0;
-    }
-}
-
 .custom-class {
     visibility: hidden;
     fill: black;
@@ -137,4 +125,16 @@ input, textarea, button {
 
 form {
     background: white;
+}
+
+@media (max-width: 768px) {
+    .res-form {
+        float: right;
+    }
+}
+
+@media (max-width: 768px) {
+    .text-header {
+        left: 0;
+    }
 }
