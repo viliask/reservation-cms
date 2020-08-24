@@ -43,8 +43,7 @@
                                     <div class="prod-title">
                                         <h3><a href="{{ sulu_content_path(article.routePath) }}">{{ article.title }}</a>
                                         </h3>
-                                        <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                            Consonantia, there live the blind texts.</p>
+                                        <p>{{ article.content.content.getArrayCopy['preview']|default()|raw }}</p>
                                         <p><a href="{{ sulu_content_path(article.routePath) }}">Zobacz więcej</a></p>
                                     </div>
                                 </div>
