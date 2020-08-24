@@ -44,5 +44,12 @@
                 <title lang="pl">Artykuł</title>
             </meta>
         </property>
+
+        <property name="preview" type="text_editor">
+            <meta>
+                <title lang="en">Preview</title>
+                <title lang="pl">Zajawka</title>
+            </meta>
+        </property>
     </properties>
 </template>
