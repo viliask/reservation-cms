@@ -140,6 +140,12 @@ form.form {
     margin-bottom: 50px;
 }
 
+.text-header-article {
+    padding: 15px;
+    background: linear-gradient(to right,rgba(28,119,255,.5) 0%,#333333a6 100%);
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+}
+
 @media (max-width: 768px) {
     .res-form {
         float: right;
