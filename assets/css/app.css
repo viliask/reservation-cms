@@ -115,10 +115,13 @@ input, textarea, button {
 form {
     background: white;
     box-sizing: border-box;
-    max-width: 960px;
-    display: grid;
     margin-left: auto;
     margin-right: auto;
+}
+
+form.form {
+    max-width: 960px;
+    display: grid;
 }
 
 .grid {
@@ -140,6 +143,16 @@ form {
 
     .form-block__content {
         padding: 60px 10px;
+    }
+
+    .text-header {
+        left: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .res-form {
+        float: right;
     }
 
     .text-header {
