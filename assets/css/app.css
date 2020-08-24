@@ -146,6 +146,52 @@ form.form {
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
 }
 
+@media screen and (max-width: 768px) {
+    .res-cover .desc .desc2 {
+        top: 40%;
+        position: absolute;
+        padding-right: 20px;
+    }
+
+    .res-cover .desc .desc2-homepage {
+        top: -110%;
+        position: absolute;
+    }
+
+    .desc2-homepage h1 {
+        font-size: 32px;
+    }
+
+    .res-cover .desc {
+        padding-left: 15px;
+        padding-right: 15px;
+        top: 65%;
+    }
+
+    .res-cover .desc .price {
+        font-size: 40px;
+        font-weight: 600;
+    }
+
+    .res-cover .desc p {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 16px;
+        letter-spacing: 1px;
+        color: rgba(255,255,255,.7);
+    }
+
+    .text-header, .text-header-article {
+        max-width: 500px;
+        padding-top: 20px;
+    }
+
+    .tabulation {
+        width: 100%;
+        float: left;
+    }
+}
+
 @media (max-width: 768px) {
     .res-form {
         float: right;
@@ -165,6 +211,14 @@ form.form {
 
     .text-header {
         left: 0;
+    }
+
+    .text-header, .text-header-article {
+        max-width: 500px;
+    }
+
+    h1 {
+        margin: 0 0 10px 0;
     }
 }
 
