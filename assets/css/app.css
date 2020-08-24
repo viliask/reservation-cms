@@ -1,3 +1,9 @@
+.res-tours > div .desc span {
+    margin-bottom: 30px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
 .choice-input {
     background-color: #f1eeeb;
     color: #4a96de;
