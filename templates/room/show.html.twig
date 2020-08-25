@@ -8,6 +8,17 @@
 {% block title %}Room{% endblock %}
 
 {% block body %}
+    <div class="res-hero">
+        <div class="res-overlay"></div>
+        <div class="res-cover" data-stellar-background-ratio="0.5">
+            <div class="desc">
+                {% block reservation %}
+                    {% include "./homepage/reservation.html.twig" with {form: availabilityForm} %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
     <h1 class="id-js" data-room-id = {{ room.id }}>Room</h1>
 
     <table class="table">
@@ -26,10 +37,6 @@
             </tr>
         </tbody>
     </table>
-
-    {% block reservation %}
-        {% include "./homepage/reservation.html.twig" with {form: availabilityForm} %}
-    {% endblock %}
 
     {% block modal %}
         {% include 'room/roomNotAvailable.html.twig' with {roomName: room.name} %}
