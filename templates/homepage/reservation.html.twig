@@ -14,7 +14,7 @@
                                         <p>{{ content.reservationText|raw }}
                                     {% endif %}
                                 </div>
-                                <h4>Sprawdź dostępność pokoi</h4>
+                                <h4>{{ widgetHeader }}</h4>
 
                             </div>
                             {{ form_start(form, {'attr': {'class': 'submit-form'} }) }}
@@ -53,7 +53,7 @@
         </div>
         <div class="desc2-homepage">
             <div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1 text-header">
-                <h1>Odwiedź Krynicę-Zdrój</h1>
+                <h1>{{ header }}</h1>
                 <span>wynajmij pokój już od</span>
                 <span class="price">40zł/os</span>
             </div>
