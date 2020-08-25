@@ -13,7 +13,7 @@
         <div class="res-cover" data-stellar-background-ratio="0.5">
             <div class="desc">
                 {% block reservation %}
-                    {% include "./homepage/reservation.html.twig" with {form: availabilityForm} %}
+                    {% include "./homepage/reservation.html.twig" with {form: availabilityForm, header: 'Wynajmij ' ~ room.name, widgetHeader: 'Sprawdź dostępność pokoju'} %}
                 {% endblock %}
             </div>
         </div>
