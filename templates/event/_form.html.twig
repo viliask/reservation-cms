@@ -1,4 +1,80 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'class': 'submit-form'} }) }}
+{{ form_errors(form) }}
+<div class="col-xxs-12 col-xs-6 mt">
+    <div class="input-field">
+        {{ form_label(form.checkIn, 'Przyjazd') }}
+        {{ form_errors(form.checkIn) }}
+        {{ form_widget(form.checkIn) }}
+    </div>
+</div>
+<div class="col-xxs-12 col-xs-6 mt alternate">
+    <div class="input-field">
+        {{ form_label(form.checkOut, 'Wymeldowanie') }}
+        {{ form_errors(form.checkOut) }}
+        {{ form_widget(form.checkOut) }}
+    </div>
+</div>
+<div class="col-xxs-12 col-xs-6 mt alternate">
+    <div class="input-field">
+        {{ form_label(form.guests, 'Liczba gości') }}
+        {{ form_errors(form.guests) }}
+        {{ form_widget(form.guests) }}
+    </div>
+</div>
+<div class="col-xxs-12 col-xs-6 mt alternate">
+    <div class="input-field">
+        {{ form_label(form.price, 'Cena') }}
+        {{ form_errors(form.price) }}
+        {{ form_widget(form.price) }}
+    </div>
+</div>
+<div class="col-xxs-12 col-xs-6 mt alternate">
+    <div class="input-field">
+        {{ form_label(form.firstName, 'Imię') }}
+        {{ form_errors(form.firstName) }}
+        {{ form_widget(form.firstName) }}
+    </div>
+</div>
+<div class="col-xxs-12 col-xs-6 mt alternate">
+    <div class="input-field">
+        {{ form_label(form.lastName, 'Nazwisko') }}
+        {{ form_errors(form.lastName) }}
+        {{ form_widget(form.lastName) }}
+    </div>
+</div>
+<div class="col-xxs-12 col-xs-6 mt alternate">
+    <div class="input-field">
+        {{ form_label(form.phone, 'Numer telefonu') }}
+        {{ form_errors(form.phone) }}
+        {{ form_widget(form.phone) }}
+    </div>
+</div>
+<div class="col-xxs-12 col-xs-6 mt alternate">
+    <div class="input-field">
+        {{ form_label(form.mail, 'Adres e-mail') }}
+        {{ form_errors(form.mail) }}
+        {{ form_widget(form.mail) }}
+    </div>
+</div>
+<div class="col-xxs-12 col-xs mt alternate">
+    <div class="input-field">
+        {{ form_label(form.message, 'Wiadomość') }}
+        {{ form_errors(form.message) }}
+        {{ form_widget(form.message) }}
+    </div>
+</div>
+<div class="col-xxs-12 col-xs mt alternate">
+    <div class="input-field">
+        {{ form_errors(form.policy) }}
+        {{ form_widget(form.policy) }}
+        Zapoznałem się i akceptuję <a class="policy-js">regulamin rezerwacji.</a>
+    </div>
+</div>
+<div class="col-xxs-12 col-xs mt">
+
+    <button type="button" class="open-modal btn btn-primary btn-block">
+        {{ button_label|default('Zarezerwuj') }}
+    </button>
+
+</div>
 {{ form_end(form) }}
