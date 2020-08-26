@@ -8,6 +8,7 @@ use App\Form\Type\EventType;
 use App\Form\Type\ReservationType;
 use App\Repository\EventRepository;
 use DateTimeImmutable;
+use Sulu\Bundle\MediaBundle\Media\Manager\MediaManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,7 +61,7 @@ class RoomController extends AbstractController
     /**
      * @Route("/{id}", name="room_show", methods={"GET", "POST"})
      */
-    public function show(Room $room, Request $request): Response
+    public function show(Room $room, Request $request, MediaManagerInterface $mediaManager): Response
     {
         $availabilityForm = $this->createForm(ReservationType::class);
         $event            = new Event();
@@ -73,12 +74,26 @@ class RoomController extends AbstractController
             return $this->processForm($event);
         }
 
+        $pageMedia     = [];
+        $roomIndicator = str_replace(' ', '-', strtolower($room->getName()));
+        foreach($mediaManager->get('en') as $media ) {
+            if (str_contains($media->getTitle(), $roomIndicator)) {
+                $pageMedia[] =
+                    [
+                        'media' => $media,
+                        'title' => $media->getTitle(),
+                        'index' => substr($media->getTitle(), -1),
+                    ];
+            }
+        }
+
         return $this->render(
             'room/show.html.twig',
             [
                 'room'             => $room,
                 'form'             => $eventForm->createView(),
                 'availabilityForm' => $availabilityForm->createView(),
+                'media'            => $pageMedia,
             ]
         );
     }
