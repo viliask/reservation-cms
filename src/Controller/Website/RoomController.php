@@ -77,7 +77,7 @@ class RoomController extends AbstractController
         $pageMedia     = [];
         $roomIndicator = str_replace(' ', '-', strtolower($room->getName()));
         foreach($mediaManager->get('en') as $media ) {
-            if (str_contains($media->getTitle(), $roomIndicator)) {
+            if (str_contains($media->getTitle(), $roomIndicator) && str_contains($media->getMimeType(), 'image')) {
                 $pageMedia[] =
                     [
                         'media' => $media,
