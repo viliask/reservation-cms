@@ -87,6 +87,10 @@ class RoomController extends AbstractController
             }
         }
 
+        usort($pageMedia, function ($a, $b) {
+            return $a['index'] <=> $b['index'];
+        });
+
         return $this->render(
             'room/show.html.twig',
             [
