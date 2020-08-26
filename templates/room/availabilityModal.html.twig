@@ -1,10 +1,10 @@
 <div class="modal" id="availability-modal">
     <div class="modal-dialog">
         <header class="modal-header">
-            The {{ roomName }} is available. Now you can book a room clicking on a button below:
+            {{ roomName }} jest dostępny. Możesz zarezerwować ten pokój w wybranym terminie.
             <button class="close-modal" aria-label="close modal" data-close-availability>✕</button>
         </header>
-        <button type="button" class="open-modal" data-open="reservation-modal">Book a room</button>
+        <button type="button" id="reservation_submit" name="reservation[submit]" class="open-modal btn btn-primary btn-block" data-open="reservation-modal">Zarezerwuj</button>
     </div>
 </div>
 
