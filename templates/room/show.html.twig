@@ -22,49 +22,40 @@
 
     <h1 class="id-js" data-room-id = {{ room.id }}>Room</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ room.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ room.name }}</td>
-            </tr>
-            <tr>
-                <th>MaxGuests</th>
-                <td>{{ room.maxGuests }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="res-room" class="res-section-room">
+        <div class="container">
+            <div class="row">
 
-    <section class="gallery">
-        <div class="carousel">
-
-            {% for image in media %}
-                <input type="radio" id="image{{ image['index'] }}" name="gallery-control">
-            {% endfor %}
-
-            <input type="checkbox" id="fullscreen" name="gallery-fullscreen-control"/>
-            <div class="wrap">
-                {% for image in media %}
-                    <figure>
-                        <label for="fullscreen">
-                            <img src="{{ image['media'].url }}" alt="image{{ image['index'] }}"/>
-                        </label>
-                    </figure>
-                {% endfor %}
-            </div>
-            <div class="thumbnails">
-                <div class="slider"><div class="indicator"></div></div>
-                {% for image in media %}
-                    <label for="image{{ image['index'] }}" class="thumb"
-                           style="background-image: url({{ image['media'].formats['sulu-100x100.webp'] }})"></label>
-                {% endfor %}
+                <section class="gallery">
+                    <div class="carousel">
+                        {% for image in media %}
+                            <input type="radio" id="image{{ image['index'] }}" name="gallery-control">
+                        {% endfor %}
+                        <input type="checkbox" id="fullscreen" name="gallery-fullscreen-control"/>
+                        <div class="wrap">
+                            {% for image in media %}
+                                <figure>
+                                    <label for="fullscreen">
+                                        <img src="{{ image['media'].url }}" alt="image{{ image['index'] }}"/>
+                                    </label>
+                                </figure>
+                            {% endfor %}
+                        </div>
+                        <div class="thumbnails">
+                            <div class="slider">
+                                <div class="indicator"></div>
+                            </div>
+                            {% for image in media %}
+                                <label for="image{{ image['index'] }}" class="thumb"
+                                       style="background-image: url({{ image['media'].formats['sulu-100x100.webp'] }})">
+                                </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
-    </section>
+    </div>
 
     {% block modal %}
         {% include 'room/roomNotAvailable.html.twig' with {roomName: room.name} %}
