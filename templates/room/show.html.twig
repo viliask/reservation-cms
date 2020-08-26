@@ -10,7 +10,7 @@
 {% block body %}
     <div class="res-hero">
         <div class="res-overlay"></div>
-        <div class="res-cover" data-stellar-background-ratio="0.5">
+        <div class="res-cover" data-stellar-background-ratio="0.5" style="background-image: url({{ media[0]['media'].url }});">
             <div class="desc">
                 {% block reservation %}
                     {% include "./homepage/reservation.html.twig" with {form: availabilityForm, header: 'Wynajmij ' ~ room.name, widgetHeader: 'Sprawdź dostępność pokoju'} %}
