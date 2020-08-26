@@ -3,6 +3,7 @@
 {% block styles %}
     {{ encore_entry_link_tags('modal', null, 'css') }}
     {{ encore_entry_link_tags('airbnb', null, 'css') }}
+    {{ encore_entry_link_tags('roomGallery', null, 'css') }}
 {% endblock %}
 
 {% block title %}Room{% endblock %}
@@ -37,6 +38,47 @@
             </tr>
         </tbody>
     </table>
+
+    <section class="gallery">
+        <div class="carousel">
+
+            <input type="radio" id="image1" name="gallery-control" checked>
+            <input type="radio" id="image2" name="gallery-control">
+            <input type="radio" id="image3" name="gallery-control">
+            <input type="radio" id="image4" name="gallery-control">
+
+            <input type="checkbox" id="fullscreen" name="gallery-fullscreen-control"/>
+            <div class="wrap">
+                <figure>
+                    <label for="fullscreen">
+                        <img src="https://unsplash.it/1000/700/?random" alt="image1"/>
+                    </label>
+                </figure>
+                <figure>
+                    <label for="fullscreen">
+                        <img src="{{ media[2]['media'].url }}}" alt="image2"/>
+                    </label>
+                </figure>
+                <figure>
+                    <label for="fullscreen">
+                        <img src="https://unsplash.it/1600/880/?random" alt="image3" />
+                    </label>
+                </figure>
+                <figure>
+                    <label for="fullscreen">
+                        <img src="https://unsplash.it/2000/1400/?random" alt="image4"/>
+                    </label>
+                </figure>
+            </div>
+            <div class="thumbnails">
+                <div class="slider"><div class="indicator"></div></div>
+                <label for="image1" class="thumb" style="background-image: url('https://unsplash.it/700/480/?random')"></label>
+                <label for="image2" class="thumb" style="background-image: url({{ media[2]['media'].formats['sulu-400x400-inset.webp'] }})"></label>
+                <label for="image3" class="thumb" style="background-image: url('https://unsplash.it/700/410/?random')"></label>
+                <label for="image4" class="thumb" style="background-image: url('https://unsplash.it/700/450/?random')"></label>
+            </div>
+        </div>
+    </section>
 
     {% block modal %}
         {% include 'room/roomNotAvailable.html.twig' with {roomName: room.name} %}
