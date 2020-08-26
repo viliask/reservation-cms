@@ -101,10 +101,12 @@
     <div id="res-room" class="res-section-room">
         <div class="container">
             <div class="row">
-
                 <section class="gallery">
                     <div class="carousel">
                         {% for image in media %}
+                            {% if image['index'] == 1 %}
+                                <input type="radio" id="image{{ image['index'] }}" name="gallery-control" checked>
+                            {% endif %}
                             <input type="radio" id="image{{ image['index'] }}" name="gallery-control">
                         {% endfor %}
                         <input type="checkbox" id="fullscreen" name="gallery-fullscreen-control"/>
