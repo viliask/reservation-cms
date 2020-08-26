@@ -1,3 +1,11 @@
+.plr-3 {
+    padding: 0 30px;
+}
+
+.justify {
+    text-align: justify;
+}
+
 .res-tours > div .desc span {
     margin-bottom: 30px;
     font-size: 22px;
