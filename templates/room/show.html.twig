@@ -42,40 +42,26 @@
     <section class="gallery">
         <div class="carousel">
 
-            <input type="radio" id="image1" name="gallery-control" checked>
-            <input type="radio" id="image2" name="gallery-control">
-            <input type="radio" id="image3" name="gallery-control">
-            <input type="radio" id="image4" name="gallery-control">
+            {% for image in media %}
+                <input type="radio" id="image{{ image['index'] }}" name="gallery-control">
+            {% endfor %}
 
             <input type="checkbox" id="fullscreen" name="gallery-fullscreen-control"/>
             <div class="wrap">
-                <figure>
-                    <label for="fullscreen">
-                        <img src="https://unsplash.it/1000/700/?random" alt="image1"/>
-                    </label>
-                </figure>
-                <figure>
-                    <label for="fullscreen">
-                        <img src="{{ media[2]['media'].url }}}" alt="image2"/>
-                    </label>
-                </figure>
-                <figure>
-                    <label for="fullscreen">
-                        <img src="https://unsplash.it/1600/880/?random" alt="image3" />
-                    </label>
-                </figure>
-                <figure>
-                    <label for="fullscreen">
-                        <img src="https://unsplash.it/2000/1400/?random" alt="image4"/>
-                    </label>
-                </figure>
+                {% for image in media %}
+                    <figure>
+                        <label for="fullscreen">
+                            <img src="{{ image['media'].url }}" alt="image{{ image['index'] }}"/>
+                        </label>
+                    </figure>
+                {% endfor %}
             </div>
             <div class="thumbnails">
                 <div class="slider"><div class="indicator"></div></div>
-                <label for="image1" class="thumb" style="background-image: url('https://unsplash.it/700/480/?random')"></label>
-                <label for="image2" class="thumb" style="background-image: url({{ media[2]['media'].formats['sulu-400x400-inset.webp'] }})"></label>
-                <label for="image3" class="thumb" style="background-image: url('https://unsplash.it/700/410/?random')"></label>
-                <label for="image4" class="thumb" style="background-image: url('https://unsplash.it/700/450/?random')"></label>
+                {% for image in media %}
+                    <label for="image{{ image['index'] }}" class="thumb"
+                           style="background-image: url({{ image['media'].formats['sulu-100x100.webp'] }})"></label>
+                {% endfor %}
             </div>
         </div>
     </section>
