@@ -9,61 +9,29 @@
 {% block body %}
 <h1>Book a room</h1>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>MaxGuests</th>
-        <th>actions</th>
-    </tr>
-    </thead>
-    <tbody>
     {% if rooms is defined %}
         {% for room in rooms %}
-            <tr>
-                <td>{{ room.id }}</td>
-                <td>{{ room.name }}</td>
-                <td>{{ room.maxGuests }}</td>
-                <td>
-                    <a href="{{ path('room_show_dates', {id: room.id, checkIn: checkIn, checkOut: checkOut, guests: guests}) }}">show</a>
-                </td>
-            </tr>
+
+            <div class="card">
+                <div class="card-container">
+                    <div class="imag"></div>
+                    <div class="text-card-container">
+                        <span></span>
+                        <h2>{{ room.name }}</h2>
+                        <p>Get the lastest and trending web development project's source code, first see preview if you need
+                            then get the code. {{ room.maxGuests }}
+                        </p>
+                        <a href="{{ path('room_show_dates', {id: room.id, checkIn: checkIn, checkOut: checkOut, guests: guests}) }}" target="_blank">Zobacz pokój</a>
+                    </div>
+                </div>
+            </div>
         {% else %}
             <tr>
                 <td colspan="4">no records found</td>
             </tr>
         {% endfor %}
     {% endif %}
-    </tbody>
-</table>
 
-    <div class="card">
-        <div class="card-container">
-            <div class="imag"></div>
-            <div class="text-card-container">
-                <span></span>
-                <h2>Web Development</h2>
-                <p>Get the lastest and trending web development project's source code, first see preview if you need
-                    then get the code.
-                </p>
-                <a href="https://webdevtrick.com" target="_blank">Visit Webdevtrick</a>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-container">
-            <div class="imag"></div>
-            <div class="text-card-container">
-                <span></span>
-                <h2>Web Development</h2>
-                <p>Get the lastest and trending web development project's source code, first see preview if you need
-                    then get the code.
-                </p>
-                <a href="https://webdevtrick.com" target="_blank">Visit Webdevtrick</a>
-            </div>
-        </div>
-    </div>
 {% endblock %}
 
 {% block javascripts %}
