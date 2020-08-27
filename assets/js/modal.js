@@ -17,16 +17,16 @@ const updatePrice = () => {
 };
 
 openEl.addEventListener('click', () => {
-    if (document.getElementById('availability-modal')) {
-        document.getElementById('availability-modal').classList.remove(visible);
+    if (document.querySelector('#availability-modal')) {
+        document.querySelector('#availability-modal').classList.remove(visible);
     }
 
-    document.getElementById('reservation-modal').classList.add(visible);
+    document.querySelector('#reservation-modal').classList.add(visible);
     updatePrice();
 });
 
 closeEl.addEventListener('click', () => {
-    document.getElementById('reservation-modal').classList.remove(visible);
+    document.querySelector('#reservation-modal').classList.remove(visible);
 });
 
 document.addEventListener('click', e => {
@@ -51,7 +51,7 @@ document.querySelector('#event_guests').addEventListener('change', () => {
 
 openPolicyModal.addEventListener('click', () => {
     document.querySelector('#policy-modal').classList.add(visible);
-    document.getElementById('reservation-modal').classList.remove(visible);
+    document.querySelector('#reservation-modal').classList.remove(visible);
 
     document.querySelector('[data-close-policy]').addEventListener('click', () => {
         document.querySelector('#policy-modal').classList.remove(visible);
