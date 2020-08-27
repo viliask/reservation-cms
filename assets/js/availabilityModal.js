@@ -28,6 +28,17 @@ const updateForm = () => {
     document.querySelector('#event_guests').value = guests;
 };
 
+const validateForm = () => {
+    const a = document.querySelector('#reservation_checkInDate').value;
+    const b = document.querySelector('#reservation_checkOutDate').value;
+    if (a === null || a === '' || b === null || b === '') {
+        document.querySelector('#empty-form-modal').classList.add(visible);
+
+        return false;
+    }
+    return true;
+};
+
 Routing.setRoutingData(routes);
 
 form.addEventListener('submit', async (event) => {
