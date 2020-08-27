@@ -35,6 +35,11 @@ document.addEventListener('click', e => {
     if (e.target === openedModal) {
         makeInvisible(openedModal);
     }
+
+    if (document.querySelector('#policy-modal') === openedModal && e.target === openedModal) {
+        makeInvisible(openedModal);
+        document.querySelector('#reservation-modal').classList.add(visible);
+    }
 });
 
 document.addEventListener('keyup', e => {
@@ -42,6 +47,11 @@ document.addEventListener('keyup', e => {
 
     if (e.key === 'Escape' && openedModal) {
         makeInvisible(openedModal);
+    }
+
+    if (document.querySelector('#policy-modal') === openedModal && e.key === 'Escape' && openedModal) {
+        makeInvisible(openedModal);
+        document.querySelector('#reservation-modal').classList.add(visible);
     }
 });
 
