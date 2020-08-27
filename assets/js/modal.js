@@ -45,5 +45,6 @@ openPolicyModal.addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded',  () => {
     if (document.querySelector('[data-checked]')) {
         document.querySelector('#reservation-modal').classList.add(visible);
+        updatePrice();
     }
 });

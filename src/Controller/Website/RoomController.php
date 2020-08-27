@@ -40,6 +40,9 @@ class RoomController extends AbstractController
         $checkOutDate = new DateTimeImmutable($checkOut);
         $guests       = $request->query->get('guests');
 
+        $availabilityForm->get('checkInDate')->setData($checkInDate);
+        $availabilityForm->get('checkOutDate')->setData($checkInDate);
+        $availabilityForm->get('guests')->setData($guests);
         $eventForm->get('checkIn')->setData($checkInDate);
         $eventForm->get('checkOut')->setData($checkOutDate);
         $eventForm->get('guests')->setData($guests);
