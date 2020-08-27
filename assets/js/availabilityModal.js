@@ -43,15 +43,17 @@ Routing.setRoutingData(routes);
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    await loadData().then((data) => {
-        responseData = data;
-        if (responseData.status === true) {
-            document.querySelector('#availability-modal').classList.add(visible);
-            updateForm();
-        } else {
-            document.querySelector('#room-not-available-modal').classList.add(visible);
-        }
-    });
+    if (validateForm()) {
+        await loadData().then((data) => {
+            responseData = data;
+            if (responseData.status === true) {
+                document.querySelector('#availability-modal').classList.add(visible);
+                updateForm();
+            } else {
+                document.querySelector('#room-not-available-modal').classList.add(visible);
+            }
+        });
+    }
 });
 
 closeAvailabilityModal.addEventListener('click', () => {
