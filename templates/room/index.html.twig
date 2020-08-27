@@ -7,30 +7,39 @@
 {% block title %}Room index{% endblock %}
 
 {% block body %}
-<h1>Book a room</h1>
-
-    {% if rooms is defined %}
-        {% for room in rooms %}
-
-            <div class="card">
-                <div class="card-container">
-                    <div class="imag"></div>
-                    <div class="text-card-container">
-                        <span></span>
-                        <h2>{{ room.name }}</h2>
-                        <p>Get the lastest and trending web development project's source code, first see preview if you need
-                            then get the code. {{ room.maxGuests }}
-                        </p>
-                        <a href="{{ path('room_show_dates', {id: room.id, checkIn: checkIn, checkOut: checkOut, guests: guests}) }}" target="_blank">Zobacz pokój</a>
+    <div class="res-section-gray">
+        <div class="container">
+            {% if rooms is defined %}
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center heading-section">
+                        <h1>Znaleziono wolne miejsce</h1>
                     </div>
                 </div>
-            </div>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-    {% endif %}
+                {% for room in rooms %}
+                    <div class="card">
+                        <div class="card-container">
+                            <div class="imag"></div>
+                            <div class="text-card-container">
+                                <h2>{{ room.name }}</h2>
+                                <p>Get the lastest and trending web development project's source code, first see preview if you need
+                                    then get the code. {{ room.maxGuests }}
+                                </p>
+                                <div class="col-xs">
+                                    <button type="submit" onclick="location.href='{{ path('room_show_dates', {id: room.id, checkIn: checkIn, checkOut: checkOut, guests: guests}) }}';" class="btn btn-primary btn-block">Zarezerwuj pokój</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center heading-section">
+                            <h1>Brak wolnych miejsc</h1>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
 
 {% endblock %}
 
