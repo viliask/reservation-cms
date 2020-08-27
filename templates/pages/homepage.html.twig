@@ -1,11 +1,14 @@
 {% extends "base.html.twig" %}
 
 {% block styles %}
+    {{ encore_entry_link_tags('modal', null, 'css') }}
     {{ encore_entry_link_tags('airbnb', null, 'css') }}
 {% endblock %}
 
 {% block content %}
 {#    <h1>{{ content.title }}</h1>#}
+
+    {% include 'room/emptyForm.html.twig' %}
 
     <div class="res-hero">
         <div class="res-overlay"></div>
@@ -211,4 +214,5 @@
 
 {% block js %}
     {{ encore_entry_script_tags('flatpickr', null, 'js') }}
+    {{ encore_entry_script_tags('homepage', null, 'js') }}
 {% endblock %}
