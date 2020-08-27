@@ -1,3 +1,12 @@
+.form-group div {
+    display: inline-block;
+}
+
+div .form-check-input {
+    float: left;
+    margin-right: 5px;
+}
+
 .form-check-label button {
     color: #368bdb;
     text-decoration: underline;
