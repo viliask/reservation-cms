@@ -140,6 +140,7 @@
         {% include 'room/availabilityModal.html.twig' with {form: availabilityForm, roomName: room.name} %}
         {% include 'room/modal.html.twig' with {form: form} %}
         {% include 'room/policy.html.twig' %}
+        {% include 'room/emptyForm.html.twig' %}
     {% endblock %}
 
     {% block js %}
