@@ -1,15 +1,14 @@
 import Axios from 'axios';
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
+import {validateForm, visible, form} from './helper';
 
 const routes = require('../../public/js/fos_js_routes_website');
-const form = document.querySelector('.submit-form');
 const roomId = document.querySelector('.id-js');
 const checkIn = document.querySelector('#reservation_checkInDate');
 const checkOut = document.querySelector('#reservation_checkOutDate');
 let responseData = null;
 const closeAvailabilityModal = document.querySelector('[data-close-availability]');
 const closeRoomNotAvailableModal = document.querySelector('[data-close-not-available]');
-const visible = 'visible';
 
 const loadData = async () => {
     const response = await Axios.get(Routing.generate('xhr_room_availability',
@@ -26,19 +25,6 @@ const updateForm = () => {
     document.querySelector('#event_checkIn').value = new Date(responseData.checkIn).toISOString().slice(0, 16);
     document.querySelector('#event_checkOut').value = new Date(responseData.checkOut).toISOString().slice(0, 16);
     document.querySelector('#event_guests').value = guests;
-};
-
-const validateForm = () => {
-    const a = document.querySelector('#reservation_checkInDate').value;
-    const b = document.querySelector('#reservation_checkOutDate').value;
-    if (a === null || a === '' || b === null || b === '') {
-        document.querySelector('#empty-form-modal').classList.add(visible);
-        document.querySelector('[data-close-empty-form]').addEventListener('click', () => {
-            document.querySelector('#empty-form-modal').classList.remove(visible);
-        });
-        return false;
-    }
-    return true;
 };
 
 Routing.setRoutingData(routes);

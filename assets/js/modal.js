@@ -1,12 +1,11 @@
+import {visible, handleModalClose} from './helper'
+
+handleModalClose();
+
 const openEl = document.querySelector('[data-open]');
 const closeEl = document.querySelector('[data-close]');
 const openPolicyModal = document.querySelector('[data-open-policy]');
-const visible = 'visible';
 const PRICE = 40;
-
-const makeInvisible = (modal) => {
-    modal.classList.remove(visible);
-};
 
 const updatePrice = () => {
     const checkIn = new Date(document.querySelector('#event_checkIn').value);
@@ -27,32 +26,6 @@ openEl.addEventListener('click', () => {
 
 closeEl.addEventListener('click', () => {
     document.querySelector('#reservation-modal').classList.remove(visible);
-});
-
-document.addEventListener('click', e => {
-    const openedModal = document.querySelector('.modal.visible');
-
-    if (e.target === openedModal) {
-        makeInvisible(openedModal);
-    }
-
-    if (document.querySelector('#policy-modal') === openedModal && e.target === openedModal) {
-        makeInvisible(openedModal);
-        document.querySelector('#reservation-modal').classList.add(visible);
-    }
-});
-
-document.addEventListener('keyup', e => {
-    const openedModal = document.querySelector('.modal.visible');
-
-    if (e.key === 'Escape' && openedModal) {
-        makeInvisible(openedModal);
-    }
-
-    if (document.querySelector('#policy-modal') === openedModal && e.key === 'Escape' && openedModal) {
-        makeInvisible(openedModal);
-        document.querySelector('#reservation-modal').classList.add(visible);
-    }
 });
 
 document.querySelector('#event_guests').addEventListener('change', () => {

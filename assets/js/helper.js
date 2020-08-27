@@ -1,3 +1,7 @@
+const makeInvisible = (modal) => {
+    modal.classList.remove(visible);
+};
+
 export const form = document.querySelector('.submit-form');
 export const visible = 'visible';
 
@@ -12,4 +16,32 @@ export const validateForm = () => {
         return false;
     }
     return true;
+};
+
+export const handleModalClose = () => {
+    document.addEventListener('click', e => {
+        const openedModal = document.querySelector('.modal.visible');
+
+        if (e.target === openedModal) {
+            makeInvisible(openedModal);
+        }
+
+        if (document.querySelector('#policy-modal') === openedModal && e.target === openedModal) {
+            makeInvisible(openedModal);
+            document.querySelector('#reservation-modal').classList.add(visible);
+        }
+    });
+
+    document.addEventListener('keyup', e => {
+        const openedModal = document.querySelector('.modal.visible');
+
+        if (e.key === 'Escape' && openedModal) {
+            makeInvisible(openedModal);
+        }
+
+        if (document.querySelector('#policy-modal') === openedModal && e.key === 'Escape' && openedModal) {
+            makeInvisible(openedModal);
+            document.querySelector('#reservation-modal').classList.add(visible);
+        }
+    });
 };
