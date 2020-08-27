@@ -2,8 +2,8 @@
     display: inline-block;
     width: 50px;
     height: 5px;
-    background-color: #FF3434;
-    margin-bottom: 30px;
+    background-color: #368BDB;
+    margin-bottom: 15px;
 }
 div.card {
     display: flex;
@@ -17,8 +17,7 @@ div.card-container {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 30px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45);
+    margin: 20px;
 }
 
 imag {
@@ -32,12 +31,12 @@ imag {
 .text-card-container p {
     font-weight: 300;
     line-height: 24px;
-    margin: 0 0 30px 0;
+    margin: 0 0 20px 0;
 }
 .text-card-container a {
     text-decoration: none;
     text-transform: uppercase;
-    color: #FF3434;
+    color: #368BDB;
     font-weight: bold;
     font-size: 14px;
     position: relative;
@@ -47,28 +46,13 @@ imag {
     left: -5px;
 }
 .text-card-container a:hover {
-    color: #FF3434;
-}
-.text-card-container a::before {
-    content: '';
-    z-index: -1;
-    position: absolute;
-    top: calc(50%);
-    left: 0;
-    width: 100%;
-    height: 40%;
-    pointer-events: none;
-    background:   #80EDFF;
-    transform: scale3d(0, 1, 1);
-    transform-origin: 0% 50%;
-    transition: transform 0.33s;
-}
-.text-card-container a:hover::before {
-    transform: scale3d(1, 1, 1);
-    transform-origin: 0% 50%;
+    color: #368BDB;
+    text-decoration: underline;
+
 }
 div.imag {
-    height: 300px;
+    max-height: 225px;
+    height: 225px;
     width: 100%;
     background: url("https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg");
     background-position: center;
@@ -83,11 +67,10 @@ div.text-card-container {
         width: 100%;
     }
     div.imag {
-        /*height: 420px;*/
-        /*min-width: 360px;*/
+        max-width: 40%;
     }
     div.text-card-container {
-        margin: 0 60px;
+        margin: 0 20px;
         max-width: 660px;
     }
 }
