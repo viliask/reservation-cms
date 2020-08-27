@@ -1,7 +1,6 @@
 const openEl = document.querySelector('[data-open]');
 const closeEl = document.querySelector('[data-close]');
 const openPolicyModal = document.querySelector('[data-open-policy]');
-const closePolicyModal = document.querySelector('[data-close-policy]');
 const visible = 'visible';
 const PRICE = 40;
 
@@ -54,7 +53,7 @@ openPolicyModal.addEventListener('click', () => {
     document.querySelector('#policy-modal').classList.add(visible);
     document.getElementById('reservation-modal').classList.remove(visible);
 
-    closePolicyModal.addEventListener('click', () => {
+    document.querySelector('[data-close-policy]').addEventListener('click', () => {
         document.querySelector('#policy-modal').classList.remove(visible);
         document.querySelector('#reservation-modal').classList.add(visible);
     });
