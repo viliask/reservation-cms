@@ -42,6 +42,7 @@ Encore
     .addStyleEntry('superfish', './assets/css/superfish.css')
     .addStyleEntry('app', './assets/css/app.css')
     .addStyleEntry('roomGallery', './assets/css/roomGallery.css')
+    .addStyleEntry('card', './assets/css/card.css')
 ;
 
 const cssConfig = Encore.getWebpackConfig();

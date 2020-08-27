@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block styles %}
+    {{ encore_entry_link_tags('card', null, 'css') }}
+{% endblock %}
+
 {% block title %}Room index{% endblock %}
 
 {% block body %}
@@ -33,6 +37,33 @@
     {% endif %}
     </tbody>
 </table>
+
+    <div class="card">
+        <div class="card-container">
+            <div class="imag"></div>
+            <div class="text-card-container">
+                <span></span>
+                <h1>Web Development</h1>
+                <p>Get the lastest and trending web development project's source code, first see preview if you need
+                    then get the code.
+                </p>
+                <a href="https://webdevtrick.com" target="_blank">Visit Webdevtrick</a>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-container">
+            <div class="imag"></div>
+            <div class="text-card-container">
+                <span></span>
+                <h1>Web Development</h1>
+                <p>Get the lastest and trending web development project's source code, first see preview if you need
+                    then get the code.
+                </p>
+                <a href="https://webdevtrick.com" target="_blank">Visit Webdevtrick</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}

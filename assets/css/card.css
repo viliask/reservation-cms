@@ -1,0 +1,98 @@
+.text-card-container > span {
+    display: inline-block;
+    width: 50px;
+    height: 5px;
+    background-color: #FF3434;
+    margin-bottom: 30px;
+}
+div.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,.04);
+}
+div.card-container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45);
+}
+
+imag {
+    width: 100%;
+}
+.text-card-container h1 {
+    font-weight: 600;
+    font-size: 36px;
+    margin: 0 0 15px;
+}
+.text-card-container p {
+    font-weight: 300;
+    line-height: 24px;
+    margin: 0 0 30px 0;
+}
+.text-card-container a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #FF3434;
+    font-weight: bold;
+    font-size: 14px;
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    padding: 5px;
+    left: -5px;
+}
+.text-card-container a:hover {
+    color: #FF3434;
+}
+.text-card-container a::before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: calc(50%);
+    left: 0;
+    width: 100%;
+    height: 40%;
+    pointer-events: none;
+    background:   #80EDFF;
+    transform: scale3d(0, 1, 1);
+    transform-origin: 0% 50%;
+    transition: transform 0.33s;
+}
+.text-card-container a:hover::before {
+    transform: scale3d(1, 1, 1);
+    transform-origin: 0% 50%;
+}
+div.imag {
+    height: 300px;
+    width: 100%;
+    background: url("https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg");
+    background-position: center;
+    background-size: cover;
+}
+div.text-card-container {
+    margin: 20px 25px 25px;
+}
+@media screen and (min-width: 768px) {
+    div.card-container {
+        flex-direction: row;
+        width: 100%;
+    }
+    div.imag {
+        /*height: 420px;*/
+        /*min-width: 360px;*/
+    }
+    div.text-card-container {
+        margin: 0 60px;
+        max-width: 660px;
+    }
+}
+@media screen and (min-width: 1024px) {
+    div.card-container {
+        max-width: 1200px;
+    }
+}
