@@ -46,15 +46,13 @@
             {{ form_errors(form.message) }}
             {{ form_widget(form.message, {attr: {class: 'form-control'}}) }}
         </div>
-    </div>
-    <div class="form-group">
-        <div class="form-check">
+        <div class="form-group col-md-12">
             {{ form_errors(form.policy) }}
             {{ form_widget(form.policy, {attr: {class: 'form-check-input'}}) }}
             <label class="form-check-label" for="gridCheck">
                 Zapoznałem się i akceptuję <button type="button" data-open-policy>regulamin rezerwacji.</button>
             </label>
+            {{ form_widget(form.submit, {attr: {class: 'open-modal btn btn-primary btn-block'}, label: 'Zarezerwuj' }) }}
         </div>
     </div>
-{{ form_widget(form.submit, {attr: {class: 'open-modal btn btn-primary btn-block'}, label: 'Zarezerwuj' }) }}
 {{ form_end(form) }}
