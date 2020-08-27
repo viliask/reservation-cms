@@ -21,11 +21,14 @@
                             <div class="imag"></div>
                             <div class="text-card-container">
                                 <h2>{{ room.name }}</h2>
-                                <p>Get the lastest and trending web development project's source code, first see preview if you need
-                                    then get the code. {{ room.maxGuests }}
+                                <p>Get the lastest and trending web development project's source code, first see preview
+                                    if you need then get the code. {{ room.maxGuests }}
                                 </p>
                                 <div class="col-xs">
-                                    <button type="submit" onclick="location.href='{{ path('room_show_dates', {id: room.id, checkIn: checkIn, checkOut: checkOut, guests: guests}) }}';" class="btn btn-primary btn-block">Zarezerwuj pokój</button>
+                                    <button type="submit"
+                                            onclick="location.href='{{ path('room_show_dates', {id: room.id, checkIn: checkIn, checkOut: checkOut, guests: guests}) }}';"
+                                            class="btn btn-primary btn-block">Zarezerwuj pokój
+                                    </button>
                                 </div>
                             </div>
                         </div>
