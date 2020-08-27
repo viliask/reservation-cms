@@ -31,29 +31,49 @@ class RoomController extends AbstractController
     /**
      * @Route("/{id}/{checkIn}/{checkOut}", name="room_show_dates", methods={"GET", "POST"})
      */
-    public function showWithDates(Room $room, Request $request, string $checkIn, string $checkOut): Response
+    public function showWithDates(Room $room, Request $request, string $checkIn, string $checkOut, MediaManagerInterface $mediaManager): Response
     {
-        $event        = new Event();
-        $form         = $this->createForm(EventType::class, $event);
+        $availabilityForm = $this->createForm(ReservationType::class);
+        $event            = new Event();
+        $eventForm        = $this->createForm(EventType::class, $event);
         $checkInDate  = new DateTimeImmutable($checkIn);
         $checkOutDate = new DateTimeImmutable($checkOut);
         $guests       = $request->query->get('guests');
 
-        $form->get('checkIn')->setData($checkInDate);
-        $form->get('checkOut')->setData($checkOutDate);
-        $form->get('guests')->setData($guests);
-        $form->get('rooms')->setData([$room]);
-        $form->handleRequest($request);
+        $eventForm->get('checkIn')->setData($checkInDate);
+        $eventForm->get('checkOut')->setData($checkOutDate);
+        $eventForm->get('guests')->setData($guests);
+        $eventForm->get('rooms')->setData([$room]);
+        $eventForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($eventForm->isSubmitted() && $eventForm->isValid()) {
             return $this->processForm($event);
         }
 
+        $pageMedia     = [];
+        $roomIndicator = str_replace(' ', '-', strtolower($room->getName()));
+        foreach($mediaManager->get('en') as $media ) {
+            if (str_contains($media->getTitle(), $roomIndicator) && str_contains($media->getMimeType(), 'image')) {
+                $pageMedia[] =
+                    [
+                        'media' => $media,
+                        'title' => $media->getTitle(),
+                        'index' => substr($media->getTitle(), -1),
+                    ];
+            }
+        }
+
+        usort($pageMedia, function ($a, $b) {
+            return $a['index'] <=> $b['index'];
+        });
+
         return $this->render(
-            'room/showAvailable.html.twig',
+            'room/show.html.twig',
             [
-                'room' => $room,
-                'form' => $form->createView(),
+                'room'             => $room,
+                'form'             => $eventForm->createView(),
+                'availabilityForm' => $availabilityForm->createView(),
+                'media'            => $pageMedia,
             ]
         );
     }
