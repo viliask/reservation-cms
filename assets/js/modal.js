@@ -41,3 +41,9 @@ openPolicyModal.addEventListener('click', () => {
         document.querySelector('#reservation-modal').classList.add(visible);
     });
 });
+
+document.addEventListener('DOMContentLoaded',  () => {
+    if (document.querySelector('[data-checked]')) {
+        document.querySelector('#reservation-modal').classList.add(visible);
+    }
+});

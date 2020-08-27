@@ -74,6 +74,7 @@ class RoomController extends AbstractController
                 'form'             => $eventForm->createView(),
                 'availabilityForm' => $availabilityForm->createView(),
                 'media'            => $pageMedia,
+                'checked'          => '',
             ]
         );
     }

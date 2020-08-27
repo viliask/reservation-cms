@@ -9,6 +9,9 @@
 {% block title %}Room{% endblock %}
 
 {% block body %}
+    {% if checked is defined %}
+        <div data-checked></div>
+    {% endif %}
     <div class="res-hero id-js" data-room-id = {{ room.id }}>
         <div class="res-overlay"></div>
         <div class="res-cover" data-stellar-background-ratio="0.5" style="background-image: url({{ media[0]['media'].url }});">
