@@ -32,14 +32,19 @@ class RoomController extends AbstractController
     /**
      * @Route("/{id}/{checkIn}/{checkOut}", name="room_show_dates", methods={"GET", "POST"})
      */
-    public function showWithDates(Room $room, Request $request, string $checkIn, string $checkOut, MediaManagerInterface $mediaManager): Response
-    {
+    public function showWithDates(
+        Room $room,
+        Request $request,
+        string $checkIn,
+        string $checkOut,
+        MediaManagerInterface $mediaManager
+    ): Response {
         $availabilityForm = $this->createForm(ReservationType::class);
         $event            = new Event();
         $eventForm        = $this->createForm(EventType::class, $event);
-        $checkInDate  = new DateTimeImmutable($checkIn);
-        $checkOutDate = new DateTimeImmutable($checkOut);
-        $guests       = $request->query->get('guests');
+        $checkInDate      = new DateTimeImmutable($checkIn);
+        $checkOutDate     = new DateTimeImmutable($checkOut);
+        $guests           = $request->query->get('guests');
 
         $availabilityForm->get('checkInDate')->setData($checkInDate);
         $availabilityForm->get('checkOutDate')->setData($checkInDate);
@@ -48,8 +53,8 @@ class RoomController extends AbstractController
         $eventForm->get('checkOut')->setData($checkOutDate);
         $eventForm->get('guests')->setData($guests);
 
-        $params = $this->createParams($room, $eventForm, $event, $request, $availabilityForm, $mediaManager);
-        $params['checked' ] = '';
+        $params            = $this->createParams($room, $eventForm, $event, $request, $availabilityForm, $mediaManager);
+        $params['checked'] = '';
 
         return $this->render('room/show.html.twig', $params);
     }
@@ -68,8 +73,14 @@ class RoomController extends AbstractController
         return $this->render('room/show.html.twig', $params);
     }
 
-    private function createParams(Room $room, FormInterface $eventForm, Event $event, Request $request, FormInterface $availabilityForm, MediaManagerInterface $mediaManager): array
-    {
+    private function createParams(
+        Room $room,
+        FormInterface $eventForm,
+        Event $event,
+        Request $request,
+        FormInterface $availabilityForm,
+        MediaManagerInterface $mediaManager
+    ): array {
         $eventForm->get('rooms')->setData([$room]);
         $eventForm->handleRequest($request);
 
@@ -79,7 +90,7 @@ class RoomController extends AbstractController
 
         $pageMedia     = [];
         $roomIndicator = str_replace(' ', '-', strtolower($room->getName()));
-        foreach($mediaManager->get('en') as $media ) {
+        foreach ($mediaManager->get('en') as $media) {
             if (str_contains($media->getTitle(), $roomIndicator) && str_contains($media->getMimeType(), 'image')) {
                 $pageMedia[] =
                     [
@@ -99,11 +110,11 @@ class RoomController extends AbstractController
                 'room'             => $room,
                 'form'             => $eventForm->createView(),
                 'availabilityForm' => $availabilityForm->createView(),
-                'media'            => $pageMedia
+                'media'            => $pageMedia,
             ];
     }
 
-    protected function processForm(Event $event)
+    private function processForm(Event $event)
     {
         $event->setLocale('pl');
         $event->setStatus('draft');
