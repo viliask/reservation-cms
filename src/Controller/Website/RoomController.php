@@ -10,6 +10,7 @@ use App\Repository\EventRepository;
 use DateTimeImmutable;
 use Sulu\Bundle\MediaBundle\Media\Manager\MediaManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,40 +47,11 @@ class RoomController extends AbstractController
         $eventForm->get('checkIn')->setData($checkInDate);
         $eventForm->get('checkOut')->setData($checkOutDate);
         $eventForm->get('guests')->setData($guests);
-        $eventForm->get('rooms')->setData([$room]);
-        $eventForm->handleRequest($request);
 
-        if ($eventForm->isSubmitted() && $eventForm->isValid()) {
-            return $this->processForm($event);
-        }
+        $params = $this->createParams($room, $eventForm, $event, $request, $availabilityForm, $mediaManager);
+        $params['checked' ] = '';
 
-        $pageMedia     = [];
-        $roomIndicator = str_replace(' ', '-', strtolower($room->getName()));
-        foreach($mediaManager->get('en') as $media ) {
-            if (str_contains($media->getTitle(), $roomIndicator) && str_contains($media->getMimeType(), 'image')) {
-                $pageMedia[] =
-                    [
-                        'media' => $media,
-                        'title' => $media->getTitle(),
-                        'index' => substr($media->getTitle(), -1),
-                    ];
-            }
-        }
-
-        usort($pageMedia, function ($a, $b) {
-            return $a['index'] <=> $b['index'];
-        });
-
-        return $this->render(
-            'room/show.html.twig',
-            [
-                'room'             => $room,
-                'form'             => $eventForm->createView(),
-                'availabilityForm' => $availabilityForm->createView(),
-                'media'            => $pageMedia,
-                'checked'          => '',
-            ]
-        );
+        return $this->render('room/show.html.twig', $params);
     }
 
     /**
@@ -91,6 +63,13 @@ class RoomController extends AbstractController
         $event            = new Event();
         $eventForm        = $this->createForm(EventType::class, $event);
 
+        $params = $this->createParams($room, $eventForm, $event, $request, $availabilityForm, $mediaManager);
+
+        return $this->render('room/show.html.twig', $params);
+    }
+
+    private function createParams(Room $room, FormInterface $eventForm, Event $event, Request $request, FormInterface $availabilityForm, MediaManagerInterface $mediaManager): array
+    {
         $eventForm->get('rooms')->setData([$room]);
         $eventForm->handleRequest($request);
 
@@ -115,15 +94,13 @@ class RoomController extends AbstractController
             return $a['index'] <=> $b['index'];
         });
 
-        return $this->render(
-            'room/show.html.twig',
+        return
             [
                 'room'             => $room,
                 'form'             => $eventForm->createView(),
                 'availabilityForm' => $availabilityForm->createView(),
-                'media'            => $pageMedia,
-            ]
-        );
+                'media'            => $pageMedia
+            ];
     }
 
     protected function processForm(Event $event)
