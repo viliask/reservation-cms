@@ -20,6 +20,10 @@ div .form-check-input {
     padding: 0 30px;
 }
 
+.pt-1 {
+    padding-top: 10px;
+}
+
 .justify {
     text-align: justify;
 }
