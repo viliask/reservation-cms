@@ -17,12 +17,12 @@ Reservation CMS is a project to create a booking like reservations system for a 
     <a href="https://i.imgur.com/SNKHDoL.png"><img src="https://i.imgur.com/SNKHDoL.png" alt="image" border="0" /></a>
 </p>
 
-<p align="center">Reservation path</br>
-    <a href="https://i.imgur.com/qDBrfsm.png"><img src="https://i.imgur.com/qDBrfsm.png" alt="image" border="0" /></a>
+<p align="center">
+    <a href="https://i.imgur.com/Eh2z0SZ.png"><img src="https://i.imgur.com/Eh2z0SZ.png" alt="image" border="0" /></a>
 </p>
 
 <p align="center">
-    <a href="https://i.imgur.com/vSVGCwH.png"><img src="https://i.imgur.com/vSVGCwH.png" alt="image" border="0" /></a>
+    <a href="https://i.imgur.com/eq772zV.png"><img src="https://i.imgur.com/eq772zV.png" alt="image" border="0" /></a>
 </p>
 
 <p align="center">
