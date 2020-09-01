@@ -18,7 +18,11 @@
                 {% for room in rooms %}
                     <div class="card">
                         <div class="card-container">
-                            <div class="imag"></div>
+                            {% if media[room.id].media[0]is defined %}
+                                <div class="imag" style="background-image: url({{ media[room.id].media[0].media.url }});"></div>
+                            {% else %}
+                                <div class="imag"></div>
+                            {% endif %}
                             <div class="text-card-container">
                                 <h2>{{ room.name }}</h2>
                                 <p>Get the lastest and trending web development project's source code, first see preview
