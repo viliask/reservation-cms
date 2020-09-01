@@ -14,7 +14,7 @@
                                         <p>{{ content.reservationText|raw }}
                                     {% endif %}
                                 </div>
-                                <h4>{{ widgetHeader }}</h4>
+                                <h4>{{ formHeader }}</h4>
 
                             </div>
                             {{ form_start(form, {'attr': {'class': 'submit-form'} }) }}
@@ -53,9 +53,13 @@
         </div>
         <div class="desc2-homepage">
             <div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1 text-header">
-                <h1>{{ header }}</h1>
-                <span>wynajmij pokój już od</span>
-                <span class="price">40zł/os</span>
+                <h1>{{ widgetHeader }}</h1>
+                {% if widgetText is defined     %}
+                    <span>{{ widgetText }}</span>
+                {% else %}
+                    <span>wynajmij pokój już od</span>
+                    <span class="price">40zł/os</span>
+                {% endif %}
             </div>
         </div>
     </div>
