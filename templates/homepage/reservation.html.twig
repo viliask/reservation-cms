@@ -18,7 +18,7 @@
                             {{ form_errors(form) }}
                             <div class="col-xxs-12 col-xs-6 mt">
                                 <div class="input-field">
-                                    {{ form_label(form.checkInDate) }}
+                                    {{ form_label(form.checkInDate, 'Zameldowanie') }}
                                     {{ form_errors(form.checkInDate) }}
                                     {{ form_widget(form.checkInDate) }}
                                     <i class="icon-calendar icon"></i>
@@ -26,7 +26,7 @@
                             </div>
                             <div class="col-xxs-12 col-xs-6 mt alternate">
                                 <div class="input-field">
-                                    {{ form_label(form.checkOutDate) }}
+                                    {{ form_label(form.checkOutDate, 'Wymeldowanie') }}
                                     {{ form_errors(form.checkOutDate) }}
                                     {{ form_widget(form.checkOutDate) }}
                                     <i class="icon-calendar icon"></i>

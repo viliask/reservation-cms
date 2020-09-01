@@ -16,7 +16,6 @@ class ReservationType extends AbstractType
             ->add(
                 'checkInDate', Type\DateType::class,
                 [
-                    'label'  => 'Zameldowanie',
                     'widget' => 'single_text',
                     'html5'  => false,
                     'attr'   => ['class' => 'date js-datepicker form-control'],
@@ -25,7 +24,6 @@ class ReservationType extends AbstractType
             ->add(
                 'checkOutDate', Type\DateType::class,
                 [
-                    'label'  => 'Wymeldowanie',
                     'widget' => 'single_text',
                     'html5'  => false,
                     'attr'   => ['class' => 'date js-datepicker form-control'],
