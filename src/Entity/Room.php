@@ -58,6 +58,21 @@ class Room
      */
     private $translations;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $widgetHeader;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $widgetText;
+
+    /**
+     * @ORM\Column(type="string", length=1000, nullable=true)
+     */
+    private $content;
+
     public function __construct()
     {
         $this->enabled = false;
@@ -249,5 +264,41 @@ class Room
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getWidgetHeader(): ?string
+    {
+        return $this->widgetHeader;
+    }
+
+    public function setWidgetHeader(?string $widgetHeader): self
+    {
+        $this->widgetHeader = $widgetHeader;
+
+        return $this;
+    }
+
+    public function getWidgetText(): ?string
+    {
+        return $this->widgetText;
+    }
+
+    public function setWidgetText(?string $widgetText): self
+    {
+        $this->widgetText = $widgetText;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
     }
 }
