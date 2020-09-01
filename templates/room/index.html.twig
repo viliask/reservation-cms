@@ -19,9 +19,9 @@
                     <div class="card">
                         <div class="card-container">
                             {% if media[room.id].media[0]is defined %}
-                                <div class="imag" style="background-image: url({{ media[room.id].media[0].media.formats['sulu-400x400-inset.webp'] }});"></div>
+                                <div class="image" style="background-image: url({{ media[room.id].media[0].media.formats['sulu-400x400-inset.webp'] }});"></div>
                             {% else %}
-                                <div class="imag" style="background-image: url(/web/images/place-1.jpg);"></div>
+                                <div class="image" style="background-image: url(/web/images/place-1.jpg);"></div>
                             {% endif %}
                             <div class="text-card-container">
                                 <h2>{{ room.name }}</h2>
