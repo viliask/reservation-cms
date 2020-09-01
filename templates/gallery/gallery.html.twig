@@ -1,0 +1,39 @@
+{% block stylesheets %}
+    {{ encore_entry_link_tags('roomGallery', null, 'css') }}
+{% endblock %}
+
+<div id="res-room" class="res-section-room">
+    <div class="container">
+        <div class="row">
+            <section class="gallery">
+                <div class="carousel">
+                    {% for image in media %}
+                        {% if image['index'] == 1 %}
+                            <input type="radio" id="image{{ image['index'] }}" name="gallery-control" checked>
+                        {% endif %}
+                        <input type="radio" id="image{{ image['index'] }}" name="gallery-control">
+                    {% endfor %}
+                    <div class="wrap">
+                        {% for image in media %}
+                            <figure>
+                                <label>
+                                    <img src="{{ image['media'].url }}" alt="image{{ image['index'] }}"/>
+                                </label>
+                            </figure>
+                        {% endfor %}
+                    </div>
+                    <div class="thumbnails">
+                        <div class="slider">
+                            <div class="indicator"></div>
+                        </div>
+                        {% for image in media %}
+                            <label for="image{{ image['index'] }}" class="thumb"
+                                   style="background-image: url({{ image['media'].formats['sulu-100x100.webp'] }})">
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
