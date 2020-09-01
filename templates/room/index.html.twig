@@ -1,38 +1,53 @@
 {% extends 'base.html.twig' %}
 
+{% block styles %}
+    {{ encore_entry_link_tags('card', null, 'css') }}
+{% endblock %}
+
 {% block title %}Room index{% endblock %}
 
 {% block body %}
-<h1>Book a room</h1>
+    <div class="res-section-gray">
+        <div class="container">
+            {% if rooms is defined %}
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center heading-section pt-1">
+                        <h1>Znaleziono wolne miejsce</h1>
+                    </div>
+                </div>
+                {% for room in rooms %}
+                    <div class="card">
+                        <div class="card-container">
+                            {% if media[room.id].media[0]is defined %}
+                                <div class="image" style="background-image: url({{ media[room.id].media[0].media.formats['sulu-400x400-inset.webp'] }});"></div>
+                            {% else %}
+                                <div class="image" style="background-image: url(/web/images/place-1.jpg);"></div>
+                            {% endif %}
+                            <div class="text-card-container">
+                                <h2>{{ room.name }}</h2>
+                                <p>Get the lastest and trending web development project's source code, first see preview
+                                    if you need then get the code. {{ room.maxGuests }}
+                                </p>
+                                <div class="col-xs">
+                                    <button type="submit"
+                                            onclick="location.href='{{ path('room_show_dates', {id: room.id, checkIn: checkIn, checkOut: checkOut, guests: guests}) }}';"
+                                            class="btn btn-primary btn-block">Zarezerwuj pokój
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center heading-section pt-1">
+                            <h1>Brak wolnych miejsc</h1>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>MaxGuests</th>
-        <th>actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% if rooms is defined %}
-        {% for room in rooms %}
-            <tr>
-                <td>{{ room.id }}</td>
-                <td>{{ room.name }}</td>
-                <td>{{ room.maxGuests }}</td>
-                <td>
-                    <a href="{{ path('room_show_dates', {id: room.id, checkIn: checkIn, checkOut: checkOut, guests: guests}) }}">show</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-    {% endif %}
-    </tbody>
-</table>
 {% endblock %}
 
 {% block javascripts %}

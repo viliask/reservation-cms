@@ -4,6 +4,7 @@ namespace App\Form\Type;
 
 use App\Entity\Event;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -46,6 +47,7 @@ class EventType extends AbstractType
             ->add('message', TextareaType::class)
             ->add('rooms', null, ['label' => false, 'attr' => ['style' => 'display:none']])
             ->add('policy')
+            ->add('submit', SubmitType::class)
         ;
     }
 

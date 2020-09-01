@@ -2,9 +2,7 @@
     <div class="row">
         <div class="col-sm-5 col-md-5 res-form">
             <div class="tabulation">
-
                 <div class="tab-content">
-
                     <div role="tabpanel" class="tab-pane active" id="hotels">
                         <div class="row">
                             <div class="col-xxs-12 col-xs-12 mt">
@@ -14,29 +12,30 @@
                                         <p>{{ content.reservationText|raw }}
                                     {% endif %}
                                 </div>
-                                <h4>Sprawdź dostępność pokoi</h4>
-
+                                <h4>{{ formHeader }}</h4>
                             </div>
                             {{ form_start(form, {'attr': {'class': 'submit-form'} }) }}
                             {{ form_errors(form) }}
                             <div class="col-xxs-12 col-xs-6 mt">
                                 <div class="input-field">
-                                    {{ form_label(form.checkInDate) }}
+                                    {{ form_label(form.checkInDate, 'Zameldowanie') }}
                                     {{ form_errors(form.checkInDate) }}
                                     {{ form_widget(form.checkInDate) }}
+                                    <i class="icon-calendar icon"></i>
                                 </div>
                             </div>
                             <div class="col-xxs-12 col-xs-6 mt alternate">
                                 <div class="input-field">
-                                    {{ form_label(form.checkOutDate) }}
+                                    {{ form_label(form.checkOutDate, 'Wymeldowanie') }}
                                     {{ form_errors(form.checkOutDate) }}
                                     {{ form_widget(form.checkOutDate) }}
+                                    <i class="icon-calendar icon"></i>
                                 </div>
                             </div>
                             <div class="col-xxs-12 col-xs-6 mt alternate">
                                 <div class="input-field">
-                                    {{ form_label(form.guests) }}
                                     {{ form_errors(form.guests) }}
+                                    <i class="icon-users icon icon-guests"></i>
                                     {{ form_widget(form.guests) }}
                                 </div>
                             </div>
@@ -46,16 +45,18 @@
                             {{ form_end(form) }}
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
         <div class="desc2-homepage">
             <div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1 text-header">
-                <h1>Odwiedź Krynicę-Zdrój</h1>
-                <span>wynajmij pokój już od</span>
-                <span class="price">40zł/os</span>
+                <h1>{{ widgetHeader }}</h1>
+                {% if widgetText is defined %}
+                    <span>{{ widgetText }}</span>
+                {% else %}
+                    <span>wynajmij pokój już od</span>
+                    <span class="price">40zł/os</span>
+                {% endif %}
             </div>
         </div>
     </div>

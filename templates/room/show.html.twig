@@ -8,33 +8,120 @@
 {% block title %}Room{% endblock %}
 
 {% block body %}
-    <h1 class="id-js" data-room-id = {{ room.id }}>Room</h1>
+    {% if checked is defined %}
+        <div data-checked></div>
+    {% endif %}
+    <div class="res-hero id-js" data-room-id = {{ room.id }}>
+        <div class="res-overlay"></div>
+        {% if media[0] is defined %}
+            <div class="res-cover" data-stellar-background-ratio="0.5" style="background-image: url({{ media[0]['media'].url }});">
+        {% else %}
+            <div class="res-cover" data-stellar-background-ratio="0.5">
+        {% endif %}
+            <div class="desc">
+                {% block reservation %}
+                    {% include "./homepage/reservation.html.twig" with
+                        {
+                            form: availabilityForm,
+                            widgetHeader: room.widgetHeader,
+                            widgetText: room.widgetText,
+                            formHeader: 'Sprawdź dostępność pokoju'
+                        }
+                    %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ room.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ room.name }}</td>
-            </tr>
-            <tr>
-                <th>MaxGuests</th>
-                <td>{{ room.maxGuests }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="res-features">
+        <div class="container room-container">
+            <div class="row plr-3">
+                <h2 class="center-block">Opis pokoju</h2>
+                <div class="feature-copy">
+                    <p>{{ room.content|raw }}</p>
+                </div>
+                <h3>Wyposażenie pokoju obejmuje: </h3>
+                <div class="col-md-4">
+                    <div class="feature-left">
+							<span class="icon">
+								<i class="icon-hotairballoon"></i>
+							</span>
+                        <div class="feature-copy">
+                            <p>Kuchnia ogólnodostępna</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-left">
+							<span class="icon">
+								<i class="icon-search"></i>
+							</span>
+                        <div class="feature-copy">
+                            <p>Bezpłatny internet</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-left">
+							<span class="icon">
+								<i class="icon-wallet"></i>
+							</span>
+                        <div class="feature-copy">
+                            <p>Telewizja kablowa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row plr-3">
+                <div class="col-md-4">
+                    <div class="feature-left">
+							<span class="icon">
+								<i class="icon-wine"></i>
+							</span>
+                        <div class="feature-copy">
+                            <p>Łazienka w pokoju</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-left">
+							<span class="icon">
+								<i class="icon-genius"></i>
+							</span>
+                        <div class="feature-copy">
+                            <p>Altanka ze sprzętem to grillowania</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-left">
+							<span class="icon">
+								<i class="icon-chat"></i>
+							</span>
+                        <div class="feature-copy">
+                            <p>Ogród</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    {% block reservation %}
-        {% include "./homepage/reservation.html.twig" with {form: availabilityForm} %}
-    {% endblock %}
+    {% if media[0] is defined %}
+    <div class="col-md-8 col-md-offset-2 text-center heading-section">
+        <h2>Zobacz zdjęcia pokoju</h2>
+    </div>
+        {% block gallery %}
+            {% include 'gallery/gallery.html.twig' with {media: media} %}
+        {% endblock %}
+    {% endif %}
 
     {% block modal %}
         {% include 'room/roomNotAvailable.html.twig' with {roomName: room.name} %}
         {% include 'room/availabilityModal.html.twig' with {form: availabilityForm, roomName: room.name} %}
         {% include 'room/modal.html.twig' with {form: form} %}
+        {% include 'room/policy.html.twig' %}
+        {% include 'room/emptyForm.html.twig' %}
     {% endblock %}
 
     {% block js %}

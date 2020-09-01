@@ -2,13 +2,16 @@
 
 namespace App\Controller\Website;
 
+use App\Controller\Traits\CommonTrait;
 use App\Entity\Event;
 use App\Entity\Room;
 use App\Form\Type\EventType;
 use App\Form\Type\ReservationType;
 use App\Repository\EventRepository;
 use DateTimeImmutable;
+use Sulu\Bundle\MediaBundle\Media\Manager\MediaManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +22,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class RoomController extends AbstractController
 {
+    use CommonTrait;
+
     /**
      * @Route("/confirmation", name="room_confirmation", methods={"GET"})
      */
@@ -30,42 +35,55 @@ class RoomController extends AbstractController
     /**
      * @Route("/{id}/{checkIn}/{checkOut}", name="room_show_dates", methods={"GET", "POST"})
      */
-    public function showWithDates(Room $room, Request $request, string $checkIn, string $checkOut): Response
-    {
-        $event        = new Event();
-        $form         = $this->createForm(EventType::class, $event);
-        $checkInDate  = new DateTimeImmutable($checkIn);
-        $checkOutDate = new DateTimeImmutable($checkOut);
-        $guests       = $request->query->get('guests');
+    public function showWithDates(
+        Room $room,
+        Request $request,
+        string $checkIn,
+        string $checkOut,
+        MediaManagerInterface $mediaManager
+    ): Response {
+        $availabilityForm = $this->createForm(ReservationType::class);
+        $event            = new Event();
+        $eventForm        = $this->createForm(EventType::class, $event);
+        $checkInDate      = new DateTimeImmutable($checkIn);
+        $checkOutDate     = new DateTimeImmutable($checkOut);
+        $guests           = $request->query->get('guests');
 
-        $form->get('checkIn')->setData($checkInDate);
-        $form->get('checkOut')->setData($checkOutDate);
-        $form->get('guests')->setData($guests);
-        $form->get('rooms')->setData([$room]);
-        $form->handleRequest($request);
+        $availabilityForm->get('checkInDate')->setData($checkInDate);
+        $availabilityForm->get('checkOutDate')->setData($checkInDate);
+        $availabilityForm->get('guests')->setData($guests);
+        $eventForm->get('checkIn')->setData($checkInDate);
+        $eventForm->get('checkOut')->setData($checkOutDate);
+        $eventForm->get('guests')->setData($guests);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            return $this->processForm($event);
-        }
+        $params            = $this->createParams($room, $eventForm, $event, $request, $availabilityForm, $mediaManager);
+        $params['checked'] = '';
 
-        return $this->render(
-            'room/showAvailable.html.twig',
-            [
-                'room' => $room,
-                'form' => $form->createView(),
-            ]
-        );
+        return $this->render('room/show.html.twig', $params);
     }
 
     /**
      * @Route("/{id}", name="room_show", methods={"GET", "POST"})
      */
-    public function show(Room $room, Request $request): Response
+    public function show(Room $room, Request $request, MediaManagerInterface $mediaManager): Response
     {
         $availabilityForm = $this->createForm(ReservationType::class);
         $event            = new Event();
         $eventForm        = $this->createForm(EventType::class, $event);
 
+        $params = $this->createParams($room, $eventForm, $event, $request, $availabilityForm, $mediaManager);
+
+        return $this->render('room/show.html.twig', $params);
+    }
+
+    private function createParams(
+        Room $room,
+        FormInterface $eventForm,
+        Event $event,
+        Request $request,
+        FormInterface $availabilityForm,
+        MediaManagerInterface $mediaManager
+    ): array {
         $eventForm->get('rooms')->setData([$room]);
         $eventForm->handleRequest($request);
 
@@ -73,17 +91,15 @@ class RoomController extends AbstractController
             return $this->processForm($event);
         }
 
-        return $this->render(
-            'room/show.html.twig',
+        return
             [
                 'room'             => $room,
                 'form'             => $eventForm->createView(),
                 'availabilityForm' => $availabilityForm->createView(),
-            ]
-        );
+            ] + $this->getMedia($room, $mediaManager);
     }
 
-    protected function processForm(Event $event)
+    private function processForm(Event $event)
     {
         $event->setLocale('pl');
         $event->setStatus('draft');

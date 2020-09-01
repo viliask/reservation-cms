@@ -1,3 +1,33 @@
+.form-group div {
+    display: inline-block;
+}
+
+div .form-check-input {
+    float: left;
+    margin-right: 5px;
+}
+
+.form-check-label button {
+    color: #368bdb;
+    text-decoration: underline;
+}
+
+.btn.btn-primary {
+    border-radius: 5px;
+}
+
+.plr-3 {
+    padding: 0 30px;
+}
+
+.pt-1 {
+    padding-top: 10px;
+}
+
+.justify {
+    text-align: justify;
+}
+
 .res-tours > div .desc span {
     margin-bottom: 30px;
     font-size: 22px;
@@ -146,6 +176,27 @@ form.form {
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
 }
 
+.input-field .icon {
+    right: 1rem;
+    padding: 14px;
+    color: black;
+    position: absolute;
+}
+
+input[type="text"] {
+    display: inline;
+}
+
+.input-field .icon-guests {
+    right: unset;
+}
+
+.input-field select{
+    min-width: -webkit-fill-available;
+    min-height: 44px;
+    padding-left: 65px;
+}
+
 @media screen and (max-width: 768px) {
     .res-cover .desc .desc2 {
         top: 40%;
@@ -154,7 +205,7 @@ form.form {
     }
 
     .res-cover .desc .desc2-homepage {
-        top: -110%;
+        top: -123%;
         position: absolute;
     }
 
@@ -219,6 +270,16 @@ form.form {
 
     h1 {
         margin: 0 0 10px 0;
+    }
+
+    .res-section-gray {
+        padding: 0;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .col-xs-6 {
+         width: 100%;
     }
 }
 

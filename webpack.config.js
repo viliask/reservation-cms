@@ -11,6 +11,7 @@ Encore
     .addEntry('modal', './assets/js/modal.js')
     .addEntry('availabilityModal', './assets/js/availabilityModal.js')
     .addEntry('main', './assets/js/main.js')
+    .addEntry('homepage', './assets/js/homepage.js')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()
@@ -40,6 +41,8 @@ Encore
     .addStyleEntry('bootstrap', './assets/css/bootstrap.css')
     .addStyleEntry('superfish', './assets/css/superfish.css')
     .addStyleEntry('app', './assets/css/app.css')
+    .addStyleEntry('roomGallery', './assets/css/roomGallery.css')
+    .addStyleEntry('card', './assets/css/card.css')
 ;
 
 const cssConfig = Encore.getWebpackConfig();

@@ -1,15 +1,14 @@
 import Axios from 'axios';
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
+import {validateForm, visible, form} from './helper';
 
 const routes = require('../../public/js/fos_js_routes_website');
-const form = document.querySelector('.submit-form');
 const roomId = document.querySelector('.id-js');
 const checkIn = document.querySelector('#reservation_checkInDate');
 const checkOut = document.querySelector('#reservation_checkOutDate');
 let responseData = null;
 const closeAvailabilityModal = document.querySelector('[data-close-availability]');
 const closeRoomNotAvailableModal = document.querySelector('[data-close-not-available]');
-const visible = 'visible';
 
 const loadData = async () => {
     const response = await Axios.get(Routing.generate('xhr_room_availability',
@@ -32,15 +31,17 @@ Routing.setRoutingData(routes);
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    await loadData().then((data) => {
-        responseData = data;
-        if (responseData.status === true) {
-            document.querySelector('#availability-modal').classList.add(visible);
-            updateForm();
-        } else {
-            document.querySelector('#room-not-available-modal').classList.add(visible);
-        }
-    });
+    if (validateForm()) {
+        await loadData().then((data) => {
+            responseData = data;
+            if (responseData.status === true) {
+                document.querySelector('#availability-modal').classList.add(visible);
+                updateForm();
+            } else {
+                document.querySelector('#room-not-available-modal').classList.add(visible);
+            }
+        });
+    }
 });
 
 closeAvailabilityModal.addEventListener('click', () => {

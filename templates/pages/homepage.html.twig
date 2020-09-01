@@ -1,18 +1,21 @@
 {% extends "base.html.twig" %}
 
 {% block styles %}
+    {{ encore_entry_link_tags('modal', null, 'css') }}
     {{ encore_entry_link_tags('airbnb', null, 'css') }}
 {% endblock %}
 
 {% block content %}
 {#    <h1>{{ content.title }}</h1>#}
 
+    {% include 'room/emptyForm.html.twig' %}
+
     <div class="res-hero">
         <div class="res-overlay"></div>
         <div class="res-cover" data-stellar-background-ratio="0.5" style="background-image: url(web/images/cover-bg-min.webp);">
             <div class="desc">
                 {% block reservation %}
-                    {% include "./homepage/reservation.html.twig" with {form: form} %}
+                    {% include "./homepage/reservation.html.twig" with {form: form, formHeader: 'Sprawdź dostępność pokoi', widgetHeader: 'Odwiedź Krynicę-Zdrój'} %}
                 {% endblock %}
             </div>
         </div>
@@ -211,4 +214,5 @@
 
 {% block js %}
     {{ encore_entry_script_tags('flatpickr', null, 'js') }}
+    {{ encore_entry_script_tags('homepage', null, 'js') }}
 {% endblock %}
