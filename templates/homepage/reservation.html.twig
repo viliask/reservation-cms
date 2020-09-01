@@ -2,9 +2,7 @@
     <div class="row">
         <div class="col-sm-5 col-md-5 res-form">
             <div class="tabulation">
-
                 <div class="tab-content">
-
                     <div role="tabpanel" class="tab-pane active" id="hotels">
                         <div class="row">
                             <div class="col-xxs-12 col-xs-12 mt">
@@ -15,7 +13,6 @@
                                     {% endif %}
                                 </div>
                                 <h4>{{ formHeader }}</h4>
-
                             </div>
                             {{ form_start(form, {'attr': {'class': 'submit-form'} }) }}
                             {{ form_errors(form) }}
@@ -46,15 +43,13 @@
                             {{ form_end(form) }}
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
         <div class="desc2-homepage">
             <div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1 text-header">
                 <h1>{{ widgetHeader }}</h1>
-                {% if widgetText is defined     %}
+                {% if widgetText is defined %}
                     <span>{{ widgetText }}</span>
                 {% else %}
                     <span>wynajmij pokój już od</span>
