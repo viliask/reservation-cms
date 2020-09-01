@@ -176,7 +176,7 @@ form.form {
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
 }
 
-.icon {
+.input-field .icon {
     right: 1rem;
     padding: 14px;
     color: black;
@@ -187,7 +187,7 @@ input[type="text"] {
     display: inline;
 }
 
-.icon-guests {
+.input-field .icon-guests {
     right: unset;
 }
 
