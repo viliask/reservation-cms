@@ -119,11 +119,10 @@
                             {% endif %}
                             <input type="radio" id="image{{ image['index'] }}" name="gallery-control">
                         {% endfor %}
-                        <input type="checkbox" id="fullscreen" name="gallery-fullscreen-control"/>
                         <div class="wrap">
                             {% for image in media %}
                                 <figure>
-                                    <label for="fullscreen">
+                                    <label>
                                         <img src="{{ image['media'].url }}" alt="image{{ image['index'] }}"/>
                                     </label>
                                 </figure>
