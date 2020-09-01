@@ -2,6 +2,7 @@
 
 namespace App\Controller\Website;
 
+use App\Controller\Traits\CommonTrait;
 use App\Entity\Event;
 use App\Entity\Room;
 use App\Form\Type\EventType;
@@ -21,6 +22,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class RoomController extends AbstractController
 {
+    use CommonTrait;
+
     /**
      * @Route("/confirmation", name="room_confirmation", methods={"GET"})
      */
@@ -88,30 +91,12 @@ class RoomController extends AbstractController
             return $this->processForm($event);
         }
 
-        $pageMedia     = [];
-        $roomIndicator = str_replace(' ', '-', strtolower($room->getName()));
-        foreach ($mediaManager->get('en') as $media) {
-            if (str_contains($media->getTitle(), $roomIndicator) && str_contains($media->getMimeType(), 'image')) {
-                $pageMedia[] =
-                    [
-                        'media' => $media,
-                        'title' => $media->getTitle(),
-                        'index' => substr($media->getTitle(), -1),
-                    ];
-            }
-        }
-
-        usort($pageMedia, function ($a, $b) {
-            return $a['index'] <=> $b['index'];
-        });
-
         return
             [
                 'room'             => $room,
                 'form'             => $eventForm->createView(),
                 'availabilityForm' => $availabilityForm->createView(),
-                'media'            => $pageMedia,
-            ];
+            ] + $this->getMedia($room, $mediaManager);
     }
 
     private function processForm(Event $event)
