@@ -176,6 +176,27 @@ form.form {
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
 }
 
+.icon {
+    right: 1rem;
+    padding: 14px;
+    color: black;
+    position: absolute;
+}
+
+input[type="text"] {
+    display: inline;
+}
+
+.icon-guests {
+    right: unset;
+}
+
+.input-field select{
+    min-width: -webkit-fill-available;
+    min-height: 44px;
+    padding-left: 65px;
+}
+
 @media screen and (max-width: 768px) {
     .res-cover .desc .desc2 {
         top: 40%;
@@ -253,6 +274,12 @@ form.form {
 
     .res-section-gray {
         padding: 0;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .col-xs-6 {
+         width: 100%;
     }
 }
 
