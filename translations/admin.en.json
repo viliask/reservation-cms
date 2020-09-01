@@ -18,5 +18,7 @@
     "app.enabled": "Enabled",
     "app.location": "Location",
     "app.max_guests": "Max guests",
-    "app.name": "Name"
+    "app.widgetHeader": "Widget header",
+    "app.widgetText": "Widget text",
+    "app.content": "Content"
 }
