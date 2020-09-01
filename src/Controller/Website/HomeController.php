@@ -2,6 +2,7 @@
 
 namespace App\Controller\Website;
 
+use App\Controller\Traits\CommonTrait;
 use App\Entity\Room;
 use App\Form\Type\ReservationType;
 use App\Repository\EventRepository;
@@ -14,6 +15,8 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class HomeController extends WebsiteController
 {
+    use CommonTrait;
+
     const RESERVATION_PATH = 'reservation';
 
     public function indexAction(StructureInterface $structure, bool $preview = false, bool $partial = false): Response
@@ -61,28 +64,5 @@ class HomeController extends WebsiteController
                 'media'    => $media,
             ]
         );
-    }
-
-    private function getMedia(Room $room, MediaManagerInterface $mediaManager): array
-    {
-        $pageMedia     = [];
-        $roomIndicator = str_replace(' ', '-', strtolower($room->getName()));
-
-        foreach ($mediaManager->get('en') as $media) {
-            if (str_contains($media->getTitle(), $roomIndicator) && str_contains($media->getMimeType(), 'image')) {
-                $pageMedia[] =
-                    [
-                        'media' => $media,
-                        'title' => $media->getTitle(),
-                        'index' => substr($media->getTitle(), -1),
-                    ];
-            }
-        }
-
-        usort($pageMedia, function ($a, $b) {
-            return $a['index'] <=> $b['index'];
-        });
-
-        return ['media' => $pageMedia];
     }
 }
