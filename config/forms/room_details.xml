@@ -25,9 +25,21 @@
             </meta>
         </property>
 
-        <property name="reservations" type="event_selection">
+        <property name="widgetHeader" type="text_line" mandatory="true" colspan="8">
             <meta>
-                <title>app.reservations</title>
+                <title>app.widgetHeader</title>
+            </meta>
+        </property>
+
+        <property name="widgetText" type="text_area">
+            <meta>
+                <title>app.widgetText</title>
+            </meta>
+        </property>
+
+        <property name="content" type="text_editor">
+            <meta>
+                <title>app.content</title>
             </meta>
         </property>
 
