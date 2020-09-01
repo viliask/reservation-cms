@@ -37,13 +37,19 @@ class HomeController extends WebsiteController
         return $response;
     }
 
-    public function reservation(Request $request, EventRepository $eventRepository): Response
+    public function reservation(Request $request, EventRepository $eventRepository, MediaManagerInterface $mediaManager): Response
     {
         $reservation = $request->request->get('reservation');
         $checkIn     = $reservation['checkInDate'];
         $checkOut    = $reservation['checkOutDate'];
         $guests      = $reservation['guests'];
         $rooms       = $eventRepository->findAvailableRooms($checkIn, $checkOut);
+        $media       = [];
+
+        /* @var $room Room */
+        foreach ($rooms as $room) {
+            $media[$room->getId()] = $this->getMedia($room, $mediaManager);
+        }
 
         return $this->render(
             '/room/index.html.twig',
@@ -52,6 +58,7 @@ class HomeController extends WebsiteController
                 'checkIn'  => $checkIn,
                 'checkOut' => $checkOut,
                 'guests'   => $guests,
+                'media'    => $media,
             ]
         );
     }
