@@ -34,9 +34,21 @@ Reservation CMS is a project to create a booking like reservations system for a 
 </p>
 
 ## &nbsp; Features planned?
-- <s>Redo styling to make it custom</s>
 - Use booking API and others to unify reservations view in one timeline
-- <s>Upgrade project to work with Symfony 5.x and latest Sulu</s>
+- E-mail reservation alert 
+- Dashboard for reservations and contact entries
+- Discounts functionality available from admin panel
+- Payments
+
+## &nbsp; Done
+- Basic reservation system
+- Timeline view of reservation entries available from admin panel
+- Upgrade project to work with Symfony 5.x and latest Sulu
+- Content creation from admin panel
+- Contact entires available from admin panel
+- Articles creation
+- Editable room and rooms landing pages from admin panel
+- Partially automated room gallery
 
 For more features visit Trello table: https://trello.com/b/cak0dvgB/reservation-cms
 
