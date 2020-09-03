@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PromoOffer
 {
+    const RESOURCE_KEY = 'promos';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
