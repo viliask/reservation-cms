@@ -22,3 +22,11 @@ app_timeline:
     name_prefix: app.
     options:
         expose: true
+
+app_promos:
+    type: rest
+    prefix: /admin/api
+    resource: App\Controller\Admin\PromoController
+    name_prefix: app.
+    options:
+        expose: true

@@ -17,6 +17,10 @@ sulu_admin:
             routes:
                 list: app.get_rooms
                 detail: app.get_room
+        promos:
+            routes:
+                list: app.get_promos
+                detail: app.get_promo
 
     # Registering Selection Field Types in this section
     field_type_options:
