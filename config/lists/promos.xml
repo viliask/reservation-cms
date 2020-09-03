@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<list xmlns="http://schemas.sulu.io/list-builder/list">
+    <key>promos</key>
+
+    <properties>
+        <property name="id" visibility="no" translation="sulu_admin.id">
+            <field-name>id</field-name>
+            <entity-name>App\Entity\PromoOffer</entity-name>
+        </property>
+
+        <property name="name" visibility="always" searchability="yes" translation="app.name">
+            <field-name>name</field-name>
+            <entity-name>App\Entity\PromoOffer</entity-name>
+
+        </property>
+
+        <property name="discount" visibility="always" searchability="yes" translation="app.discount">
+            <field-name>discount</field-name>
+            <entity-name>App\Entity\PromoOffer</entity-name>
+
+        </property>
+
+        <property name="minDays" visibility="always" searchability="yes" translation="app.minDays">
+            <field-name>minDays</field-name>
+            <entity-name>App\Entity\PromoOffer</entity-name>
+
+        </property>
+
+        <property name="startDate" visibility="always" searchability="yes" translation="app.startDate" type="datetime">
+            <field-name>startDate</field-name>
+            <entity-name>App\Entity\PromoOffer</entity-name>
+        </property>
+
+        <property name="endDate" visibility="always" searchability="yes" translation="app.endDate" type="datetime">
+            <field-name>endDate</field-name>
+            <entity-name>App\Entity\PromoOffer</entity-name>
+        </property>
+    </properties>
+</list>
