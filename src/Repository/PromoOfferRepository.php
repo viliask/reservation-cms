@@ -4,7 +4,11 @@ namespace App\Repository;
 
 use App\Entity\PromoOffer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query\Expr\Join;
+use Doctrine\ORM\QueryBuilder;
+use Sulu\Component\SmartContent\Orm\DataProviderRepositoryInterface;
+use Sulu\Component\SmartContent\Orm\DataProviderRepositoryTrait;
 
 /**
  * @method PromoOffer|null find($id, $lockMode = null, $lockVersion = null)
@@ -12,39 +16,71 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method PromoOffer[]    findAll()
  * @method PromoOffer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PromoOfferRepository extends ServiceEntityRepository
+class PromoOfferRepository extends ServiceEntityRepository implements DataProviderRepositoryInterface
 {
+    use DataProviderRepositoryTrait {
+        findByFilters as parentFindByFilters;
+    }
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, PromoOffer::class);
     }
 
-    // /**
-    //  * @return PromoOffer[] Returns an array of PromoOffer objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function create(string $locale): PromoOffer
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $promoOffer = new PromoOffer();
+        $promoOffer->setLocale($locale);
 
-    /*
-    public function findOneBySomeField($value): ?PromoOffer
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $promoOffer;
     }
-    */
+
+    public function remove(int $id): void
+    {
+        $this->getEntityManager()->remove(
+            $this->getEntityManager()->getReference(
+                $this->getClassName(),
+                $id
+            )
+        );
+        $this->getEntityManager()->flush();
+    }
+
+    public function save(PromoOffer $promoOffer): void
+    {
+        $this->getEntityManager()->persist($promoOffer);
+        $this->getEntityManager()->flush();
+    }
+
+    public function findById(int $id, string $locale): ?PromoOffer
+    {
+        $promoOffer = $this->find($id);
+        if (!$promoOffer) {
+            return null;
+        }
+
+        $promoOffer->setLocale($locale);
+
+        return $promoOffer;
+    }
+
+    public function findByFilters($filters, $page, $pageSize, $limit, $locale, $options = [])
+    {
+        $entities = $this->parentFindByFilters($filters, $page, $pageSize, $limit, $locale, $options);
+
+        return array_map(
+            function (PromoOffer $entity) use ($locale) {
+                return $entity->setLocale($locale);
+            },
+            $entities
+        );
+    }
+
+    protected function appendJoins(QueryBuilder $queryBuilder, string $alias, string $locale): void
+    {
+        $queryBuilder->innerJoin($alias . '.translations', 'translation', Join::WITH, 'translation.locale = :locale');
+        $queryBuilder->setParameter('locale', $locale);
+
+        $queryBuilder->andWhere($alias . '.enabled = true');
+    }
 }
