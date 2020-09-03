@@ -73,6 +73,11 @@ class Room
      */
     private $content;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $basePrice;
+
     public function __construct()
     {
         $this->enabled = false;
@@ -298,6 +303,18 @@ class Room
     public function setContent(?string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getBasePrice(): ?int
+    {
+        return $this->basePrice;
+    }
+
+    public function setBasePrice(int $basePrice): self
+    {
+        $this->basePrice = $basePrice;
 
         return $this;
     }
