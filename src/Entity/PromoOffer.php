@@ -51,6 +51,12 @@ class PromoOffer
      */
     private $rooms;
 
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $locale;
+
+
     public function __construct()
     {
         $this->rooms = new ArrayCollection();
@@ -147,5 +153,22 @@ class PromoOffer
         }
 
         return $this;
+    }
+
+    public function getLocale(): string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(string $locale): self
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }
