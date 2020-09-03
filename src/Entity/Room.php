@@ -78,11 +78,17 @@ class Room
      */
     private $basePrice;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=PromoOffer::class, inversedBy="rooms")
+     */
+    private $promoOffers;
+
     public function __construct()
     {
         $this->enabled = false;
         $this->translations = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->promoOffers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -315,6 +321,32 @@ class Room
     public function setBasePrice(int $basePrice): self
     {
         $this->basePrice = $basePrice;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PromoOffer[]
+     */
+    public function getPromoOffers(): Collection
+    {
+        return $this->promoOffers;
+    }
+
+    public function addPromoOffer(PromoOffer $promoOffer): self
+    {
+        if (!$this->promoOffers->contains($promoOffer)) {
+            $this->promoOffers[] = $promoOffer;
+        }
+
+        return $this;
+    }
+
+    public function removePromoOffer(PromoOffer $promoOffer): self
+    {
+        if ($this->promoOffers->contains($promoOffer)) {
+            $this->promoOffers->removeElement($promoOffer);
+        }
 
         return $this;
     }
