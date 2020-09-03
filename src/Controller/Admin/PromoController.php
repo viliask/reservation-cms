@@ -114,7 +114,18 @@ class PromoController extends AbstractRestController implements ClassResourceInt
      */
     protected function mapDataToEntity(array $data, PromoOffer $entity, string $locale): void
     {
+        $entity->setName($data['name']);
+        $entity->setDiscount((int)$data['discount']);
+        $entity->setMinDays((int)$data['minDays']);
+        $entity->setLocale($locale);
 
+        if ($startDate = $data['startDate'] ?? null) {
+            $entity->setStartDate(new DateTime($startDate));
+        }
+
+        if ($endDate = $data['endDate'] ?? null) {
+            $entity->setEndDate(new DateTime($endDate));
+        }
     }
 
     protected function load(int $id, Request $request): ?PromoOffer
