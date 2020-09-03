@@ -1,6 +1,7 @@
 {
     "app.timeline": "Timeline",
     "app.events": "Veranstaltungen",
+    "app.promo": "Promocje",
     "app.teaser": "Kurzbeschreibung",
     "app.check_in": "Check In",
     "app.check_out": "Check Out",
@@ -13,13 +14,17 @@
     "app.message": "Message",
     "app.policy": "Policy",
     "app.price": "Price",
-    "app.rooms": "Rooms",
+    "app.rooms": "Pokoje",
     "app.enable_event": "Veranstaltungen aktivieren",
     "app.enabled": "Aktiviert",
     "app.location": "Standort",
     "app.max_guests": "Max guests",
-    "app.name": "Name",
+    "app.name": "Nazwa",
     "app.widgetHeader": "Widget header",
     "app.widgetText": "Widget text",
-    "app.content": "Content"
+    "app.content": "Content",
+    "app.discount": "Obniżka",
+    "app.minDays": "Min. dni",
+    "app.startDate": "Początek",
+    "app.endDate": "Koniec"
 }
