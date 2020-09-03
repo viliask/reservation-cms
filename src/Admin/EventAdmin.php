@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Admin;
 
 use App\Entity\Event;
+use App\Entity\PromoOffer;
 use App\Entity\Room;
 use Sulu\Bundle\AdminBundle\Admin\Admin;
 use Sulu\Bundle\AdminBundle\Admin\Navigation\NavigationItem;
@@ -42,6 +43,18 @@ class EventAdmin extends Admin
     const ROOM_ADD_FORM_VIEW = 'app.room_add_form';
 
     const ROOM_EDIT_FORM_VIEW = 'app.room_edit_form';
+
+//////// PromoOffer
+
+    const PROMO_LIST_KEY = 'promos';
+
+    const PROMO_FORM_KEY = 'promo_details';
+
+    const PROMO_LIST_VIEW = 'app.promos_list';
+
+    const PROMO_ADD_FORM_VIEW = 'app.promo_add_form';
+
+    const PROMO_EDIT_FORM_VIEW = 'app.promo_edit_form';
 
 
     /**
@@ -84,6 +97,12 @@ class EventAdmin extends Admin
         $events = new NavigationItem('app.rooms');
         $events->setPosition(30);
         $events->setView(static::ROOM_LIST_VIEW);
+
+        $module->addChild($events);
+
+        $events = new NavigationItem('app.promo');
+        $events->setPosition(40);
+        $events->setView(static::PROMO_LIST_VIEW);
 
         $module->addChild($events);
 
@@ -212,6 +231,66 @@ class EventAdmin extends Admin
             ->setTabTitle('sulu_admin.details')
             ->addToolbarActions($formToolbarActions)
             ->setParent(static::ROOM_EDIT_FORM_VIEW);
+        $viewCollection->add($editDetailsFormView);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////// Promo /////////////////////////////////////////////////////////////// Promo ///////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // Configure Event List View
+        $listToolbarActions = [new ToolbarAction('sulu_admin.add'), new ToolbarAction('sulu_admin.delete')];
+        $listView = $this->viewBuilderFactory->createListViewBuilder(self::PROMO_LIST_VIEW, '/promos/:locale')
+            ->setResourceKey(PromoOffer::RESOURCE_KEY)
+            ->setListKey(self::PROMO_LIST_KEY)
+            ->setTitle('app.promo')
+            ->addListAdapters(['table'])
+            ->addLocales($locales)
+            ->setDefaultLocale($locales[0])
+            ->setAddView(static::PROMO_ADD_FORM_VIEW)
+            ->setEditView(static::PROMO_EDIT_FORM_VIEW)
+            ->addToolbarActions($listToolbarActions);
+        $viewCollection->add($listView);
+
+        // Configure Event Add View
+        $addFormView = $this->viewBuilderFactory->createResourceTabViewBuilder(self::PROMO_ADD_FORM_VIEW, '/promos/:locale/add')
+            ->setResourceKey(PromoOffer::RESOURCE_KEY)
+            ->setBackView(static::PROMO_LIST_VIEW)
+            ->addLocales($locales);
+        $viewCollection->add($addFormView);
+
+        $addDetailsFormView = $this->viewBuilderFactory->createFormViewBuilder(self::PROMO_ADD_FORM_VIEW . '.details', '/details')
+            ->setResourceKey(PromoOffer::RESOURCE_KEY)
+            ->setFormKey(self::PROMO_FORM_KEY)
+            ->setTabTitle('sulu_admin.details')
+            ->setEditView(static::PROMO_EDIT_FORM_VIEW)
+            ->addToolbarActions([new ToolbarAction('sulu_admin.save')])
+            ->setParent(static::PROMO_ADD_FORM_VIEW);
+        $viewCollection->add($addDetailsFormView);
+
+        // Configure Event Edit View
+        $editFormView = $this->viewBuilderFactory->createResourceTabViewBuilder(static::PROMO_EDIT_FORM_VIEW, '/promos/:locale/:id')
+            ->setResourceKey(PromoOffer::RESOURCE_KEY)
+            ->setBackView(static::PROMO_LIST_VIEW)
+            ->setTitleProperty('title')
+            ->addLocales($locales);
+        $viewCollection->add($editFormView);
+
+        $formToolbarActions = [
+            new ToolbarAction('sulu_admin.save'),
+            new ToolbarAction('sulu_admin.delete'),
+            new TogglerToolbarAction(
+                'app.enable_room',
+                'enabled',
+                'enable',
+                'disable'
+            ),
+        ];
+        $editDetailsFormView = $this->viewBuilderFactory->createFormViewBuilder(static::PROMO_EDIT_FORM_VIEW . '.details', '/details')
+            ->setResourceKey(PromoOffer::RESOURCE_KEY)
+            ->setFormKey(self::PROMO_FORM_KEY)
+            ->setTabTitle('sulu_admin.details')
+            ->addToolbarActions($formToolbarActions)
+            ->setParent(static::PROMO_EDIT_FORM_VIEW);
         $viewCollection->add($editDetailsFormView);
     }
 }
