@@ -7,6 +7,7 @@ namespace App\Controller\Admin;
 use App\Common\DoctrineListRepresentationFactory;
 use App\Entity\PromoOffer;
 use App\Repository\PromoOfferRepository;
+use App\Repository\RoomRepository;
 use DateTime;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Routing\ClassResourceInterface;
@@ -25,6 +26,11 @@ class PromoController extends AbstractRestController implements ClassResourceInt
     private $repository;
 
     /**
+     * @var RoomRepository
+     */
+    private $roomRepository;
+
+    /**
      * @var DoctrineListRepresentationFactory
      */
     private $doctrineListRepresentationFactory;
@@ -32,10 +38,12 @@ class PromoController extends AbstractRestController implements ClassResourceInt
     public function __construct(
         ViewHandlerInterface $viewHandler,
         PromoOfferRepository $repository,
+        RoomRepository $roomRepository,
         DoctrineListRepresentationFactory $doctrineListRepresentationFactory,
         ?TokenStorageInterface $tokenStorage = null
     ) {
         $this->repository = $repository;
+        $this->roomRepository = $roomRepository;
         $this->doctrineListRepresentationFactory = $doctrineListRepresentationFactory;
 
         parent::__construct($viewHandler, $tokenStorage);
