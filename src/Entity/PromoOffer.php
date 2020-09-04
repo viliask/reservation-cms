@@ -159,11 +159,10 @@ class PromoOffer
         });
     }
 
-    public function addRoom(Room $room): self
+    public function addRoom(?Room $room): self
     {
-        if (!$this->rooms->contains($room)) {
+        if ($room && !$this->rooms->contains($room)) {
             $this->rooms[] = $room;
-            $room->addPromoOffer($this);
         }
 
         return $this;
@@ -173,7 +172,6 @@ class PromoOffer
     {
         if ($this->rooms->contains($room)) {
             $this->rooms->removeElement($room);
-            $room->removePromoOffer($this);
         }
 
         return $this;
