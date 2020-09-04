@@ -6,9 +6,11 @@ use App\Repository\PromoOfferRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass=PromoOfferRepository::class)
+ * @Serializer\ExclusionPolicy("all")
  */
 class PromoOffer
 {
@@ -18,31 +20,37 @@ class PromoOffer
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Expose()
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=55)
+     * @Serializer\Expose()
      */
     private $name;
 
     /**
      * @ORM\Column(type="float")
+     * @Serializer\Expose()
      */
     private $discount;
 
     /**
      * @ORM\Column(type="integer")
+     * @Serializer\Expose()
      */
     private $minDays;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Serializer\Expose()
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Serializer\Expose()
      */
     private $endDate;
 
@@ -57,6 +65,7 @@ class PromoOffer
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Serializer\Expose()
      */
     private $locale;
 
@@ -134,9 +143,20 @@ class PromoOffer
     /**
      * @return Collection|Room[]
      */
-    public function getRooms(): Collection
+    public function getRooms():? Collection
     {
         return $this->rooms;
+    }
+
+    /**
+     * @Serializer\VirtualProperty()
+     * @Serializer\SerializedName("rooms")
+     */
+    public function getRoomIds(): ArrayCollection
+    {
+        return $this->rooms->map(function (Room $room) {
+            return $room->getId();
+        });
     }
 
     public function addRoom(Room $room): self
