@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Common\DoctrineListRepresentationFactory;
+use App\Controller\Traits\CommonTrait;
 use App\Entity\Event;
 use App\Repository\EventRepository;
 use App\Repository\RoomRepository;
@@ -19,6 +20,8 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class EventController extends AbstractRestController implements ClassResourceInterface
 {
+    use CommonTrait;
+
     /**
      * @var EventRepository
      */
@@ -160,11 +163,7 @@ class EventController extends AbstractRestController implements ClassResourceInt
         $entity->setPrice((float)$data['price']);
         $entity->setLocale($locale);
 
-        if ($rooms = $data['rooms'] ?? null) {
-            foreach ($rooms as $room) {
-                $entity->addRoom($this->roomRepository->find($room));
-            }
-        }
+        $this->removeRooms($data, $entity, $this->roomRepository);
     }
 
     protected function load(int $id, Request $request): ?Event
