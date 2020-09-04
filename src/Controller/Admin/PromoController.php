@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Common\DoctrineListRepresentationFactory;
+use App\Controller\Traits\CommonTrait;
 use App\Entity\PromoOffer;
 use App\Repository\PromoOfferRepository;
 use App\Repository\RoomRepository;
@@ -20,6 +21,8 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class PromoController extends AbstractRestController implements ClassResourceInterface
 {
+    use CommonTrait;
+
     /**
      * @var PromoOfferRepository
      */
@@ -135,29 +138,7 @@ class PromoController extends AbstractRestController implements ClassResourceInt
             $entity->setEndDate(new DateTime($endDate));
         }
 
-        if ($roomIds = $data['rooms'] ?? null) {
-            $allRooms = [];
-            $actual   = [];
-
-            foreach ($entity->getRooms() as $promoRoom){
-                $allRooms[] = $promoRoom->getId();
-            }
-            foreach ($roomIds as $id) {
-                $room = $this->roomRepository->find($id);
-                $actual[] = $room->getId();
-                $entity->addRoom($room);
-            }
-            $toDelete = array_diff($allRooms, $actual);
-            foreach ($toDelete as $delete) {
-                $entity->removeRoom($this->roomRepository->find($delete));
-            }
-        }
-
-        if (empty($data['rooms'])) {
-            foreach ($entity->getRooms() as $room){
-                $entity->removeRoom($room);
-            }
-        }
+        $this->removeRooms($data, $entity, $this->roomRepository);
     }
 
     protected function load(int $id, Request $request): ?PromoOffer
