@@ -138,7 +138,7 @@ class PromoController extends AbstractRestController implements ClassResourceInt
             $entity->setEndDate(new DateTime($endDate));
         }
 
-        $this->removeRooms($data, $entity, $this->roomRepository);
+        $this->processRooms($data, $entity, $this->roomRepository);
     }
 
     protected function load(int $id, Request $request): ?PromoOffer

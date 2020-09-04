@@ -163,7 +163,7 @@ class EventController extends AbstractRestController implements ClassResourceInt
         $entity->setPrice((float)$data['price']);
         $entity->setLocale($locale);
 
-        $this->removeRooms($data, $entity, $this->roomRepository);
+        $this->processRooms($data, $entity, $this->roomRepository);
     }
 
     protected function load(int $id, Request $request): ?Event

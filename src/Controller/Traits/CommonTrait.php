@@ -38,7 +38,7 @@ trait CommonTrait
      * @param Event|PromoOffer     $entity
      * @param RoomRepository       $roomRepository
      */
-    private function removeRooms(array $data, $entity, RoomRepository $roomRepository)
+    private function processRooms(array $data, $entity, RoomRepository $roomRepository)
     {
         if ($roomIds = $data['rooms'] ?? null) {
             $allRooms = [];
