@@ -79,7 +79,7 @@ class Room
     private $basePrice;
 
     /**
-     * @ORM\ManyToMany(targetEntity=PromoOffer::class, inversedBy="rooms")
+     * @ORM\ManyToMany(targetEntity=PromoOffer::class, mappedBy="rooms")
      */
     private $promoOffers;
 
@@ -169,6 +169,7 @@ class Room
         if (!$translation) {
             return null;
         }
+
 
         return $translation->getTitle();
     }

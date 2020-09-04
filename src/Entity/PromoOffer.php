@@ -47,7 +47,11 @@ class PromoOffer
     private $endDate;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Room::class, mappedBy="promoOffers")
+     * @ORM\ManyToMany(targetEntity=Room::class, inversedBy="promoOffers")
+     * @ORM\JoinTable(name="promo_offer_room",
+     *     joinColumns={@ORM\JoinColumn(onDelete="CASCADE")},
+     *     inverseJoinColumns={@ORM\JoinColumn(onDelete="CASCADE")}
+     * )
      */
     private $rooms;
 
