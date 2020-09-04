@@ -125,12 +125,11 @@ class Event
      */
     private $rooms;
 
-    /**
-     * @return Collection|Room[]
-     */
-    public function getRooms():? Collection
+    public function __construct()
     {
-        return $this->rooms;
+        $this->enabled = false;
+        $this->translations = new ArrayCollection();
+        $this->rooms = new ArrayCollection();
     }
 
     /**
@@ -144,11 +143,12 @@ class Event
         });
     }
 
-    public function __construct()
+    /**
+     * @return Collection|Room[]
+     */
+    public function getRooms():? Collection
     {
-        $this->enabled = false;
-        $this->translations = new ArrayCollection();
-        $this->rooms = new ArrayCollection();
+        return $this->rooms;
     }
 
     public function getId(): ?int
@@ -429,8 +429,6 @@ class Event
 
         return $this;
     }
-
-
 
     public function addRoom(?Room $room): self
     {
