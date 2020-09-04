@@ -152,6 +152,12 @@ class PromoController extends AbstractRestController implements ClassResourceInt
                 $entity->removeRoom($this->roomRepository->find($delete));
             }
         }
+
+        if (empty($data['rooms'])) {
+            foreach ($entity->getRooms() as $room){
+                $entity->removeRoom($room);
+            }
+        }
     }
 
     protected function load(int $id, Request $request): ?PromoOffer
