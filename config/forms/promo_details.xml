@@ -37,5 +37,10 @@
             </meta>
         </property>
 
+        <property name="rooms" type="room_selection">
+            <meta>
+                <title>app.rooms</title>
+            </meta>
+        </property>
     </properties>
 </form>
