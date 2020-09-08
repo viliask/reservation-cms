@@ -148,6 +148,7 @@ class RoomController extends AbstractController
         $daysBetween  = date_diff($checkInDate, $checkOutDate)->d;
         $offers       = $room->getPromoOffers();
         $fairDiscount = 0;
+        $discountName = null;
 
         foreach ($offers as $offer) {
             $startDate = $offer->getStartDate();
@@ -156,6 +157,7 @@ class RoomController extends AbstractController
                 $discount = $offer->getDiscount();
                 if ($discount >= $fairDiscount && $daysBetween >= $offer->getMinDays()) {
                     $fairDiscount = $discount;
+                    $discountName = $offer->getName();
                 }
             }
         }
