@@ -121,14 +121,14 @@ class RoomController extends AbstractController
         EventRepository $eventRepository
     ): JsonResponse {
         $availableRoom = $eventRepository->findAvailableRooms($checkIn, $checkOut, $room->getId());
-        $discount = null;
+        $discountParams = null;
 
         if ($availableRoom) {
             /** @var Room $roomObject */
             $roomObject = $availableRoom[0];
             if ($roomObject->getName() === $room->getName()) {
                 $status = true;
-                $discount = $this->findPromoOffer($roomObject, $checkIn, $checkOut);
+                $discountParams = $this->findPromoOffer($roomObject, $checkIn, $checkOut);
             } else {
                 $status = false;
             }
@@ -137,7 +137,7 @@ class RoomController extends AbstractController
         }
 
         return $this->json(
-            ['checkIn' => $checkIn, 'checkOut' => $checkOut, 'status' => $status]
+            ['checkIn' => $checkIn, 'checkOut' => $checkOut, 'status' => $status] + $discountParams
         );
     }
 
@@ -162,6 +162,6 @@ class RoomController extends AbstractController
             }
         }
 
-        return $fairDiscount;
+        return ['discount' => $fairDiscount, 'discountName' => $discountName];
     }
 }
