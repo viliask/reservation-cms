@@ -8,6 +8,7 @@ use App\Entity\Room;
 use App\Form\Type\EventType;
 use App\Form\Type\ReservationType;
 use App\Repository\EventRepository;
+use DateTime;
 use DateTimeImmutable;
 use Sulu\Bundle\MediaBundle\Media\Manager\MediaManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -120,12 +121,14 @@ class RoomController extends AbstractController
         EventRepository $eventRepository
     ): JsonResponse {
         $availableRoom = $eventRepository->findAvailableRooms($checkIn, $checkOut, $room->getId());
+        $discount = null;
 
         if ($availableRoom) {
             /** @var Room $roomObject */
             $roomObject = $availableRoom[0];
             if ($roomObject->getName() === $room->getName()) {
                 $status = true;
+                $discount = $this->findPromoOffer($roomObject, $checkIn, $checkOut);
             } else {
                 $status = false;
             }
@@ -136,5 +139,23 @@ class RoomController extends AbstractController
         return $this->json(
             ['checkIn' => $checkIn, 'checkOut' => $checkOut, 'status' => $status]
         );
+    }
+
+    private function findPromoOffer(Room $room, string $checkIn, string $checkOut)
+    {
+        $checkInDate = new DateTime($checkIn);
+        $checkOutDate = new DateTime($checkOut);
+        $daysBetween = date_diff($checkInDate, $checkOutDate)->d;
+        $offers = $room->getPromoOffers();
+        $fairDiscount = 0;
+        foreach ($offers as $offer) {
+            $startDate = $offer->getStartDate();
+            $endDate = $offer->getEndDate();
+            if ($checkInDate >= $startDate && $checkInDate <= $endDate && $checkOutDate <= $endDate && $startDate <= $checkOutDate) {
+
+            }
+        }
+
+        return $fairDiscount;
     }
 }
