@@ -152,7 +152,10 @@ class RoomController extends AbstractController
             $startDate = $offer->getStartDate();
             $endDate = $offer->getEndDate();
             if ($checkInDate >= $startDate && $checkInDate <= $endDate && $checkOutDate <= $endDate && $startDate <= $checkOutDate) {
-
+                $discount = $offer->getDiscount();
+                if ($discount > $fairDiscount && $daysBetween >= $offer->getMinDays()) {
+                    $fairDiscount = $discount;
+                }
             }
         }
 
