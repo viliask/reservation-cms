@@ -143,14 +143,15 @@ class RoomController extends AbstractController
 
     private function findPromoOffer(Room $room, string $checkIn, string $checkOut)
     {
-        $checkInDate = new DateTime($checkIn);
+        $checkInDate  = new DateTime($checkIn);
         $checkOutDate = new DateTime($checkOut);
-        $daysBetween = date_diff($checkInDate, $checkOutDate)->d;
-        $offers = $room->getPromoOffers();
+        $daysBetween  = date_diff($checkInDate, $checkOutDate)->d;
+        $offers       = $room->getPromoOffers();
         $fairDiscount = 0;
+
         foreach ($offers as $offer) {
             $startDate = $offer->getStartDate();
-            $endDate = $offer->getEndDate();
+            $endDate   = $offer->getEndDate();
             if ($checkInDate >= $startDate && $checkInDate <= $endDate && $checkOutDate <= $endDate && $startDate <= $checkOutDate) {
                 $discount = $offer->getDiscount();
                 if ($discount >= $fairDiscount && $daysBetween >= $offer->getMinDays()) {
