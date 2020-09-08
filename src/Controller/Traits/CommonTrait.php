@@ -34,6 +34,8 @@ trait CommonTrait
     }
 
     /**
+     * Deletion and addition rooms to single promo offer entity
+     *
      * @param array                $data
      * @param Event|PromoOffer     $entity
      * @param RoomRepository       $roomRepository
