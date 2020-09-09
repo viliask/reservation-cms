@@ -51,7 +51,7 @@ class RoomController extends AbstractController
         $guests           = $request->query->get('guests');
 
         $availabilityForm->get('checkInDate')->setData($checkInDate);
-        $availabilityForm->get('checkOutDate')->setData($checkInDate);
+        $availabilityForm->get('checkOutDate')->setData($checkOutDate);
         $availabilityForm->get('guests')->setData($guests);
         $eventForm->get('checkIn')->setData($checkInDate);
         $eventForm->get('checkOut')->setData($checkOutDate);
