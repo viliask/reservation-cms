@@ -29,7 +29,7 @@ const updatePrice = () => {
     const guests = document.querySelector('#event_guests').value;
     const daysOfVisit = (checkOut.getTime() - checkIn.getTime()) / (1000 * 3600 * 24);
 
-    if (stepsAmount > 0 && maxGuests > stepsAmount) {
+    if (stepsAmount > 0 && maxGuests > guests) {
         const multiplier = maxGuests - guests;
         finalStepsDiscount = (100 - (stepsDiscount * multiplier)) / 100;
     } else {
