@@ -16,6 +16,10 @@ const closeRoomNotAvailableModal = document.querySelector('[data-close-not-avail
 let PRICE = 0;
 const alert = document.querySelector('div.alert-success');
 const alertText = alert.textContent;
+let stepsAmount = 0;
+let stepsDiscount = 0;
+let maxGuests = 0;
+let finalStepsDiscount = 0;
 let responseData = null;
 let discount = 0;
 
@@ -24,7 +28,15 @@ const updatePrice = () => {
     const checkOut = new Date(document.querySelector('#event_checkOut').value);
     const guests = document.querySelector('#event_guests').value;
     const daysOfVisit = (checkOut.getTime() - checkIn.getTime()) / (1000 * 3600 * 24);
-    document.querySelector('#event_price').value = (daysOfVisit * PRICE * guests) * (discount/100);
+
+    if (stepsAmount > 0 && maxGuests > stepsAmount) {
+        const multiplier = maxGuests - guests;
+        finalStepsDiscount = (100 - (stepsDiscount * multiplier)) / 100;
+    } else {
+        finalStepsDiscount = 1;
+    }
+
+    document.querySelector('#event_price').value = (daysOfVisit * PRICE * finalStepsDiscount) * (discount/100);
 };
 
 const loadData = async () => {
@@ -51,6 +63,9 @@ const updateForm = () => {
     document.querySelector('#event_guests').value = guests;
     discount = 100 - responseData.discount;
     PRICE = responseData.basePrice;
+    stepsAmount = responseData.stepsAmount;
+    stepsDiscount = responseData.stepsDiscount;
+    maxGuests = responseData.maxGuests;
 
     if (responseData.discountName) {
         showPromo(responseData.discountName);
@@ -120,6 +135,9 @@ document.addEventListener('DOMContentLoaded',  () => {
         const discountName = dataContainer.getAttribute('data-discount-name');
         discount = 100 - dataContainer.getAttribute('data-discount');
         PRICE = dataContainer.getAttribute('data-base-price');
+        stepsAmount = dataContainer.getAttribute('data-steps-amount');
+        stepsDiscount = dataContainer.getAttribute('data-steps-discount');
+        maxGuests = dataContainer.getAttribute('data-max-guests');
 
         if (discountName) {
             showPromo(discountName);
