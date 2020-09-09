@@ -13,9 +13,9 @@ const checkIn = document.querySelector('#reservation_checkInDate');
 const checkOut = document.querySelector('#reservation_checkOutDate');
 const closeAvailabilityModal = document.querySelector('[data-close-availability]');
 const closeRoomNotAvailableModal = document.querySelector('[data-close-not-available]');
-let PRICE = 0;
 const alert = document.querySelector('div.alert-success');
 const alertText = alert.textContent;
+let PRICE = 0;
 let stepsAmount = 0;
 let stepsDiscount = 0;
 let maxGuests = 0;
@@ -93,7 +93,7 @@ const updateForm = () => {
 
 handleModalClose();
 
-// Modal after availability check
+// Modal after availability check - form modal
 openEventForm.addEventListener('click', () => {
     if (document.querySelector('#availability-modal')) {
         document.querySelector('#availability-modal').classList.remove(visible);
@@ -142,9 +142,7 @@ closeRoomNotAvailableModal.addEventListener('click', () => {
     document.querySelector('#room-not-available-modal').classList.remove(visible);
 });
 
-/*
-    Homepage path - redirect from reservation cards
- */
+// Homepage path - redirect from reservation cards
 document.addEventListener('DOMContentLoaded',  () => {
     const dataContainer = document.querySelector('[data-checked]');
 
