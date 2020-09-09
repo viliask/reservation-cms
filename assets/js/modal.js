@@ -121,6 +121,7 @@ openPolicyModal.addEventListener('click', () => {
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (validateForm()) {
+        alert.innerHTML = alertText;
         await loadData().then((data) => {
             responseData = data;
             if (responseData.status === true) {
