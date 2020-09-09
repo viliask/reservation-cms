@@ -5,8 +5,8 @@ import {visible, handleModalClose, validateForm, form} from './helper'
 const routes = require('../../public/js/fos_js_routes_website');
 Routing.setRoutingData(routes);
 
-const openEl = document.querySelector('[data-open]');
-const closeEl = document.querySelector('[data-close]');
+const openEventForm = document.querySelector('[data-open]');
+const closeEventForm = document.querySelector('[data-close]');
 const openPolicyModal = document.querySelector('[data-open-policy]');
 const roomId = document.querySelector('.id-js');
 const checkIn = document.querySelector('#reservation_checkInDate');
@@ -61,7 +61,8 @@ const updateForm = () => {
 
 handleModalClose();
 
-openEl.addEventListener('click', () => {
+// Modal after availability check
+openEventForm.addEventListener('click', () => {
     if (document.querySelector('#availability-modal')) {
         document.querySelector('#availability-modal').classList.remove(visible);
     }
@@ -70,7 +71,8 @@ openEl.addEventListener('click', () => {
     updatePrice();
 });
 
-closeEl.addEventListener('click', () => {
+// Close form modal
+closeEventForm.addEventListener('click', () => {
     document.querySelector('#reservation-modal').classList.remove(visible);
 });
 
