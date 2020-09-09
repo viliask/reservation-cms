@@ -2,21 +2,20 @@ import Axios from 'axios';
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
 import {visible, handleModalClose, validateForm, form} from './helper'
 
+const routes = require('../../public/js/fos_js_routes_website');
+Routing.setRoutingData(routes);
+
 const openEl = document.querySelector('[data-open]');
 const closeEl = document.querySelector('[data-close]');
 const openPolicyModal = document.querySelector('[data-open-policy]');
-const PRICE = 40;
-
-const routes = require('../../public/js/fos_js_routes_website');
 const roomId = document.querySelector('.id-js');
 const checkIn = document.querySelector('#reservation_checkInDate');
 const checkOut = document.querySelector('#reservation_checkOutDate');
-let responseData = null;
 const closeAvailabilityModal = document.querySelector('[data-close-availability]');
 const closeRoomNotAvailableModal = document.querySelector('[data-close-not-available]');
+const PRICE = 40;
+let responseData = null;
 let discount = 0;
-
-handleModalClose();
 
 const updatePrice = () => {
     const checkIn = new Date(document.querySelector('#event_checkIn').value);
@@ -36,7 +35,6 @@ const loadData = async () => {
     return response.data;
 };
 
-
 const updateForm = () => {
     const guests = document.querySelector('#reservation_guests').value;
     document.querySelector('#event_checkIn').value = new Date(responseData.checkIn).toISOString().slice(0, 16);
@@ -45,7 +43,7 @@ const updateForm = () => {
     discount = 100 - responseData.discount;
 };
 
-Routing.setRoutingData(routes);
+handleModalClose();
 
 openEl.addEventListener('click', () => {
     if (document.querySelector('#availability-modal')) {
