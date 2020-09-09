@@ -21,6 +21,9 @@
             {{ form_errors(form.price) }}
             {{ form_widget(form.price, {attr: {class: 'form-control'}}) }}
         </div>
+        <div class="alert-success invisible">
+            Rezerwacja została objęta promocją:
+        </div>
         <div class="form-group col-md-6">
             {{ form_label(form.firstName, 'Imię') }}
             {{ form_errors(form.firstName) }}

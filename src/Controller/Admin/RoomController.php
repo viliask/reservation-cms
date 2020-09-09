@@ -126,6 +126,9 @@ class RoomController extends AbstractRestController implements ClassResourceInte
         $entity->setTitle($data['title']);
         $entity->setName($data['name']);
         $entity->setMaxGuests((int)$data['maxGuests']);
+        $entity->setBasePrice((int)$data['basePrice']);
+        $entity->setStepsAmount((int)$data['stepsAmount']);
+        $entity->setStepsDiscount((int)$data['stepsDiscount']);
         $entity->setLocale($locale);
         $entity->setWidgetHeader($data['widgetHeader']);
         $entity->setWidgetText($data['widgetText']);

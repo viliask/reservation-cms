@@ -30,7 +30,11 @@ class EventType extends AbstractType
                     ],
                 ]
             )
-            ->add('guests')
+            ->add('guests', null,
+                [
+                    'attr' => ['readonly' => true]
+                ]
+            )
             ->add('price', null,
                 [
                     'attr' => ['readonly' => true]

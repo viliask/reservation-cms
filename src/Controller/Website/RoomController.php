@@ -8,6 +8,7 @@ use App\Entity\Room;
 use App\Form\Type\EventType;
 use App\Form\Type\ReservationType;
 use App\Repository\EventRepository;
+use DateTime;
 use DateTimeImmutable;
 use Sulu\Bundle\MediaBundle\Media\Manager\MediaManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -50,14 +51,14 @@ class RoomController extends AbstractController
         $guests           = $request->query->get('guests');
 
         $availabilityForm->get('checkInDate')->setData($checkInDate);
-        $availabilityForm->get('checkOutDate')->setData($checkInDate);
+        $availabilityForm->get('checkOutDate')->setData($checkOutDate);
         $availabilityForm->get('guests')->setData($guests);
         $eventForm->get('checkIn')->setData($checkInDate);
         $eventForm->get('checkOut')->setData($checkOutDate);
         $eventForm->get('guests')->setData($guests);
 
-        $params            = $this->createParams($room, $eventForm, $event, $request, $availabilityForm, $mediaManager);
-        $params['checked'] = '';
+        $params = $this->createParams($room, $eventForm, $event, $request, $availabilityForm, $mediaManager);
+        $params += $this->findPromoOffer($room, $checkIn, $checkOut);
 
         return $this->render('room/show.html.twig', $params);
     }
@@ -96,6 +97,12 @@ class RoomController extends AbstractController
                 'room'             => $room,
                 'form'             => $eventForm->createView(),
                 'availabilityForm' => $availabilityForm->createView(),
+                'checked'          => '',
+                'basePrice'        => $room->getBasePrice(),
+                'stepsAmount'      => $room->getStepsAmount(),
+                'stepsDiscount'    => $room->getStepsDiscount(),
+                'maxGuests'        => $room->getMaxGuests(),
+                'stepsContent'     => 'W zależności od liczby osób ',
             ] + $this->getMedia($room, $mediaManager);
     }
 
@@ -119,13 +126,15 @@ class RoomController extends AbstractController
         string $checkOut,
         EventRepository $eventRepository
     ): JsonResponse {
-        $availableRoom = $eventRepository->findAvailableRooms($checkIn, $checkOut, $room->getId());
+        $availableRoom  = $eventRepository->findAvailableRooms($checkIn, $checkOut, $room->getId());
+        $discountParams = null;
 
         if ($availableRoom) {
             /** @var Room $roomObject */
             $roomObject = $availableRoom[0];
             if ($roomObject->getName() === $room->getName()) {
-                $status = true;
+                $status         = true;
+                $discountParams = $this->findPromoOffer($roomObject, $checkIn, $checkOut);
             } else {
                 $status = false;
             }
@@ -134,7 +143,40 @@ class RoomController extends AbstractController
         }
 
         return $this->json(
-            ['checkIn' => $checkIn, 'checkOut' => $checkOut, 'status' => $status]
+            [
+                'checkIn'   => $checkIn,
+                'checkOut'  => $checkOut,
+                'status'    => $status,
+                'basePrice' => $room->getBasePrice(),
+                'stepsAmount' => $room->getStepsAmount(),
+                'stepsDiscount' => $room->getStepsDiscount(),
+                'maxGuests'     => $room->getMaxGuests(),
+                'stepsContent'  => 'W zależności od liczby osób ',
+            ] + $discountParams
         );
+    }
+
+    private function findPromoOffer(Room $room, string $checkIn, string $checkOut)
+    {
+        $checkInDate  = new DateTime($checkIn);
+        $checkOutDate = new DateTime($checkOut);
+        $daysBetween  = date_diff($checkInDate, $checkOutDate)->d;
+        $offers       = $room->getPromoOffers();
+        $fairDiscount = 0;
+        $discountName = null;
+
+        foreach ($offers as $offer) {
+            $startDate = $offer->getStartDate();
+            $endDate   = $offer->getEndDate();
+            if ($checkInDate >= $startDate && $checkInDate <= $endDate && $checkOutDate <= $endDate && $startDate <= $checkOutDate) {
+                $discount = $offer->getDiscount();
+                if ($discount >= $fairDiscount && $daysBetween >= $offer->getMinDays()) {
+                    $fairDiscount = $discount;
+                    $discountName = $offer->getName();
+                }
+            }
+        }
+
+        return ['discount' => $fairDiscount, 'discountName' => $discountName];
     }
 }

@@ -1,6 +1,7 @@
 {
     "app.timeline": "Timeline",
     "app.events": "Reservations",
+    "app.promo": "Promotions",
     "app.teaser": "Teaser",
     "app.check_in": "Check in",
     "app.check_out": "Check out",
@@ -18,7 +19,15 @@
     "app.enabled": "Enabled",
     "app.location": "Location",
     "app.max_guests": "Max guests",
+    "app.basePrice": "Base price",
+    "app.stepsAmount": "Steps amount",
+    "app.stepsDiscount": "Steps discount",
+    "app.name": "Name",
     "app.widgetHeader": "Widget header",
     "app.widgetText": "Widget text",
-    "app.content": "Content"
+    "app.content": "Content",
+    "app.discount": "Discount (in %)",
+    "app.minDays": "Min days",
+    "app.startDate": "Start date",
+    "app.endDate": "End date"
 }

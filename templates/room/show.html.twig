@@ -9,7 +9,15 @@
 
 {% block body %}
     {% if checked is defined %}
-        <div data-checked></div>
+        <div
+                data-checked data-discount="{{ discount }}"
+                data-discount-name="{{ discountName }}"
+                data-base-price="{{ basePrice }}"
+                data-steps-amount="{{ stepsAmount }}"
+                data-steps-discount="{{ stepsDiscount }}"
+                data-max-guests="{{ maxGuests }}"
+                data-steps-content="{{ stepsContent }}">
+        </div>
     {% endif %}
     <div class="res-hero id-js" data-room-id = {{ room.id }}>
         <div class="res-overlay"></div>
@@ -20,7 +28,7 @@
         {% endif %}
             <div class="desc">
                 {% block reservation %}
-                    {% include "./homepage/reservation.html.twig" with
+                    {% include "/homepage/reservation.html.twig" with
                         {
                             form: availabilityForm,
                             widgetHeader: room.widgetHeader,

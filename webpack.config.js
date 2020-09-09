@@ -9,7 +9,6 @@ Encore
     .setPublicPath('/build/website/js')
     .addEntry('flatpickr', './assets/js/flatpickr.js')
     .addEntry('modal', './assets/js/modal.js')
-    .addEntry('availabilityModal', './assets/js/availabilityModal.js')
     .addEntry('main', './assets/js/main.js')
     .addEntry('homepage', './assets/js/homepage.js')
     .splitEntryChunks()

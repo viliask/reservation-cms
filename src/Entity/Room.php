@@ -73,11 +73,32 @@ class Room
      */
     private $content;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $basePrice;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=PromoOffer::class, mappedBy="rooms")
+     */
+    private $promoOffers;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $stepsAmount;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $stepsDiscount;
+
     public function __construct()
     {
         $this->enabled = false;
         $this->translations = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->promoOffers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -158,6 +179,7 @@ class Room
         if (!$translation) {
             return null;
         }
+
 
         return $translation->getTitle();
     }
@@ -298,6 +320,68 @@ class Room
     public function setContent(?string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getBasePrice(): ?int
+    {
+        return $this->basePrice;
+    }
+
+    public function setBasePrice(int $basePrice): self
+    {
+        $this->basePrice = $basePrice;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PromoOffer[]
+     */
+    public function getPromoOffers(): Collection
+    {
+        return $this->promoOffers;
+    }
+
+    public function addPromoOffer(PromoOffer $promoOffer): self
+    {
+        if (!$this->promoOffers->contains($promoOffer)) {
+            $this->promoOffers[] = $promoOffer;
+        }
+
+        return $this;
+    }
+
+    public function removePromoOffer(PromoOffer $promoOffer): self
+    {
+        if ($this->promoOffers->contains($promoOffer)) {
+            $this->promoOffers->removeElement($promoOffer);
+        }
+
+        return $this;
+    }
+
+    public function getStepsAmount(): ?int
+    {
+        return $this->stepsAmount;
+    }
+
+    public function setStepsAmount(?int $stepsAmount): self
+    {
+        $this->stepsAmount = $stepsAmount;
+
+        return $this;
+    }
+
+    public function getStepsDiscount(): ?int
+    {
+        return $this->stepsDiscount;
+    }
+
+    public function setStepsDiscount(?int $stepsDiscount): self
+    {
+        $this->stepsDiscount = $stepsDiscount;
 
         return $this;
     }
