@@ -51,9 +51,24 @@ const loadData = async () => {
 };
 
 const showPromo = (content) => {
+    const oldUl = document.querySelector('div.alert-success ul');
+
     alert.classList.remove('invisible');
     alert.classList.add('alert');
-    alert.textContent = alertText + content;
+
+    if (oldUl) {
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(content));
+        oldUl.appendChild(li);
+    } else {
+        const ul = document.createElement('ul');
+        const li = document.createElement('li');
+
+        li.appendChild(document.createTextNode(content));
+        ul.style.paddingLeft = '20px';
+        ul.appendChild(li);
+        alert.appendChild(ul);
+    }
 };
 
 const updateForm = () => {
