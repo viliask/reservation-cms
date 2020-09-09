@@ -22,6 +22,7 @@ let maxGuests = 0;
 let finalStepsDiscount = 0;
 let responseData = null;
 let discount = 0;
+let stepsContent = '';
 
 const updatePrice = () => {
     const checkIn = new Date(document.querySelector('#event_checkIn').value);
@@ -32,7 +33,7 @@ const updatePrice = () => {
     if (stepsAmount > 0 && maxGuests > guests) {
         const multiplier = maxGuests - guests;
         finalStepsDiscount = (100 - (stepsDiscount * multiplier)) / 100;
-        showPromo('W zależności od liczby osób ' + (stepsDiscount * multiplier).toString() + '%');
+        showPromo(stepsContent + (stepsDiscount * multiplier).toString() + '%');
     } else {
         finalStepsDiscount = 1;
     }
@@ -82,6 +83,7 @@ const updateForm = () => {
     stepsAmount = responseData.stepsAmount;
     stepsDiscount = responseData.stepsDiscount;
     maxGuests = responseData.maxGuests;
+    stepsContent = responseData.stepsContent;
 
     if (responseData.discountName) {
         showPromo(responseData.discountName);
@@ -153,6 +155,7 @@ document.addEventListener('DOMContentLoaded',  () => {
         stepsAmount = dataContainer.getAttribute('data-steps-amount');
         stepsDiscount = dataContainer.getAttribute('data-steps-discount');
         maxGuests = dataContainer.getAttribute('data-max-guests');
+        stepsContent = dataContainer.getAttribute('data-steps-content');
 
         if (discountName) {
             showPromo(discountName);
