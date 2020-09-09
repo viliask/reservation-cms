@@ -14,7 +14,8 @@ const checkOut = document.querySelector('#reservation_checkOutDate');
 const closeAvailabilityModal = document.querySelector('[data-close-availability]');
 const closeRoomNotAvailableModal = document.querySelector('[data-close-not-available]');
 const PRICE = 40;
-const alertText = document.querySelector('div.alert-success').textContent;
+const alert = document.querySelector('div.alert-success');
+const alertText = alert.textContent;
 let responseData = null;
 let discount = 0;
 
@@ -37,7 +38,6 @@ const loadData = async () => {
 };
 
 const showPromo = (content) => {
-    const alert = document.querySelector('div.alert-success');
     alert.classList.remove('invisible');
     alert.classList.add('alert');
     alert.textContent = alertText + content;
@@ -50,6 +50,7 @@ const updateForm = () => {
     document.querySelector('#event_checkOut').value = new Date(responseData.checkOut).toISOString().slice(0, 16);
     document.querySelector('#event_guests').value = guests;
     discount = 100 - responseData.discount;
+
     if (responseData.discountName) {
         showPromo(responseData.discountName);
     } else if (alert) {
