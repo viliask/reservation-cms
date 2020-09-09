@@ -32,7 +32,7 @@ const updatePrice = () => {
     if (stepsAmount > 0 && maxGuests > guests) {
         const multiplier = maxGuests - guests;
         finalStepsDiscount = (100 - (stepsDiscount * multiplier)) / 100;
-        showPromo('Promocja w zależności od liczby osób ' + (stepsDiscount * multiplier).toString() + ' %');
+        showPromo('W zależności od liczby osób ' + (stepsDiscount * multiplier).toString() + '%');
     } else {
         finalStepsDiscount = 1;
     }
