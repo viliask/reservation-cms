@@ -57,12 +57,8 @@ class RoomController extends AbstractController
         $eventForm->get('checkOut')->setData($checkOutDate);
         $eventForm->get('guests')->setData($guests);
 
-        $params              = $this->createParams($room, $eventForm, $event, $request, $availabilityForm, $mediaManager);
-        $params['checked']   = '';
-        $params              += $this->findPromoOffer($room, $checkIn, $checkOut);
-        $params['basePrice'] = $room->getBasePrice();
-        $params['stepsAmount'] = $room->getStepsAmount();
-        $params['stepsDiscount'] = $room->getStepsDiscount();
+        $params = $this->createParams($room, $eventForm, $event, $request, $availabilityForm, $mediaManager);
+        $params += $this->findPromoOffer($room, $checkIn, $checkOut);
 
         return $this->render('room/show.html.twig', $params);
     }
@@ -101,6 +97,10 @@ class RoomController extends AbstractController
                 'room'             => $room,
                 'form'             => $eventForm->createView(),
                 'availabilityForm' => $availabilityForm->createView(),
+                'checked'          => '',
+                'basePrice'        => $room->getBasePrice(),
+                'stepsAmount'      => $room->getStepsAmount(),
+                'stepsDiscount'    => $room->getStepsDiscount(),
             ] + $this->getMedia($room, $mediaManager);
     }
 
