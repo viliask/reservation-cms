@@ -19,11 +19,12 @@
     "app.enabled": "Enabled",
     "app.location": "Location",
     "app.max_guests": "Max guests",
+    "app.basePrice": "Base price",
     "app.name": "Name",
     "app.widgetHeader": "Widget header",
     "app.widgetText": "Widget text",
     "app.content": "Content",
-    "app.discount": "Discount",
+    "app.discount": "Discount (in %)",
     "app.minDays": "Min days",
     "app.startDate": "Start date",
     "app.endDate": "End date"
