@@ -101,6 +101,7 @@ class RoomController extends AbstractController
                 'basePrice'        => $room->getBasePrice(),
                 'stepsAmount'      => $room->getStepsAmount(),
                 'stepsDiscount'    => $room->getStepsDiscount(),
+                'maxGuests'        => $room->getMaxGuests(),
             ] + $this->getMedia($room, $mediaManager);
     }
 
@@ -148,6 +149,7 @@ class RoomController extends AbstractController
                 'basePrice' => $room->getBasePrice(),
                 'stepsAmount' => $room->getStepsAmount(),
                 'stepsDiscount' => $room->getStepsDiscount(),
+                'maxGuests'     => $room->getMaxGuests(),
             ] + $discountParams
         );
     }
