@@ -60,6 +60,7 @@ class RoomController extends AbstractController
         $params            = $this->createParams($room, $eventForm, $event, $request, $availabilityForm, $mediaManager);
         $params['checked'] = '';
         $params            += $this->findPromoOffer($room, $checkIn, $checkOut);
+        $params['basePrice'] = $room->getBasePrice();
 
         return $this->render('room/show.html.twig', $params);
     }
@@ -138,7 +139,7 @@ class RoomController extends AbstractController
         }
 
         return $this->json(
-            ['checkIn' => $checkIn, 'checkOut' => $checkOut, 'status' => $status] + $discountParams
+            ['checkIn' => $checkIn, 'checkOut' => $checkOut, 'status' => $status, 'basePrice' => $room->getBasePrice()] + $discountParams
         );
     }
 
