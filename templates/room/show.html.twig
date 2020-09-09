@@ -9,7 +9,7 @@
 
 {% block body %}
     {% if checked is defined %}
-        <div data-checked data-discount="{{ discount }}" data-discount-name="{{ discountName }}" data-base-price="{{ basePrice }}"></div>
+        <div data-checked data-discount="{{ discount }}" data-discount-name="{{ discountName }}" data-base-price="{{ basePrice }}" data-steps-amount="{{ stepsAmount }}" data-steps-discount="{{ stepsDiscount }}"></div>
     {% endif %}
     <div class="res-hero id-js" data-room-id = {{ room.id }}>
         <div class="res-overlay"></div>
