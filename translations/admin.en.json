@@ -20,6 +20,8 @@
     "app.location": "Location",
     "app.max_guests": "Max guests",
     "app.basePrice": "Base price",
+    "app.stepsAmount": "Steps amount",
+    "app.stepsDiscount": "Steps discount",
     "app.name": "Name",
     "app.widgetHeader": "Widget header",
     "app.widgetText": "Widget text",
