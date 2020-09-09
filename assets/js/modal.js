@@ -74,10 +74,6 @@ closeEl.addEventListener('click', () => {
     document.querySelector('#reservation-modal').classList.remove(visible);
 });
 
-document.querySelector('#event_guests').addEventListener('change', () => {
-    updatePrice();
-});
-
 openPolicyModal.addEventListener('click', () => {
     document.querySelector('#policy-modal').classList.add(visible);
     document.querySelector('#reservation-modal').classList.remove(visible);
