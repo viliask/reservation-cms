@@ -13,7 +13,7 @@ const checkIn = document.querySelector('#reservation_checkInDate');
 const checkOut = document.querySelector('#reservation_checkOutDate');
 const closeAvailabilityModal = document.querySelector('[data-close-availability]');
 const closeRoomNotAvailableModal = document.querySelector('[data-close-not-available]');
-const PRICE = 40;
+let PRICE = 0;
 const alert = document.querySelector('div.alert-success');
 const alertText = alert.textContent;
 let responseData = null;
@@ -50,6 +50,7 @@ const updateForm = () => {
     document.querySelector('#event_checkOut').value = new Date(responseData.checkOut).toISOString().slice(0, 16);
     document.querySelector('#event_guests').value = guests;
     discount = 100 - responseData.discount;
+    PRICE = responseData.basePrice;
 
     if (responseData.discountName) {
         showPromo(responseData.discountName);
@@ -118,6 +119,7 @@ document.addEventListener('DOMContentLoaded',  () => {
     if (dataContainer) {
         const discountName = dataContainer.getAttribute('data-discount-name');
         discount = 100 - dataContainer.getAttribute('data-discount');
+        PRICE = dataContainer.getAttribute('data-base-price');
 
         if (discountName) {
             showPromo(discountName);
