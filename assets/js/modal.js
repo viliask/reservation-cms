@@ -35,12 +35,21 @@ const loadData = async () => {
     return response.data;
 };
 
+const showPromo = () => {
+    const alert = document.querySelector('div.alert-success');
+    alert.classList.remove('invisible');
+    alert.classList.add('alert');
+};
+
 const updateForm = () => {
     const guests = document.querySelector('#reservation_guests').value;
     document.querySelector('#event_checkIn').value = new Date(responseData.checkIn).toISOString().slice(0, 16);
     document.querySelector('#event_checkOut').value = new Date(responseData.checkOut).toISOString().slice(0, 16);
     document.querySelector('#event_guests').value = guests;
     discount = 100 - responseData.discount;
+    if (responseData.discountName) {
+        showPromo();
+    }
 };
 
 handleModalClose();
