@@ -35,10 +35,11 @@ const loadData = async () => {
     return response.data;
 };
 
-const showPromo = () => {
+const showPromo = (content) => {
     const alert = document.querySelector('div.alert-success');
     alert.classList.remove('invisible');
     alert.classList.add('alert');
+    alert.textContent += content;
 };
 
 const updateForm = () => {
@@ -48,7 +49,7 @@ const updateForm = () => {
     document.querySelector('#event_guests').value = guests;
     discount = 100 - responseData.discount;
     if (responseData.discountName) {
-        showPromo();
+        showPromo(responseData.discountName);
     }
 };
 
