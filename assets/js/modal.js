@@ -88,13 +88,6 @@ openPolicyModal.addEventListener('click', () => {
     });
 });
 
-document.addEventListener('DOMContentLoaded',  () => {
-    if (document.querySelector('[data-checked]')) {
-        document.querySelector('#reservation-modal').classList.add(visible);
-        updatePrice();
-    }
-});
-
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (validateForm()) {
@@ -116,4 +109,14 @@ closeAvailabilityModal.addEventListener('click', () => {
 
 closeRoomNotAvailableModal.addEventListener('click', () => {
     document.querySelector('#room-not-available-modal').classList.remove(visible);
+});
+
+/*
+    Homepage path - redirect from reservation cards
+ */
+document.addEventListener('DOMContentLoaded',  () => {
+    if (document.querySelector('[data-checked]')) {
+        document.querySelector('#reservation-modal').classList.add(visible);
+        updatePrice();
+    }
 });
