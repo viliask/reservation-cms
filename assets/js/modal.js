@@ -14,6 +14,7 @@ const checkOut = document.querySelector('#reservation_checkOutDate');
 let responseData = null;
 const closeAvailabilityModal = document.querySelector('[data-close-availability]');
 const closeRoomNotAvailableModal = document.querySelector('[data-close-not-available]');
+let discount = 0;
 
 handleModalClose();
 
@@ -22,7 +23,7 @@ const updatePrice = () => {
     const checkOut = new Date(document.querySelector('#event_checkOut').value);
     const guests = document.querySelector('#event_guests').value;
     const daysOfVisit = (checkOut.getTime() - checkIn.getTime()) / (1000 * 3600 * 24);
-    document.querySelector('#event_price').value = (daysOfVisit * PRICE * guests);
+    document.querySelector('#event_price').value = (daysOfVisit * PRICE * guests) * (discount/100);
 };
 
 const loadData = async () => {
@@ -41,6 +42,7 @@ const updateForm = () => {
     document.querySelector('#event_checkIn').value = new Date(responseData.checkIn).toISOString().slice(0, 16);
     document.querySelector('#event_checkOut').value = new Date(responseData.checkOut).toISOString().slice(0, 16);
     document.querySelector('#event_guests').value = guests;
+    discount = 100 - responseData.discount;
 };
 
 Routing.setRoutingData(routes);
