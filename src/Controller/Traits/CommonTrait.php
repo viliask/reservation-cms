@@ -42,7 +42,7 @@ trait CommonTrait
      */
     private function processRooms(array $data, $entity, RoomRepository $roomRepository)
     {
-        if ($roomIds = $data['rooms'] ?? null) {
+        if ($roomIds = $data['rooms']) {
             $allRooms = [];
             $actual   = [];
 
