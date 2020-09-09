@@ -111,7 +111,16 @@ closeRoomNotAvailableModal.addEventListener('click', () => {
     Homepage path - redirect from reservation cards
  */
 document.addEventListener('DOMContentLoaded',  () => {
-    if (document.querySelector('[data-checked]')) {
+    const dataContainer = document.querySelector('[data-checked]');
+
+    if (dataContainer) {
+        const discountName = dataContainer.getAttribute('data-discount-name');
+        discount = 100 - dataContainer.getAttribute('data-discount');
+
+        if (discountName) {
+            showPromo(discountName);
+        }
+
         document.querySelector('#reservation-modal').classList.add(visible);
         updatePrice();
     }

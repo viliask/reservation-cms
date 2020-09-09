@@ -59,6 +59,7 @@ class RoomController extends AbstractController
 
         $params            = $this->createParams($room, $eventForm, $event, $request, $availabilityForm, $mediaManager);
         $params['checked'] = '';
+        $params            += $this->findPromoOffer($room, $checkIn, $checkOut);
 
         return $this->render('room/show.html.twig', $params);
     }
