@@ -83,6 +83,16 @@ class Room
      */
     private $promoOffers;
 
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $stepsAmount;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $stepsDiscount;
+
     public function __construct()
     {
         $this->enabled = false;
@@ -348,6 +358,30 @@ class Room
         if ($this->promoOffers->contains($promoOffer)) {
             $this->promoOffers->removeElement($promoOffer);
         }
+
+        return $this;
+    }
+
+    public function getStepsAmount(): ?int
+    {
+        return $this->stepsAmount;
+    }
+
+    public function setStepsAmount(?int $stepsAmount): self
+    {
+        $this->stepsAmount = $stepsAmount;
+
+        return $this;
+    }
+
+    public function getStepsDiscount(): ?int
+    {
+        return $this->stepsDiscount;
+    }
+
+    public function setStepsDiscount(?int $stepsDiscount): self
+    {
+        $this->stepsDiscount = $stepsDiscount;
 
         return $this;
     }
