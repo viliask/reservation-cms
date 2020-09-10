@@ -42,6 +42,7 @@ Encore
     .addStyleEntry('app', './assets/css/app.css')
     .addStyleEntry('roomGallery', './assets/css/roomGallery.css')
     .addStyleEntry('card', './assets/css/card.css')
+    .addStyleEntry('map', './assets/css/map.css')
 ;
 
 const cssConfig = Encore.getWebpackConfig();

@@ -1,4 +1,9 @@
 {% extends 'base.html.twig' %}
+
+{% block styles %}
+    {{ encore_entry_link_tags('map', null, 'css') }}
+{% endblock %}
+
 {% block form %}
 <div class="form-block__content">
 
