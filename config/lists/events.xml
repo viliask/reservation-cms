@@ -27,11 +27,14 @@
             <entity-name>App\Entity\Event</entity-name>
         </property>
 
-        <property name="title" visibility="always" searchability="yes" translation="sulu_admin.title">
-            <field-name>title</field-name>
-            <entity-name>App\Entity\EventTranslation</entity-name>
+        <property name="firstName" visibility="always" searchability="yes" translation="app.firstName">
+            <field-name>firstName</field-name>
+            <entity-name>App\Entity\Event</entity-name>
+        </property>
 
-            <joins ref="translation"/>
+        <property name="lastName" visibility="always" searchability="yes" translation="app.lastName">
+            <field-name>lastName</field-name>
+            <entity-name>App\Entity\Event</entity-name>
         </property>
 
         <property name="enabled" visibility="no" translation="app.enabled" type="bool">
