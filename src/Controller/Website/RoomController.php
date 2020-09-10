@@ -148,11 +148,11 @@ class RoomController extends AbstractController
 
         return $this->json(
             [
-                'checkIn'   => $checkIn,
-                'checkOut'  => $checkOut,
-                'status'    => $status,
-                'basePrice' => $room->getBasePrice(),
-                'stepsAmount' => $room->getStepsAmount(),
+                'checkIn'       => $checkIn,
+                'checkOut'      => $checkOut,
+                'status'        => $status,
+                'basePrice'     => $room->getBasePrice(),
+                'stepsAmount'   => $room->getStepsAmount(),
                 'stepsDiscount' => $room->getStepsDiscount(),
                 'maxGuests'     => $room->getMaxGuests(),
                 'stepsContent'  => 'W zależności od liczby osób ',
