@@ -30,6 +30,8 @@ let discount = 0;
 let stepsContent = '';
 
 const updatePrice = () => {
+    document.querySelector('#event_checkIn').value = new Date(document.querySelector('#reservation_checkInDate').value).addHours(16).toISOString().slice(0, 16);
+    document.querySelector('#event_checkOut').value = new Date(document.querySelector('#reservation_checkOutDate').value).addHours(12).toISOString().slice(0, 16);
     const checkIn = new Date(document.querySelector('#reservation_checkInDate').value);
     const checkOut = new Date(document.querySelector('#reservation_checkOutDate').value);
     const guests = document.querySelector('#event_guests').value;
@@ -80,8 +82,6 @@ const showPromo = (content) => {
 const updateForm = () => {
     const guests = document.querySelector('#reservation_guests').value;
     const alert = document.querySelector('div.alert-success.alert');
-    document.querySelector('#event_checkIn').value = new Date(responseData.checkIn).toISOString().slice(0, 16);
-    document.querySelector('#event_checkOut').value = new Date(responseData.checkOut).toISOString().slice(0, 16);
     document.querySelector('#event_guests').value = guests;
     discount = 100 - responseData.discount;
     PRICE = responseData.basePrice;
