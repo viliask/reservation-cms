@@ -14,6 +14,7 @@ use Sulu\Bundle\MediaBundle\Media\Manager\MediaManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -109,7 +110,7 @@ class RoomController extends AbstractController
             ] + $this->getMedia($room, $mediaManager);
     }
 
-    private function processForm(Event $event)
+    private function processForm(Event $event): RedirectResponse
     {
         $event->setLocale('pl');
         $event->setStatus('draft');
@@ -159,7 +160,7 @@ class RoomController extends AbstractController
         );
     }
 
-    private function findPromoOffer(Room $room, string $checkIn, string $checkOut)
+    private function findPromoOffer(Room $room, string $checkIn, string $checkOut): array
     {
         $checkInDate  = new DateTime($checkIn);
         $checkOutDate = new DateTime($checkOut);
