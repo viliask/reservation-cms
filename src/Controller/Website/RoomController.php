@@ -130,7 +130,7 @@ class RoomController extends AbstractController
         EventRepository $eventRepository
     ): JsonResponse {
         $availableRoom  = $eventRepository->findAvailableRooms($checkIn, $checkOut, $room->getId());
-        $discountParams = null;
+        $discountParams = [];
 
         if ($availableRoom) {
             /** @var Room $roomObject */
