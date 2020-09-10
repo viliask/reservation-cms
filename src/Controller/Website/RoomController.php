@@ -56,8 +56,14 @@ class RoomController extends AbstractController
         $eventForm->get('checkIn')->setData($checkInDate);
         $eventForm->get('checkOut')->setData($checkOutDate);
         $eventForm->get('guests')->setData($guests);
+        $eventForm->get('rooms')->setData([$room]);
+        $eventForm->handleRequest($request);
 
-        $params = $this->createParams($room, $eventForm, $event, $request, $availabilityForm, $mediaManager);
+        if ($eventForm->isSubmitted() && $eventForm->isValid()) {
+            return $this->processForm($event);
+        }
+
+        $params = $this->createParams($room, $eventForm, $availabilityForm, $mediaManager);
         $params += $this->findPromoOffer($room, $checkIn, $checkOut);
 
         return $this->render('room/show.html.twig', $params);
@@ -71,20 +77,6 @@ class RoomController extends AbstractController
         $availabilityForm = $this->createForm(ReservationType::class);
         $event            = new Event();
         $eventForm        = $this->createForm(EventType::class, $event);
-
-        $params = $this->createParams($room, $eventForm, $event, $request, $availabilityForm, $mediaManager);
-
-        return $this->render('room/show.html.twig', $params);
-    }
-
-    private function createParams(
-        Room $room,
-        FormInterface $eventForm,
-        Event $event,
-        Request $request,
-        FormInterface $availabilityForm,
-        MediaManagerInterface $mediaManager
-    ): array {
         $eventForm->get('rooms')->setData([$room]);
         $eventForm->handleRequest($request);
 
@@ -92,6 +84,17 @@ class RoomController extends AbstractController
             return $this->processForm($event);
         }
 
+        $params = $this->createParams($room, $eventForm, $availabilityForm, $mediaManager);
+
+        return $this->render('room/show.html.twig', $params);
+    }
+
+    private function createParams(
+        Room $room,
+        FormInterface $eventForm,
+        FormInterface $availabilityForm,
+        MediaManagerInterface $mediaManager
+    ): array {
         return
             [
                 'room'             => $room,
