@@ -30,8 +30,8 @@ let discount = 0;
 let stepsContent = '';
 
 const updatePrice = () => {
-    const checkIn = new Date(document.querySelector('#event_checkIn').value);
-    const checkOut = new Date(document.querySelector('#event_checkOut').value);
+    const checkIn = new Date(document.querySelector('#reservation_checkInDate').value);
+    const checkOut = new Date(document.querySelector('#reservation_checkOutDate').value);
     const guests = document.querySelector('#event_guests').value;
     const daysOfVisit = (checkOut.getTime() - checkIn.getTime()) / (1000 * 3600 * 24);
 
