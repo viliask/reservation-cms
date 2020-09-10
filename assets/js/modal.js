@@ -2,6 +2,11 @@ import Axios from 'axios';
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
 import {visible, handleModalClose, validateForm, form} from './helper'
 
+Date.prototype.addHours = function(h) {
+    this.setTime(this.getTime() + (h*60*60*1000));
+    return this;
+};
+
 const routes = require('../../public/js/fos_js_routes_website');
 Routing.setRoutingData(routes);
 
