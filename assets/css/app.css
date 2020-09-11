@@ -49,54 +49,6 @@ div .form-check-input {
     stroke-width: 2;
 }
 
-.width-1 {
-    width: 8.33333%
-}
-
-.width-2 {
-    width: 16.66667%
-}
-
-.width-3 {
-    width: 25%
-}
-
-.width-4 {
-    width: 33.33333%
-}
-
-.width-5 {
-    width: 41.66667%
-}
-
-.width-6 {
-    width: 50%
-}
-
-.width-7 {
-    width: 58.33333%
-}
-
-.width-8 {
-    width: 66.66667%
-}
-
-.width-9 {
-    width: 75%
-}
-
-.width-10 {
-    width: 83.33333%
-}
-
-.width-11 {
-    width: 91.66667%
-}
-
-.width-12 {
-    width: 100%
-}
-
 input, textarea, button {
     outline: none;
     border: none;
