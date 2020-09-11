@@ -8,11 +8,9 @@
 {% block title %}Room{% endblock %}
 
 {% block body %}
-    {% if discount is defined %}
+    {% if checked is defined %}
         <div id="homepage-path-js"
                 data-checked
-                data-discount="{{ discount }}"
-                data-discount-name="{{ discountName }}"
                 data-base-price="{{ basePrice }}"
                 data-steps-amount="{{ stepsAmount }}"
                 data-steps-discount="{{ stepsDiscount }}"
