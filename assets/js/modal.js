@@ -132,8 +132,16 @@ form.addEventListener('submit', async (event) => {
         await loadData().then((data) => {
             responseData = data;
             if (responseData.status === true) {
-                document.querySelector('#availability-modal').classList.add(visible);
                 updateForm();
+                if (document.querySelector('[data-checked]')) {
+                    const homepagePathAttrs = document.querySelector('#homepage-path-js');
+                    delete homepagePathAttrs.dataset.checked;
+
+                    document.querySelector('#reservation-modal').classList.add(visible);
+                    updatePrice();
+                } else {
+                    document.querySelector('#availability-modal').classList.add(visible);
+                }
             } else {
                 document.querySelector('#room-not-available-modal').classList.add(visible);
             }
