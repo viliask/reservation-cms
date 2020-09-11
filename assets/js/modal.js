@@ -159,9 +159,7 @@ closeRoomNotAvailableModal.addEventListener('click', () => {
 
 // Homepage path - redirect from reservation cards
 document.addEventListener('DOMContentLoaded',  () => {
-    const dataContainer = document.querySelector('[data-checked]');
-
-    if (dataContainer) {
+    if (document.querySelector('#homepage-path-js')) {
         document.querySelector('#reservation_submit').click();
     }
 });
