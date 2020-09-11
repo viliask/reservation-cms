@@ -244,3 +244,10 @@ input[type="text"] {
         left: 0;
     }
 }
+
+/* Smartphones ----------- */
+@media only screen and (max-width: 760px) {
+    .icon-calendar {
+        display: none;
+    }
+}
