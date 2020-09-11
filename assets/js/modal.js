@@ -13,7 +13,7 @@ Routing.setRoutingData(routes);
 const openEventForm = document.querySelector('[data-open]');
 const closeEventForm = document.querySelector('[data-close]');
 const openPolicyModal = document.querySelector('[data-open-policy]');
-const roomId = document.querySelector('.id-js');
+const roomId = document.querySelector('.data-js');
 const checkIn = document.querySelector('#reservation_checkInDate');
 const checkOut = document.querySelector('#reservation_checkOutDate');
 const closeAvailabilityModal = document.querySelector('[data-close-availability]');

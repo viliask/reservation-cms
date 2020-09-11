@@ -12,7 +12,7 @@
         <div id="homepage-path-js" data-checked>
         </div>
     {% endif %}
-    <div class="res-hero id-js" data-room-id="{{ room.id }}" data-max-guests="{{ maxGuests }}" data-steps-amount="{{ stepsAmount }}">
+    <div class="res-hero data-js" data-room-id="{{ room.id }}" data-max-guests="{{ maxGuests }}" data-steps-amount="{{ stepsAmount }}">
         <div class="res-overlay"></div>
         {% if media[0] is defined %}
             <div class="res-cover" data-stellar-background-ratio="0.5" style="background-image: url({{ media[0]['media'].url }});">
