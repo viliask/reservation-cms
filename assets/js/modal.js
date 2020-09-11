@@ -116,9 +116,9 @@ const removeRedundantSelectOptions = () => {
     const select = document.querySelector('#reservation_guests');
     const options = select.options;
 
-    for (let i = options.length-1; i > 0; i--) {
+    for (let i = options.length-1; i >= 0; i--) {
         if (options[i].value < (maxGuests - stepsAmount) || options[i].value > maxGuests) {
-            select.removeChild(select.querySelector(`option[value="${options[i].value}"]`));
+            select.remove(i);
         }
     }
 };
