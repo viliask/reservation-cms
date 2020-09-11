@@ -133,6 +133,7 @@ form.addEventListener('submit', async (event) => {
             responseData = data;
             if (responseData.status === true) {
                 updateForm();
+                // Homepage path - open filled reservation form modal on simulated submit event
                 if (document.querySelector('[data-checked]')) {
                     const homepagePathAttrs = document.querySelector('#homepage-path-js');
                     delete homepagePathAttrs.dataset.checked;
@@ -160,6 +161,7 @@ closeRoomNotAvailableModal.addEventListener('click', () => {
 // Homepage path - redirect from reservation cards
 document.addEventListener('DOMContentLoaded',  () => {
     if (document.querySelector('#homepage-path-js')) {
+        // Simulate button click to prevent code duplication
         document.querySelector('#reservation_submit').click();
     }
 });
