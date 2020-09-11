@@ -109,6 +109,13 @@ const updateForm = () => {
     }
 };
 
+const removeRedundantSelectOptions = () => {
+    const select = document.querySelector('#reservation_guests');
+    select.removeChild(select.querySelector('option[value="5"]'));
+};
+
+removeRedundantSelectOptions();
+
 handleModalClose();
 
 // Modal after availability check - form modal
