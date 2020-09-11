@@ -4,6 +4,7 @@ namespace App\Controller\Website;
 
 use App\Controller\Traits\CommonTrait;
 use App\Entity\Event;
+use App\Entity\EventTranslation;
 use App\Entity\Room;
 use App\Form\Type\EventType;
 use App\Form\Type\ReservationType;
@@ -107,6 +108,8 @@ class RoomController extends AbstractController
         $event->setStatus('draft');
         $event->addRoom($room);
         $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist(new EventTranslation($event, 'en'));
+        $entityManager->persist(new EventTranslation($event, 'pl'));
         $entityManager->persist($event);
         $entityManager->flush();
 
