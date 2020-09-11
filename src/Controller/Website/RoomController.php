@@ -57,7 +57,7 @@ class RoomController extends AbstractController
         $eventForm->handleRequest($request);
 
         if ($eventForm->isSubmitted() && $eventForm->isValid()) {
-            return $this->processForm($event);
+            return $this->processForm($event, $room);
         }
 
         $params = $this->createParams($room, $eventForm, $availabilityForm, $mediaManager);
@@ -74,11 +74,10 @@ class RoomController extends AbstractController
         $availabilityForm = $this->createForm(ReservationType::class);
         $event            = new Event();
         $eventForm        = $this->createForm(EventType::class, $event);
-        $eventForm->get('rooms')->setData([$room]);
         $eventForm->handleRequest($request);
 
         if ($eventForm->isSubmitted() && $eventForm->isValid()) {
-            return $this->processForm($event);
+            return $this->processForm($event, $room);
         }
 
         $params = $this->createParams($room, $eventForm, $availabilityForm, $mediaManager);
@@ -106,10 +105,11 @@ class RoomController extends AbstractController
             ] + $this->getMedia($room, $mediaManager);
     }
 
-    private function processForm(Event $event): RedirectResponse
+    private function processForm(Event $event, Room $room): RedirectResponse
     {
         $event->setLocale('pl');
         $event->setStatus('draft');
+        $event->addRoom($room);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($event);
         $entityManager->flush();
