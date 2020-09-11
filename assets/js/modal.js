@@ -110,8 +110,17 @@ const updateForm = () => {
 };
 
 const removeRedundantSelectOptions = () => {
+    const dataJs = document.querySelector('.data-js');
+    const maxGuests = dataJs.dataset.maxGuests;
+    const stepsAmount = dataJs.dataset.stepsAmount;
     const select = document.querySelector('#reservation_guests');
-    select.removeChild(select.querySelector('option[value="5"]'));
+    const options = select.options;
+
+    for (let i = options.length-1; i > 0; i--) {
+        if (options[i].value < (maxGuests - stepsAmount) || options[i].value > maxGuests) {
+            select.removeChild(select.querySelector(`option[value="${options[i].value}"]`));
+        }
+    }
 };
 
 removeRedundantSelectOptions();
