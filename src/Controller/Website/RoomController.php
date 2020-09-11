@@ -96,6 +96,8 @@ class RoomController extends AbstractController
                 'room'             => $room,
                 'form'             => $eventForm->createView(),
                 'availabilityForm' => $availabilityForm->createView(),
+                'maxGuests'        => $room->getMaxGuests(),
+                'stepsAmount'      => $room->getStepsAmount(),
             ] + $this->getMedia($room, $mediaManager);
     }
 
