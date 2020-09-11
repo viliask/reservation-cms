@@ -61,6 +61,7 @@ class RoomController extends AbstractController
         }
 
         $params = $this->createParams($room, $eventForm, $availabilityForm, $mediaManager);
+        $params['checked'] = '';
 
         return $this->render('room/show.html.twig', $params);
     }
@@ -95,12 +96,6 @@ class RoomController extends AbstractController
                 'room'             => $room,
                 'form'             => $eventForm->createView(),
                 'availabilityForm' => $availabilityForm->createView(),
-                'checked'          => '',
-                'basePrice'        => $room->getBasePrice(),
-                'stepsAmount'      => $room->getStepsAmount(),
-                'stepsDiscount'    => $room->getStepsDiscount(),
-                'maxGuests'        => $room->getMaxGuests(),
-                'stepsContent'     => 'W zależności od liczby osób ',
             ] + $this->getMedia($room, $mediaManager);
     }
 
