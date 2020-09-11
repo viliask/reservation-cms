@@ -25,7 +25,18 @@ let stepsAmount = 0;
 let stepsDiscount = 0;
 let maxGuests = 0;
 let finalStepsDiscount = 0;
-let responseData = null;
+let responseData = {
+    basePrice: null,
+    checkIn: null,
+    checkOut: null,
+    discount: null,
+    discountName: null,
+    maxGuests: null,
+    status: null,
+    stepsAmount: null,
+    stepsContent: null,
+    stepsDiscount: null,
+};
 let discount = 0;
 let stepsContent = '';
 
