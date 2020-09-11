@@ -54,10 +54,6 @@ class RoomController extends AbstractController
         $availabilityForm->get('checkInDate')->setData($checkInDate);
         $availabilityForm->get('checkOutDate')->setData($checkOutDate);
         $availabilityForm->get('guests')->setData($guests);
-        $eventForm->get('checkIn')->setData($checkInDate);
-        $eventForm->get('checkOut')->setData($checkOutDate);
-        $eventForm->get('guests')->setData($guests);
-        $eventForm->get('rooms')->setData([$room]);
         $eventForm->handleRequest($request);
 
         if ($eventForm->isSubmitted() && $eventForm->isValid()) {
