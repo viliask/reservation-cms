@@ -154,19 +154,6 @@ document.addEventListener('DOMContentLoaded',  () => {
     const dataContainer = document.querySelector('[data-checked]');
 
     if (dataContainer) {
-        const discountName = dataContainer.getAttribute('data-discount-name');
-        discount = 100 - dataContainer.getAttribute('data-discount');
-        PRICE = dataContainer.getAttribute('data-base-price');
-        stepsAmount = dataContainer.getAttribute('data-steps-amount');
-        stepsDiscount = dataContainer.getAttribute('data-steps-discount');
-        maxGuests = dataContainer.getAttribute('data-max-guests');
-        stepsContent = dataContainer.getAttribute('data-steps-content');
-
-        if (discountName) {
-            showPromo(discountName);
-        }
-
-        document.querySelector('#reservation-modal').classList.add(visible);
-        updatePrice();
+        document.querySelector('#reservation_submit').click();
     }
 });
