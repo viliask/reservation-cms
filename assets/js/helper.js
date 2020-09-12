@@ -15,6 +15,13 @@ export const validateForm = () => {
         });
         return false;
     }
+    if (a >= b) {
+        document.querySelector('#datepicker-error').classList.add(visible);
+        document.querySelector('[data-close-datepicker-error]').addEventListener('click', () => {
+            document.querySelector('#datepicker-error').classList.remove(visible);
+        });
+        return false;
+    }
     return true;
 };
 
