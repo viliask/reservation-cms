@@ -256,4 +256,7 @@ input[type="text"] {
     .icon-calendar {
         display: none;
     }
+    .col-xs-6 {
+        width: 100%;
+    }
 }
