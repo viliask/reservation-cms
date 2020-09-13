@@ -6,49 +6,49 @@
                 <p>{{ content.article|raw }} Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4 col-sm-6 res-tours">
-                <div href="#">
-                    {% if content.images is not empty %}
-                        {% set source = content.images[0].formats['sulu-400x400'] %}
-                        <img src="{{ asset(source) }}" alt="">
-                    {% else %}
-                        <img src="web/images/place-1.jpg" alt="" class="img-responsive">
-                    {% endif %}
-                    <div class="desc">
-                        <span></span>
-                        <h3>New York</h3>
-                        <span>{{ content.grid_1|raw }}</span>
-                        <span class="price">$1,000</span>
-                        <a class="btn btn-primary btn-outline" href="#">Book Now <i class="icon-arrow-right22"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 res-tours">
-                <div href="#"><img src="web/images/place-2.jpg" alt="" class="img-responsive">
-                    <div class="desc">
-                        <span></span>
-                        <h3>Philippines</h3>
-                        <span>{{ content.grid_2|raw }}</span>
-                        <span class="price">$1,000</span>
-                        <a class="btn btn-primary btn-outline" href="#">Book Now <i class="icon-arrow-right22"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 res-tours">
-                <div href="#"><img src="web/images/place-3.jpg" alt="" class="img-responsive">
-                    <div class="desc">
-                        <span></span>
-                        <h3>Hongkong</h3>
-                        <span>{{ content.grid_3|raw }}</span>
-                        <span class="price">$1,000</span>
-                        <a class="btn btn-primary btn-outline" href="#">Book Now <i class="icon-arrow-right22"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 text-center">
-                <p><a class="btn btn-primary btn-outline btn-lg" href="#">Zobacz wszystkie<i class="icon-arrow-right22"></i></a></p>
-            </div>
-        </div>
+{#        <div class="row">#}
+{#            <div class="col-md-4 col-sm-6 res-tours">#}
+{#                <div href="#">#}
+{#                    {% if content.images is not empty %}#}
+{#                        {% set source = content.images[0].formats['sulu-400x400'] %}#}
+{#                        <img src="{{ asset(source) }}" alt="">#}
+{#                    {% else %}#}
+{#                        <img src="web/images/place-1.jpg" alt="" class="img-responsive">#}
+{#                    {% endif %}#}
+{#                    <div class="desc">#}
+{#                        <span></span>#}
+{#                        <h3>New York</h3>#}
+{#                        <span>{{ content.grid_1|raw }}</span>#}
+{#                        <span class="price">$1,000</span>#}
+{#                        <a class="btn btn-primary btn-outline" href="#">Book Now <i class="icon-arrow-right22"></i></a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="col-md-4 col-sm-6 res-tours">#}
+{#                <div href="#"><img src="web/images/place-2.jpg" alt="" class="img-responsive">#}
+{#                    <div class="desc">#}
+{#                        <span></span>#}
+{#                        <h3>Philippines</h3>#}
+{#                        <span>{{ content.grid_2|raw }}</span>#}
+{#                        <span class="price">$1,000</span>#}
+{#                        <a class="btn btn-primary btn-outline" href="#">Book Now <i class="icon-arrow-right22"></i></a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="col-md-4 col-sm-6 res-tours">#}
+{#                <div href="#"><img src="web/images/place-3.jpg" alt="" class="img-responsive">#}
+{#                    <div class="desc">#}
+{#                        <span></span>#}
+{#                        <h3>Hongkong</h3>#}
+{#                        <span>{{ content.grid_3|raw }}</span>#}
+{#                        <span class="price">$1,000</span>#}
+{#                        <a class="btn btn-primary btn-outline" href="#">Book Now <i class="icon-arrow-right22"></i></a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="col-md-12 text-center">#}
+{#                <p><a class="btn btn-primary btn-outline btn-lg" href="#">Zobacz wszystkie<i class="icon-arrow-right22"></i></a></p>#}
+{#            </div>#}
+{#        </div>#}
     </div>
 </div>
