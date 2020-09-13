@@ -5,6 +5,13 @@ div.card {
     background-color: rgba(0,0,0,.04);
     margin-bottom: 30px;
 }
+div.image{
+    max-height: 225px;
+    height: 225px;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+}
 div.card-container {
     background-color: white;
     display: flex;
@@ -38,13 +45,6 @@ div.card-container {
 .text-card-container a:hover {
     color: #368BDB;
     text-decoration: underline;
-}
-div.image{
-    max-height: 225px;
-    height: 225px;
-    width: 100%;
-    background-position: center;
-    background-size: cover;
 }
 div.text-card-container {
     margin: 20px 25px 25px;
