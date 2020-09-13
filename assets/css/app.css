@@ -229,6 +229,12 @@ input[type="text"] {
     }
 }
 
+.btn {
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 700;
+}
+
 @media (max-width: 991px) and (min-width: 768px) {
     .col-xs-6 {
          width: 100%;
