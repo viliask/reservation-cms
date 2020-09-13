@@ -149,6 +149,10 @@ input[type="text"] {
     padding-left: 65px;
 }
 
+.feature-copy span {
+    font-weight: 600;
+}
+
 @media screen and (max-width: 768px) {
     .res-cover .desc .desc2 {
         top: 40%;
