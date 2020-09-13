@@ -30,7 +30,21 @@ div.card-container {
     line-height: 24px;
     margin: 0 0 20px 0;
 }
-.text-card-container a {
+.text-card-container a:hover {
+    color: #368BDB;
+    text-decoration: underline;
+}
+div.text-card-container {
+    margin: 20px 25px 25px;
+    display: inline-flex;
+    width: 100%;
+}
+.text-card-container-right p {
+    font-weight: 300;
+    line-height: 24px;
+    margin: 0 0 20px 0;
+}
+.text-card-container-right a {
     text-decoration: none;
     text-transform: uppercase;
     color: #368BDB;
@@ -42,12 +56,13 @@ div.card-container {
     padding: 5px;
     left: -5px;
 }
-.text-card-container a:hover {
+.text-card-container-right a:hover {
     color: #368BDB;
     text-decoration: underline;
 }
-div.text-card-container {
-    margin: 20px 25px 25px;
+.text-card-container-right {
+    align-self: center;
+    width: 40%;
 }
 @media screen and (min-width: 768px) {
     div.card-container {
@@ -61,9 +76,25 @@ div.text-card-container {
         margin: 0 20px;
         max-width: 660px;
     }
+    div.text-card-container-right {
+        margin-left: auto;
+    }
 }
 @media screen and (min-width: 1024px) {
     div.card-container {
         max-width: 1200px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    div.text-card-container {
+        margin: 0 20px;
+        display: inline-block;
+    }
+    div.text-card-container-right {
+        width: 100%;
+    }
+    div.card {
+        display: block;
     }
 }
