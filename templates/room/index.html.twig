@@ -9,7 +9,7 @@
 {% block body %}
     <div class="res-section-gray">
         <div class="container">
-            {% if rooms is defined %}
+            {% if rooms is defined and rooms is not empty %}
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 text-center heading-section pt-1">
                         <h1>Znaleziono wolne miejsce</h1>
@@ -47,13 +47,13 @@
                             </div>
                         </div>
                     </div>
-                {% else %}
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2 text-center heading-section pt-1">
-                            <h1>Brak wolnych miejsc</h1>
-                        </div>
-                    </div>
                 {% endfor %}
+            {% else %}
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center heading-section pt-1">
+                        <h1>Brak wolnych miejsc</h1>
+                    </div>
+                </div>
             {% endif %}
         </div>
     </div>
