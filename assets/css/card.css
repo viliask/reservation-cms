@@ -29,6 +29,7 @@ div.card-container {
     font-weight: 300;
     line-height: 24px;
     margin: 0 0 20px 0;
+    padding: 10px;
 }
 .text-card-container a:hover {
     color: #368BDB;
@@ -93,13 +94,26 @@ div.text-card-container {
 
 @media screen and (max-width: 768px) {
     div.text-card-container {
-        margin: 0 20px;
+        margin: 10px;
         display: inline-block;
     }
     div.text-card-container-right {
         width: 100%;
+        position: relative;
     }
     div.card {
         display: block;
+    }
+    .text-card-container-right p {
+        text-align: left;
+    }
+    .col-xs {
+        display: inline-flex;
+        align-items: center;
+    }
+    .btn.btn-primary {
+        position: absolute;
+        right: 10px;
+        width: unset;
     }
 }
