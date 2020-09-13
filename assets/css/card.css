@@ -70,6 +70,11 @@ div.text-card-container {
     align-self: center;
     width: 40%;
 }
+.text-card-container hr {
+    visibility: hidden;
+    margin-top: 0;
+    margin-bottom: 0;
+}
 @media screen and (min-width: 768px) {
     div.card-container {
         flex-direction: row;
@@ -118,5 +123,10 @@ div.text-card-container {
     }
     .card-description-container {
         padding: 10px;
+    }
+    .text-card-container hr {
+        border: 0;
+        border-top: 1px solid #eeeeee;
+        visibility: visible;
     }
 }
