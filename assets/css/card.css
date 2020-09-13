@@ -116,4 +116,7 @@ div.text-card-container {
         right: 10px;
         width: unset;
     }
+    .card-description-container {
+        padding: 10px;
+    }
 }
