@@ -1,18 +1,18 @@
-div.card {
+.card {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgba(0,0,0,.04);
     margin-bottom: 30px;
 }
-div.image{
+.image{
     max-height: 225px;
     height: 225px;
     width: 100%;
     background-position: center;
     background-size: cover;
 }
-div.card-container {
+.card-container {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -35,7 +35,7 @@ div.card-container {
     color: #368BDB;
     text-decoration: underline;
 }
-div.text-card-container {
+.text-card-container {
     margin: 20px 25px 25px;
     display: inline-flex;
     width: 100%;
@@ -76,37 +76,37 @@ div.text-card-container {
     margin-bottom: 0;
 }
 @media screen and (min-width: 768px) {
-    div.card-container {
+    .card-container {
         flex-direction: row;
         width: 100%;
     }
-    div.image{
+    .image{
         max-width: 40%;
     }
-    div.text-card-container {
+    .text-card-container {
         margin: 0 20px;
         max-width: 660px;
     }
-    div.text-card-container-right {
+    .text-card-container-right {
         margin-left: auto;
     }
 }
 @media screen and (min-width: 1024px) {
-    div.card-container {
+    .card-container {
         max-width: 1200px;
     }
 }
 
 @media screen and (max-width: 768px) {
-    div.text-card-container {
+    .text-card-container {
         margin: 10px;
         display: inline-block;
     }
-    div.text-card-container-right {
+    .text-card-container-right {
         width: 100%;
         position: relative;
     }
-    div.card {
+    .card {
         display: block;
     }
     .text-card-container-right p {
