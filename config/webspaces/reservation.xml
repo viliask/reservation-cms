@@ -32,7 +32,13 @@
             <context key="main">
                 <meta>
                     <title lang="en">Main Navigation</title>
-                    <title lang="pl">Hauptnavigation</title>
+                    <title lang="pl">Główna nawigacja</title>
+                </meta>
+            </context>
+            <context key="footer">
+                <meta>
+                    <title lang="en">Footer navigation</title>
+                    <title lang="pl">Stopka</title>
                 </meta>
             </context>
         </contexts>
