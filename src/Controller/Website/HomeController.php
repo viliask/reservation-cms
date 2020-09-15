@@ -46,7 +46,7 @@ class HomeController extends WebsiteController
         $checkIn     = $reservation['checkInDate'];
         $checkOut    = $reservation['checkOutDate'];
         $guests      = $reservation['guests'];
-        $rooms       = $eventRepository->findAvailableRooms($checkIn, $checkOut);
+        $rooms       = $eventRepository->findAvailableRooms($checkIn, $checkOut, null, (int)$guests);
         $media       = [];
 
         /* @var $room Room */

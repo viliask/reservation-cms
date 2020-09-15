@@ -78,6 +78,17 @@ class RoomRepository extends ServiceEntityRepository implements DataProviderRepo
         );
     }
 
+    /** @return Room[] */
+    public function findMinGuests(int $guests)
+    {
+        return $this->createQueryBuilder('r')
+            ->select('r')
+            ->where(':guests <= r.maxGuests')
+            ->andWhere(':guests >= (r.maxGuests - r.stepsAmount)')
+            ->setParameter('guests', $guests)
+            ->getQuery()->execute();
+    }
+
     protected function appendJoins(QueryBuilder $queryBuilder, string $alias, string $locale): void
     {
         $queryBuilder->innerJoin($alias . '.translations', 'translation', Join::WITH, 'translation.locale = :locale');

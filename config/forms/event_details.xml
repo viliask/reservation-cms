@@ -6,11 +6,6 @@
     <key>event_details</key>
 
     <properties>
-        <property name="title" type="text_line" mandatory="true" colspan="9">
-            <meta>
-                <title>sulu_admin.title</title>
-            </meta>
-        </property>
 
         <property name="status" type="text_line" mandatory="true" colspan="3">
             <meta>
@@ -32,13 +27,13 @@
 
         <property name="firstName" type="text_line" mandatory="true" colspan="3">
             <meta>
-                <title>app.first_name</title>
+                <title>app.firstName</title>
             </meta>
         </property>
 
         <property name="lastName" type="text_line" mandatory="true"  colspan="3">
             <meta>
-                <title>app.last_name</title>
+                <title>app.lastName</title>
             </meta>
         </property>
 

@@ -4,6 +4,7 @@ namespace App\Controller\Website;
 
 use App\Controller\Traits\CommonTrait;
 use App\Entity\Event;
+use App\Entity\EventTranslation;
 use App\Entity\Room;
 use App\Form\Type\EventType;
 use App\Form\Type\ReservationType;
@@ -14,6 +15,7 @@ use Sulu\Bundle\MediaBundle\Media\Manager\MediaManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,12 +55,14 @@ class RoomController extends AbstractController
         $availabilityForm->get('checkInDate')->setData($checkInDate);
         $availabilityForm->get('checkOutDate')->setData($checkOutDate);
         $availabilityForm->get('guests')->setData($guests);
-        $eventForm->get('checkIn')->setData($checkInDate);
-        $eventForm->get('checkOut')->setData($checkOutDate);
-        $eventForm->get('guests')->setData($guests);
+        $eventForm->handleRequest($request);
 
-        $params = $this->createParams($room, $eventForm, $event, $request, $availabilityForm, $mediaManager);
-        $params += $this->findPromoOffer($room, $checkIn, $checkOut);
+        if ($eventForm->isSubmitted() && $eventForm->isValid()) {
+            return $this->processForm($event, $room);
+        }
+
+        $params = $this->createParams($room, $eventForm, $availabilityForm, $mediaManager);
+        $params['checked'] = '';
 
         return $this->render('room/show.html.twig', $params);
     }
@@ -71,8 +75,13 @@ class RoomController extends AbstractController
         $availabilityForm = $this->createForm(ReservationType::class);
         $event            = new Event();
         $eventForm        = $this->createForm(EventType::class, $event);
+        $eventForm->handleRequest($request);
 
-        $params = $this->createParams($room, $eventForm, $event, $request, $availabilityForm, $mediaManager);
+        if ($eventForm->isSubmitted() && $eventForm->isValid()) {
+            return $this->processForm($event, $room);
+        }
+
+        $params = $this->createParams($room, $eventForm, $availabilityForm, $mediaManager);
 
         return $this->render('room/show.html.twig', $params);
     }
@@ -80,37 +89,27 @@ class RoomController extends AbstractController
     private function createParams(
         Room $room,
         FormInterface $eventForm,
-        Event $event,
-        Request $request,
         FormInterface $availabilityForm,
         MediaManagerInterface $mediaManager
     ): array {
-        $eventForm->get('rooms')->setData([$room]);
-        $eventForm->handleRequest($request);
-
-        if ($eventForm->isSubmitted() && $eventForm->isValid()) {
-            return $this->processForm($event);
-        }
-
         return
             [
                 'room'             => $room,
                 'form'             => $eventForm->createView(),
                 'availabilityForm' => $availabilityForm->createView(),
-                'checked'          => '',
-                'basePrice'        => $room->getBasePrice(),
-                'stepsAmount'      => $room->getStepsAmount(),
-                'stepsDiscount'    => $room->getStepsDiscount(),
                 'maxGuests'        => $room->getMaxGuests(),
-                'stepsContent'     => 'W zależności od liczby osób ',
+                'stepsAmount'      => $room->getStepsAmount(),
             ] + $this->getMedia($room, $mediaManager);
     }
 
-    private function processForm(Event $event)
+    private function processForm(Event $event, Room $room): RedirectResponse
     {
         $event->setLocale('pl');
         $event->setStatus('draft');
+        $event->addRoom($room);
         $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist(new EventTranslation($event, 'en'));
+        $entityManager->persist(new EventTranslation($event, 'pl'));
         $entityManager->persist($event);
         $entityManager->flush();
 
@@ -127,7 +126,7 @@ class RoomController extends AbstractController
         EventRepository $eventRepository
     ): JsonResponse {
         $availableRoom  = $eventRepository->findAvailableRooms($checkIn, $checkOut, $room->getId());
-        $discountParams = null;
+        $discountParams = [];
 
         if ($availableRoom) {
             /** @var Room $roomObject */
@@ -144,11 +143,11 @@ class RoomController extends AbstractController
 
         return $this->json(
             [
-                'checkIn'   => $checkIn,
-                'checkOut'  => $checkOut,
-                'status'    => $status,
-                'basePrice' => $room->getBasePrice(),
-                'stepsAmount' => $room->getStepsAmount(),
+                'checkIn'       => $checkIn,
+                'checkOut'      => $checkOut,
+                'status'        => $status,
+                'basePrice'     => $room->getBasePrice(),
+                'stepsAmount'   => $room->getStepsAmount(),
                 'stepsDiscount' => $room->getStepsDiscount(),
                 'maxGuests'     => $room->getMaxGuests(),
                 'stepsContent'  => 'W zależności od liczby osób ',
@@ -156,7 +155,7 @@ class RoomController extends AbstractController
         );
     }
 
-    private function findPromoOffer(Room $room, string $checkIn, string $checkOut)
+    private function findPromoOffer(Room $room, string $checkIn, string $checkOut): array
     {
         $checkInDate  = new DateTime($checkIn);
         $checkOutDate = new DateTime($checkOut);

@@ -1,6 +1,6 @@
 .google-maps {
     position: relative;
-    padding-bottom: 40%;
+    padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
 }
@@ -8,7 +8,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100% !important;
-    height: 450px;
+    height:100%;
+    width:100%;
     border: 0;
 }

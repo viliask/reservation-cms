@@ -1,11 +1,18 @@
-div.card {
+.card {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgba(0,0,0,.04);
     margin-bottom: 30px;
 }
-div.card-container {
+.image{
+    max-height: 225px;
+    height: 225px;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+}
+.card-container {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -18,17 +25,32 @@ div.card-container {
 .res-section-gray .container {
     background-color: white
 }
-.text-card-container h1 {
-    font-weight: 600;
-    font-size: 36px;
-    margin: 0 0 15px;
-}
 .text-card-container p {
     font-weight: 300;
     line-height: 24px;
     margin: 0 0 20px 0;
+    padding: 10px;
 }
-.text-card-container a {
+.text-card-container a:hover {
+    color: #368BDB;
+    text-decoration: underline;
+}
+.text-card-container {
+    margin: 20px 25px 25px;
+    display: inline-flex;
+    width: 100%;
+}
+.text-card-container-right p {
+    font-weight: 300;
+    margin-bottom: 5px;
+    text-align: right;
+}
+.text-card-container-right span {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #d4974b;
+}
+.text-card-container-right a {
     text-decoration: none;
     text-transform: uppercase;
     color: #368BDB;
@@ -40,35 +62,71 @@ div.card-container {
     padding: 5px;
     left: -5px;
 }
-.text-card-container a:hover {
+.text-card-container-right a:hover {
     color: #368BDB;
     text-decoration: underline;
 }
-div.image{
-    max-height: 225px;
-    height: 225px;
-    width: 100%;
-    background-position: center;
-    background-size: cover;
+.text-card-container-right {
+    align-self: center;
+    width: 40%;
 }
-div.text-card-container {
-    margin: 20px 25px 25px;
+.text-card-container hr {
+    visibility: hidden;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 @media screen and (min-width: 768px) {
-    div.card-container {
+    .card-container {
         flex-direction: row;
         width: 100%;
     }
-    div.image{
+    .image{
         max-width: 40%;
     }
-    div.text-card-container {
+    .text-card-container {
         margin: 0 20px;
         max-width: 660px;
     }
+    .text-card-container-right {
+        margin-left: auto;
+    }
 }
 @media screen and (min-width: 1024px) {
-    div.card-container {
+    .card-container {
         max-width: 1200px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .text-card-container {
+        margin: 10px;
+        display: inline-block;
+    }
+    .text-card-container-right {
+        width: 100%;
+        position: relative;
+    }
+    .card {
+        display: block;
+    }
+    .text-card-container-right p {
+        text-align: left;
+    }
+    .col-xs {
+        display: inline-flex;
+        align-items: center;
+    }
+    .btn.btn-primary {
+        position: absolute;
+        right: 10px;
+        width: unset;
+    }
+    .card-description-container {
+        padding: 10px;
+    }
+    .text-card-container hr {
+        border: 0;
+        border-top: 1px solid #eeeeee;
+        visibility: visible;
     }
 }

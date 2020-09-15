@@ -1,2 +1,4 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    globals:
+        all_rooms: '@App\Service\RoomNavigationGenerator'

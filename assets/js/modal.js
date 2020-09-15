@@ -2,13 +2,18 @@ import Axios from 'axios';
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
 import {visible, handleModalClose, validateForm, form} from './helper'
 
+Date.prototype.addHours = function(h) {
+    this.setTime(this.getTime() + (h*60*60*1000));
+    return this;
+};
+
 const routes = require('../../public/js/fos_js_routes_website');
 Routing.setRoutingData(routes);
 
 const openEventForm = document.querySelector('[data-open]');
 const closeEventForm = document.querySelector('[data-close]');
 const openPolicyModal = document.querySelector('[data-open-policy]');
-const roomId = document.querySelector('.id-js');
+const roomId = document.querySelector('.data-js');
 const checkIn = document.querySelector('#reservation_checkInDate');
 const checkOut = document.querySelector('#reservation_checkOutDate');
 const closeAvailabilityModal = document.querySelector('[data-close-availability]');
@@ -20,13 +25,26 @@ let stepsAmount = 0;
 let stepsDiscount = 0;
 let maxGuests = 0;
 let finalStepsDiscount = 0;
-let responseData = null;
+let responseData = {
+    basePrice: null,
+    checkIn: null,
+    checkOut: null,
+    discount: null,
+    discountName: null,
+    maxGuests: null,
+    status: null,
+    stepsAmount: null,
+    stepsContent: null,
+    stepsDiscount: null,
+};
 let discount = 0;
 let stepsContent = '';
 
 const updatePrice = () => {
-    const checkIn = new Date(document.querySelector('#event_checkIn').value);
-    const checkOut = new Date(document.querySelector('#event_checkOut').value);
+    document.querySelector('#event_checkIn').value = new Date(document.querySelector('#reservation_checkInDate').value).addHours(16).toISOString().slice(0, 16);
+    document.querySelector('#event_checkOut').value = new Date(document.querySelector('#reservation_checkOutDate').value).addHours(12).toISOString().slice(0, 16);
+    const checkIn = new Date(document.querySelector('#reservation_checkInDate').value);
+    const checkOut = new Date(document.querySelector('#reservation_checkOutDate').value);
     const guests = document.querySelector('#event_guests').value;
     const daysOfVisit = (checkOut.getTime() - checkIn.getTime()) / (1000 * 3600 * 24);
 
@@ -75,8 +93,6 @@ const showPromo = (content) => {
 const updateForm = () => {
     const guests = document.querySelector('#reservation_guests').value;
     const alert = document.querySelector('div.alert-success.alert');
-    document.querySelector('#event_checkIn').value = new Date(responseData.checkIn).toISOString().slice(0, 16);
-    document.querySelector('#event_checkOut').value = new Date(responseData.checkOut).toISOString().slice(0, 16);
     document.querySelector('#event_guests').value = guests;
     discount = 100 - responseData.discount;
     PRICE = responseData.basePrice;
@@ -92,6 +108,22 @@ const updateForm = () => {
         alert.classList.remove('alert');
     }
 };
+
+const removeRedundantSelectOptions = () => {
+    const dataJs = document.querySelector('.data-js');
+    const maxGuests = dataJs.dataset.maxGuests;
+    const stepsAmount = dataJs.dataset.stepsAmount;
+    const select = document.querySelector('#reservation_guests');
+    const options = select.options;
+
+    for (let i = options.length-1; i >= 0; i--) {
+        if (options[i].value < (maxGuests - stepsAmount) || options[i].value > maxGuests) {
+            select.remove(i);
+        }
+    }
+};
+
+removeRedundantSelectOptions();
 
 handleModalClose();
 
@@ -127,8 +159,17 @@ form.addEventListener('submit', async (event) => {
         await loadData().then((data) => {
             responseData = data;
             if (responseData.status === true) {
-                document.querySelector('#availability-modal').classList.add(visible);
                 updateForm();
+                // Homepage path - open filled reservation form modal on simulated submit event
+                if (document.querySelector('[data-checked]')) {
+                    const homepagePathAttrs = document.querySelector('#homepage-path-js');
+                    delete homepagePathAttrs.dataset.checked;
+
+                    document.querySelector('#reservation-modal').classList.add(visible);
+                    updatePrice();
+                } else {
+                    document.querySelector('#availability-modal').classList.add(visible);
+                }
             } else {
                 document.querySelector('#room-not-available-modal').classList.add(visible);
             }
@@ -146,22 +187,8 @@ closeRoomNotAvailableModal.addEventListener('click', () => {
 
 // Homepage path - redirect from reservation cards
 document.addEventListener('DOMContentLoaded',  () => {
-    const dataContainer = document.querySelector('[data-checked]');
-
-    if (dataContainer) {
-        const discountName = dataContainer.getAttribute('data-discount-name');
-        discount = 100 - dataContainer.getAttribute('data-discount');
-        PRICE = dataContainer.getAttribute('data-base-price');
-        stepsAmount = dataContainer.getAttribute('data-steps-amount');
-        stepsDiscount = dataContainer.getAttribute('data-steps-discount');
-        maxGuests = dataContainer.getAttribute('data-max-guests');
-        stepsContent = dataContainer.getAttribute('data-steps-content');
-
-        if (discountName) {
-            showPromo(discountName);
-        }
-
-        document.querySelector('#reservation-modal').classList.add(visible);
-        updatePrice();
+    if (document.querySelector('#homepage-path-js')) {
+        // Simulate button click to prevent code duplication
+        document.querySelector('#reservation_submit').click();
     }
 });

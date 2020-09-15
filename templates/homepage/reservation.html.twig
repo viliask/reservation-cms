@@ -14,7 +14,7 @@
                                 </div>
                                 <h4>{{ formHeader }}</h4>
                             </div>
-                            {{ form_start(form, {'attr': {'class': 'submit-form'} }) }}
+                            {{ form_start(form, {attr: {class: 'submit-form'} }) }}
                             {{ form_errors(form) }}
                             <div class="col-xxs-12 col-xs-6 mt">
                                 <div class="input-field">
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-12">
-                                {{ form_widget(form.submit, {'label': 'Sprawdź dostępność'}) }}
+                                {{ form_widget(form.submit, {label: 'Sprawdź dostępność'}) }}
                             </div>
                             {{ form_end(form) }}
                         </div>
