@@ -6,6 +6,7 @@ use App\Controller\Traits\CommonTrait;
 use App\Entity\Room;
 use App\Form\Type\ReservationType;
 use App\Repository\EventRepository;
+use App\Repository\RoomRepository;
 use Sulu\Bundle\MediaBundle\Media\Manager\MediaManagerInterface;
 use Sulu\Bundle\WebsiteBundle\Controller\WebsiteController;
 use Sulu\Component\Content\Compat\StructureInterface;
@@ -19,7 +20,7 @@ class HomeController extends WebsiteController
 
     const RESERVATION_PATH = 'reservation';
 
-    public function indexAction(StructureInterface $structure, bool $preview = false, bool $partial = false): Response
+    public function indexAction(StructureInterface $structure, RoomRepository $roomRepository, MediaManagerInterface $mediaManager, bool $preview = false, bool $partial = false): Response
     {
         $attributes = [];
         $form       = $this->createForm(
@@ -27,6 +28,13 @@ class HomeController extends WebsiteController
             null,
             ['action' => $this->generateUrl(self::RESERVATION_PATH)]
         );
+        $media         = [];
+        $featuredRooms = $roomRepository->findEnabled();
+
+        /* @var $room Room */
+        foreach ($featuredRooms as $room) {
+            $media[$room->getId()] = $this->getMedia($room, $mediaManager);
+        }
 
         $attributes['form'] = $form->createView();
 
