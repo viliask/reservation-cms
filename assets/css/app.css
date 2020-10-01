@@ -168,7 +168,7 @@ input[type="text"] {
     }
 
     .res-cover .desc .desc2-homepage {
-        top: -123%;
+        top: -150%;
         position: absolute;
     }
 
@@ -179,7 +179,7 @@ input[type="text"] {
     .res-cover .desc {
         padding-left: 15px;
         padding-right: 15px;
-        top: 65%;
+        top: 80%;
     }
 
     .res-cover .desc .price {
@@ -203,6 +203,13 @@ input[type="text"] {
     .tabulation {
         width: 100%;
         float: left;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .res-cover .desc .desc2-homepage {
+        top: -250%;
+        position: absolute;
     }
 }
 
