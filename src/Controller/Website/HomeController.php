@@ -37,6 +37,8 @@ class HomeController extends WebsiteController
         }
 
         $attributes['form'] = $form->createView();
+        $attributes['rooms'] = $featuredRooms;
+        $attributes['media'] = $media;
 
         $response = $this->renderStructure(
             $structure,
