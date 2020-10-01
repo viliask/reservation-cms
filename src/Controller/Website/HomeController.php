@@ -22,8 +22,8 @@ class HomeController extends WebsiteController
 
     public function indexAction(StructureInterface $structure, RoomRepository $roomRepository, MediaManagerInterface $mediaManager, bool $preview = false, bool $partial = false): Response
     {
-        $attributes = [];
-        $form       = $this->createForm(
+        $attributes    = [];
+        $form          = $this->createForm(
             ReservationType::class,
             null,
             ['action' => $this->generateUrl(self::RESERVATION_PATH)]
@@ -36,7 +36,7 @@ class HomeController extends WebsiteController
             $media[$room->getId()] = $this->getMedia($room, $mediaManager);
         }
 
-        $attributes['form'] = $form->createView();
+        $attributes['form']  = $form->createView();
         $attributes['rooms'] = $featuredRooms;
         $attributes['media'] = $media;
 
