@@ -1,3 +1,10 @@
+/* Home logo */
+.img-logo {
+    display: block;
+    max-width: 100%;
+    height: none;
+}
+
 .form-group div {
     display: inline-block;
 }
