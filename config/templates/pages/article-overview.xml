@@ -5,7 +5,7 @@
 
     <key>article-overview</key>
 
-    <view>pages/article-overview</view>
+    <view>pages/articleOverview</view>
     <controller>App\Controller\Website\ArticleOverviewController::indexAction</controller>
     <cacheLifetime>86400</cacheLifetime>
 
