@@ -9,6 +9,7 @@ use App\Entity\Room;
 use App\Form\Type\EventType;
 use App\Form\Type\ReservationType;
 use App\Repository\EventRepository;
+use App\Repository\RoomRepository;
 use DateTime;
 use DateTimeImmutable;
 use Sulu\Bundle\MediaBundle\Media\Manager\MediaManagerInterface;
@@ -33,6 +34,25 @@ class RoomController extends AbstractController
     public function confirmation(): Response
     {
         return $this->render('room/confirmation.html.twig');
+    }
+
+    /**
+     * @Route("/", name="rooms_show", methods="GET")
+     */
+    public function showRooms(RoomRepository $repository, MediaManagerInterface $mediaManager): Response
+    {
+        $rooms = $repository->findAll();
+        $media = [];
+
+        /* @var $room Room */
+        foreach ($rooms as $room) {
+            $media[$room->getId()] = $this->getMedia($room, $mediaManager);
+        }
+
+        return $this->render('room/rooms.html.twig', [
+            'rooms' => $rooms,
+            'media' => $media,
+        ]);
     }
 
     /**
