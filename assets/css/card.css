@@ -75,6 +75,16 @@
     margin-top: 0;
     margin-bottom: 0;
 }
+.card.transitionable {
+    opacity: 0.92;
+}
+.card.transitionable:hover {
+    opacity: 1;
+    background: rgba(0,0,0,.1);
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
 @media screen and (min-width: 768px) {
     .card-container {
         flex-direction: row;
