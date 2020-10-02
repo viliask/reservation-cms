@@ -214,7 +214,10 @@ body {
 
 .room-container {
     background: white;
-    padding-top: 50px;
+    padding: 30px 0 30px;
+}
+.features-header{
+    padding-bottom: 10px;
 }
 
 .center-block {
