@@ -2,11 +2,9 @@ body {
     background: rgba(0,0,0,.04);;
     height: 100%;
 }
-
 .res-section-room {
     padding-bottom: 40px;
 }
-
 .gallery {
     left: 50%;
     -webkit-transform: translateX(-50%);
@@ -211,7 +209,6 @@ body {
 .gallery input#image4:checked ~ .thumbnails .thumb:nth-of-type(4) {
     opacity: 1;
 }
-
 .room-container {
     background: white;
     padding: 30px 0 0;
@@ -220,16 +217,13 @@ body {
 .features-header{
     padding-bottom: 10px;
 }
-
 .center-block {
     text-align: center;
 }
-
 @media (min-width: 992px) {
     .col-md-8 {
         float: inherit;
     }
-
     .gallery .carousel {
         height: 70vh;
         max-height: 700px;
