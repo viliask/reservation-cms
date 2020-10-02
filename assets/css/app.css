@@ -9,6 +9,22 @@
     max-width: 100%;
     height: none;
 }
+.img-logo-footer {
+    display: block;
+    max-width: 100%;
+    margin: auto;
+    border-radius: 30px;
+}
+.footer-links-row {
+    display: inline-flex;
+}
+.res-footer-link{
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+}
 
 .form-group div {
     display: inline-block;

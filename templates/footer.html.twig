@@ -1,11 +1,11 @@
 <div id="footer">
     <div class="container">
-        <div class="row">
+        <div class="footer-links-row">
             {% for item in sulu_navigation_root_tree('footer') %}
-                    <div class="col-md-2 col-sm-2 col-xs-12 res-footer-link">
-                        <h3>
+                    <div class="res-footer-link">
+                        <h4>
                             <a href="{{ sulu_content_path(item.url, item.webspaceKey) }}" title="{{ item.title }}">{{ item.title }}</a>
-                        </h3>
+                        </h4>
                     </div>
             {% endfor %}
         </div>
