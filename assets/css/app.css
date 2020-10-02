@@ -1,3 +1,8 @@
+/* Most popular cards */
+.res-tours>div img {
+    max-height: 330px;
+}
+
 /* Home logo */
 .img-logo {
     display: block;
