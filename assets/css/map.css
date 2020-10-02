@@ -12,3 +12,8 @@
     width:100%;
     border: 0;
 }
+
+/* Set background form contact form*/
+.form-block__content form {
+    background: white;
+}
