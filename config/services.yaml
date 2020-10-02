@@ -10,6 +10,7 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         bind:
             $listBuilderFactory: '@sulu_core.doctrine_list_builder_factory'
+            $esManagerLive: '@es.manager.live'
 
     _instanceof:
         Sulu\Bundle\AdminBundle\Admin\Admin:
