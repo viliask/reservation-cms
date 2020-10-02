@@ -1,6 +1,6 @@
 <nav id="offcanvas-menu" role="navigation">
     <ul class="" id="" style="touch-action: pan-y;">
-        <li><a href="#" class="res-sub-ddown sf-with-ul">Pokoje</a>
+        <li><a href="{{ path('rooms_show') }}" class="sf-with-ul">Pokoje</a>
             <ul class="res-sub-menu" style="display: none;">
                 {% if all_rooms is defined %}
                     {% for room in all_rooms.generate %}
@@ -28,7 +28,7 @@
             <nav id="res-menu-wrap" role="navigation">
                 <ul class="sf-menu" id="res-primary-menu">
                     <li>
-                        <a href="#" class="res-sub-ddown">Pokoje</a>
+                        <a href="{{ path('rooms_show') }}">Pokoje</a>
                         <ul class="res-sub-menu">
                             {% if all_rooms is defined %}
                                 {% for room in all_rooms.generate %}
