@@ -137,48 +137,8 @@ class RoomController extends AbstractController
         $entityManager->persist($event);
         $entityManager->flush();
 
-        $message = new Swift_Message('Zapytanie o rezerwację - pokojebeata.pl');
-        $data['name'] = $event->getFirstName();
-        $message->setFrom('hello@pokojebeata.pl');
-        $message->setTo($event->getMail());
-        $message->setBody(
-            '<html>' .
-            '<head></head>' .
-            '<body>' .
-            'Dziękujemy ' . $event->getFirstName() . ',' .
-            '<p>otrzymaliśmy Twoje zapytanie o rezerwację. Nasz obiekt jest dostępny również na innych portalach, dlatego musimy sprawdzić czy możesz go zarezerwować w podanym terminie.</p>' .
-            '<p>Odpowiemy najszybciej jak to będzie możliwe - telefonicznie lub mailowo.' .
-            '<p>Pozdrawiamy</p>' .
-            '<img src="' .
-            $message->embed(Swift_Image::fromPath('https://pokojebeata.pl/web/images/pokojebeata-logo.webp')) .
-            '" height="70px" alt="pokojebeata.pl" title="pokojebeata.pl" />' .
-            ' </body>' .
-            '</html>',
-            'text/html'
-        );
-
-        $mailer->send($message);
-
-        $message = new Swift_Message('Zapytanie o rezerwację - pokojebeata.pl');
-        $message->setFrom($event->getMail());
-        $message->setTo('hello@pokojebeata.pl');
-        $message->setBody(
-            '<html>' .
-            '<head></head>' .
-            '<body>' .
-            'Dziękujemy ' . $event->getFirstName() . ',' .
-            '<p>otrzymaliśmy Twoje zapytanie o rezerwację. Nasz obiekt jest dostępny również na innych portalach, dlatego musimy sprawdzić czy możesz go zarezerwować w podanym terminie.</p>' .
-            '<p>Odpowiemy najszybciej jak to będzie możliwe - telefonicznie lub mailowo.' .
-            '<p>Pozdrawiamy</p>' .
-            '<img src="' .
-            $message->embed(Swift_Image::fromPath('https://pokojebeata.pl/web/images/pokojebeata-logo.webp')) .
-            '" height="70px" alt="pokojebeata.pl" title="pokojebeata.pl" />' .
-            ' </body>' .
-            '</html>',
-            'text/html'
-        );
-
-        $mailer->send($message);
+        $this->sendConfirmationMail($event, $mailer, 'hello@pokojebeata.pl', $event->getMail());
+        $this->sendConfirmationMail($event, $mailer, $event->getMail(), 'hello@pokojebeata.pl');
 
         return $this->redirectToRoute('room_confirmation');
     }
@@ -244,5 +204,29 @@ class RoomController extends AbstractController
         }
 
         return ['discount' => $fairDiscount, 'discountName' => $discountName];
+    }
+
+    private function sendConfirmationMail(Event $event, Swift_Mailer $mailer, string $sender, string $receiver): void
+    {
+        $message = new Swift_Message('Zapytanie o rezerwację - pokojebeata.pl');
+        $message->setFrom($sender);
+        $message->setTo($receiver);
+        $message->setBody(
+            '<html>'.
+            '<head></head>'.
+            '<body>'.
+            'Dziękujemy '.$event->getFirstName().','.
+            '<p>otrzymaliśmy Twoje zapytanie o rezerwację. Nasz obiekt jest dostępny również na innych portalach, dlatego musimy sprawdzić czy możesz go zarezerwować w podanym terminie.</p>'.
+            '<p>Odpowiemy najszybciej jak to będzie możliwe - telefonicznie lub mailowo.'.
+            '<p>Pozdrawiamy</p>'.
+            '<img src="'.
+            $message->embed(Swift_Image::fromPath('https://pokojebeata.pl/web/images/pokojebeata-logo.webp')).
+            '" height="70px" alt="pokojebeata.pl" title="pokojebeata.pl" />'.
+            '</body>'.
+            '</html>',
+            'text/html'
+        );
+
+        $mailer->send($message);
     }
 }
