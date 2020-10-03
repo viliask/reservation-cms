@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block styles %}
+    {{ encore_entry_link_tags('card', null, 'css') }}
+{% endblock %}
+
+{% block title %}Artykuły{% endblock %}
+
+{% block content %}
+
+    <div class="res-section-gray">
+        <div class="container">
+            {% if articles is not empty %}
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center heading-section pt-1">
+                        <h1>Artykuły</h1>
+                    </div>
+                </div>
+                {% for article in articles %}
+                    <a href="{{ sulu_content_path(article.routePath) }}">
+                        <div class="card transitionable">
+                            <div class="card-container">
+                                <div class="image" style="background-image: url(/web/images/place-1.jpg);"></div>
+                                <div class="text-card-container">
+                                    <div class="card-description-container">
+                                        <h2>{{ article.title }}</h2>
+                                        {{ article.content.getArrayCopy['preview']|default()|raw }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            {% else %}
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center heading-section pt-1">
+                        <h1>Brak artykułów</h1>
+                    </div>
+                </div>
+            {% endif %}
+            {% if page > 1 %}
+                <nav aria-label="pagination" class="article-pagination">
+                    <a href="?page={{ page - 1 }}">< Poprzednia</a>
+                    {% for i in 1..pages %}
+                        <a href="?page={{ i }}">{{ i }}</a>
+                    {% endfor %}
+                    <a href="?page={{ page + 1 }}">Następna ></a>
+                </nav>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

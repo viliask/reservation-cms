@@ -2,53 +2,30 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center heading-section">
-                <h3>Najczęściej wynajmowane pokoje</h3>
+                <h3>Najczęściej wynajmowane</h3>
                 <p>{{ content.article|raw }}</p>
             </div>
         </div>
-{#        <div class="row">#}
-{#            <div class="col-md-4 col-sm-6 res-tours">#}
-{#                <div href="#">#}
-{#                    {% if content.images is not empty %}#}
-{#                        {% set source = content.images[0].formats['sulu-400x400'] %}#}
-{#                        <img src="{{ asset(source) }}" alt="">#}
-{#                    {% else %}#}
-{#                        <img src="web/images/place-1.jpg" alt="" class="img-responsive">#}
-{#                    {% endif %}#}
-{#                    <div class="desc">#}
-{#                        <span></span>#}
-{#                        <h3>New York</h3>#}
-{#                        <span>{{ content.grid_1|raw }}</span>#}
-{#                        <span class="price">$1,000</span>#}
-{#                        <a class="btn btn-primary btn-outline" href="#">Book Now <i class="icon-arrow-right22"></i></a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="col-md-4 col-sm-6 res-tours">#}
-{#                <div href="#"><img src="web/images/place-2.jpg" alt="" class="img-responsive">#}
-{#                    <div class="desc">#}
-{#                        <span></span>#}
-{#                        <h3>Philippines</h3>#}
-{#                        <span>{{ content.grid_2|raw }}</span>#}
-{#                        <span class="price">$1,000</span>#}
-{#                        <a class="btn btn-primary btn-outline" href="#">Book Now <i class="icon-arrow-right22"></i></a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="col-md-4 col-sm-6 res-tours">#}
-{#                <div href="#"><img src="web/images/place-3.jpg" alt="" class="img-responsive">#}
-{#                    <div class="desc">#}
-{#                        <span></span>#}
-{#                        <h3>Hongkong</h3>#}
-{#                        <span>{{ content.grid_3|raw }}</span>#}
-{#                        <span class="price">$1,000</span>#}
-{#                        <a class="btn btn-primary btn-outline" href="#">Book Now <i class="icon-arrow-right22"></i></a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="col-md-12 text-center">#}
-{#                <p><a class="btn btn-primary btn-outline btn-lg" href="#">Zobacz wszystkie<i class="icon-arrow-right22"></i></a></p>#}
-{#            </div>#}
-{#        </div>#}
+        {% if rooms is defined and rooms is not empty %}
+            {% for room in rooms %}
+                <div class="col-md-4 col-sm-6 res-tours">
+                    <div href="#">
+                        {% if media[room.id].media[0] is defined %}
+                            <img src="{{ media[room.id].media[0].media.formats['sulu-400x400-inset.webp'] }}" height="300px"  alt="{{ room.name }}">
+                        {% else %}
+                            <img src="web/images/place-1.jpg" height="300px" alt="{{ room.name }}" class="img-responsive">
+                        {% endif %}
+                        <div class="desc">
+                            <h3>{{ room.name }}</h3>
+                            <span class="price">od {{ room.basePrice }}zł</span>
+                            <a class="btn btn-primary btn-outline" href="{{ path('room_show', {id: room.id}) }}">Zobacz <i class="icon-arrow-right22"></i></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="col-md-12 text-center">
+                <p><a class="btn btn-primary btn-outline btn-lg" href="{{ path('rooms_show') }}">Zobacz wszystkie <i class="icon-arrow-right22"></i></a></p>
+            </div>
+        {% endif %}
     </div>
 </div>

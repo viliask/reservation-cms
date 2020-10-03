@@ -9,9 +9,13 @@ use App\Entity\Room;
 use App\Form\Type\EventType;
 use App\Form\Type\ReservationType;
 use App\Repository\EventRepository;
+use App\Repository\RoomRepository;
 use DateTime;
 use DateTimeImmutable;
 use Sulu\Bundle\MediaBundle\Media\Manager\MediaManagerInterface;
+use Swift_Image;
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -36,6 +40,25 @@ class RoomController extends AbstractController
     }
 
     /**
+     * @Route("/", name="rooms_show", methods="GET")
+     */
+    public function showRooms(RoomRepository $repository, MediaManagerInterface $mediaManager): Response
+    {
+        $rooms = $repository->findAll();
+        $media = [];
+
+        /* @var $room Room */
+        foreach ($rooms as $room) {
+            $media[$room->getId()] = $this->getMedia($room, $mediaManager);
+        }
+
+        return $this->render('room/rooms.html.twig', [
+            'rooms' => $rooms,
+            'media' => $media,
+        ]);
+    }
+
+    /**
      * @Route("/{id}/{checkIn}/{checkOut}", name="room_show_dates", methods={"GET", "POST"})
      */
     public function showWithDates(
@@ -43,7 +66,8 @@ class RoomController extends AbstractController
         Request $request,
         string $checkIn,
         string $checkOut,
-        MediaManagerInterface $mediaManager
+        MediaManagerInterface $mediaManager,
+        Swift_Mailer $mailer
     ): Response {
         $availabilityForm = $this->createForm(ReservationType::class);
         $event            = new Event();
@@ -58,7 +82,7 @@ class RoomController extends AbstractController
         $eventForm->handleRequest($request);
 
         if ($eventForm->isSubmitted() && $eventForm->isValid()) {
-            return $this->processForm($event, $room);
+            return $this->processForm($event, $room, $mailer);
         }
 
         $params = $this->createParams($room, $eventForm, $availabilityForm, $mediaManager);
@@ -70,7 +94,7 @@ class RoomController extends AbstractController
     /**
      * @Route("/{id}", name="room_show", methods={"GET", "POST"})
      */
-    public function show(Room $room, Request $request, MediaManagerInterface $mediaManager): Response
+    public function show(Room $room, Request $request, MediaManagerInterface $mediaManager, \Swift_Mailer $mailer): Response
     {
         $availabilityForm = $this->createForm(ReservationType::class);
         $event            = new Event();
@@ -78,7 +102,7 @@ class RoomController extends AbstractController
         $eventForm->handleRequest($request);
 
         if ($eventForm->isSubmitted() && $eventForm->isValid()) {
-            return $this->processForm($event, $room);
+            return $this->processForm($event, $room, $mailer);
         }
 
         $params = $this->createParams($room, $eventForm, $availabilityForm, $mediaManager);
@@ -102,7 +126,7 @@ class RoomController extends AbstractController
             ] + $this->getMedia($room, $mediaManager);
     }
 
-    private function processForm(Event $event, Room $room): RedirectResponse
+    private function processForm(Event $event, Room $room, Swift_Mailer $mailer): RedirectResponse
     {
         $event->setLocale('pl');
         $event->setStatus('draft');
@@ -112,6 +136,9 @@ class RoomController extends AbstractController
         $entityManager->persist(new EventTranslation($event, 'pl'));
         $entityManager->persist($event);
         $entityManager->flush();
+
+        $this->sendConfirmationMail($event, $mailer, 'hello@pokojebeata.pl', $event->getMail());
+        $this->sendConfirmationMail($event, $mailer, $event->getMail(), 'hello@pokojebeata.pl');
 
         return $this->redirectToRoute('room_confirmation');
     }
@@ -177,5 +204,29 @@ class RoomController extends AbstractController
         }
 
         return ['discount' => $fairDiscount, 'discountName' => $discountName];
+    }
+
+    private function sendConfirmationMail(Event $event, Swift_Mailer $mailer, string $sender, string $receiver): void
+    {
+        $message = new Swift_Message('Zapytanie o rezerwację - pokojebeata.pl');
+        $message->setFrom($sender);
+        $message->setTo($receiver);
+        $message->setBody(
+            '<html>'.
+            '<head></head>'.
+            '<body>'.
+            'Dziękujemy '.$event->getFirstName().','.
+            '<p>otrzymaliśmy Twoje zapytanie o rezerwację. Nasz obiekt jest dostępny również na innych portalach, dlatego musimy sprawdzić czy możesz go zarezerwować w podanym terminie.</p>'.
+            '<p>Odpowiemy najszybciej jak to będzie możliwe - telefonicznie lub mailowo.'.
+            '<p>Pozdrawiamy</p>'.
+            '<img src="'.
+            $message->embed(Swift_Image::fromPath('https://pokojebeata.pl/web/images/pokojebeata-logo.webp')).
+            '" height="70px" alt="pokojebeata.pl" title="pokojebeata.pl" />'.
+            '</body>'.
+            '</html>',
+            'text/html'
+        );
+
+        $mailer->send($message);
     }
 }

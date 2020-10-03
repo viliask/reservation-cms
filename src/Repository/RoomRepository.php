@@ -96,4 +96,14 @@ class RoomRepository extends ServiceEntityRepository implements DataProviderRepo
 
         $queryBuilder->andWhere($alias . '.enabled = true');
     }
+
+    /** @return Room[] */
+    public function findEnabled(int $limit = 3)
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.enabled = TRUE')
+            ->select('r')
+            ->setMaxResults($limit)
+            ->getQuery()->execute();
+    }
 }

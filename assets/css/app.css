@@ -1,3 +1,41 @@
+.center-default {
+    text-align-last: center;
+    margin-top: 1em;
+    margin-bottom: 30px;
+}
+
+.paragraph {
+    margin: 0 0 40px;
+}
+
+/* Most popular cards */
+.res-tours>div img {
+    max-height: 330px;
+}
+
+/* Home logo */
+.img-logo {
+    display: block;
+    max-width: 100%;
+    height: none;
+}
+.img-logo-footer {
+    display: block;
+    max-width: 100%;
+    float: right;
+    margin-right: 15px;
+}
+.footer-links-row {
+    display: inline-flex;
+}
+.res-footer-link{
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+}
+
 .form-group div {
     display: inline-block;
 }
@@ -101,7 +139,6 @@ input, textarea, button {
 }
 
 form {
-    background: white;
     box-sizing: border-box;
     margin-left: auto;
     margin-right: auto;
@@ -161,7 +198,7 @@ input[type="text"] {
     }
 
     .res-cover .desc .desc2-homepage {
-        top: -123%;
+        top: -150%;
         position: absolute;
     }
 
@@ -172,7 +209,7 @@ input[type="text"] {
     .res-cover .desc {
         padding-left: 15px;
         padding-right: 15px;
-        top: 65%;
+        top: 80%;
     }
 
     .res-cover .desc .price {
@@ -196,6 +233,13 @@ input[type="text"] {
     .tabulation {
         width: 100%;
         float: left;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .res-cover .desc .desc2-homepage {
+        top: -250%;
+        position: absolute;
     }
 }
 
@@ -225,7 +269,7 @@ input[type="text"] {
     }
 
     h1 {
-        margin: 0 0 10px 0;
+        margin: 10px 0 5px 0;
     }
 
     .res-section-gray {

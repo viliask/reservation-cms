@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block styles %}
+    {{ encore_entry_link_tags('card', null, 'css') }}
+{% endblock %}
+
+{% block title %}Zobacz pokoje z naszej aktualnej oferty{% endblock %}
+
+{% block body %}
+    <div class="res-section-gray">
+        <div class="container">
+            {% if rooms is defined and rooms is not empty %}
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center heading-section pt-1">
+                        <h1>Dostępne pokoje</h1>
+                    </div>
+                </div>
+                {% for room in rooms %}
+                    <div class="card">
+                        <div class="card-container">
+                            {% if media[room.id].media[0]is defined %}
+                                <div class="image" style="background-image: url({{ media[room.id].media[0].media.formats['sulu-400x400-inset.webp'] }});"></div>
+                            {% else %}
+                                <div class="image" style="background-image: url(/web/images/place-1.jpg);"></div>
+                            {% endif %}
+                            <div class="text-card-container">
+                                <div class="card-description-container">
+                                    <h2>{{ room.name }}</h2>
+                                    <p>
+                                        <i class="icon-checkmark pr-1"></i>Wi-fi, TV<br/>
+                                        <i class="icon-man-woman pr-1"></i>Łazienka w pokoju
+                                    </p>
+                                </div>
+                                <hr/>
+                                <div class="text-card-container-right">
+                                    <div class="col-xs">
+                                        <p>
+                                            Od<br/>
+                                            <span class="price">{{ room.basePrice }}zł / noc</span>
+                                        </p>
+                                        <button type="submit"
+                                                onclick="location.href='{{ path('room_show', {id: room.id}) }}';"
+                                                class="btn btn-primary btn-block">Zobacz
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center heading-section pt-1">
+                        <h1>Brak pokoi</h1>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div id="res-blog-section" class="res-section-gray">
+        <div class="container">
+            {% include "articles/recentArticles.html.twig" %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
