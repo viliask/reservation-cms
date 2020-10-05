@@ -238,13 +238,14 @@ input[type="text"] {
 
 @media screen and (max-width: 480px) {
     .res-cover .desc .desc2-homepage {
-        top: -250%;
+        top: -160%;
         position: absolute;
     }
 }
 
 @media (max-width: 768px) {
     .res-form {
+        position: relative;
         float: right;
     }
 
