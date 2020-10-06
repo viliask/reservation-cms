@@ -11,6 +11,7 @@ Encore
     .addEntry('modal', './assets/js/modal.js')
     .addEntry('main', './assets/js/main.js')
     .addEntry('homepage', './assets/js/homepage.js')
+    .addEntry('gtag', './assets/js/gtag.js')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()
