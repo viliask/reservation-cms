@@ -48,9 +48,9 @@ class EventType extends AbstractType
                     'attr' => ['placeholder' => 'test@test.com']
                 ]
             )
-            ->add('message', TextareaType::class)
+            ->add('message', TextareaType::class, ['required' => false])
             ->add('rooms', null, ['label' => false, 'attr' => ['style' => 'display:none']])
-            ->add('policy')
+            ->add('policy', null, ['required' => true])
             ->add('submit', SubmitType::class)
         ;
     }
