@@ -6,13 +6,6 @@
     <key>event_details</key>
 
     <properties>
-
-        <property name="status" type="text_line" mandatory="true" colspan="3">
-            <meta>
-                <title>app.status</title>
-            </meta>
-        </property>
-
         <property name="checkIn" type="datetime" colspan="3">
             <meta>
                 <title>app.check_in</title>
@@ -31,9 +24,15 @@
             </meta>
         </property>
 
-        <property name="lastName" type="text_line" mandatory="true"  colspan="3">
+        <property name="lastName" type="text_line" mandatory="true" colspan="3">
             <meta>
                 <title>app.lastName</title>
+            </meta>
+        </property>
+
+        <property name="status" type="text_line" mandatory="true" colspan="3">
+            <meta>
+                <title>app.status</title>
             </meta>
         </property>
 
@@ -43,27 +42,27 @@
             </meta>
         </property>
 
-        <property name="mail" type="email" mandatory="true" colspan="3">
+        <property name="mail" type="email" mandatory="true" colspan="4">
             <meta>
                 <title>app.mail</title>
             </meta>
         </property>
 
-        <property name="guests" type="number" mandatory="true" colspan="3">
+        <property name="guests" type="number" mandatory="true" colspan="2">
             <meta>
                 <title>app.guests</title>
-            </meta>
-        </property>
-
-        <property name="policy" type="checkbox" mandatory="true" colspan="1">
-            <meta>
-                <title>app.policy</title>
             </meta>
         </property>
 
         <property name="price" type="number" colspan="2">
             <meta>
                 <title>app.price</title>
+            </meta>
+        </property>
+
+        <property name="policy" type="checkbox" mandatory="true" colspan="2">
+            <meta>
+                <title>app.policy</title>
             </meta>
         </property>
 
