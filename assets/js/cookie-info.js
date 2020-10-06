@@ -1,3 +1,4 @@
+window.cookieconsent.hasTransition = false;
 window.cookieconsent.initialise({
     "palette": {
         "popup": {
