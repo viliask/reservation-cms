@@ -22,6 +22,7 @@
         {{ encore_entry_link_tags('superfish', null, 'css') }}
         {{ encore_entry_link_tags('style', null, 'css') }}
         {{ encore_entry_link_tags('app', null, 'css') }}
+        {{ encore_entry_link_tags('cookieconsent', null, 'css') }}
     {% endblock %}
     {% block styles '' %}
 
@@ -73,6 +74,8 @@
 
         {% block javascripts %}
             {{ encore_entry_script_tags('main', null, 'js') }}
+            {{ encore_entry_script_tags('cookieconsent', null, 'js') }}
+            {{ encore_entry_script_tags('cookie-info', null, 'js') }}
         {% endblock %}
         {% block js '' %}
 
