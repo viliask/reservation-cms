@@ -6,22 +6,30 @@
 
 {% block title %}Kontakt{% endblock %}
 
-{% block form %}
-<div class="form-block__content">
-
-{% if content.form %}
-        {% if app.request.get('send') != 'true' %}
-            {# FORM THEME #}
-            {% form_theme content.form 'form/theme.html.twig' %}
-            {{ form(content.form) }}
-        {% else %}
-            {{ view.form.entity.successText|raw }}
-        {% endif %}
-    {% endif %}
-</div>
-{% endblock %}
-
 {% block content %}
+    <div class="res-page-header">
+        <h1 class="center-default co-white">Kontakt</h1>
+    </div>
+    <div class="row form-block__content">
+        <div class="contact-container-wrapper">
+            <div class="col-sm-6 contact-container contact-left">
+
+            </div>
+            <div class="col-sm-6 contact-container contact-right">
+                <div class="">
+                    {% if content.form %}
+                    {% if app.request.get('send') != 'true' %}
+                        {# FORM THEME #}
+                        {% form_theme content.form 'form/theme.html.twig' %}
+                        {{ form(content.form) }}
+                    {% else %}
+                        {{ view.form.entity.successText|raw }}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
     <div class="google-maps">
         <iframe
                 frameborder="0"
