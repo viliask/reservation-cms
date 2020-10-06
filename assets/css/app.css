@@ -106,7 +106,7 @@ input, textarea, button {
 }
 
 .form-block__content {
-    padding: 60px 115px;
+    padding: 40px 115px;
     position: relative;
     background: #f2f2f2;
 }
@@ -203,6 +203,15 @@ input[type="text"] {
     font-weight: 600;
 }
 
+.res-cover .desc .desc2-homepage {
+    top: -70%;
+    position: absolute;
+}
+
+.container h3 {
+    padding-bottom: 20px;
+}
+
 @media screen and (max-width: 768px) {
     .res-cover .desc .desc2 {
         top: 40%;
@@ -268,10 +277,6 @@ input[type="text"] {
 
     .width-6 {
         width: 100%;
-    }
-
-    .form-block__content {
-        padding: 60px 10px;
     }
 
     .text-header {
