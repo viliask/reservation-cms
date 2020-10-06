@@ -11,6 +11,8 @@ Encore
     .addEntry('modal', './assets/js/modal.js')
     .addEntry('main', './assets/js/main.js')
     .addEntry('homepage', './assets/js/homepage.js')
+    .addEntry('cookieconsent', './assets/js/cookieconsent.min.js')
+    .addEntry('cookie-info', './assets/js/cookie-info.js')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()
@@ -43,6 +45,7 @@ Encore
     .addStyleEntry('roomGallery', './assets/css/roomGallery.css')
     .addStyleEntry('card', './assets/css/card.css')
     .addStyleEntry('map', './assets/css/map.css')
+    .addStyleEntry('cookieconsent', './assets/css/cookieconsent.min.css')
 ;
 
 const cssConfig = Encore.getWebpackConfig();

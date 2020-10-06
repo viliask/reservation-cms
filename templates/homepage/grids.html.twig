@@ -18,7 +18,7 @@
                         <div class="desc">
                             <h3>{{ room.name }}</h3>
                             <span class="price">od {{ room.basePrice }}zł</span>
-                            <a class="btn btn-primary btn-outline" href="{{ path('room_show', {id: room.id}) }}">Zobacz <i class="icon-arrow-right22"></i></a>
+                            <a class="btn btn-primary btn-outline" href="{{ path('room_show', {slug: room.slug}) }}">Zobacz <i class="icon-arrow-right22"></i></a>
                         </div>
                     </div>
                 </div>

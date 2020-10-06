@@ -13,47 +13,69 @@
             </meta>
         </property>
 
-        <property name="maxGuests" type="number" mandatory="true" colspan="2">
+        <property name="slug" type="text_line" mandatory="true" colspan="3">
+            <meta>
+                <title>app.slug</title>
+            </meta>
+        </property>
+
+        <property name="maxGuests" type="number" mandatory="true" colspan="3">
             <meta>
                 <title>app.max_guests</title>
             </meta>
         </property>
 
-        <property name="basePrice" type="number" mandatory="true" colspan="2">
+        <property name="basePrice" type="number" mandatory="true" colspan="3">
             <meta>
                 <title>app.basePrice</title>
             </meta>
         </property>
 
-        <property name="stepsAmount" type="number" mandatory="true" colspan="2">
+        <section name="promo">
             <meta>
-                <title>app.stepsAmount</title>
+                <title lang="pl">Promocja w zależności od ilości gości</title>
             </meta>
-        </property>
 
-        <property name="stepsDiscount" type="number" mandatory="true" colspan="2">
-            <meta>
-                <title>app.stepsDiscount</title>
-            </meta>
-        </property>
+            <properties>
+                <property name="stepsAmount" type="number" mandatory="true" colspan="3">
+                    <meta>
+                        <title>app.stepsAmount</title>
+                    </meta>
+                </property>
 
-        <property name="widgetHeader" type="text_line" mandatory="true" colspan="8">
-            <meta>
-                <title>app.widgetHeader</title>
-            </meta>
-        </property>
+                <property name="stepsDiscount" type="number" mandatory="true" colspan="3">
+                    <meta>
+                        <title>app.stepsDiscount</title>
+                    </meta>
+                </property>
+            </properties>
+        </section>
 
-        <property name="widgetText" type="text_area">
+        <section name="contentGroup">
             <meta>
-                <title>app.widgetText</title>
+                <title lang="pl">Treść strony</title>
             </meta>
-        </property>
 
-        <property name="content" type="text_editor">
-            <meta>
-                <title>app.content</title>
-            </meta>
-        </property>
+            <properties>
+                <property name="widgetHeader" type="text_line" mandatory="true" colspan="8">
+                    <meta>
+                        <title>app.widgetHeader</title>
+                    </meta>
+                </property>
+
+                <property name="widgetText" type="text_area">
+                    <meta>
+                        <title>app.widgetText</title>
+                    </meta>
+                </property>
+
+                <property name="content" type="text_editor">
+                    <meta>
+                        <title>app.content</title>
+                    </meta>
+                </property>
+            </properties>
+        </section>
 
     </properties>
 </form>

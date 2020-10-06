@@ -25,14 +25,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/room")
+ * @Route("/pokoje")
  */
 class RoomController extends AbstractController
 {
     use CommonTrait;
 
     /**
-     * @Route("/confirmation", name="room_confirmation", methods={"GET"})
+     * @Route("/potwierdzenie", name="room_confirmation", methods={"GET"})
      */
     public function confirmation(): Response
     {
@@ -59,7 +59,7 @@ class RoomController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/{checkIn}/{checkOut}", name="room_show_dates", methods={"GET", "POST"})
+     * @Route("/{slug}/{checkIn}/{checkOut}", name="room_show_dates", methods={"GET", "POST"})
      */
     public function showWithDates(
         Room $room,
@@ -92,7 +92,7 @@ class RoomController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="room_show", methods={"GET", "POST"})
+     * @Route("/{slug}", name="room_show", methods={"GET", "POST"})
      */
     public function show(Room $room, Request $request, MediaManagerInterface $mediaManager, \Swift_Mailer $mailer): Response
     {

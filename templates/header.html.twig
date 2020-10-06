@@ -5,7 +5,7 @@
                 {% if all_rooms is defined %}
                     {% for room in all_rooms.generate %}
                         <li>
-                            <a href="{{ path('room_show', {id: room.id}) }}">{{ room.name }}</a>
+                            <a href="{{ path('room_show', {slug: room.slug}) }}">{{ room.name }}</a>
                         </li>
                     {% endfor %}
                 {% endif %}
@@ -33,7 +33,7 @@
                             {% if all_rooms is defined %}
                                 {% for room in all_rooms.generate %}
                                     <li>
-                                        <a href="{{ path('room_show', {id: room.id}) }}">{{ room.name }}</a>
+                                        <a href="{{ path('room_show', {slug: room.slug}) }}">{{ room.name }}</a>
                                     </li>
                                 {% endfor %}
                             {% endif %}

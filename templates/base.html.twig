@@ -4,6 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179705432-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-179705432-1');
+    </script>
+
     <title>{% block title '' %}</title>
 
     {% block stylesheets %}
@@ -13,6 +22,7 @@
         {{ encore_entry_link_tags('superfish', null, 'css') }}
         {{ encore_entry_link_tags('style', null, 'css') }}
         {{ encore_entry_link_tags('app', null, 'css') }}
+        {{ encore_entry_link_tags('cookieconsent', null, 'css') }}
     {% endblock %}
     {% block styles '' %}
 
@@ -64,6 +74,8 @@
 
         {% block javascripts %}
             {{ encore_entry_script_tags('main', null, 'js') }}
+            {{ encore_entry_script_tags('cookieconsent', null, 'js') }}
+            {{ encore_entry_script_tags('cookie-info', null, 'js') }}
         {% endblock %}
         {% block js '' %}
 

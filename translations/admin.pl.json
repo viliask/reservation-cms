@@ -13,7 +13,10 @@
     "app.guests": "Liczba gości",
     "app.message": "Wiadomość",
     "app.policy": "Polityka prywatności",
-    "app.price": "Cena",
+    "app.price": "Cena (zł)",
+    "app.basePrice": "Cena bazowa (zł)",
+    "app.stepsAmount": "Ilość progów cenowych",
+    "app.stepsDiscount": "Promocja na próg(%)",
     "app.rooms": "Pokoje",
     "app.enable_event": "Aktywuj rezerwację",
     "app.enabled": "Aktywny",
@@ -26,5 +29,8 @@
     "app.discount": "Obniżka",
     "app.minDays": "Min. dni",
     "app.startDate": "Początek",
-    "app.endDate": "Koniec"
+    "app.endDate": "Koniec",
+    "app.slug": "Slug",
+    "app.enable_room": "Aktywuj pokój",
+    "app.forms": "Formularze"
 }

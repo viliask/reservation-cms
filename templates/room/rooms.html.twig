@@ -39,7 +39,7 @@
                                             <span class="price">{{ room.basePrice }}zł / noc</span>
                                         </p>
                                         <button type="submit"
-                                                onclick="location.href='{{ path('room_show', {id: room.id}) }}';"
+                                                onclick="location.href='{{ path('room_show', {slug: room.slug}) }}';"
                                                 class="btn btn-primary btn-block">Zobacz
                                         </button>
                                     </div>

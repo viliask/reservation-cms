@@ -39,7 +39,7 @@
                                             <span class="price">{{ room.basePrice }}zł / noc</span>
                                         </p>
                                         <button type="submit"
-                                                onclick="location.href='{{ path('room_show_dates', {id: room.id, checkIn: checkIn, checkOut: checkOut, guests: guests}) }}';"
+                                                onclick="location.href='{{ path('room_show_dates', {slug: room.slug, checkIn: checkIn, checkOut: checkOut, guests: guests}) }}';"
                                                 class="btn btn-primary btn-block">Dalej
                                         </button>
                                     </div>

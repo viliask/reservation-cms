@@ -6,22 +6,38 @@
 
 {% block title %}Kontakt{% endblock %}
 
-{% block form %}
-<div class="form-block__content">
-
-{% if content.form %}
-        {% if app.request.get('send') != 'true' %}
-            {# FORM THEME #}
-            {% form_theme content.form 'form/theme.html.twig' %}
-            {{ form(content.form) }}
-        {% else %}
-            {{ view.form.entity.successText|raw }}
-        {% endif %}
-    {% endif %}
-</div>
-{% endblock %}
-
 {% block content %}
+    <div class="res-page-header">
+        <h1 class="center-default co-white">Kontakt</h1>
+    </div>
+    <div class="row form-block__content">
+        <div class="contact-container-wrapper">
+            <div class="col-sm-6 contact-container contact-left">
+                <h2 class="h4">Adres:</h2>
+                <p>Pokoje Beata</p>
+                <p>ul. Słotwińska 41A</p>
+                <p>33-380 Krynica-Zdrój</p>
+                <h2 class="h4">Dane kontaktowe:</h2>
+                <p>18 534 92 76</p>
+                <p>+48 661 159 412</p>
+                <p>hello@pokojebeata.pl</p>
+                <p>wikabs@gmail.com</p>
+            </div>
+            <div class="col-sm-6 contact-container contact-right">
+                <div class="">
+                    {% if content.form %}
+                    {% if app.request.get('send') != 'true' %}
+                        {# FORM THEME #}
+                        {% form_theme content.form 'form/theme.html.twig' %}
+                        {{ form(content.form) }}
+                    {% else %}
+                        {{ view.form.entity.successText|raw }}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
     <div class="google-maps">
         <iframe
                 frameborder="0"
