@@ -1,3 +1,16 @@
+.co-white {
+    color: white;
+}
+
+.bg-white {
+    background: white;
+}
+
+.res-page-header {
+    padding: 10px;
+    background: linear-gradient(to right,rgba(28,119,255,.5) 0%,rgba(255,150,0,.5) 100%);
+}
+
 .center-default {
     text-align-last: center;
     margin-top: 1em;
