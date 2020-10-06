@@ -17,7 +17,7 @@
             {{ form_widget(form.guests, {attr: {class: 'form-control'}}) }}
         </div>
         <div class="form-group col-md-6">
-            {{ form_label(form.price, 'Cena') }}
+            {{ form_label(form.price, 'Cena (zł)') }}
             {{ form_errors(form.price) }}
             {{ form_widget(form.price, {attr: {class: 'form-control'}}) }}
         </div>
@@ -51,7 +51,7 @@
         </div>
         <div class="form-group col-md-12 inline">
             {{ form_errors(form.policy) }}
-            {{ form_row(form.policy, { label: 'Zapoznałem się i akceptuję ', attr: {
+            {{ form_row(form.policy, { label: "Zapoznałem/am się i akceptuję ", attr: {
                 class: 'form-check-input'}}) }}
             <label class="form-check-label" for="gridCheck">
                 <button type="button" data-open-policy>regulamin rezerwacji</button>.
