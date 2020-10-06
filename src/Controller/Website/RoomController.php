@@ -25,14 +25,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/room")
+ * @Route("/pokoje")
  */
 class RoomController extends AbstractController
 {
     use CommonTrait;
 
     /**
-     * @Route("/confirmation", name="room_confirmation", methods={"GET"})
+     * @Route("/potwierdzenie", name="room_confirmation", methods={"GET"})
      */
     public function confirmation(): Response
     {

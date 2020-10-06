@@ -1,5 +1,5 @@
 # Define your website routes here
 
 reservation:
-    path: /reservation
+    path: /rezerwacja
     controller: App\Controller\Website\HomeController::reservation
