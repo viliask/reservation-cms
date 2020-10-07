@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Common\DoctrineListRepresentationFactory;
+use App\Controller\Traits\CommonTrait;
 use App\Entity\Room;
 use App\Repository\RoomRepository;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -18,6 +19,8 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class RoomController extends AbstractRestController implements ClassResourceInterface
 {
+    use CommonTrait;
+
     /**
      * @var RoomRepository
      */
@@ -142,18 +145,6 @@ class RoomController extends AbstractRestController implements ClassResourceInte
         if ($description = $data['description'] ?? null) {
             $entity->setDescription($description);
         }
-    }
-
-    private function slugify(string $text): string
-    {
-        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
-        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-        $text = preg_replace('~[^-\w]+~', '', $text);
-        $text = trim($text, '-');
-        $text = preg_replace('~-+~', '-', $text);
-        $text = strtolower($text);
-
-        return $text;
     }
 
     protected function load(int $id, Request $request): ?Room
