@@ -13,7 +13,7 @@ trait CommonTrait
     private function getMedia(Room $room, MediaManagerInterface $mediaManager): array
     {
         $pageMedia     = [];
-        $roomIndicator = str_replace(' ', '-', strtolower($room->getName()));
+        $roomIndicator = $this->slugify($room->getName());
 
         foreach ($mediaManager->get('en') as $media) {
             if (str_contains($media->getTitle(), $roomIndicator) && str_contains($media->getMimeType(), 'image')) {
@@ -65,5 +65,22 @@ trait CommonTrait
                 $entity->removeRoom($room);
             }
         }
+    }
+
+    private function slugify(string $text): string
+    {
+        $text = html_entity_decode($text, ENT_QUOTES, 'UTF-8');
+        $text = preg_replace('~[^\\pL\d.]+~u', '-', $text);
+        $text = trim($text, '-');
+        setlocale(LC_CTYPE, 'pl_PL.utf8');
+
+        if (function_exists('iconv')) {
+            $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+        }
+
+        $text = strtolower($text);
+        $text = preg_replace('~[^-\w.]+~', '', $text);
+
+        return $text;
     }
 }
