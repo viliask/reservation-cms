@@ -46,7 +46,8 @@ class EventType extends AbstractType
             )
             ->add('price', null,
                 [
-                    'attr' => ['readonly' => true]
+                    'label' => false,
+                    'attr' => ['readonly' => true,  'style' => 'display:none']
                 ]
             )
             ->add('firstName')
