@@ -75,6 +75,15 @@ class ReservationSettingsRepository extends ServiceEntityRepository
         );
     }
 
+    /** @return ReservationSettings[]|null */
+    public function isEnabled()
+    {
+        return $this->createQueryBuilder('rs')
+            ->select('rs')
+            ->where('rs.enabled = TRUE')
+            ->getQuery()->execute();
+    }
+
     protected function appendJoins(QueryBuilder $queryBuilder, string $alias, string $locale): void
     {
         $queryBuilder->innerJoin($alias . '.translations', 'translation', Join::WITH, 'translation.locale = :locale');
