@@ -2,6 +2,8 @@
 
 namespace App\Sitemap;
 
+use App\Controller\Website\RoomController;
+use App\Entity\Room;
 use App\Repository\RoomRepository;
 use Sulu\Bundle\WebsiteBundle\Sitemap\Sitemap;
 use Sulu\Bundle\WebsiteBundle\Sitemap\SitemapProviderInterface;
@@ -25,7 +27,7 @@ class SitemapProvider implements SitemapProviderInterface
     public function build($page, $scheme, $host)
     {
         $result[] = new SitemapUrl(
-            $scheme . '://' . $host . '/' . 'pokoje',
+            $scheme . '://' . $host . '/' . RoomController::ROUTE_PREFIX,
             'pl',
             'pl',
             null,
@@ -49,7 +51,7 @@ class SitemapProvider implements SitemapProviderInterface
 
     public function getAlias()
     {
-        return 'rooms';
+        return Room::RESOURCE_KEY;
     }
 
     public function createSitemap($scheme, $host)
