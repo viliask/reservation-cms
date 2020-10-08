@@ -39,6 +39,16 @@ class ReservationSettings
      */
     private $locale;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enabled;
+
+    public function __construct()
+    {
+        $this->enabled = false;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,6 +98,18 @@ class ReservationSettings
     public function setLocale(string $locale): self
     {
         $this->locale = $locale;
+
+        return $this;
+    }
+
+    public function isEnabled(): bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
 
         return $this;
     }
