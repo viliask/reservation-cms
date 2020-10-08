@@ -86,6 +86,15 @@ class SettingController extends AbstractRestController implements ClassResourceI
             throw new NotFoundHttpException();
         }
 
+        switch ($request->query->get('action')) {
+            case 'enable':
+                $reservationSettings->setEnabled(true);
+                break;
+            case 'disable':
+                $reservationSettings->setEnabled(false);
+                break;
+        }
+
         $this->repository->save($reservationSettings);
 
         return $this->handleView($this->view($reservationSettings));
