@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<form xmlns="http://schemas.sulu.io/template/template"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/form-1.0.xsd"
+>
+    <key>setting_details</key>
+
+    <properties>
+
+        <property name="winterStart" type="datetime" mandatory="true" colspan="3">
+            <meta>
+                <title>app.winterStart</title>
+            </meta>
+        </property>
+
+        <property name="winterEnd" type="datetime" mandatory="true" colspan="3">
+            <meta>
+                <title>app.winterEnd</title>
+            </meta>
+        </property>
+
+        <property name="priceModifier" type="number" mandatory="true" colspan="2">
+            <meta>
+                <title>app.priceModifier</title>
+            </meta>
+        </property>
+    </properties>
+</form>
