@@ -24,7 +24,14 @@ class SitemapProvider implements SitemapProviderInterface
 
     public function build($page, $scheme, $host)
     {
-        $result = [];
+        $result[] = new SitemapUrl(
+            $scheme . '://' . $host . '/' . 'pokoje',
+            'pl',
+            'pl',
+            null,
+            null,
+            80
+        );
         foreach ($this->repository->findEnabled(50000) as $item) {
             $result[] = new SitemapUrl(
                 $scheme . '://' . $host . '/' . $item->getSlug(),
