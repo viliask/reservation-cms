@@ -29,5 +29,9 @@
     "app.discount": "Discount (in %)",
     "app.minDays": "Min days",
     "app.startDate": "Start date",
-    "app.endDate": "End date"
+    "app.endDate": "End date",
+    "app.winterStart": "Winter start",
+    "app.winterEnd": "Winter end",
+    "app.priceModifier": "Price modifier",
+    "app.setting": "Settings"
 }

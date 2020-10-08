@@ -32,5 +32,9 @@
     "app.endDate": "Koniec",
     "app.slug": "Slug",
     "app.enable_room": "Aktywuj pokój",
-    "app.forms": "Formularze"
+    "app.forms": "Formularze",
+    "app.winterStart": "Początek sezonu zimowego",
+    "app.winterEnd": "Koniec sezonu zimowego",
+    "app.priceModifier": "Modyfikator cen",
+    "app.setting": "Ustawienia"
 }
