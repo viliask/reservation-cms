@@ -36,5 +36,6 @@
     "app.winterStart": "Początek sezonu zimowego",
     "app.winterEnd": "Koniec sezonu zimowego",
     "app.priceModifier": "Modyfikator cen",
-    "app.setting": "Ustawienia"
+    "app.setting": "Ustawienia",
+    "app.enable_settings": "Aktywuj ustawienia"
 }

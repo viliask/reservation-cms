@@ -33,5 +33,6 @@
     "app.winterStart": "Winter start",
     "app.winterEnd": "Winter end",
     "app.priceModifier": "Price modifier",
-    "app.setting": "Settings"
+    "app.setting": "Settings",
+    "app.enable_settings": "Activate settings"
 }
