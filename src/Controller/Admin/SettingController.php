@@ -79,7 +79,7 @@ class SettingController extends AbstractRestController implements ClassResourceI
     /**
      * @Rest\Post("/settings/{id}")
      */
-    public function postTriggerAction(int $id, Request $request): Response
+    public function postTriggerAction(int $id, Request $request, ReservationSettingsRepository $repository): Response
     {
         $reservationSettings = $this->repository->findById($id, $request->query->get('locale'));
         if (!$reservationSettings) {
@@ -88,6 +88,10 @@ class SettingController extends AbstractRestController implements ClassResourceI
 
         switch ($request->query->get('action')) {
             case 'enable':
+                if ($repository->isEnabled()){
+                    throw new \Exception('Pewne ustawienia są już aktywne.');
+                }
+
                 $reservationSettings->setEnabled(true);
                 break;
             case 'disable':
