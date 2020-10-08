@@ -5,6 +5,9 @@ namespace App\Repository;
 use App\Entity\ReservationSettings;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Sulu\Component\SmartContent\Orm\DataProviderRepositoryTrait;
+use Doctrine\ORM\Query\Expr\Join;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method ReservationSettings|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,32 +22,64 @@ class ReservationSettingsRepository extends ServiceEntityRepository
         parent::__construct($registry, ReservationSettings::class);
     }
 
-    // /**
-    //  * @return ReservationSettings[] Returns an array of ReservationSettings objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+    use DataProviderRepositoryTrait {
+        findByFilters as parentFindByFilters;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?ReservationSettings
+    public function create(string $locale): ReservationSettings
     {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $reservationSettings = new ReservationSettings();
+        $reservationSettings->setLocale($locale);
+
+        return $reservationSettings;
     }
-    */
+
+    public function remove(int $id): void
+    {
+        $this->getEntityManager()->remove(
+            $this->getEntityManager()->getReference(
+                $this->getClassName(),
+                $id
+            )
+        );
+        $this->getEntityManager()->flush();
+    }
+
+    public function save(ReservationSettings $promoOffer): void
+    {
+        $this->getEntityManager()->persist($promoOffer);
+        $this->getEntityManager()->flush();
+    }
+
+    public function findById(int $id, string $locale): ?ReservationSettings
+    {
+        $reservationSettings = $this->find($id);
+        if (!$reservationSettings) {
+            return null;
+        }
+
+        $reservationSettings->setLocale($locale);
+
+        return $reservationSettings;
+    }
+
+    public function findByFilters($filters, $page, $pageSize, $limit, $locale, $options = [])
+    {
+        $entities = $this->parentFindByFilters($filters, $page, $pageSize, $limit, $locale, $options);
+
+        return array_map(
+            function (ReservationSettings $entity) use ($locale) {
+                return $entity->setLocale($locale);
+            },
+            $entities
+        );
+    }
+
+    protected function appendJoins(QueryBuilder $queryBuilder, string $alias, string $locale): void
+    {
+        $queryBuilder->innerJoin($alias . '.translations', 'translation', Join::WITH, 'translation.locale = :locale');
+        $queryBuilder->setParameter('locale', $locale);
+
+        $queryBuilder->andWhere($alias . '.enabled = true');
+    }
 }
