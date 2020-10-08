@@ -55,8 +55,10 @@ const updatePrice = () => {
     } else {
         finalStepsDiscount = 1;
     }
+    const finalPrice = (daysOfVisit * PRICE * finalStepsDiscount) * (discount/100);
 
-    document.querySelector('#event_price').value = (daysOfVisit * PRICE * finalStepsDiscount) * (discount/100);
+    document.querySelector('#event_tempPrice').value = finalPrice.toFixed(2) + 'zł (' + ((finalPrice/daysOfVisit)/guests).toFixed(2) + 'zł os/noc)';
+    document.querySelector('#event_price').value = finalPrice;
 };
 
 const loadData = async () => {
