@@ -10,6 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ReservationSettings
 {
+    const RESOURCE_KEY = 'settings';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
