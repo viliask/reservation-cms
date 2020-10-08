@@ -32,6 +32,11 @@ class ReservationSettings
      */
     private $priceModifier;
 
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $locale;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class ReservationSettings
     public function setPriceModifier(int $priceModifier): self
     {
         $this->priceModifier = $priceModifier;
+
+        return $this;
+    }
+
+    public function getLocale(): string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(string $locale): self
+    {
+        $this->locale = $locale;
 
         return $this;
     }
