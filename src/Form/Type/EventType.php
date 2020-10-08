@@ -38,9 +38,16 @@ class EventType extends AbstractType
                     'attr' => ['readonly' => true]
                 ]
             )
+            ->add('tempPrice', null,
+                [
+                    'mapped' => false,
+                    'attr' => ['readonly' => true, ]
+                ]
+            )
             ->add('price', null,
                 [
-                    'attr' => ['readonly' => true]
+                    'label' => false,
+                    'attr' => ['readonly' => true,  'style' => 'display:none']
                 ]
             )
             ->add('firstName')

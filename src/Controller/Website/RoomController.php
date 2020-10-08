@@ -31,6 +31,8 @@ class RoomController extends AbstractController
 {
     use CommonTrait;
 
+    const ROUTE_PREFIX = 'pokoje';
+
     /**
      * @Route("/potwierdzenie", name="room_confirmation", methods={"GET"})
      */

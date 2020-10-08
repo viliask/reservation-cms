@@ -106,4 +106,13 @@ class RoomRepository extends ServiceEntityRepository implements DataProviderRepo
             ->setMaxResults($limit)
             ->getQuery()->execute();
     }
+
+    public function countEnabled(): int
+    {
+        return (int)$this->createQueryBuilder('r')
+            ->select('COUNT(r.id)')
+            ->where('r.enabled = TRUE')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
