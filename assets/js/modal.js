@@ -45,7 +45,7 @@ let tempPriceField = null;
 let finalPrice = null;
 
 const updatePrice = () => {
-    document.querySelector('#event_checkIn').value = new Date(document.querySelector('#reservation_checkInDate').value).addHours(16).toISOString().slice(0, 16);
+    document.querySelector('#event_checkIn').value = new Date(document.querySelector('#reservation_checkInDate').value).addHours(14).toISOString().slice(0, 16);
     document.querySelector('#event_checkOut').value = new Date(document.querySelector('#reservation_checkOutDate').value).addHours(12).toISOString().slice(0, 16);
 
     if (stepsContent) {
