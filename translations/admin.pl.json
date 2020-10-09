@@ -33,8 +33,8 @@
     "app.slug": "Slug",
     "app.enable_room": "Aktywuj pokój",
     "app.forms": "Formularze",
-    "app.winterStart": "Początek sezonu zimowego",
-    "app.winterEnd": "Koniec sezonu zimowego",
+    "app.summerStart": "Początek sezonu letniego",
+    "app.summerEnd": "Koniec sezonu letniego",
     "app.priceModifier": "Modyfikator cen",
     "app.setting": "Ustawienia",
     "app.enable_settings": "Aktywuj ustawienia"

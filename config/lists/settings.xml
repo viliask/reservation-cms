@@ -8,14 +8,14 @@
             <entity-name>App\Entity\ReservationSettings</entity-name>
         </property>
 
-        <property name="winterStart" visibility="always" searchability="yes" translation="app.winterStart">
-            <field-name>winterStart</field-name>
+        <property name="summerStart" visibility="always" searchability="yes" translation="app.summerStart">
+            <field-name>summerStart</field-name>
             <entity-name>App\Entity\ReservationSettings</entity-name>
 
         </property>
 
-        <property name="winterEnd" visibility="always" searchability="yes" translation="app.winterEnd">
-            <field-name>winterEnd</field-name>
+        <property name="summerEnd" visibility="always" searchability="yes" translation="app.summerEnd">
+            <field-name>summerEnd</field-name>
             <entity-name>App\Entity\ReservationSettings</entity-name>
 
         </property>

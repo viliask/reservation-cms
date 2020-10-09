@@ -7,15 +7,15 @@
 
     <properties>
 
-        <property name="winterStart" type="datetime" mandatory="true" colspan="3">
+        <property name="summerStart" type="datetime" mandatory="true" colspan="3">
             <meta>
-                <title>app.winterStart</title>
+                <title>app.summerStart</title>
             </meta>
         </property>
 
-        <property name="winterEnd" type="datetime" mandatory="true" colspan="3">
+        <property name="summerEnd" type="datetime" mandatory="true" colspan="3">
             <meta>
-                <title>app.winterEnd</title>
+                <title>app.summerEnd</title>
             </meta>
         </property>
 

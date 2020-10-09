@@ -176,19 +176,9 @@ class RoomController extends AbstractController
                     $checkIn,
                     $checkOut,
                     $guests,
-                    $discountParams['discount']
+                    $discountParams['discount'],
+                    $settingsRepository
                 );
-
-                /** @var ReservationSettings $settings*/
-                $settings = $settingsRepository->isEnabled()[0];
-                if ($settings) {
-                    $settingsParams =
-                        [
-                            'winterStart'   => $settings->getWinterStart()->format('Y-m-d'),
-                            'winterEnd'     => $settings->getWinterEnd()->format('Y-m-d'),
-                            'priceModifier' => $settings->getPriceModifier(),
-                        ];
-                }
             } else {
                 $status = false;
             }
@@ -256,7 +246,8 @@ class RoomController extends AbstractController
         string $checkIn,
         string $checkOut,
         string $guests,
-        int $promoOfferDiscount
+        int $promoOfferDiscount,
+        ReservationSettingsRepository $settingsRepository
     ): array {
         $stepsParams = [];
         $checkInDate  = strtotime($checkIn);
@@ -269,6 +260,17 @@ class RoomController extends AbstractController
             $stepsParams['stepsContent'] = 'W zależności od liczby osób '.$finalStepsDiscount.'%';
         } else {
             $finalStepsDiscount = 0;
+        }
+
+        /** @var ReservationSettings $settings*/
+        $settings = $settingsRepository->isEnabled()[0];
+        if ($settings) {
+            $settingsParams =
+                [
+                    'summerStart'   => $settings->getSummerStart()->format('m-d'),
+                    'summerEnd'     => $settings->getSummerEnd()->format('m-d'),
+                    'priceModifier' => $settings->getPriceModifier(),
+                ];
         }
 
         $finalPrice     = round(

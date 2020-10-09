@@ -22,12 +22,12 @@ class ReservationSettings
     /**
      * @ORM\Column(type="datetime")
      */
-    private $winterStart;
+    private $summerStart;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $winterEnd;
+    private $summerEnd;
 
     /**
      * @ORM\Column(type="smallint")
@@ -54,26 +54,26 @@ class ReservationSettings
         return $this->id;
     }
 
-    public function getWinterStart(): ?\DateTimeInterface
+    public function getSummerStart(): ?\DateTimeInterface
     {
-        return $this->winterStart;
+        return $this->summerStart;
     }
 
-    public function setWinterStart(\DateTimeInterface $winterStart): self
+    public function setSummerStart(\DateTimeInterface $summerStart): self
     {
-        $this->winterStart = $winterStart;
+        $this->summerStart = $summerStart;
 
         return $this;
     }
 
-    public function getWinterEnd(): ?\DateTimeInterface
+    public function getSummerEnd(): ?\DateTimeInterface
     {
-        return $this->winterEnd;
+        return $this->summerEnd;
     }
 
-    public function setWinterEnd(\DateTimeInterface $winterEnd): self
+    public function setSummerEnd(\DateTimeInterface $summerEnd): self
     {
-        $this->winterEnd = $winterEnd;
+        $this->summerEnd = $summerEnd;
 
         return $this;
     }

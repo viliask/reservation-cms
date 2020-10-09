@@ -16,7 +16,7 @@ final class Version20201008161726 extends AbstractMigration
 
     public function up(Schema $schema) : void
     {
-        $this->addSql('CREATE TABLE reservation_settings (id INT AUTO_INCREMENT NOT NULL, winter_start DATETIME NOT NULL, winter_end DATETIME NOT NULL, price_modifier SMALLINT NOT NULL, locale VARCHAR(10) NOT NULL, enabled TINYINT(1) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE reservation_settings (id INT AUTO_INCREMENT NOT NULL, summer_start DATETIME NOT NULL, summer_end DATETIME NOT NULL, price_modifier SMALLINT NOT NULL, locale VARCHAR(10) NOT NULL, enabled TINYINT(1) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
     }
 
     public function down(Schema $schema) : void
