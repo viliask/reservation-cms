@@ -179,8 +179,7 @@ class RoomController extends AbstractController
                 if ($room->getStepsAmount() > 0 && $room->getMaxGuests() > $guests) {
                     $multiplier = $room->getMaxGuests() - $guests;
                     $finalStepsDiscount = $room->getStepsDiscount() * $multiplier;
-                    $stepsParams['finalStepsDiscount'] = $finalStepsDiscount;
-                    $stepsParams['stepsContent'] = 'W zależności od liczby osób ';
+                    $stepsParams['stepsContent'] = 'W zależności od liczby osób ' . $finalStepsDiscount . '%';
                 } else {
                     $finalStepsDiscount = 1;
                     $discountParams['finalStepsDiscount'] = 1;
@@ -210,15 +209,10 @@ class RoomController extends AbstractController
 
         return $this->json(
             [
-                'checkIn'       => $checkIn,
-                'checkOut'      => $checkOut,
-                'status'        => $status,
-                'basePrice'     => $room->getBasePrice(),
-                'stepsAmount'   => $room->getStepsAmount(),
-                'maxGuests'     => $room->getMaxGuests(),
+                'status'         => $status,
                 'finalPrice'     => $finalPrice,
                 'tempPriceField' => $tempPriceField,
-            ] + $discountParams + $stepsParams + $settingsParams
+            ] + $discountParams + $stepsParams
         );
     }
 

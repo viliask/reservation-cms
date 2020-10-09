@@ -21,11 +21,6 @@ const closeAvailabilityModal = document.querySelector('[data-close-availability]
 const closeRoomNotAvailableModal = document.querySelector('[data-close-not-available]');
 const alert = document.querySelector('div.alert-success');
 const alertText = alert.textContent;
-let PRICE = 0;
-let stepsAmount = 0;
-let stepsDiscount = 0;
-let maxGuests = 0;
-let finalStepsDiscount = 0;
 let responseData = {
     basePrice: null,
     checkIn: null,
@@ -54,7 +49,7 @@ const updatePrice = () => {
     document.querySelector('#event_checkOut').value = new Date(document.querySelector('#reservation_checkOutDate').value).addHours(12).toISOString().slice(0, 16);
 
     if (discount > 0) {
-        showPromo(stepsContent + finalStepsDiscount.toString() + '%');
+        showPromo(stepsContent);
     }
 
     document.querySelector('#event_tempPrice').value = tempPriceField;
@@ -98,14 +93,9 @@ const updateForm = () => {
     const alert = document.querySelector('div.alert-success.alert');
     document.querySelector('#event_guests').value = guests;
     discount = 100 - responseData.discount;
-    PRICE = responseData.basePrice;
-    stepsAmount = responseData.stepsAmount;
-    stepsDiscount = responseData.stepsDiscount;
-    maxGuests = responseData.maxGuests;
     stepsContent = responseData.stepsContent;
     finalPrice = responseData.finalPrice;
     tempPriceField = responseData.tempPriceField;
-    finalStepsDiscount = responseData.finalStepsDiscount;
 
     if (responseData.discountName) {
         showPromo(responseData.discountName);
