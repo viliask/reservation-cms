@@ -133,12 +133,20 @@ class SettingController extends AbstractRestController implements ClassResourceI
         $entity->setPriceModifier((int)$data['priceModifier']);
         $entity->setLocale($locale);
 
-        if ($startDate = $data['winterStart'] ?? null) {
-            $entity->setWinterStart(new DateTime($startDate));
+        if ($data['summerStart']) {
+            $startDate = new DateTime($data['summerStart']);
+            $entity->setSummerStart(
+                (new DateTime())->setDate(0000, intval($startDate->format('m')), intval($startDate->format('d')))
+                    ->setTime(0, 0, 0, 0)
+            );
         }
 
-        if ($endDate = $data['winterEnd'] ?? null) {
-            $entity->setWinterEnd(new DateTime($endDate));
+        if ($data['summerEnd']) {
+            $endDate = new DateTime($data['summerEnd']);
+            $entity->setSummerEnd(
+                (new DateTime())->setDate(0000, intval($endDate->format('m')), intval($endDate->format('d')))
+                    ->setTime(0, 0, 0, 0)
+            );
         }
     }
 
