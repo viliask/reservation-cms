@@ -22,6 +22,16 @@ export const validateForm = () => {
         });
         return false;
     }
+    const checkInDate = new Date(document.querySelector('#reservation_checkInDate').value);
+    const checkOutDate = new Date(document.querySelector('#reservation_checkOutDate').value);
+    const stayLength = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
+    if (stayLength < 2) {
+        document.querySelector('#min-stay-modal').classList.add(visible);
+        document.querySelector('[data-close-min-stay-modal]').addEventListener('click', () => {
+            document.querySelector('#min-stay-modal').classList.remove(visible);
+        });
+        return false;
+    }
     return true;
 };
 
