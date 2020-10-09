@@ -5,10 +5,12 @@ namespace App\Controller\Website;
 use App\Controller\Traits\CommonTrait;
 use App\Entity\Event;
 use App\Entity\EventTranslation;
+use App\Entity\ReservationSettings;
 use App\Entity\Room;
 use App\Form\Type\EventType;
 use App\Form\Type\ReservationType;
 use App\Repository\EventRepository;
+use App\Repository\ReservationSettingsRepository;
 use App\Repository\RoomRepository;
 use DateTime;
 use DateTimeImmutable;
@@ -152,10 +154,12 @@ class RoomController extends AbstractController
         Room $room,
         string $checkIn,
         string $checkOut,
-        EventRepository $eventRepository
+        EventRepository $eventRepository,
+        ReservationSettingsRepository $settingsRepository
     ): JsonResponse {
         $availableRoom  = $eventRepository->findAvailableRooms($checkIn, $checkOut, $room->getId());
         $discountParams = [];
+        $settingsParams = [];
 
         if ($availableRoom) {
             /** @var Room $roomObject */
@@ -163,6 +167,16 @@ class RoomController extends AbstractController
             if ($roomObject->getName() === $room->getName()) {
                 $status         = true;
                 $discountParams = $this->findPromoOffer($roomObject, $checkIn, $checkOut);
+                /** @var ReservationSettings $settings*/
+                $settings = $settingsRepository->isEnabled()[0];
+                if ($settings) {
+                    $settingsParams =
+                        [
+                            'winterStart'   => $settings->getWinterStart()->format('Y-m-d'),
+                            'winterEnd'     => $settings->getWinterEnd()->format('Y-m-d'),
+                            'priceModifier' => $settings->getPriceModifier(),
+                        ];
+                }
             } else {
                 $status = false;
             }
@@ -180,7 +194,7 @@ class RoomController extends AbstractController
                 'stepsDiscount' => $room->getStepsDiscount(),
                 'maxGuests'     => $room->getMaxGuests(),
                 'stepsContent'  => 'W zależności od liczby osób ',
-            ] + $discountParams
+            ] + $discountParams + $settingsParams
         );
     }
 
