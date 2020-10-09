@@ -289,6 +289,7 @@ class RoomController extends AbstractController
         DateTime $checkOutDate,
         int $daysOfVisit
     ) {
+        $seasonPrice = 0;
         /** @var ReservationSettings $settings */
         $settings = $settingsRepository->isEnabled()[0];
         if ($settings) {
@@ -320,8 +321,15 @@ class RoomController extends AbstractController
                 $seasonPrice = $winterDays * $room->getBasePrice();
                 return $seasonPrice + ($daysOfVisit - $winterDays) * $room->getBasePrice() * $summerDiscount;
             }
+            // Add Sylvester extra price
+            $sylvester = (new DateTime())
+                ->setDate(0000, intval($checkInDate->format(12)), intval($checkInDate->format(31)))
+                ->setTime(0, 0, 0, 0);
+            if (($sylvester >= $startDate) && ($sylvester <= $endDate)) {
+                $seasonPrice = $room->getBasePrice() * 0.5;
+            }
         }
         //Winter price - total stay outside the range
-        return $seasonPrice = $daysOfVisit * $room->getBasePrice();
+        return $seasonPrice + $daysOfVisit * $room->getBasePrice();
     }
 }
