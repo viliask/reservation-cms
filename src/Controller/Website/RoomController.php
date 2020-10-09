@@ -291,6 +291,13 @@ class RoomController extends AbstractController
                 $seasonPrice = $winterDays * $room->getBasePrice();
                 $seasonPrice += ($daysOfVisit - $winterDays) * $room->getBasePrice() * $summerDiscount;
             }
+            if ($startDate > $summSt && $startDate < $summEnd && $endDate > $summEnd) {
+                //Partial price - stay at the turn of summer and winter
+                $winterDays = $endDate->diff($summEnd)->days;
+
+                $seasonPrice = $winterDays * $room->getBasePrice();
+                $seasonPrice += ($daysOfVisit - $winterDays) * $room->getBasePrice() * $summerDiscount;
+            }
         }
 
         $finalPrice     = round($seasonPrice * ((100 - $promoOfferDiscount - $finalStepsDiscount) / 100), 2);
