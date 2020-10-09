@@ -32,5 +32,10 @@
     "app.endDate": "Koniec",
     "app.slug": "Slug",
     "app.enable_room": "Aktywuj pokój",
-    "app.forms": "Formularze"
+    "app.forms": "Formularze",
+    "app.summerStart": "Początek sezonu letniego",
+    "app.summerEnd": "Koniec sezonu letniego",
+    "app.priceModifier": "Modyfikator cen",
+    "app.setting": "Ustawienia",
+    "app.enable_settings": "Aktywuj ustawienia"
 }

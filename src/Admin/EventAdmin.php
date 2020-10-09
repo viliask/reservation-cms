@@ -6,6 +6,7 @@ namespace App\Admin;
 
 use App\Entity\Event;
 use App\Entity\PromoOffer;
+use App\Entity\ReservationSettings;
 use App\Entity\Room;
 use Sulu\Bundle\AdminBundle\Admin\Admin;
 use Sulu\Bundle\AdminBundle\Admin\Navigation\NavigationItem;
@@ -56,6 +57,18 @@ class EventAdmin extends Admin
 
     const PROMO_EDIT_FORM_VIEW = 'app.promo_edit_form';
 
+//////// ReservationSettings
+
+    const SETTINGS_LIST_KEY = 'settings';
+
+    const SETTINGS_FORM_KEY = 'setting_details';
+
+    const SETTINGS_LIST_VIEW = 'app.settings_list';
+
+    const SETTINGS_ADD_FORM_VIEW = 'app.setting_add_form';
+
+    const SETTINGS_EDIT_FORM_VIEW = 'app.setting_edit_form';
+
 
     /**
      * @var ViewBuilderFactoryInterface
@@ -103,6 +116,12 @@ class EventAdmin extends Admin
         $events = new NavigationItem('app.promo');
         $events->setPosition(40);
         $events->setView(static::PROMO_LIST_VIEW);
+
+        $module->addChild($events);
+
+        $events = new NavigationItem('app.setting');
+        $events->setPosition(50);
+        $events->setView(static::SETTINGS_LIST_VIEW);
 
         $module->addChild($events);
 
@@ -291,6 +310,66 @@ class EventAdmin extends Admin
             ->setTabTitle('sulu_admin.details')
             ->addToolbarActions($formToolbarActions)
             ->setParent(static::PROMO_EDIT_FORM_VIEW);
+        $viewCollection->add($editDetailsFormView);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////// ReservationSettings /////////////////////////////////// ReservationSettings ///////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // Configure Event List View
+        $listToolbarActions = [new ToolbarAction('sulu_admin.add'), new ToolbarAction('sulu_admin.delete')];
+        $listView = $this->viewBuilderFactory->createListViewBuilder(self::SETTINGS_LIST_VIEW, '/settings/:locale')
+            ->setResourceKey(ReservationSettings::RESOURCE_KEY)
+            ->setListKey(self::SETTINGS_LIST_KEY)
+            ->setTitle('app.setting')
+            ->addListAdapters(['table'])
+            ->addLocales($locales)
+            ->setDefaultLocale($locales[0])
+            ->setAddView(static::SETTINGS_ADD_FORM_VIEW)
+            ->setEditView(static::SETTINGS_EDIT_FORM_VIEW)
+            ->addToolbarActions($listToolbarActions);
+        $viewCollection->add($listView);
+
+        // Configure Event Add View
+        $addFormView = $this->viewBuilderFactory->createResourceTabViewBuilder(self::SETTINGS_ADD_FORM_VIEW, '/settings/:locale/add')
+            ->setResourceKey(ReservationSettings::RESOURCE_KEY)
+            ->setBackView(static::SETTINGS_LIST_VIEW)
+            ->addLocales($locales);
+        $viewCollection->add($addFormView);
+
+        $addDetailsFormView = $this->viewBuilderFactory->createFormViewBuilder(self::SETTINGS_ADD_FORM_VIEW . '.details', '/details')
+            ->setResourceKey(ReservationSettings::RESOURCE_KEY)
+            ->setFormKey(self::SETTINGS_FORM_KEY)
+            ->setTabTitle('sulu_admin.details')
+            ->setEditView(static::SETTINGS_EDIT_FORM_VIEW)
+            ->addToolbarActions([new ToolbarAction('sulu_admin.save')])
+            ->setParent(static::SETTINGS_ADD_FORM_VIEW);
+        $viewCollection->add($addDetailsFormView);
+
+        // Configure Event Edit View
+        $editFormView = $this->viewBuilderFactory->createResourceTabViewBuilder(static::SETTINGS_EDIT_FORM_VIEW, '/settings/:locale/:id')
+            ->setResourceKey(ReservationSettings::RESOURCE_KEY)
+            ->setBackView(static::SETTINGS_LIST_VIEW)
+            ->setTitleProperty('title')
+            ->addLocales($locales);
+        $viewCollection->add($editFormView);
+
+        $formToolbarActions = [
+            new ToolbarAction('sulu_admin.save'),
+            new ToolbarAction('sulu_admin.delete'),
+            new TogglerToolbarAction(
+                'app.enable_settings',
+                'enabled',
+                'enable',
+                'disable'
+            ),
+        ];
+        $editDetailsFormView = $this->viewBuilderFactory->createFormViewBuilder(static::SETTINGS_EDIT_FORM_VIEW . '.details', '/details')
+            ->setResourceKey(ReservationSettings::RESOURCE_KEY)
+            ->setFormKey(self::SETTINGS_FORM_KEY)
+            ->setTabTitle('sulu_admin.details')
+            ->addToolbarActions($formToolbarActions)
+            ->setParent(static::SETTINGS_EDIT_FORM_VIEW);
         $viewCollection->add($editDetailsFormView);
     }
 }

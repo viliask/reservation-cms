@@ -5,10 +5,12 @@ namespace App\Controller\Website;
 use App\Controller\Traits\CommonTrait;
 use App\Entity\Event;
 use App\Entity\EventTranslation;
+use App\Entity\ReservationSettings;
 use App\Entity\Room;
 use App\Form\Type\EventType;
 use App\Form\Type\ReservationType;
 use App\Repository\EventRepository;
+use App\Repository\ReservationSettingsRepository;
 use App\Repository\RoomRepository;
 use DateTime;
 use DateTimeImmutable;
@@ -146,16 +148,22 @@ class RoomController extends AbstractController
     }
 
     /**
-     * @Route("/availability/{id}/{checkIn}/{checkOut}", name="xhr_room_availability", options={"expose"=true}, methods="GET")
+     * @Route("/availability/{id}/{checkIn}/{checkOut}/{guests}", name="xhr_room_availability", options={"expose"=true}, methods="GET")
      */
     public function checkRoomAvailability(
         Room $room,
         string $checkIn,
         string $checkOut,
-        EventRepository $eventRepository
+        string $guests,
+        EventRepository $eventRepository,
+        ReservationSettingsRepository $settingsRepository
     ): JsonResponse {
         $availableRoom  = $eventRepository->findAvailableRooms($checkIn, $checkOut, $room->getId());
         $discountParams = [];
+        $settingsParams = [];
+        $guests = intval($guests);
+        $finalPrice = null;
+        $tempPriceField = null;
 
         if ($availableRoom) {
             /** @var Room $roomObject */
@@ -163,6 +171,14 @@ class RoomController extends AbstractController
             if ($roomObject->getName() === $room->getName()) {
                 $status         = true;
                 $discountParams = $this->findPromoOffer($roomObject, $checkIn, $checkOut);
+                $discountParams += $this->addPriceParams(
+                    $room,
+                    $checkIn,
+                    $checkOut,
+                    $guests,
+                    $discountParams['discount'],
+                    $settingsRepository
+                );
             } else {
                 $status = false;
             }
@@ -172,14 +188,7 @@ class RoomController extends AbstractController
 
         return $this->json(
             [
-                'checkIn'       => $checkIn,
-                'checkOut'      => $checkOut,
-                'status'        => $status,
-                'basePrice'     => $room->getBasePrice(),
-                'stepsAmount'   => $room->getStepsAmount(),
-                'stepsDiscount' => $room->getStepsDiscount(),
-                'maxGuests'     => $room->getMaxGuests(),
-                'stepsContent'  => 'W zależności od liczby osób ',
+                'status' => $status
             ] + $discountParams
         );
     }
@@ -230,5 +239,97 @@ class RoomController extends AbstractController
         );
 
         $mailer->send($message);
+    }
+
+    private function addPriceParams(
+        Room $room,
+        string $checkIn,
+        string $checkOut,
+        string $guests,
+        int $promoOfferDiscount,
+        ReservationSettingsRepository $settingsRepository
+    ): array {
+        $seasonPrice = null;
+        $stepsParams = [];
+        $checkInDate  = new DateTime($checkIn);
+        $checkOutDate = new DateTime($checkOut);
+        $daysOfVisit  = $checkOutDate->diff($checkInDate)->days;
+
+        if ($room->getStepsAmount() > 0 && $room->getMaxGuests() > $guests) {
+            $multiplier                  = $room->getMaxGuests() - $guests;
+            $finalStepsDiscount          = $room->getStepsDiscount() * $multiplier;
+            $stepsParams['stepsContent'] = 'W zależności od liczby osób '.$finalStepsDiscount.'%';
+        } else {
+            $finalStepsDiscount = 0;
+        }
+
+        $seasonPrice = $this->calculateSeasonPrice(
+            $room,
+            $settingsRepository,
+            $checkInDate,
+            $checkOutDate,
+            $daysOfVisit
+        );
+
+        $finalPrice     = round($seasonPrice * ((100 - $promoOfferDiscount - $finalStepsDiscount) / 100), 2);
+        $tempPriceField = number_format($finalPrice, 2, ',', ' ').'zł ('
+            .number_format(($finalPrice / $daysOfVisit) / $guests, 2, ',', ' ')
+            .'zł os/noc)';
+
+        return [
+            'finalPrice'     => $finalPrice,
+            'tempPriceField' => $tempPriceField,
+        ] + $stepsParams;
+    }
+
+    private function calculateSeasonPrice(
+        Room $room,
+        ReservationSettingsRepository $settingsRepository,
+        DateTime $checkInDate,
+        DateTime $checkOutDate,
+        int $daysOfVisit
+    ) {
+        $seasonPrice = 0;
+        /** @var ReservationSettings $settings */
+        $settings = $settingsRepository->isEnabled()[0];
+        if ($settings) {
+            $summerDiscount = (100 - $settings->getPriceModifier()) / 100;
+            $startDate      = (new DateTime())
+                ->setDate(0000, intval($checkInDate->format('m')), intval($checkInDate->format('d')))
+                ->setTime(0, 0, 0, 0);
+            $comparisonYear = intval($checkOutDate->format('Y')) > intval($checkInDate->format('Y')) ? 0001 : 0000;
+            $endDate        = (new DateTime())
+                ->setDate($comparisonYear, intval($checkOutDate->format('m')), intval($checkOutDate->format('d')))
+                ->setTime(0, 0, 0, 0);
+
+            $summSt  = $settings->getSummerStart();
+            $summEnd = $settings->getSummerEnd();
+            if ($startDate > $summSt && $startDate < $summEnd && $endDate > $summSt && $endDate < $summEnd) {
+                //Summer price - total stay in the range
+                return $daysOfVisit * $room->getBasePrice() * $summerDiscount;
+            }
+            if ($startDate < $summSt && $endDate > $summSt) {
+                //Partial price - stay at the turn of winter and summer
+                $winterDays  = $summSt->diff($startDate)->days;
+                $seasonPrice = $winterDays * $room->getBasePrice();
+                return $seasonPrice + ($daysOfVisit - $winterDays) * $room->getBasePrice() * $summerDiscount;
+            }
+            if ($startDate > $summSt && $startDate < $summEnd && $endDate > $summEnd) {
+                //Partial price - stay at the turn of summer and winter
+                $winterDays = $endDate->diff($summEnd)->days;
+
+                $seasonPrice = $winterDays * $room->getBasePrice();
+                return $seasonPrice + ($daysOfVisit - $winterDays) * $room->getBasePrice() * $summerDiscount;
+            }
+            // Add Sylvester extra price
+            $sylvester = (new DateTime())
+                ->setDate(0000, intval($checkInDate->format(12)), intval($checkInDate->format(31)))
+                ->setTime(0, 0, 0, 0);
+            if (($sylvester >= $startDate) && ($sylvester <= $endDate)) {
+                $seasonPrice = $room->getBasePrice() * 0.5;
+            }
+        }
+        //Winter price - total stay outside the range
+        return $seasonPrice + $daysOfVisit * $room->getBasePrice();
     }
 }

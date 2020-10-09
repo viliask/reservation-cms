@@ -30,3 +30,11 @@ app_promos:
     name_prefix: app.
     options:
         expose: true
+
+app_settings:
+    type: rest
+    prefix: /admin/api
+    resource: App\Controller\Admin\SettingController
+    name_prefix: app.
+    options:
+        expose: true

@@ -4,6 +4,7 @@ const makeInvisible = (modal) => {
 
 export const form = document.querySelector('.submit-form');
 export const visible = 'visible';
+const MIN_STAY_DAYS = 2;
 
 export const validateForm = () => {
     const a = document.querySelector('#reservation_checkInDate').value;
@@ -19,6 +20,16 @@ export const validateForm = () => {
         document.querySelector('#datepicker-error').classList.add(visible);
         document.querySelector('[data-close-datepicker-error]').addEventListener('click', () => {
             document.querySelector('#datepicker-error').classList.remove(visible);
+        });
+        return false;
+    }
+    const checkInDate = new Date(document.querySelector('#reservation_checkInDate').value);
+    const checkOutDate = new Date(document.querySelector('#reservation_checkOutDate').value);
+    const stayLength = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
+    if (stayLength < MIN_STAY_DAYS) {
+        document.querySelector('#min-stay-modal').classList.add(visible);
+        document.querySelector('[data-close-min-stay-modal]').addEventListener('click', () => {
+            document.querySelector('#min-stay-modal').classList.remove(visible);
         });
         return false;
     }
