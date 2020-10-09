@@ -249,10 +249,11 @@ class RoomController extends AbstractController
         int $promoOfferDiscount,
         ReservationSettingsRepository $settingsRepository
     ): array {
+        $seasonPrice = null;
         $stepsParams = [];
-        $checkInDate  = strtotime($checkIn);
-        $checkOutDate = strtotime($checkOut);
-        $daysOfVisit  = round(($checkOutDate - $checkInDate) / (3600 * 24));
+        $checkInDate  = new DateTime($checkIn);
+        $checkOutDate = new DateTime($checkOut);
+        $daysOfVisit  = $checkOutDate->diff($checkInDate)->days;
 
         if ($room->getStepsAmount() > 0 && $room->getMaxGuests() > $guests) {
             $multiplier                  = $room->getMaxGuests() - $guests;
@@ -265,18 +266,34 @@ class RoomController extends AbstractController
         /** @var ReservationSettings $settings*/
         $settings = $settingsRepository->isEnabled()[0];
         if ($settings) {
-            $settingsParams =
-                [
-                    'summerStart'   => $settings->getSummerStart()->format('m-d'),
-                    'summerEnd'     => $settings->getSummerEnd()->format('m-d'),
-                    'priceModifier' => $settings->getPriceModifier(),
-                ];
+            $summerDiscount = (100 - $settings->getPriceModifier()) / 100;
+            $startDate      = (new DateTime())
+                ->setDate(0000, intval($checkInDate->format('m')), intval($checkInDate->format('d')))
+                ->setTime(0, 0, 0, 0);
+            $comparisonYear = intval($checkOutDate->format('Y')) > intval($checkInDate->format('Y')) ? 0001 : 0000;
+            $endDate        = (new DateTime())
+                ->setDate($comparisonYear, intval($checkOutDate->format('m')), intval($checkOutDate->format('d')))
+                ->setTime(0, 0, 0, 0);
+
+            $summSt  = $settings->getSummerStart();
+            $summEnd = $settings->getSummerEnd();
+            if ($startDate > $summSt && $startDate < $summEnd && $endDate > $summSt && $endDate < $summEnd) {
+                //Summer price - total stay in the range
+                $seasonPrice = $daysOfVisit * $room->getBasePrice() * $summerDiscount;
+            }
+            if ($startDate < $summSt && $endDate < $summSt || $startDate > $summEnd && $endDate > $summEnd) {
+                //Winter price - total stay outside the range
+                $seasonPrice = $daysOfVisit * $room->getBasePrice();
+            }
+            if ($startDate < $summSt && $endDate > $summSt) {
+                //Partial price - stay at the turn of winter and summer
+                $winterDays = $summSt->diff($startDate)->days;
+                $seasonPrice = $winterDays * $room->getBasePrice();
+                $seasonPrice += ($daysOfVisit - $winterDays) * $room->getBasePrice() * $summerDiscount;
+            }
         }
 
-        $finalPrice     = round(
-            $daysOfVisit * $room->getBasePrice() * ((100 - $promoOfferDiscount - $finalStepsDiscount) / 100),
-            2
-        );
+        $finalPrice     = round($seasonPrice * ((100 - $promoOfferDiscount - $finalStepsDiscount) / 100), 2);
         $tempPriceField = number_format($finalPrice, 2, ',', ' ').'zł ('
             .number_format(($finalPrice / $daysOfVisit) / $guests, 2, ',', ' ')
             .'zł os/noc)';
