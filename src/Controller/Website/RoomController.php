@@ -160,7 +160,6 @@ class RoomController extends AbstractController
     ): JsonResponse {
         $availableRoom  = $eventRepository->findAvailableRooms($checkIn, $checkOut, $room->getId());
         $discountParams = [];
-        $stepsParams = [];
         $settingsParams = [];
         $guests = intval($guests);
         $finalPrice = null;
