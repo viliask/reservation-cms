@@ -148,18 +148,23 @@ class RoomController extends AbstractController
     }
 
     /**
-     * @Route("/availability/{id}/{checkIn}/{checkOut}", name="xhr_room_availability", options={"expose"=true}, methods="GET")
+     * @Route("/availability/{id}/{checkIn}/{checkOut}/{guests}", name="xhr_room_availability", options={"expose"=true}, methods="GET")
      */
     public function checkRoomAvailability(
         Room $room,
         string $checkIn,
         string $checkOut,
+        string $guests,
         EventRepository $eventRepository,
         ReservationSettingsRepository $settingsRepository
     ): JsonResponse {
         $availableRoom  = $eventRepository->findAvailableRooms($checkIn, $checkOut, $room->getId());
         $discountParams = [];
+        $stepsParams = [];
         $settingsParams = [];
+        $guests = intval($guests);
+        $finalPrice = null;
+        $tempPriceField = null;
 
         if ($availableRoom) {
             /** @var Room $roomObject */
@@ -167,6 +172,25 @@ class RoomController extends AbstractController
             if ($roomObject->getName() === $room->getName()) {
                 $status         = true;
                 $discountParams = $this->findPromoOffer($roomObject, $checkIn, $checkOut);
+                $checkInDate    = strtotime($checkIn);
+                $checkOutDate   = strtotime($checkOut);
+                $daysOfVisit    = round(($checkOutDate - $checkInDate) / (3600 * 24));
+
+                if ($room->getStepsAmount() > 0 && $room->getMaxGuests() > $guests) {
+                    $multiplier = $room->getMaxGuests() - $guests;
+                    $finalStepsDiscount = $room->getStepsDiscount() * $multiplier;
+                    $stepsParams['finalStepsDiscount'] = $finalStepsDiscount;
+                    $stepsParams['stepsContent'] = 'W zależności od liczby osób ';
+                } else {
+                    $finalStepsDiscount = 1;
+                    $discountParams['finalStepsDiscount'] = 1;
+                }
+
+                $finalPrice = round($daysOfVisit * $room->getBasePrice() * ((100 - $discountParams['discount'] - $finalStepsDiscount) / 100), 2);
+                $tempPriceField = number_format($finalPrice, 2, ',', ' ') . 'zł ('
+                    . number_format(($finalPrice/$daysOfVisit)/$guests, 2, ',', ' ')
+                    . 'zł os/noc)';
+
                 /** @var ReservationSettings $settings*/
                 $settings = $settingsRepository->isEnabled()[0];
                 if ($settings) {
@@ -191,10 +215,10 @@ class RoomController extends AbstractController
                 'status'        => $status,
                 'basePrice'     => $room->getBasePrice(),
                 'stepsAmount'   => $room->getStepsAmount(),
-                'stepsDiscount' => $room->getStepsDiscount(),
                 'maxGuests'     => $room->getMaxGuests(),
-                'stepsContent'  => 'W zależności od liczby osób ',
-            ] + $discountParams + $settingsParams
+                'finalPrice'     => $finalPrice,
+                'tempPriceField' => $tempPriceField,
+            ] + $discountParams + $stepsParams + $settingsParams
         );
     }
 

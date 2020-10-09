@@ -16,6 +16,7 @@ const openPolicyModal = document.querySelector('[data-open-policy]');
 const roomId = document.querySelector('.data-js');
 const checkIn = document.querySelector('#reservation_checkInDate');
 const checkOut = document.querySelector('#reservation_checkOutDate');
+const guestsAmount = document.querySelector('#reservation_guests');
 const closeAvailabilityModal = document.querySelector('[data-close-availability]');
 const closeRoomNotAvailableModal = document.querySelector('[data-close-not-available]');
 const alert = document.querySelector('div.alert-success');
@@ -36,28 +37,27 @@ let responseData = {
     stepsAmount: null,
     stepsContent: null,
     stepsDiscount: null,
+    winterStart: null,
+    winterEnd: null,
+    priceModifier: null,
+    finalStepsDiscount: null,
+    tempPriceField: null,
+    finalPrice: null
 };
 let discount = 0;
-let stepsContent = '';
+let stepsContent = null;
+let tempPriceField = null;
+let finalPrice = null;
 
 const updatePrice = () => {
     document.querySelector('#event_checkIn').value = new Date(document.querySelector('#reservation_checkInDate').value).addHours(16).toISOString().slice(0, 16);
     document.querySelector('#event_checkOut').value = new Date(document.querySelector('#reservation_checkOutDate').value).addHours(12).toISOString().slice(0, 16);
-    const checkIn = new Date(document.querySelector('#reservation_checkInDate').value);
-    const checkOut = new Date(document.querySelector('#reservation_checkOutDate').value);
-    const guests = document.querySelector('#event_guests').value;
-    const daysOfVisit = (checkOut.getTime() - checkIn.getTime()) / (1000 * 3600 * 24);
 
-    if (stepsAmount > 0 && maxGuests > guests) {
-        const multiplier = maxGuests - guests;
-        finalStepsDiscount = (100 - (stepsDiscount * multiplier)) / 100;
-        showPromo(stepsContent + (stepsDiscount * multiplier).toString() + '%');
-    } else {
-        finalStepsDiscount = 1;
+    if (discount > 0) {
+        showPromo(stepsContent + finalStepsDiscount.toString() + '%');
     }
-    const finalPrice = (daysOfVisit * PRICE * finalStepsDiscount) * (discount/100);
 
-    document.querySelector('#event_tempPrice').value = finalPrice.toFixed(2) + 'zł (' + ((finalPrice/daysOfVisit)/guests).toFixed(2) + 'zł os/noc)';
+    document.querySelector('#event_tempPrice').value = tempPriceField;
     document.querySelector('#event_price').value = finalPrice;
 };
 
@@ -66,7 +66,8 @@ const loadData = async () => {
         {
             id:       roomId.dataset.roomId,
             checkIn:  checkIn.value,
-            checkOut: checkOut.value
+            checkOut: checkOut.value,
+            guests:   guestsAmount.value
         }, true));
     return response.data;
 };
@@ -102,6 +103,9 @@ const updateForm = () => {
     stepsDiscount = responseData.stepsDiscount;
     maxGuests = responseData.maxGuests;
     stepsContent = responseData.stepsContent;
+    finalPrice = responseData.finalPrice;
+    tempPriceField = responseData.tempPriceField;
+    finalStepsDiscount = responseData.finalStepsDiscount;
 
     if (responseData.discountName) {
         showPromo(responseData.discountName);
