@@ -49,6 +49,7 @@
 
 /* Home logo */
 .img-logo {
+    float: left;
     display: block;
     max-width: 100%;
     height: none;
