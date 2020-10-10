@@ -50,7 +50,6 @@ Reservation CMS is a project to create a booking like reservations system for a 
 - E-mail reservation alert
 - Discounts functionality available from admin panel
 - Summer season pricing
-- Discounts functionality available from admin panel
 
 For more features visit Trello table: https://trello.com/b/cak0dvgB/reservation-cms
 
