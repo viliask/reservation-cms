@@ -35,9 +35,7 @@ Reservation CMS is a project to create a booking like reservations system for a 
 
 ## &nbsp; Features planned?
 - Use booking API and others to unify reservations view in one timeline
-- E-mail reservation alert 
 - Dashboard for reservations and contact entries
-- Discounts functionality available from admin panel
 - Payments
 
 ## &nbsp; Done
@@ -49,6 +47,10 @@ Reservation CMS is a project to create a booking like reservations system for a 
 - Articles creation
 - Editable room and rooms landing pages from admin panel
 - Partially automated room gallery
+- E-mail reservation alert
+- Discounts functionality available from admin panel
+- Summer season pricing
+- Discounts functionality available from admin panel
 
 For more features visit Trello table: https://trello.com/b/cak0dvgB/reservation-cms
 
