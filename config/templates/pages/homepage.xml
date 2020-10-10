@@ -36,17 +36,17 @@
             <tag name="sulu.rlp"/>
         </property>
 
-        <property name="reservationHeader" type="text_line">
+        <property name="homepageHeader" type="text_line">
             <meta>
-                <title lang="en">Reservation header</title>
-                <title lang="pl">Reservation header</title>
+                <title lang="en">Header</title>
+                <title lang="pl">Nagłówek</title>
             </meta>
         </property>
 
-        <property name="reservationText" type="text_line">
+        <property name="homepageHeaderText" type="text_line">
             <meta>
-                <title lang="en">Reservation text</title>
-                <title lang="pl">Reservation text</title>
+                <title lang="en">Header text</title>
+                <title lang="pl">Opis nagłówka</title>
             </meta>
         </property>
 
