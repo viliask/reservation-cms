@@ -1,3 +1,32 @@
+.pb-1 {
+    padding-bottom: 10px;
+}
+
+.theme-orange {
+    color: #d4974b;
+}
+
+.homepage-content p {
+    font-size: 14px;
+}
+.homepage-content ul {
+    margin-left: 20px;
+}
+.homepage-content ul > li {
+    font-size: 14px;
+}
+.homepage-content .heading-section h3 {
+    font-size: 24px;
+}
+
+.homepage-content h3 {
+    padding-bottom: 0;
+}
+
+.home {
+    padding: 1em 0 0 0;
+}
+
 .co-white {
     color: white;
 }
@@ -28,6 +57,7 @@
 
 /* Home logo */
 .img-logo {
+    float: left;
     display: block;
     max-width: 100%;
     height: none;
@@ -207,10 +237,6 @@ input[type="text"] {
     top: -70%;
     position: absolute;
     max-width: 450px;
-}
-
-.container h3 {
-    padding-bottom: 20px;
 }
 
 @media screen and (max-width: 768px) {

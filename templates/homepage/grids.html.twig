@@ -2,8 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center heading-section">
-                <h3>Najczęściej wynajmowane</h3>
-                <p>{{ content.article|raw }}</p>
+                <h2>Najczęściej wynajmowane</h2>
             </div>
         </div>
         {% if rooms is defined and rooms is not empty %}
@@ -27,5 +26,11 @@
                 <p><a class="btn btn-primary btn-outline btn-lg" href="{{ path('rooms_show') }}">Zobacz wszystkie <i class="icon-arrow-right22"></i></a></p>
             </div>
         {% endif %}
+    </div>
+</div>
+
+<div id="res-features home">
+    <div class="container homepage-content">
+        <p>{{ content.article|raw }}</p>
     </div>
 </div>

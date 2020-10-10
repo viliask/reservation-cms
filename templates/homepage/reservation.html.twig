@@ -7,12 +7,8 @@
                         <div class="row">
                             <div class="col-xxs-12 col-xs-12 mt">
                                 <div class="input-field">
-                                    {% if content is defined %}
-                                        <h4>{{ content.reservationHeader|raw }}</h4>
-                                        <p>{{ content.reservationText|raw }}
-                                    {% endif %}
+                                    <span class="h4 theme-orange">{{ formHeader }}</span>
                                 </div>
-                                <h4>{{ formHeader }}</h4>
                             </div>
                             {{ form_start(form, {attr: {class: 'submit-form'} }) }}
                             {{ form_errors(form) }}
@@ -50,12 +46,12 @@
         </div>
         <div class="desc2-homepage">
             <div class="col-sm-push-1 col-md-push-1 text-header">
-                <h1>{{ widgetHeader }}</h1>
                 {% if widgetText is defined %}
+                    <h1>{{ widgetHeader }}</h1>
                     <span>{{ widgetText }}</span>
                 {% else %}
-                    <span>wynajmij pokój już od</span>
-                    <span class="price">40zł/os</span>
+                    <h1>{{ content.homepageHeader|raw }}</h1>
+                    <p>{{ content.homepageHeaderText|raw }}</p>
                 {% endif %}
             </div>
         </div>

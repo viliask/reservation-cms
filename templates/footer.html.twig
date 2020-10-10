@@ -3,9 +3,9 @@
         <div class="footer-links-row">
             {% for item in sulu_navigation_root_tree('footer') %}
                     <div class="res-footer-link">
-                        <h4>
+                        <span class="h4">
                             <a href="{{ sulu_content_path(item.url, item.webspaceKey) }}" title="{{ item.title }}">{{ item.title }}</a>
-                        </h4>
+                        </span>
                     </div>
             {% endfor %}
         </div>
