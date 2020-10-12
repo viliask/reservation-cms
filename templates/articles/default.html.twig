@@ -30,6 +30,15 @@
             <div class="row">
                 <div class="col-md-12 text-center text-article">
                     <p>{{ content.article|default()|raw }}</p>
+                    {% if content.blocks is defined %}
+                        {% for key, block in content.blocks %}
+                            {% if block.image.formats is defined %}
+                                <img src="{{ block.image.formats['600x.webp'] }}" alt="{{ content.title }} {{ key }}">
+                            {% else %}
+                                <p>{{ block.text|default()|raw }}</p>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
             {% include "articles/recentArticles.html.twig" %}
