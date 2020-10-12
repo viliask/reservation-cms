@@ -113,7 +113,7 @@
                         <property name="image" type="single_media_selection">
                             <meta>
                                 <title lang="en">Image</title>
-                                <title lang="en">Obraz</title>
+                                <title lang="pl">Obraz</title>
                             </meta>
 
                             <params>
