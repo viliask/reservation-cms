@@ -38,6 +38,13 @@
             <tag name="sulu_article.article_route"/>
         </property>
 
+        <property name="preview" type="text_editor">
+            <meta>
+                <title lang="en">Preview</title>
+                <title lang="pl">Zajawka</title>
+            </meta>
+        </property>
+
         <property name="article" type="text_editor">
             <meta>
                 <title lang="en">Article</title>
