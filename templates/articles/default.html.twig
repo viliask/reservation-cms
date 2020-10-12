@@ -5,12 +5,16 @@
 {% block content %}
     <div class="res-hero">
         <div class="res-overlay"></div>
-        <div class="res-cover" data-stellar-background-ratio="0.5" style="background-image: url(web/images/cover-bg-min.webp);">
-            <div class="desc">
+        {% if content.images[0] is defined %}
+            <div class="res-cover" data-stellar-background-ratio="0.5" style="background-image: url({{ content.images[0].formats['1200x.webp'] }});">
+        {% else %}
+            <div class="res-cover" data-stellar-background-ratio="0.5" style="background-image: url(/web/images/cover-bg-2.jpg);">
+        {% endif %}
+            <div class="article-desc">
                 <div class="container">
                     <div class="row">
                         <div class="desc2">
-                            <div class="col-sm-8 col-sm-push-1 col-md-7 col-md-push-1 text-header-article">
+                            <div class="col-sm-8 col-md-7 text-header-article">
                                 <h1>{{ content.title }}</h1>
                                 {{ content.preview|default()|raw }}
                             </div>
@@ -26,6 +30,15 @@
             <div class="row">
                 <div class="col-md-12 text-center text-article">
                     <p>{{ content.article|default()|raw }}</p>
+                    {% if content.blocks is defined %}
+                        {% for key, block in content.blocks %}
+                            {% if block.image.formats is defined %}
+                                <img src="{{ block.image.formats['600x.webp'] }}" alt="{{ content.title }} {{ key }}">
+                            {% else %}
+                                <p>{{ block.text|default()|raw }}</p>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
             {% include "articles/recentArticles.html.twig" %}
