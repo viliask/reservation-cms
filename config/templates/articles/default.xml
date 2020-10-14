@@ -45,22 +45,12 @@
             </meta>
         </property>
 
-        <property name="article" type="text_editor">
-            <meta>
-                <title lang="en">Article</title>
-                <title lang="pl">Artykuł</title>
-            </meta>
-        </property>
-
-
-
         <property name="images" type="media_selection">
             <meta>
                 <title lang="en">Images</title>
                 <title lang="pl">Obrazy</title>
                 <info_text lang="pl">
-                    If the same as the start date, the event is treated as
-                    one-day event.
+                    Pierwszy obraz jest tłem nagłówka.
                 </info_text>
             </meta>
 
@@ -82,7 +72,12 @@
             </params>
         </property>
 
-
+        <property name="article" type="text_editor">
+            <meta>
+                <title lang="en">Article</title>
+                <title lang="pl">Artykuł</title>
+            </meta>
+        </property>
 
         <block name="blocks" default-type="textEditor">
             <types>
@@ -97,7 +92,7 @@
                         <property name="author" type="contact_account_selection">
                             <meta>
                                 <title lang="en">Author</title>
-                                <title lang="pl">Author</title>
+                                <title lang="pl">Autor</title>
                             </meta>
                         </property>
                     </properties>
