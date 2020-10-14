@@ -50,8 +50,7 @@
                 <title lang="en">Images</title>
                 <title lang="pl">Obrazy</title>
                 <info_text lang="pl">
-                    If the same as the start date, the event is treated as
-                    one-day event.
+                    Pierwszy obraz jest tłem nagłówka.
                 </info_text>
             </meta>
 
