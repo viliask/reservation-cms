@@ -6,7 +6,7 @@
         {% set articles = sulu_article_load_recent(3) %}
         {% if articles is defined %}
             {% for article in articles %}
-                <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="col-lg-4 col-md-4 col-sm-6 display-table-sm">
                     <div class="res-blog">
                         <a href="{{ sulu_content_path(article.routePath) }}">
                             {% if article.content.content.images[0] is defined %}
