@@ -48,7 +48,7 @@ class RoomController extends AbstractController
      */
     public function showRooms(RoomRepository $repository, MediaManagerInterface $mediaManager): Response
     {
-        $rooms = $repository->findAll();
+        $rooms = $repository->findRooms();
         $media = [];
 
         /* @var $room Room */
