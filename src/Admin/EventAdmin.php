@@ -95,35 +95,11 @@ class EventAdmin extends Admin
         $module->setIcon('fa-calendar');
 
         // Configure a NavigationItem with a View
-        $events = new NavigationItem('app.timeline');
-        $events->setPosition(10);
-        $events->setView(static::TIMELINE_VIEW);
-
-        $module->addChild($events);
-
-        $events = new NavigationItem('app.events');
-        $events->setPosition(20);
-        $events->setView(static::EVENT_LIST_VIEW);
-
-        $module->addChild($events);
-
-        $events = new NavigationItem('app.rooms');
-        $events->setPosition(30);
-        $events->setView(static::ROOM_LIST_VIEW);
-
-        $module->addChild($events);
-
-        $events = new NavigationItem('app.promo');
-        $events->setPosition(40);
-        $events->setView(static::PROMO_LIST_VIEW);
-
-        $module->addChild($events);
-
-        $events = new NavigationItem('app.setting');
-        $events->setPosition(50);
-        $events->setView(static::SETTINGS_LIST_VIEW);
-
-        $module->addChild($events);
+        $module->addChild($this->navigationItemHelper('app.timeline', 10, static::TIMELINE_VIEW));
+        $module->addChild($this->navigationItemHelper('app.events', 20, static::EVENT_LIST_VIEW));
+        $module->addChild($this->navigationItemHelper('app.rooms', 30, static::ROOM_LIST_VIEW));
+        $module->addChild($this->navigationItemHelper('app.promo', 40, static::PROMO_LIST_VIEW));
+        $module->addChild($this->navigationItemHelper('app.setting', 50, static::SETTINGS_LIST_VIEW));
 
         $navigationItemCollection->add($module);
     }
@@ -281,5 +257,14 @@ class EventAdmin extends Admin
             ->addToolbarActions($formToolbarActions)
             ->setParent($editFormViewString);
         $viewCollection->add($editDetailsFormView);
+    }
+
+    private function navigationItemHelper(string $name, int $position, string $view): NavigationItem
+    {
+        $events = new NavigationItem($name);
+        $events->setPosition($position);
+        $events->setView($view);
+
+        return $events;
     }
 }
