@@ -1,3 +1,11 @@
+.mt-1 {
+    margin-top: 10px;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
 .article-desc {
     top: 50%;
     position: absolute;
