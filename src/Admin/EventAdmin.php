@@ -261,10 +261,10 @@ class EventAdmin extends Admin
 
     private function navigationItemHelper(string $name, int $position, string $view): NavigationItem
     {
-        $events = new NavigationItem($name);
-        $events->setPosition($position);
-        $events->setView($view);
+        $item = new NavigationItem($name);
+        $item->setPosition($position);
+        $item->setView($view);
 
-        return $events;
+        return $item;
     }
 }
