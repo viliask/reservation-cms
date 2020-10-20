@@ -19,6 +19,17 @@
             </meta>
         </property>
 
+        <property name="type" type="single_select" colspan="3">
+            <meta>
+                <title>app.type</title>
+            </meta>
+
+            <params>
+                <param name="default_value" type="expression" value="service('App\\Service\\RoomTypeSelect').getDefault()"/>
+                <param name="values" type="expression" value="service('App\\Service\\RoomTypeSelect').getValues()"/>
+            </params>
+        </property>
+
         <property name="maxGuests" type="number" mandatory="true" colspan="3">
             <meta>
                 <title>app.max_guests</title>
