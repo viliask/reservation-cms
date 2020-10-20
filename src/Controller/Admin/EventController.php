@@ -134,8 +134,6 @@ class EventController extends AbstractRestController implements ClassResourceInt
      */
     protected function mapDataToEntity(array $data, Event $entity, $locale): void
     {
-        $entity->setTitle($data['title']);
-
         if ($teaser = $data['teaser'] ?? null) {
             $entity->setTeaser($teaser);
         }

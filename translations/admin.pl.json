@@ -31,11 +31,13 @@
     "app.startDate": "Początek",
     "app.endDate": "Koniec",
     "app.slug": "Slug",
-    "app.enable_room": "Aktywuj pokój",
+    "app.enable": "Aktywuj",
     "app.forms": "Formularze",
     "app.summerStart": "Początek sezonu letniego",
     "app.summerEnd": "Koniec sezonu letniego",
     "app.priceModifier": "Modyfikator cen",
     "app.setting": "Ustawienia",
-    "app.enable_settings": "Aktywuj ustawienia"
+    "app.enable_settings": "Aktywuj ustawienia",
+    "app.contentGroup": "Treść strony",
+    "app.type": "Typ"
 }

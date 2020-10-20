@@ -1,3 +1,11 @@
+.mt-1 {
+    margin-top: 10px;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
 .article-desc {
     top: 50%;
     position: absolute;
@@ -81,14 +89,14 @@
     margin-right: 15px;
 }
 .footer-links-row {
-    display: inline-flex;
-    padding: 25px;
+    display: flex;
+    padding: 25px 0;
 }
 .res-footer-link{
     position: relative;
     min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .form-group div {
@@ -242,7 +250,9 @@ input[type="text"] {
 }
 
 .feature-copy span {
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
+    padding-left: 5px;
 }
 
 .res-cover .desc .desc2-homepage {

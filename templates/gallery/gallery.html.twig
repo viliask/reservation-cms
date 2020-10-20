@@ -6,7 +6,11 @@
     <div class="container">
         <div class="row">
             <section class="gallery">
+                <div class="col-md-8 col-md-offset-2 text-center heading-section position-absolute mt-1">
+                    <h2>Galeria</h2>
+                </div>
                 <div class="carousel">
+
                     {% for image in media %}
                         {% if image['index'] == 1 %}
                             <input type="radio" id="image{{ image['index'] }}" name="gallery-control" checked>

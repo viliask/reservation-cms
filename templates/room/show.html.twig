@@ -5,7 +5,7 @@
     {{ encore_entry_link_tags('airbnb', null, 'css') }}
 {% endblock %}
 
-{% block title %}{{ room.widgetHeader }}{% endblock %}
+{% block title %}{{ room.widgetHeader }} - pokojebeata.pl{% endblock %}
 
 {% block body %}
     {% if checked is defined %}
@@ -26,7 +26,7 @@
                             form: availabilityForm,
                             widgetHeader: room.widgetHeader,
                             widgetText: room.widgetText,
-                            formHeader: 'Sprawdź dostępność pokoju'
+                            formHeader: 'Sprawdź dostępność ' ~ (room.type == 'pokój' ? 'pokoj' : room.type) ~ 'u'
                         }
                     %}
                 {% endblock %}
@@ -37,81 +37,210 @@
     <div id="res-features">
         <div class="container room-container">
             <div class="row plr-3">
+                {% if room.type == 'apartament' %}
+                    <h2 class="center-block">Apartament z sypialnią - idealny nocleg w krynicy dla rodzin z dziećmi</h2>
+                    <div class="feature-copy">
+                        <p>{{ room.content|raw }}</p>
+                    </div>
+                    <h3 class="features-header">Udogodnienia w apartamencie:</h3>
+                    <div class="col-md-2">
+                        <div class="feature-left">
+                                <span class="icon">
+                                    <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="24" height="24" title="Check circle">
+                                </span>
+                            <div class="feature-copy">
+                                <span>całość zlokalizowana na parterze</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="feature-left">
+                                <span class="icon">
+                                    <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="24" height="24" title="Check circle">
+                                </span>
+                            <div class="feature-copy">
+                                <span>prywatne mieszkanie w budynku</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="feature-left">
+                                <span class="icon">
+                                    <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="24" height="24" title="Check circle">
+                                </span>
+                            <div class="feature-copy">
+                                <span>monitorowany parking</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="feature-left">
+                                    <span class="icon">
+                                        <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="24" height="24" title="Check circle">
+                                    </span>
+                            <div class="feature-copy">
+                                <span>altanka na grilla</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="feature-left">
+                                <span class="icon">
+                                    <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="24" height="24" title="Check circle">
+                                </span>
+                            <div class="feature-copy">
+                                <span>szafa i garderoba</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="feature-left">
+                                    <span class="icon">
+                                        <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="24" height="24" title="Check circle">
+                                    </span>
+                            <div class="feature-copy">
+                                <span>aneks kuchenny</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row plr-3">
+                    <div class="col-md-2">
+                        <div class="feature-left">
+                                <span class="icon">
+                                    <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="24" height="24" title="Check circle">
+                                </span>
+                            <div class="feature-copy">
+                                <span>zmywarka</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="feature-left">
+                                <span class="icon">
+                                    <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="24" height="24" title="Check circle">
+                                </span>
+                            <div class="feature-copy">
+                                <span>2 wyjścia do ogrodu</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="feature-left">
+                                <span class="icon">
+                                    <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="24" height="24" title="Check circle">
+                                </span>
+                            <div class="feature-copy">
+                                <span>rozkładane sofy</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="feature-left">
+                                    <span class="icon">
+                                        <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="24" height="24" title="Check circle">
+                                    </span>
+                            <div class="feature-copy">
+                                <span>jacuzzi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="feature-left">
+                                <span class="icon">
+                                    <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="24" height="24" title="Check circle">
+                                </span>
+                            <div class="feature-copy">
+                                <span>2 łazienki</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="feature-left">
+                                    <span class="icon">
+                                        <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="24" height="24" title="Check circle">
+                                    </span>
+                            <div class="feature-copy">
+                                <span>Wi-fi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
                 <h2 class="center-block">Opis pokoju</h2>
                 <div class="feature-copy">
                     <p>{{ room.content|raw }}</p>
                 </div>
                 <h3 class="features-header">Wyposażenie pokoju obejmuje: </h3>
-                <div class="col-md-4">
-                    <div class="feature-left">
-							<span class="icon">
+                <div class="row plr-3">
+                    <div class="col-md-4">
+                        <div class="feature-left">
+                            <span class="icon">
                                 <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="32" height="32" title="Check circle">
-							</span>
-                        <div class="feature-copy">
-                            <p>Kuchnia ogólnodostępna</p>
+                            </span>
+                            <div class="feature-copy">
+                                <span>Wi-fi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-left">
+                            <span class="icon">
+                                <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="32" height="32" title="Check circle">
+                            </span>
+                            <div class="feature-copy">
+                                <span>monitorowany parking</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-left">
+                            <span class="icon">
+                                <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="32" height="32" title="Check circle">
+                            </span>
+                            <div class="feature-copy">
+                                <span>przechowalnię sprzętu narciarskiego</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="feature-left">
-							<span class="icon">
+                <div class="row plr-3">
+                    <div class="col-md-4">
+                        <div class="feature-left">
+                            <span class="icon">
                                 <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="32" height="32" title="Check circle">
-							</span>
-                        <div class="feature-copy">
-                            <p>Bezpłatny internet</p>
+                            </span>
+                            <div class="feature-copy">
+                                <span>taras dla palących</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-left">
+                            <span class="icon">
+                                <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="32" height="32" title="Check circle">
+                            </span>
+                            <div class="feature-copy">
+                                <span>altankę na grilla</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-left">
+                            <span class="icon">
+                                <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="32" height="32" title="Check circle">
+                            </span>
+                            <div class="feature-copy">
+                                <span>ogólnodostępną kuchnię</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="feature-left">
-							<span class="icon">
-                                <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="32" height="32" title="Check circle">
-							</span>
-                        <div class="feature-copy">
-                            <p>Telewizja kablowa</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row plr-3">
-                <div class="col-md-4">
-                    <div class="feature-left">
-							<span class="icon">
-                                <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="32" height="32" title="Check circle">
-							</span>
-                        <div class="feature-copy">
-                            <p>Łazienka w pokoju</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-left">
-							<span class="icon">
-                                <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="32" height="32" title="Check circle">
-							</span>
-                        <div class="feature-copy">
-                            <p>Altanka ze sprzętem to grillowania</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-left">
-							<span class="icon">
-                                <img src="{{ asset('web/icons/check2-circle.svg') }}" alt="Check circle" width="32" height="32" title="Check circle">
-							</span>
-                        <div class="feature-copy">
-                            <p>Ogród</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endif %}
         </div>
     </div>
 
     {% if media[0] is defined %}
-        <div class="col-md-8 col-md-offset-2 text-center heading-section">
-            <h2>Zobacz zdjęcia pokoju</h2>
-        </div>
         {% block gallery %}
             {% include 'gallery/gallery.html.twig' with {media: media} %}
         {% endblock %}

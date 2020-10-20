@@ -126,7 +126,6 @@ class RoomController extends AbstractRestController implements ClassResourceInte
      */
     protected function mapDataToEntity(array $data, Room $entity, string $locale): void
     {
-        $entity->setTitle($data['title']);
         $entity->setName($data['name']);
         $entity->setSlug($this->slugify($data['slug']));
         $entity->setMaxGuests((int)$data['maxGuests']);
@@ -137,6 +136,7 @@ class RoomController extends AbstractRestController implements ClassResourceInte
         $entity->setWidgetHeader($data['widgetHeader']);
         $entity->setWidgetText($data['widgetText']);
         $entity->setContent($data['content']);
+        $entity->setType($data['type']);
 
         if ($teaser = $data['teaser'] ?? null) {
             $entity->setTeaser($teaser);

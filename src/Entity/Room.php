@@ -15,6 +15,15 @@ use JMS\Serializer\Annotation as Serializer;
 class Room
 {
     const RESOURCE_KEY = 'rooms';
+    const ROOM_TYPE = 'pokój';
+    const APARTMENT_TYPE = 'apartament';
+
+    static public function getTypesArray() {
+        return [
+            0 => self::ROOM_TYPE,
+            1 => self::APARTMENT_TYPE,
+        ];
+    }
 
     /**
      * @ORM\Id()
@@ -70,7 +79,7 @@ class Room
     private $widgetText;
 
     /**
-     * @ORM\Column(type="string", length=1000, nullable=true)
+     * @ORM\Column(type="string", length=3000, nullable=true)
      */
     private $content;
 
@@ -99,12 +108,19 @@ class Room
      */
     private $slug;
 
+    /**
+     * options: room, apartment
+     *
+     * @ORM\Column(name="type", type="string", length=30)
+     */
+    private $type = Room::ROOM_TYPE;
+
     public function __construct()
     {
-        $this->enabled = false;
+        $this->enabled      = false;
         $this->translations = new ArrayCollection();
         $this->reservations = new ArrayCollection();
-        $this->promoOffers = new ArrayCollection();
+        $this->promoOffers  = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -407,5 +423,23 @@ class Room
     public function getTranslationChanged(): ?DateTime
     {
         return $this->getTranslation($this->locale)->getChanged();
+    }
+
+    public function setType(string $type): self
+    {
+        foreach (self::getTypesArray() as $key => $value){
+            if ($value == $type) {
+                $this->type = $type;
+
+                return $this;
+            }
+        }
+
+        return $this;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
     }
 }

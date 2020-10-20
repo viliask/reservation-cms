@@ -209,6 +209,34 @@ body {
 .gallery input#image4:checked ~ .thumbnails .thumb:nth-of-type(4) {
     opacity: 1;
 }
+.gallery input#image5:checked ~ .wrap figure {
+    -webkit-transform: translateX(-400%);
+    transform: translateX(-400%);
+}
+.gallery input#image5:checked ~ .wrap figure:not(:nth-of-type(5)) {
+    opacity: 0;
+}
+.gallery input#image5:checked ~ .thumbnails .slider {
+    -webkit-transform: translateY(400%);
+    transform: translateY(400%);
+}
+.gallery input#image5:checked ~ .thumbnails .thumb:nth-of-type(5) {
+    opacity: 1;
+}
+.gallery input#image6:checked ~ .wrap figure {
+    -webkit-transform: translateX(-500%);
+    transform: translateX(-500%);
+}
+.gallery input#image6:checked ~ .wrap figure:not(:nth-of-type(6)) {
+    opacity: 0;
+}
+.gallery input#image6:checked ~ .thumbnails .slider {
+    -webkit-transform: translateY(500%);
+    transform: translateY(500%);
+}
+.gallery input#image6:checked ~ .thumbnails .thumb:nth-of-type(6) {
+    opacity: 1;
+}
 .room-container {
     background: white;
     padding: 30px 0 0;

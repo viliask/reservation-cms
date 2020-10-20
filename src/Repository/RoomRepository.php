@@ -103,6 +103,7 @@ class RoomRepository extends ServiceEntityRepository implements DataProviderRepo
         return $this->createQueryBuilder('r')
             ->where('r.enabled = TRUE')
             ->select('r')
+            ->orderBy('r.type', 'ASC')
             ->setMaxResults($limit)
             ->getQuery()->execute();
     }
@@ -114,5 +115,29 @@ class RoomRepository extends ServiceEntityRepository implements DataProviderRepo
             ->where('r.enabled = TRUE')
             ->getQuery()
             ->getSingleScalarResult();
+    }
+
+    /** @return Room[] */
+    public function findApartments(int $limit = 1)
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.enabled = TRUE')
+            ->where('r.type = :apartmentType')
+            ->select('r')
+            ->setMaxResults($limit)
+            ->setParameter('apartmentType', Room::APARTMENT_TYPE)
+            ->getQuery()->execute();
+    }
+
+    /** @return Room[] */
+    public function findRooms(int $limit = 10)
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.enabled = TRUE')
+            ->where('r.type = :roomType')
+            ->select('r')
+            ->setMaxResults($limit)
+            ->setParameter('roomType', Room::ROOM_TYPE)
+            ->getQuery()->execute();
     }
 }

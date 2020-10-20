@@ -48,7 +48,7 @@ class RoomController extends AbstractController
      */
     public function showRooms(RoomRepository $repository, MediaManagerInterface $mediaManager): Response
     {
-        $rooms = $repository->findAll();
+        $rooms = $repository->findRooms();
         $media = [];
 
         /* @var $room Room */
@@ -255,7 +255,7 @@ class RoomController extends AbstractController
         $checkOutDate = new DateTime($checkOut);
         $daysOfVisit  = $checkOutDate->diff($checkInDate)->days;
 
-        if ($room->getStepsAmount() > 0 && $room->getMaxGuests() > $guests) {
+        if ($room->getStepsAmount() > 0 && $room->getMaxGuests() > $guests && $room->getStepsDiscount() != 0) {
             $multiplier                  = $room->getMaxGuests() - $guests;
             $finalStepsDiscount          = $room->getStepsDiscount() * $multiplier;
             $stepsParams['stepsContent'] = 'W zależności od liczby osób '.$finalStepsDiscount.'%';
