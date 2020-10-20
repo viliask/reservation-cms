@@ -238,7 +238,7 @@ class EventAdmin extends Admin
             new ToolbarAction('sulu_admin.save'),
             new ToolbarAction('sulu_admin.delete'),
             new TogglerToolbarAction(
-                'app.enable_room',
+                'app.enable',
                 'enabled',
                 'enable',
                 'disable'
@@ -298,7 +298,7 @@ class EventAdmin extends Admin
             new ToolbarAction('sulu_admin.save'),
             new ToolbarAction('sulu_admin.delete'),
             new TogglerToolbarAction(
-                'app.enable_room',
+                'app.enable',
                 'enabled',
                 'enable',
                 'disable'
