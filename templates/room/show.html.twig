@@ -241,9 +241,6 @@
     </div>
 
     {% if media[0] is defined %}
-        <div class="col-md-8 col-md-offset-2 text-center heading-section">
-            <h2>Zobacz zdjęcia pokoju</h2>
-        </div>
         {% block gallery %}
             {% include 'gallery/gallery.html.twig' with {media: media} %}
         {% endblock %}
