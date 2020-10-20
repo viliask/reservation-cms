@@ -103,6 +103,7 @@ class RoomRepository extends ServiceEntityRepository implements DataProviderRepo
         return $this->createQueryBuilder('r')
             ->where('r.enabled = TRUE')
             ->select('r')
+            ->orderBy('r.type', 'ASC')
             ->setMaxResults($limit)
             ->getQuery()->execute();
     }
