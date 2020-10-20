@@ -136,6 +136,7 @@ class RoomController extends AbstractRestController implements ClassResourceInte
         $entity->setWidgetHeader($data['widgetHeader']);
         $entity->setWidgetText($data['widgetText']);
         $entity->setContent($data['content']);
+        $entity->setType($data['type']);
 
         if ($teaser = $data['teaser'] ?? null) {
             $entity->setTeaser($teaser);
