@@ -79,7 +79,7 @@ class Room
     private $widgetText;
 
     /**
-     * @ORM\Column(type="string", length=1000, nullable=true)
+     * @ORM\Column(type="string", length=3000, nullable=true)
      */
     private $content;
 
