@@ -15,6 +15,15 @@ use JMS\Serializer\Annotation as Serializer;
 class Room
 {
     const RESOURCE_KEY = 'rooms';
+    const ROOM_TYPE = 'pokój';
+    const APARTMENT_TYPE = 'apartament';
+
+    static public function getTypesArray() {
+        return [
+            0 => self::ROOM_TYPE,
+            1 => self::APARTMENT_TYPE,
+        ];
+    }
 
     /**
      * @ORM\Id()
