@@ -10,9 +10,9 @@
                 <div class="col-md-4 col-sm-6 res-tours">
                     <div href="#">
                         {% if media[room.id].media[0] is defined %}
-                            <img src="{{ media[room.id].media[0].media.formats['sulu-400x400-inset.webp'] }}" height="300px"  alt="{{ room.name }}">
+                            <img loading="lazy" src="{{ media[room.id].media[0].media.formats['sulu-400x400-inset.webp'] }}" height="300px"  alt="{{ room.name }}">
                         {% else %}
-                            <img src="web/images/place-1.jpg" height="300px" alt="{{ room.name }}" class="img-responsive">
+                            <img loading="lazy" src="web/images/place-1.jpg" height="300px" alt="{{ room.name }}" class="img-responsive">
                         {% endif %}
                         <div class="desc">
                             <h3>{{ room.name }}</h3>

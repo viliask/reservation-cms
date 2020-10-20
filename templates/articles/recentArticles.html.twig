@@ -10,9 +10,9 @@
                     <div class="res-blog">
                         <a href="{{ sulu_content_path(article.routePath) }}">
                             {% if article.content.content.images[0] is defined %}
-                                <img class="img-responsive" src="{{ article.content.content.images[0].formats['sulu-400x400-inset.webp'] }}" alt="{{ article.title }}">
+                                <img class="img-responsive" src="{{ article.content.content.images[0].formats['sulu-400x400-inset.webp'] }}" loading="lazy" alt="{{ article.title }}">
                             {% else %}
-                                <img class="img-responsive" src="/web/images/place-1.jpg" alt="{{ article.title }}">
+                                <img class="img-responsive" src="/web/images/place-1.jpg" loading="lazy" alt="{{ article.title }}">
                             {% endif %}
                         </a>
                         <div class="blog-text">

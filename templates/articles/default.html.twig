@@ -33,7 +33,7 @@
                     {% if content.blocks is defined %}
                         {% for key, block in content.blocks %}
                             {% if block.image.formats is defined %}
-                                <img class="img-responsive" src="{{ block.image.formats['600x.webp'] }}" alt="{{ content.title }} {{ key }}">
+                                <img loading="lazy" class="img-responsive" src="{{ block.image.formats['600x.webp'] }}" alt="{{ content.title }} {{ key }}">
                             {% else %}
                                 <p>{{ block.text|default()|raw }}</p>
                             {% endif %}
