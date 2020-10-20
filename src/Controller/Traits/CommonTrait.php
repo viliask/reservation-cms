@@ -16,12 +16,14 @@ trait CommonTrait
         $roomIndicator = $this->slugify($room->getName());
 
         foreach ($mediaManager->get('en') as $media) {
-            if (str_contains($media->getTitle(), $roomIndicator) && str_contains($media->getMimeType(), 'image')) {
+            $mediaTitle = strtolower($media->getTitle());
+
+            if (str_contains($mediaTitle, $roomIndicator) && str_contains($media->getMimeType(), 'image')) {
                 $pageMedia[] =
                     [
                         'media' => $media,
-                        'title' => $media->getTitle(),
-                        'index' => substr($media->getTitle(), -1),
+                        'title' => $mediaTitle,
+                        'index' => substr($mediaTitle, -1),
                     ];
             }
         }
