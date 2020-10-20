@@ -250,7 +250,9 @@ input[type="text"] {
 }
 
 .feature-copy span {
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
+    padding-left: 5px;
 }
 
 .res-cover .desc .desc2-homepage {
