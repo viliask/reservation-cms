@@ -117,10 +117,10 @@ class Room
 
     public function __construct()
     {
-        $this->enabled = false;
+        $this->enabled      = false;
         $this->translations = new ArrayCollection();
         $this->reservations = new ArrayCollection();
-        $this->promoOffers = new ArrayCollection();
+        $this->promoOffers  = new ArrayCollection();
     }
 
     public function getId(): ?int
