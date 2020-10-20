@@ -99,6 +99,13 @@ class Room
      */
     private $slug;
 
+    /**
+     * options: room, apartment
+     *
+     * @ORM\Column(name="type", type="string", length=30)
+     */
+    private $type = Room::ROOM_TYPE;
+
     public function __construct()
     {
         $this->enabled = false;
@@ -407,5 +414,23 @@ class Room
     public function getTranslationChanged(): ?DateTime
     {
         return $this->getTranslation($this->locale)->getChanged();
+    }
+
+    public function setType(string $type): self
+    {
+        foreach (self::getTypesArray() as $key => $value){
+            if ($value == $type) {
+                $this->type = $type;
+
+                return $this;
+            }
+        }
+
+        return $this;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
     }
 }
