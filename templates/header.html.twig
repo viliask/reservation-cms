@@ -1,9 +1,16 @@
 <nav id="offcanvas-menu" role="navigation">
     <ul class="" id="" style="touch-action: pan-y;">
+        {% if all_rooms is defined %}
+        {% for room in all_rooms.generateApartmentsList %}
+            <li>
+                <a href="{{ path('room_show', {slug: room.slug}) }}">{{ room.name }}</a>
+            </li>
+        {% endfor %}
+        {% endif %}
         <li><a href="{{ path('rooms_show') }}" class="sf-with-ul">Pokoje</a>
             <ul class="res-sub-menu" style="display: none;">
                 {% if all_rooms is defined %}
-                    {% for room in all_rooms.generate %}
+                    {% for room in all_rooms.generateRoomsList %}
                         <li>
                             <a href="{{ path('room_show', {slug: room.slug}) }}">{{ room.name }}</a>
                         </li>
@@ -28,10 +35,17 @@
             <nav id="res-menu-wrap" role="navigation">
                 <ul class="sf-menu" id="res-primary-menu">
                     <li>
+                        {% if all_rooms is defined %}
+                        {% for room in all_rooms.generateApartmentsList %}
+                            <a href="{{ path('room_show', {slug: room.slug}) }}">Apartament</a>
+                        {% endfor %}
+                        {% endif %}
+                    </li>
+                    <li>
                         <a href="{{ path('rooms_show') }}">Pokoje</a>
                         <ul class="res-sub-menu">
                             {% if all_rooms is defined %}
-                                {% for room in all_rooms.generate %}
+                                {% for room in all_rooms.generateRoomsList %}
                                     <li>
                                         <a href="{{ path('room_show', {slug: room.slug}) }}">{{ room.name }}</a>
                                     </li>
