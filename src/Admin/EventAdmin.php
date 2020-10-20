@@ -20,13 +20,9 @@ use Sulu\Component\Webspace\Manager\WebspaceManagerInterface;
 class EventAdmin extends Admin
 {
     const EVENT_LIST_KEY = 'events';
-
     const EVENT_FORM_KEY = 'event_details';
-
     const EVENT_LIST_VIEW = 'app.events_list';
-
     const EVENT_ADD_FORM_VIEW = 'app.event_add_form';
-
     const EVENT_EDIT_FORM_VIEW = 'app.event_edit_form';
 
 //////// Timeline
@@ -36,37 +32,25 @@ class EventAdmin extends Admin
 //////// Room
 
     const ROOM_LIST_KEY = 'rooms';
-
     const ROOM_FORM_KEY = 'room_details';
-
     const ROOM_LIST_VIEW = 'app.rooms_list';
-
     const ROOM_ADD_FORM_VIEW = 'app.room_add_form';
-
     const ROOM_EDIT_FORM_VIEW = 'app.room_edit_form';
 
 //////// PromoOffer
 
     const PROMO_LIST_KEY = 'promos';
-
     const PROMO_FORM_KEY = 'promo_details';
-
     const PROMO_LIST_VIEW = 'app.promos_list';
-
     const PROMO_ADD_FORM_VIEW = 'app.promo_add_form';
-
     const PROMO_EDIT_FORM_VIEW = 'app.promo_edit_form';
 
 //////// ReservationSettings
 
     const SETTINGS_LIST_KEY = 'settings';
-
     const SETTINGS_FORM_KEY = 'setting_details';
-
     const SETTINGS_LIST_VIEW = 'app.settings_list';
-
     const SETTINGS_ADD_FORM_VIEW = 'app.setting_add_form';
-
     const SETTINGS_EDIT_FORM_VIEW = 'app.setting_edit_form';
 
 
