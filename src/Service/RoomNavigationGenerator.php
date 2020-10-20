@@ -26,4 +26,12 @@ class RoomNavigationGenerator
     {
         return $this->repository->findAll();
     }
+
+    /**
+     * @return Room[]
+     */
+    public function generateApartmentsList()
+    {
+        return $this->repository->findApartments();
+    }
 }
