@@ -35,17 +35,12 @@ Encore
     .setOutputPath('./public/build/website/css')
     .setPublicPath('/build/website/css')
     .setManifestKeyPrefix('')
+    .addStyleEntry('core', './assets/css/core.css')
     .addStyleEntry('airbnb', './assets/css/airbnb.css')
     .addStyleEntry('modal', './assets/css/modal.css')
-    .addStyleEntry('style', './assets/css/style.css')
-    .addStyleEntry('icomoon', './assets/css/icomoon.css')
-    .addStyleEntry('bootstrap', './assets/css/bootstrap.css')
-    .addStyleEntry('superfish', './assets/css/superfish.css')
-    .addStyleEntry('app', './assets/css/app.css')
     .addStyleEntry('roomGallery', './assets/css/roomGallery.css')
     .addStyleEntry('card', './assets/css/card.css')
     .addStyleEntry('map', './assets/css/map.css')
-    .addStyleEntry('cookieconsent', './assets/css/cookieconsent.min.css')
 ;
 
 const cssConfig = Encore.getWebpackConfig();
