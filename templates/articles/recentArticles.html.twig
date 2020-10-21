@@ -17,8 +17,7 @@
                         </a>
                         <div class="blog-text">
                             <div class="prod-title">
-                                <h3><a href="{{ sulu_content_path(article.routePath) }}">{{ article.title }}</a>
-                                </h3>
+                                <h3><a href="{{ sulu_content_path(article.routePath) }}">{{ article.title }}</a></h3>
                                 <p>{{ article.content.content.getArrayCopy['preview']|default()|raw }}</p>
                                 <p><a href="{{ sulu_content_path(article.routePath) }}">Zobacz więcej</a></p>
                             </div>
@@ -28,7 +27,7 @@
             {% endfor %}
         {% endif %}
         <div class="col-md-12 text-center">
-            <p><a class="btn btn-primary btn-outline btn-lg" href="{{ sulu_content_path('/artykuly', 'reservation') }}">Zobacz wszystkie<i class="icon-arrow-right22"></i></a></p>
+            <p><a class="btn btn-primary btn-outline btn-lg" href="{{ sulu_content_path('/artykuly', 'reservation') }}">Zobacz wszystkie</a></p>
         </div>
     </div>
 {% endblock %}

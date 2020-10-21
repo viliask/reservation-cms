@@ -17,13 +17,17 @@
                         <div class="desc">
                             <h3>{{ room.name }}</h3>
                             <span class="price">od {{ room.basePrice }}zł</span>
-                            <a class="btn btn-primary btn-outline" href="{{ path('room_show', {slug: room.slug}) }}">Zobacz <i class="icon-arrow-right22"></i></a>
+                            <a class="btn btn-primary btn-outline" href="{{ path('room_show', {slug: room.slug}) }}">Zobacz
+                                <svg class="bi bi-chevron-right icon" width="24" height="24" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M6.646 3.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L12.293 10 6.646 4.354a.5.5 0 010-.708z"/>
+                                </svg>
+                            </a>
                         </div>
                     </div>
                 </div>
             {% endfor %}
             <div class="col-md-12 text-center">
-                <p><a class="btn btn-primary btn-outline btn-lg" href="{{ path('rooms_show') }}">Zobacz wszystkie <i class="icon-arrow-right22"></i></a></p>
+                <p><a class="btn btn-primary btn-outline btn-lg" href="{{ path('rooms_show') }}">Zobacz wszystkie</a></p>
             </div>
         {% endif %}
     </div>
