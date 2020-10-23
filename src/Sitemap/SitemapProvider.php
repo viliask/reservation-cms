@@ -29,8 +29,7 @@ class SitemapProvider implements SitemapProviderInterface
         $result[] = new SitemapUrl(
             $scheme . '://' . $host . '/' . RoomController::ROUTE_PREFIX,
             'pl',
-            'pl',
-            null
+            'pl'
         );
         foreach ($this->repository->findEnabled(50000) as $item) {
             $result[] = new SitemapUrl(
@@ -39,7 +38,6 @@ class SitemapProvider implements SitemapProviderInterface
                 'pl'
             );
         }
-        $this->repository->countEnabled();
 
         return $result;
     }
