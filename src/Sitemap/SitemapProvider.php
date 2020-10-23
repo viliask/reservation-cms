@@ -29,18 +29,15 @@ class SitemapProvider implements SitemapProviderInterface
         $result[] = new SitemapUrl(
             $scheme . '://' . $host . '/' . RoomController::ROUTE_PREFIX,
             'pl',
-            'pl',
-            null
+            'pl'
         );
         foreach ($this->repository->findEnabled(50000) as $item) {
             $result[] = new SitemapUrl(
-                $scheme . '://' . $host . '/' . $item->getSlug(),
+                $scheme . '://' . $host . '/'. RoomController::ROUTE_PREFIX . '/' . $item->getSlug(),
                 'pl',
-                'pl',
-                $item->getTranslationChanged()
+                'pl'
             );
         }
-        $this->repository->countEnabled();
 
         return $result;
     }

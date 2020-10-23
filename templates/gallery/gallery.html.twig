@@ -21,7 +21,7 @@
                         {% for image in media %}
                             <figure>
                                 <label>
-                                    <img src="{{ image['media'].url }}" alt="image{{ image['index'] }}"/>
+                                    <img loading="lazy" src="{{ image['media'].url }}" alt="image{{ image['index'] }}"/>
                                 </label>
                             </figure>
                         {% endfor %}
