@@ -36,7 +36,7 @@ class SitemapProvider implements SitemapProviderInterface
             $result[] = new SitemapUrl(
                 $scheme . '://' . $host . '/'. RoomController::ROUTE_PREFIX . '/' . $item->getSlug(),
                 'pl',
-                $item->getTranslationChanged()
+                'pl'
             );
         }
         $this->repository->countEnabled();
