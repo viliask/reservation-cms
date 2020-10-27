@@ -29,6 +29,7 @@
         "php": "^7.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "cocur/slugify": "^4.0",
         "dantleech/phpcr-migrations-bundle": "^1.2",
         "doctrine/doctrine-bundle": "^2.0",
         "doctrine/doctrine-fixtures-bundle": "^3.0",
