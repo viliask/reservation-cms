@@ -15,7 +15,7 @@ use Sulu\Component\Content\Compat\StructureInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class ArticleOverviewController extends WebsiteController
+class ArticleTaxonomyController extends WebsiteController
 {
     use CommonTrait;
 
@@ -31,7 +31,7 @@ class ArticleOverviewController extends WebsiteController
         $this->esManagerLive = $esManagerLive;
     }
 
-    public function indexAction(Request $request, RoomRepository $roomRepository,  MediaManagerInterface $mediaManager,StructureInterface $structure, $preview = false, $partial = false)
+    public function indexAction(Request $request, RoomRepository $roomRepository, MediaManagerInterface $mediaManager, StructureInterface $structure, $preview = false, $partial = false)
     {
         $page = $request->query->getInt('page', 1);
         if ($page < 1) {

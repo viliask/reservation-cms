@@ -4,49 +4,47 @@
     {{ encore_entry_link_tags('card', null, 'css') }}
 {% endblock %}
 
-{% block title %}Artykuły - pokojebeata.pl{% endblock %}
-
 {% block content %}
-
     <div class="res-section-gray">
-        <div class="container pb-2">
-            {% include "pages/taxonomy/breadcrumb.html.twig"%}
-            {% if articles is not empty %}
-                <div class="taxonomy col-md-9 col-sm-12">
-                    <div class="text-center heading-section pt-1">
-                        <h1>Artykuły</h1>
-                    </div>
-                {% for article in articles %}
+    <div class="container pb-2">
+        {% include "pages/taxonomy/breadcrumb.html.twig"%}
+        <div class="taxonomy col-md-9 col-sm-12">
+            {% if content.categories[0].articles is not empty %}
+                <div class="text-center heading-section pt-1">
+                    <h1>Artykuły z kategorii: {{ content.title }}</h1>
+                </div>
+                {% for article in content.categories[0].articles %}
                     <a href="{{ sulu_content_path(article.routePath) }}">
                         <div class="card transitionable">
                             <div class="card-container">
-                                {% if article.content.images[0] is defined %}
-                                    <div class="image" style="background-image: url({{ article.content.images[0].formats['sulu-400x400-inset.webp'] }})"></div>
+                                {% if article.content.content.images[0] is defined %}
+                                    <div class="image" style="background-image: url({{ article.content.content.images[0].formats['sulu-400x400-inset.webp'] }})"></div>
                                 {% else %}
                                     <div class="image" style="background-image: url(/web/images/place-1.jpg);"></div>
                                 {% endif %}
                                 <div class="text-card-container">
                                     <div class="card-description-container">
                                         <h2>{{ article.title }}</h2>
-                                        {{ article.content.getArrayCopy['preview']|default()|raw }}
+                                        {{ article.content.content.getArrayCopy['preview']|default()|raw }}
                                     </div>
                                 </div>
-                            </div>
+                             </div>
                         </div>
                     </a>
                 {% endfor %}
             {% else %}
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center heading-section pt-1">
+                    <div class="col-md-8 text-center heading-section pt-1">
                         <h1>Brak artykułów</h1>
                     </div>
                 </div>
             {% endif %}
-            {% include "pages/taxonomy/pagination.html.twig" %}
-            </div>
 
-            {% include "pages/taxonomy/sidebar.html.twig" %}
+            {% include "pages/taxonomy/pagination.html.twig" %}
         </div>
+
+        {% include "pages/taxonomy/sidebar.html.twig" %}
+    </div>
     </div>
 
     {% block grids %}

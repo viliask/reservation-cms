@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<template xmlns="http://schemas.sulu.io/template/template"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/template-1.0.xsd">
+
+    <key>article-taxonomy</key>
+
+    <view>pages/articleTaxonomy</view>
+    <controller>App\Controller\Website\ArticleTaxonomyController::indexAction</controller>
+    <cacheLifetime>86400</cacheLifetime>
+
+    <properties>
+        <property name="title" type="text_line" mandatory="true">
+            <meta>
+                <title lang="en">Title</title>
+                <title lang="pl">Tytuł</title>
+            </meta>
+            <params>
+                <param name="headline" value="true"/>
+            </params>
+
+            <tag name="sulu.rlp.part"/>
+        </property>
+
+        <property name="url" type="resource_locator" mandatory="true">
+            <meta>
+                <title lang="en">Resourcelocator</title>
+                <title lang="pl">Adres URL</title>
+            </meta>
+
+            <tag name="sulu.rlp"/>
+        </property>
+
+        <block name="categories" default-type="articles" minOccurs="0" maxOccurs="1">
+            <meta>
+                <title lang="en">Categories/Tags</title>
+                <title lang="pl">Kategorie/Tagi</title>
+            </meta>
+            <types>
+                <type name="articles">
+                    <meta>
+                        <title lang="en">Articles</title>
+                        <title lang="pl">Artykuły</title>
+                    </meta>
+
+                    <properties>
+                        <property name="articles" type="smart_content">
+                            <meta>
+                                <title lang="en">Articles</title>
+                                <title lang="pl">Artykuły</title>
+                            </meta>
+
+                            <params>
+                                <param name="provider" value="articles"/>
+                            </params>
+                        </property>
+                    </properties>
+                </type>
+            </types>
+        </block>
+
+    </properties>
+</template>

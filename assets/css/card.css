@@ -135,6 +135,9 @@
         right: 10px;
         width: unset;
     }
+    #res-tours .btn.btn-primary {
+        position: unset;
+    }
     .card-description-container {
         padding: 10px;
     }

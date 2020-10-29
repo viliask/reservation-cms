@@ -1,0 +1,4 @@
+cocur_slugify:
+    lowercase: true # or true
+    separator: '-' # any string
+    rulesets: ['polish']

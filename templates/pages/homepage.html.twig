@@ -29,8 +29,14 @@
     </div>
 
     {% block grids %}
-        {% include "/homepage/grids.html.twig" with {content: content} %}
+        {% include "/homepage/grids.html.twig"%}
     {% endblock %}
+
+    <div id="res-features home">
+        <div class="container homepage-content">
+            <p>{{ content.article|raw }}</p>
+        </div>
+    </div>
 
     <div id="res-features">
         <div class="container">

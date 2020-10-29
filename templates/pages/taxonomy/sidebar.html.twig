@@ -1,0 +1,52 @@
+{% block aside %}
+    <div class="sidebar col-md-3 col-sm-12">
+        <h3>Kategorie</h3>
+        <ul>
+            {% for category in sulu_categories('en') %}
+                <li id="{{ category.key }}">
+                    <a href="{{ sulu_content_root_path() ~ article_root ~ category.name|slugify }}">{{ category.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <h3>Tagi</h3>
+        <ul>
+            {% for tag in sulu_tags() %}
+                <li><a href="{{ sulu_content_root_path() ~ article_root ~ tag.name|slugify }}">{{ tag.name }}</a></li>
+            {% endfor %}
+        </ul>
+        <div class="latest-article">
+            <div class="text-centr heading-sectio">
+                <h3>Najnowszy artykuł</h3>
+            </div>
+            {% set articles = sulu_article_load_recent(1) %}
+            {% if articles is defined %}
+                {% for article in articles %}
+                    <div class="display-table-sm">
+                        <div class="res-blog">
+                            <a href="{{ sulu_content_path(article.routePath) }}">
+                                {% if article.content.content.images[0] is defined %}
+                                    <img class="img-responsive" src="{{ article.content.content.images[0].formats['sulu-400x400-inset.webp'] }}" loading="lazy" alt="{{ article.title }}">
+                                {% else %}
+                                    <img class="img-responsive" src="/web/images/place-1.jpg" loading="lazy" alt="{{ article.title }}">
+                                {% endif %}
+                            </a>
+                            <div class="blog-text">
+                                <div class="prod-title">
+                                    <h4><a href="{{ sulu_content_path(article.routePath) }}">{{ article.title }}</a></h4>
+                                    <p><a href="{{ sulu_content_path(article.routePath) }}">Zobacz więcej</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="row">
+                    <div class="col-md-8 text-center heading-section pt-1">
+                        <h1>Brak artykułów</h1>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

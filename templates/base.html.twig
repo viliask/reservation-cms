@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html lang="{{ app.request.locale|split('_')[0] }}">
+<html lang="pl">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179705432-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+    <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-179705432-1");</script>
 
-        gtag('config', 'UA-179705432-1');
-    </script>
-
+    {% if content.title is not defined %}
     <title>{% block title '' %}</title>
+    {% endif %}
 
     {% block stylesheets %}
         {{ encore_entry_link_tags('core', null, 'css') }}
@@ -55,10 +51,6 @@
         <section class="main_bg" id="content">
             {% block content %}{% endblock %}
         </section>
-
-        <aside>
-            {% block aside %}{% endblock %}
-        </aside>
 
         <footer>
             {% block footer %}
