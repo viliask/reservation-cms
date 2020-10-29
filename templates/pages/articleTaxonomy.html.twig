@@ -39,16 +39,8 @@
                     </div>
                 </div>
             {% endif %}
-            {% if page > 1 %}
-                <nav aria-label="pagination" class="article-pagination">
-                    <a href="?page={{ page - 1 }}">< Poprzednia</a>
-                    {% for i in 1..pages %}
-                        <a href="?page={{ i }}">{{ i }}</a>
-                    {% endfor %}
-                    <a href="?page={{ page + 1 }}">Następna ></a>
-                </nav>
-            {% endif %}
 
+            {% include "pages/taxonomy/pagination.html.twig" %}
         </div>
 
         {% include "pages/taxonomy/sidebar.html.twig" %}
