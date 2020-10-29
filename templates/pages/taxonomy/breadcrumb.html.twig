@@ -1,0 +1,18 @@
+<div class="mt-1 p-0">
+    <div class="">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                {% set nonclickableLeaf = sulu_breadcrumb(uuid)|last %}
+                {% for item in sulu_breadcrumb(uuid) %}
+                    {% if item == nonclickableLeaf %}
+                        <li class="breadcrumb-item">{{ item.title }}</li>
+                    {% else %}
+                        <li class="breadcrumb-item">
+                            <a class="breadcrumb-item" href="{{ sulu_content_path(item.url) }}">{{ item.title }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+        </nav>
+    </div>
+</div>
