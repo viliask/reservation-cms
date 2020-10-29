@@ -4,11 +4,15 @@
             <ol class="breadcrumb">
                 {% set nonclickableLeaf = sulu_breadcrumb(uuid)|last %}
                 {% for item in sulu_breadcrumb(uuid) %}
+                    {% set title = item.title %}
+                    {% if item.excerpt.title is not empty %}
+                        {% set title = item.excerpt.title %}
+                    {% endif %}
                     {% if item == nonclickableLeaf %}
-                        <li class="breadcrumb-item">{{ item.title }}</li>
+                        <li class="breadcrumb-item">{{ title }}</li>
                     {% else %}
                         <li class="breadcrumb-item">
-                            <a class="breadcrumb-item" href="{{ sulu_content_path(item.url) }}">{{ item.title }}</a>
+                            <a class="breadcrumb-item" href="{{ sulu_content_path(item.url) }}">{{ title }}</a>
                         </li>
                     {% endif %}
                 {% endfor %}
