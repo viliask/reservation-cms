@@ -9,13 +9,13 @@
 {% block content %}
 
     <div class="res-section-gray">
-        <div class="container">
+        <div class="container pb-2">
+            {% include "pages/taxonomy/breadcrumb.html.twig"%}
             {% if articles is not empty %}
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center heading-section pt-1">
+                <div class="taxonomy col-md-9 col-sm-12">
+                    <div class="text-center heading-section pt-1">
                         <h1>Artykuły</h1>
                     </div>
-                </div>
                 {% for article in articles %}
                     <a href="{{ sulu_content_path(article.routePath) }}">
                         <div class="card transitionable">
@@ -42,15 +42,18 @@
                     </div>
                 </div>
             {% endif %}
-            {% if page > 1 %}
-                <nav aria-label="pagination" class="article-pagination">
-                    <a href="?page={{ page - 1 }}">< Poprzednia</a>
-                    {% for i in 1..pages %}
-                        <a href="?page={{ i }}">{{ i }}</a>
-                    {% endfor %}
-                    <a href="?page={{ page + 1 }}">Następna ></a>
-                </nav>
-            {% endif %}
+                {% if page > 1 %}
+                    <nav aria-label="pagination" class="article-pagination">
+                        <a href="?page={{ page - 1 }}">< Poprzednia</a>
+                        {% for i in 1..pages %}
+                            <a href="?page={{ i }}">{{ i }}</a>
+                        {% endfor %}
+                        <a href="?page={{ page + 1 }}">Następna ></a>
+                    </nav>
+                {% endif %}
+            </div>
+
+            {% include "pages/taxonomy/sidebar.html.twig" %}
         </div>
     </div>
 
