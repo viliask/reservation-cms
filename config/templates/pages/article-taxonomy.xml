@@ -31,5 +31,33 @@
             <tag name="sulu.rlp"/>
         </property>
 
+        <block name="categories" default-type="articles" minOccurs="0" maxOccurs="1">
+            <meta>
+                <title lang="en">Categories/Tags</title>
+                <title lang="pl">Kategorie/Tagi</title>
+            </meta>
+            <types>
+                <type name="articles">
+                    <meta>
+                        <title lang="en">Articles</title>
+                        <title lang="pl">Artykuły</title>
+                    </meta>
+
+                    <properties>
+                        <property name="articles" type="smart_content">
+                            <meta>
+                                <title lang="en">Articles</title>
+                                <title lang="pl">Artykuły</title>
+                            </meta>
+
+                            <params>
+                                <param name="provider" value="articles"/>
+                            </params>
+                        </property>
+                    </properties>
+                </type>
+            </types>
+        </block>
+
     </properties>
 </template>
