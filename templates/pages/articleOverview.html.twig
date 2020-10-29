@@ -21,11 +21,10 @@
                         <div class="card transitionable">
                             <div class="card-container">
                                 {% if article.content.images[0] is defined %}
-                                    <div class="image" style="background-image: url({{ article.content.images[0].formats['sulu-400x400-inset.webp'] }})">
+                                    <div class="image" style="background-image: url({{ article.content.images[0].formats['sulu-400x400-inset.webp'] }})"></div>
                                 {% else %}
-                                    <div class="image" style="background-image: url(/web/images/place-1.jpg);">
+                                    <div class="image" style="background-image: url(/web/images/place-1.jpg);"></div>
                                 {% endif %}
-                                    </div>
                                 <div class="text-card-container">
                                     <div class="card-description-container">
                                         <h2>{{ article.title }}</h2>
