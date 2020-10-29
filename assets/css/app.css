@@ -10,6 +10,37 @@
     position: absolute;
 }
 
+.taxonomy {
+    border-right: 1px solid #26262614;
+}
+
+.sidebar h3 {
+    color: rgba(0,0,0,.6);
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.latest-article {
+    border-top: 1px solid #26262614;
+    padding: 15px 0 0 0;
+}
+
+.sidebar h4 {
+    margin-bottom: 20px;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.res-blog .blog-text h4 a {
+    color: rgba(0,0,0,.6);
+}
+
+.sidebar-desc .res-tours .desc{
+    bottom: 10%;
+}
+
 .article-desc {
     top: 50%;
     position: absolute;
