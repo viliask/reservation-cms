@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+
+{% block styles %}
+    {{ encore_entry_link_tags('card', null, 'css') }}
+{% endblock %}
+
+{% block content %}
+    {% dump(content) %}
+    <div class="res-section-gray">
+    <div class="container">
+        <div class="taxonomy col-md-9 col-sm-12">
+            {% if articles is not empty %}
+                <div class="text-center heading-section pt-1">
+                    <h1>Artykuły z kategorii: Atrakcje w Krynicy Zdroju</h1>
+                </div>
+                {% for article in articles %}
+                    <a href="{{ sulu_content_path(article.routePath) }}">
+                        <div class="card transitionable">
+                            <div class="card-container">
+                                {% if article.content.images[0] is defined %}
+                                    <div class="image" style="background-image: url({{ article.content.images[0].formats['sulu-400x400-inset.webp'] }})">
+                                {% else %}
+                                    <div class="image" style="background-image: url(/web/images/place-1.jpg);">
+                                {% endif %}
+                                    </div>
+                                <div class="text-card-container">
+                                    <div class="card-description-container">
+                                        <h2>{{ article.title }}</h2>
+                                        {{ article.content.getArrayCopy['preview']|default()|raw }}
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            {% else %}
+                <div class="row">
+                    <div class="col-md-8 text-center heading-section pt-1">
+                        <h1>Brak artykułów</h1>
+                    </div>
+                </div>
+            {% endif %}
+            {% if page > 1 %}
+                <nav aria-label="pagination" class="article-pagination">
+                    <a href="?page={{ page - 1 }}">< Poprzednia</a>
+                    {% for i in 1..pages %}
+                        <a href="?page={{ i }}">{{ i }}</a>
+                    {% endfor %}
+                    <a href="?page={{ page + 1 }}">Następna ></a>
+                </nav>
+            {% endif %}
+
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
