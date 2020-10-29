@@ -397,6 +397,9 @@ input[type="text"] {
     .col-xs-6 {
          width: 100%;
     }
+    .taxonomy {
+        border-right: 0;
+    }
 }
 
 @media (min-width: 768px) {
@@ -419,5 +422,8 @@ input[type="text"] {
     }
     .display-table-sm {
         display: table;
+    }
+    .taxonomy {
+        border-right: 0;
     }
 }
