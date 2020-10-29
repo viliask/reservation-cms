@@ -24,20 +24,21 @@
     </div>
 
     <div class="res-section-gray">
-        <div class="container">
+        <div class="container pb-2 text-article">
             <div class="row">
-                <div class="col-md-12 text-center text-article">
+            <div class="taxonomy col-md-9 col-sm-12 ">
                     <p>{{ content.article|default()|raw }}</p>
                     {% if content.blocks is defined %}
                         {% for key, block in content.blocks %}
                             {% if block.image.formats is defined %}
-                                <img loading="lazy" class="img-responsive" src="{{ block.image.formats['600x.webp'] }}" alt="{{ content.title }} {{ key }}">
+                                <img loading="lazy" class="img-responsive image-center text-center" src="{{ block.image.formats['600x.webp'] }}" alt="{{ content.title }} {{ key }}">
                             {% else %}
                                 <p>{{ block.text|default()|raw }}</p>
                             {% endif %}
                         {% endfor %}
                     {% endif %}
                 </div>
+            {% include "pages/taxonomy/sidebar.html.twig" %}
             </div>
             {% include "articles/recentArticles.html.twig" %}
         </div>
