@@ -69,6 +69,26 @@
             {% endif %}
 
         </div>
+
+        {% block aside %}
+            <div class="sidebar col-md-3 col-sm-12">
+                <h3>Kategorie</h3>
+                <ul>
+                    {% for category in sulu_categories('en') %}
+                        <li id="{{ category.key }}">
+                            <a href="{{ sulu_content_root_path() ~ article_root ~ category.name|slugify }}">{{ category.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <h3>Tagi</h3>
+                <ul>
+                    {% for tag in sulu_tags() %}
+                        <li><a href="{{ sulu_content_root_path() ~ article_root ~ tag.name|slugify }}">{{ tag.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        {% endblock %}
     </div>
     </div>
 
