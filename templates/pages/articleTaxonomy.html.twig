@@ -17,15 +17,15 @@
                     <a href="{{ sulu_content_path(article.routePath) }}">
                         <div class="card transitionable">
                             <div class="card-container">
-                                {% if article.content.images[0] is defined %}
-                                    <div class="image" style="background-image: url({{ article.content.images[0].formats['sulu-400x400-inset.webp'] }})"></div>
+                                {% if article.content.content.images[0] is defined %}
+                                    <div class="image" style="background-image: url({{ article.content.content.images[0].formats['sulu-400x400-inset.webp'] }})"></div>
                                 {% else %}
                                     <div class="image" style="background-image: url(/web/images/place-1.jpg);"></div>
                                 {% endif %}
                                 <div class="text-card-container">
                                     <div class="card-description-container">
                                         <h2>{{ article.title }}</h2>
-                                        {{ article.content.getArrayCopy['preview']|default()|raw }}
+                                        {{ article.content.content.getArrayCopy['preview']|default()|raw }}
                                     </div>
                                 </div>
                              </div>
