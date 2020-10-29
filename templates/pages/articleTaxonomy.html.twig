@@ -29,7 +29,7 @@
         <div class="taxonomy col-md-9 col-sm-12">
             {% if content.categories[0].articles is not empty %}
                 <div class="text-center heading-section pt-1">
-                    <h1>Artykuły z kategorii: Atrakcje w Krynicy Zdroju</h1>
+                    <h1>Artykuły z kategorii: {{ content.title }}</h1>
                 </div>
                 {% for article in content.categories[0].articles %}
                     <a href="{{ sulu_content_path(article.routePath) }}">
