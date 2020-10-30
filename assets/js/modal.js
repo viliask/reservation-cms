@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
-import {visible, handleModalClose, validateForm, form} from './helper'
+import {makeVisible, makeInvisible, handleModalClose, validateForm, form} from './helper'
 
 Date.prototype.addHours = function(h) {
     this.setTime(this.getTime() + (h*60*60*1000));
@@ -126,25 +126,25 @@ handleModalClose();
 // Modal after availability check - form modal
 openEventForm.addEventListener('click', () => {
     if (document.querySelector('#availability-modal')) {
-        document.querySelector('#availability-modal').classList.remove(visible);
+        makeInvisible(document.querySelector('#availability-modal'));
     }
 
-    document.querySelector('#reservation-modal').classList.add(visible);
+    makeVisible(document.querySelector('#reservation-modal'));
     updatePrice();
 });
 
 // Close form modal
 closeEventForm.addEventListener('click', () => {
-    document.querySelector('#reservation-modal').classList.remove(visible);
+    makeInvisible(document.querySelector('#reservation-modal'));
 });
 
 openPolicyModal.addEventListener('click', () => {
-    document.querySelector('#policy-modal').classList.add(visible);
-    document.querySelector('#reservation-modal').classList.remove(visible);
+    makeVisible(document.querySelector('#policy-modal'));
+    makeInvisible(document.querySelector('#reservation-modal'));
 
     document.querySelector('[data-close-policy]').addEventListener('click', () => {
-        document.querySelector('#policy-modal').classList.remove(visible);
-        document.querySelector('#reservation-modal').classList.add(visible);
+        makeInvisible(document.querySelector('#policy-modal'));
+        makeVisible(document.querySelector('#reservation-modal'));
     });
 });
 
@@ -161,24 +161,24 @@ form.addEventListener('submit', async (event) => {
                     const homepagePathAttrs = document.querySelector('#homepage-path-js');
                     delete homepagePathAttrs.dataset.checked;
 
-                    document.querySelector('#reservation-modal').classList.add(visible);
+                    makeVisible(document.querySelector('#reservation-modal'));
                     updatePrice();
                 } else {
-                    document.querySelector('#availability-modal').classList.add(visible);
+                    makeVisible(document.querySelector('#availability-modal'));
                 }
             } else {
-                document.querySelector('#room-not-available-modal').classList.add(visible);
+                makeVisible(document.querySelector('#room-not-available-modal'));
             }
         });
     }
 });
 
 closeAvailabilityModal.addEventListener('click', () => {
-    document.querySelector('#availability-modal').classList.remove(visible);
+    makeInvisible(document.querySelector('#availability-modal'));
 });
 
 closeRoomNotAvailableModal.addEventListener('click', () => {
-    document.querySelector('#room-not-available-modal').classList.remove(visible);
+    makeInvisible(document.querySelector('#room-not-available-modal'));
 });
 
 // Homepage path - redirect from reservation cards
