@@ -1,7 +1,3 @@
-const makeInvisible = (modal) => {
-    modal.classList.remove(visible);
-};
-
 export const form = document.querySelector('.submit-form');
 export const visible = 'visible';
 const MIN_STAY_DAYS = 2;
@@ -59,7 +55,16 @@ export const handleModalClose = () => {
 
         if (document.querySelector('#policy-modal') === openedModal && e.key === 'Escape' && openedModal) {
             makeInvisible(openedModal);
-            document.querySelector('#reservation-modal').classList.add(visible);
+            makeVisible('#reservation-modal');
         }
     });
+};
+
+export const makeVisible = (element) => {
+    element.style.removeProperty('visibility');
+    element.classList.add(visible);
+};
+
+export const makeInvisible = (element) => {
+    element.classList.remove(visible);
 };
