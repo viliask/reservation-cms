@@ -31,7 +31,7 @@
 
 @media(min-width: 960px) {
     .main-footer-content {
-        padding:64px 40px;
+        padding: 40px 40px;
         max-width: 960px;
         margin: 0 auto
     }
@@ -99,8 +99,9 @@
 }
 
 .main-footer-links ul>li {
+    text-align-last: center;
     float: left;
-    width: 60%;
+    width: 50%;
     padding-right: 10px;
     list-style: none;
     text-align: left
@@ -116,7 +117,7 @@
 }
 
 .main-footer-links ul>li:nth-child(2n) {
-    width: 40%
+    width: 50%
 }
 
 @media(min-width: 768px) {
