@@ -37,8 +37,14 @@
             </context>
             <context key="footer">
                 <meta>
-                    <title lang="en">Footer navigation</title>
-                    <title lang="pl">Stopka</title>
+                    <title lang="en">Footer primary</title>
+                    <title lang="pl">Stopka główna</title>
+                </meta>
+            </context>
+            <context key="footer-secondary">
+                <meta>
+                    <title lang="en">Footer secondary</title>
+                    <title lang="pl">Stopka podrzędna</title>
                 </meta>
             </context>
         </contexts>
