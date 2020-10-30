@@ -1,22 +1,3 @@
-<div id="footer">
-    <div class="footer-container">
-        <div class="footer-links-row container">
-            {% for item in sulu_navigation_root_tree('footer') %}
-                    <div class="res-footer-link">
-                        <span class="h4">
-                            <a href="{{ sulu_content_path(item.url, item.webspaceKey) }}" title="{{ item.title }}">{{ item.title }}</a>
-                        </span>
-                    </div>
-            {% endfor %}
-        </div>
-            <div class="text-center bg-white">
-                <a href="{{ sulu_content_root_path() }}">
-                    <img loading="lazy" src="/web/images/pokojebeata-logo.webp" height="70px" alt="pokojebeata.pl" title="pokojebeata.pl">
-                </a>
-            </div>
-    </div>
-</div>
-
 <footer class="main-footer">
     <div class="main-footer-content">
         <ul class="main-footer-contact">
