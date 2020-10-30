@@ -16,3 +16,42 @@
             </div>
     </div>
 </div>
+
+<footer class="main-footer">
+    <div class="main-footer-content">
+        <ul class="main-footer-contact">
+            <li>
+                <p>ul. Słotwińska 41A, 33-380 Krynica-Zdrój, Polska
+                </p>
+            </li>
+            <li>
+                <a href="tel:+48 661 159 412">661 159 412</a>
+            <li>
+                <a href="tel:+48 18 534 92 76">18 534 92 76</a>
+            </li>
+            <li>
+                <a href="mailto:hello@pokojebeata.pl">hello@pokojebeata.pl</a>
+            </li>
+        </ul>
+        <hr>
+        <section class="main-footer-links">
+            <ul class="primary">
+                {% for item in sulu_navigation_root_tree('footer') %}
+                    <li>
+                        <a href="{{ sulu_content_path(item.url, item.webspaceKey) }}" title="{{ item.title }}">{{ item.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <ul class="secondary">
+                {% for item in sulu_navigation_root_tree('footer-secondary') %}
+                <li>
+                    <a href="{{ sulu_content_path(item.url, item.webspaceKey) }}" title="{{ item.title }}">{{ item.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <p>© {{ 'now'|date('Y') }} pokojebeata.pl Wszelkie prawa zastrzeżone.
+        </section>
+    </div>
+</footer>
