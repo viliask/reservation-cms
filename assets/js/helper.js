@@ -6,16 +6,16 @@ export const validateForm = () => {
     const a = document.querySelector('#reservation_checkInDate').value;
     const b = document.querySelector('#reservation_checkOutDate').value;
     if (a === null || a === '' || b === null || b === '') {
-        document.querySelector('#empty-form-modal').classList.add(visible);
+        makeVisible(document.querySelector('#empty-form-modal'));
         document.querySelector('[data-close-empty-form]').addEventListener('click', () => {
-            document.querySelector('#empty-form-modal').classList.remove(visible);
+            makeInvisible(document.querySelector('#empty-form-modal'));
         });
         return false;
     }
     if (a >= b) {
-        document.querySelector('#datepicker-error').classList.add(visible);
+        makeVisible(document.querySelector('#datepicker-error'));
         document.querySelector('[data-close-datepicker-error]').addEventListener('click', () => {
-            document.querySelector('#datepicker-error').classList.remove(visible);
+            makeInvisible(document.querySelector('#datepicker-error'));
         });
         return false;
     }
