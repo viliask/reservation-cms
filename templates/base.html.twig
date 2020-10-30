@@ -52,11 +52,9 @@
             {% block content %}{% endblock %}
         </section>
 
-        <footer>
-            {% block footer %}
-                {% include "footer.html.twig" %}
-            {% endblock %}
-        </footer>
+        {% block footer %}
+            {% include "footer.html.twig" %}
+        {% endblock %}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('main', null, 'js') }}

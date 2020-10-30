@@ -1,12 +1,10 @@
+svg {
+    margin: 0 5px 0 0;
+}
 iframe {
     border: 0;
     width: 100%;
     height: 450px;
-}
-.footer-container {
-    padding: 0;
-    margin: 0;
-    width: 100%;
 }
 
 /* Set background form contact form*/

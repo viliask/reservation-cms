@@ -18,10 +18,19 @@
                 {% endif %}
             </ul>
         </li>
-        {% for item in sulu_navigation_root_tree('main') %}
+        {% for item in sulu_navigation_root_tree('main', 2) %}
             <li>
                 <a href="{{ sulu_content_path(item.url, item.webspaceKey) }}"
                    title="{{ item.title }}">{{ item.title }}</a>
+                {% if item.children is not empty %}
+                    <ul class="res-sub-menu">
+                        {% for childItem in item.children %}
+                            <li>
+                                <a href="{{ sulu_content_path(childItem.url, childItem.webspaceKey) }}" title="{{ childItem.title }}">{{ childItem.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>
@@ -53,10 +62,19 @@
                             {% endif %}
                         </ul>
                     </li>
-                    {% for item in sulu_navigation_root_tree('main') %}
+                    {% for item in sulu_navigation_root_tree('main', 2) %}
                         <li>
                             <a href="{{ sulu_content_path(item.url, item.webspaceKey) }}"
                                title="{{ item.title }}">{{ item.title }}</a>
+                            {% if item.children is not empty %}
+                                <ul class="res-sub-menu">
+                                {% for childItem in item.children %}
+                                    <li>
+                                        <a href="{{ sulu_content_path(childItem.url, childItem.webspaceKey) }}" title="{{ childItem.title }}">{{ childItem.title }}</a>
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
                         </li>
                     {% endfor %}
                 </ul>
