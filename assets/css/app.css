@@ -74,7 +74,6 @@
 }
 
 .main-footer-links>p {
-    color: #6d6d6d;
     font-size: 13px
 }
 
@@ -305,22 +304,6 @@
     display: block;
     max-width: 100%;
     height: none;
-}
-.img-logo-footer {
-    display: block;
-    max-width: 100%;
-    float: right;
-    margin-right: 15px;
-}
-.footer-links-row {
-    display: flex;
-    padding: 25px 0;
-}
-.res-footer-link{
-    position: relative;
-    min-height: 1px;
-    padding-left: 25px;
-    padding-right: 25px;
 }
 
 .form-group div {
