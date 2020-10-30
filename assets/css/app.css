@@ -1,7 +1,7 @@
 /*New footer*/
 .main-footer {
     width: 100%;
-    background: #f0f0f0;
+    background: #fffff;
     color: #6d6d6d
 }
 
@@ -39,7 +39,6 @@
 
 .main-footer-content>hr {
     margin: 35px 0 25px 0;
-    border-color: silver
 }
 
 .main-footer-contact {
