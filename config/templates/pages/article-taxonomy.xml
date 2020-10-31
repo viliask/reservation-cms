@@ -31,6 +31,20 @@
             <tag name="sulu.rlp"/>
         </property>
 
+        <property name="header" type="text_line">
+            <meta>
+                <title lang="en">Header</title>
+                <title lang="pl">Nagłówek</title>
+            </meta>
+        </property>
+
+        <property name="content" type="text_editor">
+            <meta>
+                <title lang="en">Content</title>
+                <title lang="pl">Opis</title>
+            </meta>
+        </property>
+
         <block name="categories" default-type="articles" minOccurs="0" maxOccurs="1">
             <meta>
                 <title lang="en">Categories/Tags</title>
@@ -48,6 +62,25 @@
                             <meta>
                                 <title lang="en">Articles</title>
                                 <title lang="pl">Artykuły</title>
+                            </meta>
+
+                            <params>
+                                <param name="provider" value="articles"/>
+                            </params>
+                        </property>
+                    </properties>
+                </type>
+                <type name="tags">
+                    <meta>
+                        <title lang="en">Tags</title>
+                        <title lang="pl">Tagi</title>
+                    </meta>
+
+                    <properties>
+                        <property name="articles" type="smart_content">
+                            <meta>
+                                <title lang="en">Tags</title>
+                                <title lang="pl">Tagi</title>
                             </meta>
 
                             <params>
