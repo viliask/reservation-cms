@@ -9,6 +9,9 @@
     <div class="container pb-2">
         {% include "pages/taxonomy/breadcrumb.html.twig"%}
         <div class="taxonomy col-md-9 col-sm-12">
+            {% if content.content is not empty %}
+                {{ content.content|default()|raw }}
+            {% endif %}
             {% if content.categories[0].articles is not empty %}
                 <div class="text-center heading-section pt-1">
                     <h1>Artykuły z {{ content.categories[0].type == 'articles' ? 'kategorii:' : 'tagiem:' }} {{ content.title }}</h1>

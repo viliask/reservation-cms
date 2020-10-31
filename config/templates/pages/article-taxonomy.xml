@@ -31,6 +31,13 @@
             <tag name="sulu.rlp"/>
         </property>
 
+        <property name="content" type="text_editor">
+            <meta>
+                <title lang="en">Content</title>
+                <title lang="pl">Opis</title>
+            </meta>
+        </property>
+
         <block name="categories" default-type="articles" minOccurs="0" maxOccurs="1">
             <meta>
                 <title lang="en">Categories/Tags</title>
