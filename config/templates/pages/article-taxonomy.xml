@@ -56,6 +56,25 @@
                         </property>
                     </properties>
                 </type>
+                <type name="tags">
+                    <meta>
+                        <title lang="en">Tags</title>
+                        <title lang="pl">Tagi</title>
+                    </meta>
+
+                    <properties>
+                        <property name="articles" type="smart_content">
+                            <meta>
+                                <title lang="en">Tags</title>
+                                <title lang="pl">Tagi</title>
+                            </meta>
+
+                            <params>
+                                <param name="provider" value="articles"/>
+                            </params>
+                        </property>
+                    </properties>
+                </type>
             </types>
         </block>
 
