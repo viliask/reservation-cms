@@ -9,13 +9,18 @@
     <div class="container pb-2">
         {% include "pages/taxonomy/breadcrumb.html.twig"%}
         <div class="taxonomy col-md-9 col-sm-12">
-            {% if content.content is not empty %}
-                {{ content.content|default()|raw }}
-            {% endif %}
             {% if content.categories[0].articles is not empty %}
-                <div class="text-center heading-section pt-1">
-                    <h1>Artykuły z {{ content.categories[0].type == 'articles' ? 'kategorii:' : 'tagiem:' }} {{ content.title }}</h1>
-                </div>
+                {% if content.content is not empty %}
+                    <h1 class="text-center">{{ content.header }}</h1>
+                    {{ content.content|default()|raw }}
+                    <div class="text-center heading-section pt-1">
+                        <h2>Artykuły z {{ content.categories[0].type == 'articles' ? 'kategorii:' : 'tagiem:' }} {{ content.title }}</h2>
+                    </div>
+                {% else %}
+                    <div class="text-center heading-section pt-1">
+                        <h1>Artykuły z {{ content.categories[0].type == 'articles' ? 'kategorii:' : 'tagiem:' }} {{ content.title }}</h1>
+                    </div>
+                {% endif %}
                 {% for article in content.categories[0].articles %}
                     <a href="{{ sulu_content_path(article.routePath) }}">
                         <div class="card transitionable">
