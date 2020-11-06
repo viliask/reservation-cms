@@ -9,7 +9,7 @@ Encore
     .setPublicPath('/build/website/js')
     .addEntry('flatpickr', './assets/js/flatpickr.js')
     .addEntry('modal', './assets/js/modal.js')
-    .addEntry('main', './assets/js/main.js')
+    .addEntry('core', './assets/js/core.js')
     .addEntry('homepage', './assets/js/homepage.js')
     .addEntry('cookieconsent', './assets/js/cookieconsent.min.js')
     .addEntry('cookie-info', './assets/js/cookie-info.js')
