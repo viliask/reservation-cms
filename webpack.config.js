@@ -7,8 +7,7 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore
     .setOutputPath('public/build/website/js')
     .setPublicPath('/build/website/js')
-    .addEntry('flatpickr', './assets/js/flatpickr.js')
-    .addEntry('modal', './assets/js/modal.js')
+    .addEntry('pageReservation', './assets/js/pageReservation.js')
     .addEntry('core', './assets/js/core.js')
     .addEntry('pageHomepage', './assets/js/pageHomepage.js')
     .splitEntryChunks()
