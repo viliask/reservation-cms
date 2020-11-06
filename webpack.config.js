@@ -7,8 +7,8 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore
     .setOutputPath('public/build/website/js')
     .setPublicPath('/build/website/js')
-    .addEntry('pageReservation', './assets/js/pageReservation.js')
     .addEntry('core', './assets/js/core.js')
+    .addEntry('pageReservation', './assets/js/pageReservation.js')
     .addEntry('pageHomepage', './assets/js/pageHomepage.js')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
