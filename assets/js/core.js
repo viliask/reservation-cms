@@ -1,3 +1,6 @@
+import './cookieconsent.min'
+import './cookie-info'
+
 document.querySelector('.js-res-nav-toggle').addEventListener('click', () => {
     if (document.querySelector('body').classList.contains('res-offcanvas')) {
         document.querySelector('body').classList.remove('res-offcanvas');

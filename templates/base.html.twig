@@ -20,13 +20,11 @@
         {% include "@SuluWebsite/Extension/seo.html.twig" with {
             "seo": extension.seo|default([]),
             "content": content|default([]),
-            "urls": urls|default([]),
+            "urls": urls|default([]) is not empty ? urls|default([])['pl'] : urls|default([]),
             "shadowBaseLocale": shadowBaseLocale|default(),
             "defaultLocale": app.request.locale
         } %}
     {% endblock %}
-
-    {% block style %}{% endblock %}
 </head>
 <body>
 
@@ -57,9 +55,7 @@
         {% endblock %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('main', null, 'js') }}
-            {{ encore_entry_script_tags('cookieconsent', null, 'js') }}
-            {{ encore_entry_script_tags('cookie-info', null, 'js') }}
+            {{ encore_entry_script_tags('core', null, 'js') }}
         {% endblock %}
         {% block js '' %}
 
