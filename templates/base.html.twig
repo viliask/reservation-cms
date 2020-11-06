@@ -20,7 +20,7 @@
         {% include "@SuluWebsite/Extension/seo.html.twig" with {
             "seo": extension.seo|default([]),
             "content": content|default([]),
-            "urls": urls|default([]),
+            "urls": urls|default([]) is not empty ? urls|default([])['pl'] : urls|default([]),
             "shadowBaseLocale": shadowBaseLocale|default(),
             "defaultLocale": app.request.locale
         } %}
