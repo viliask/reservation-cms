@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block metadata %}
+    <meta name="description" content="{{ room.translations['en'].description }}">
+{% endblock %}
+
 {% block styles %}
     {{ encore_entry_link_tags('featureReservation', null, 'css') }}
 {% endblock %}
