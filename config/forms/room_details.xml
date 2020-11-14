@@ -94,7 +94,7 @@
             </meta>
 
             <properties>
-                <property name="title" type="text_line">
+                <property name="title" type="text_line" colspan="6">
                     <meta>
                         <title>sulu_admin.title</title>
                     </meta>
