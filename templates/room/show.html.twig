@@ -1,10 +1,14 @@
 {% extends 'base.html.twig' %}
 
+{% block metadata %}
+    <meta name="description" content="{{ room.translations['en'].description }}">
+{% endblock %}
+
 {% block styles %}
     {{ encore_entry_link_tags('featureReservation', null, 'css') }}
 {% endblock %}
 
-{% block title %}{{ room.widgetHeader }} - pokojebeata.pl{% endblock %}
+{% block title %}{{ room.translations['en'].title }}{% endblock %}
 
 {% block body %}
     {% if checked is defined %}

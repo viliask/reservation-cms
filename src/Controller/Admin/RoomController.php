@@ -145,6 +145,10 @@ class RoomController extends AbstractRestController implements ClassResourceInte
         if ($description = $data['description'] ?? null) {
             $entity->setDescription($description);
         }
+
+        if ($title = $data['title'] ?? null) {
+            $entity->setTitle($title);
+        }
     }
 
     protected function load(int $id, Request $request): ?Room

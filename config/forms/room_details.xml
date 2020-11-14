@@ -88,5 +88,25 @@
             </properties>
         </section>
 
+        <section name="taxonomy">
+            <meta>
+                <title>Metadane</title>
+            </meta>
+
+            <properties>
+                <property name="title" type="text_line" colspan="6">
+                    <meta>
+                        <title>sulu_admin.title</title>
+                    </meta>
+                </property>
+
+                <property name="description" type="text_area">
+                    <meta>
+                        <title>sulu_admin.description</title>
+                    </meta>
+                </property>
+            </properties>
+        </section>
+
     </properties>
 </form>
