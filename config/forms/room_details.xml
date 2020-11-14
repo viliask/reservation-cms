@@ -88,5 +88,15 @@
             </properties>
         </section>
 
+        <section name="taxonomy">
+            <meta>
+                <title>Promocja w zależności od ilości gości</title>
+            </meta>
+
+            <properties>
+
+            </properties>
+        </section>
+
     </properties>
 </form>
