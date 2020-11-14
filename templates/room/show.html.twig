@@ -8,7 +8,7 @@
     {{ encore_entry_link_tags('featureReservation', null, 'css') }}
 {% endblock %}
 
-{% block title %}{{ room.widgetHeader }} - pokojebeata.pl{% endblock %}
+{% block title %}{{ room.translations['en'].title }}{% endblock %}
 
 {% block body %}
     {% if checked is defined %}
